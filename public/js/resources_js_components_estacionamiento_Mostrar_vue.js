@@ -358,28 +358,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Estacionamiento",
   data: function data() {
@@ -1415,8 +1393,6 @@ var render = function () {
               }),
             ]
           ),
-          _vm._v(" "),
-          _vm._m(2),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "page-content-wrapper" }, [
@@ -1424,15 +1400,15 @@ var render = function () {
             "header",
             { staticClass: "page-header", attrs: { role: "banner" } },
             [
+              _vm._m(2),
+              _vm._v(" "),
               _vm._m(3),
               _vm._v(" "),
               _vm._m(4),
               _vm._v(" "),
-              _vm._m(5),
-              _vm._v(" "),
               _c("div", { staticClass: "ml-auto d-flex" }, [
                 _c("div", [
-                  _vm._m(6),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -1441,7 +1417,7 @@ var render = function () {
                         "dropdown-menu dropdown-menu-animated dropdown-lg",
                     },
                     [
-                      _vm._m(7),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("div", { staticClass: "dropdown-divider m-0" }),
                       _vm._v(" "),
@@ -1479,7 +1455,7 @@ var render = function () {
               attrs: { id: "js-page-content", role: "main" },
             },
             [
-              _vm._m(8),
+              _vm._m(7),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-12" }, [
@@ -1499,7 +1475,7 @@ var render = function () {
                 _c("div", { staticClass: "col-sm-12" }, [
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table table-bordered" }, [
-                      _vm._m(9),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -1552,7 +1528,7 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm._m(10),
+                        _vm._m(9),
                       ]),
                       _vm._v(" "),
                       _c("form", [
@@ -1733,7 +1709,7 @@ var render = function () {
                 [
                   _c("div", { staticClass: "modal-dialog" }, [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(11),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c("div", { staticClass: "table-responsive" }, [
@@ -1760,16 +1736,16 @@ var render = function () {
                                   _c("td", [_vm._v(_vm._s(_vm.info.email))]),
                                 ]),
                                 _vm._v(" "),
-                                _vm._m(12),
+                                _vm._m(11),
                                 _vm._v(" "),
-                                _vm._m(13),
+                                _vm._m(12),
                               ]),
                             ]
                           ),
                         ]),
                       ]),
                       _vm._v(" "),
-                      _vm._m(14),
+                      _vm._m(13),
                     ]),
                   ]),
                 ]
@@ -1787,7 +1763,7 @@ var render = function () {
             attrs: { role: "contentinfo" },
           }),
           _vm._v(" "),
-          _vm._m(15),
+          _vm._m(14),
         ]),
       ]),
     ]),
@@ -1856,77 +1832,6 @@ var staticRenderFns = [
           },
           [_c("i", { staticClass: "fal fa-chevron-up" })]
         ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "nav-footer shadow-top" }, [
-      _c(
-        "a",
-        {
-          staticClass: "hidden-md-down",
-          attrs: {
-            href: "#",
-            onclick: "return false;",
-            "data-action": "toggle",
-            "data-class": "nav-function-minify",
-          },
-        },
-        [
-          _c("i", { staticClass: "ni ni-chevron-right" }),
-          _vm._v(" "),
-          _c("i", { staticClass: "ni ni-chevron-right" }),
-        ]
-      ),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-table m-auto nav-footer-buttons" }, [
-        _c("li", [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "javascript:void(0);",
-                "data-toggle": "tooltip",
-                "data-placement": "top",
-                title: "Chat logs",
-              },
-            },
-            [_c("i", { staticClass: "fal fa-comments" })]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "javascript:void(0);",
-                "data-toggle": "tooltip",
-                "data-placement": "top",
-                title: "Support Chat",
-              },
-            },
-            [_c("i", { staticClass: "fal fa-life-ring" })]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: "javascript:void(0);",
-                "data-toggle": "tooltip",
-                "data-placement": "top",
-                title: "Make a call",
-              },
-            },
-            [_c("i", { staticClass: "fal fa-phone" })]
-          ),
-        ]),
       ]),
     ])
   },

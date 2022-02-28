@@ -274,53 +274,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -333,7 +286,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/logout').then(function () {
         _this.$router.push({
-          name: "Home"
+          name: "Login"
         });
       });
     }
@@ -576,8 +529,6 @@ var render = function () {
             staticClass: "page-footer",
             attrs: { role: "contentinfo" },
           }),
-          _vm._v(" "),
-          _vm._m(9),
         ]),
       ]),
     ]),
@@ -992,7 +943,7 @@ var staticRenderFns = [
                     { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
                     [
                       _vm._v(
-                        "\n                                            21.5k\n                                            "
+                        "\n                                        21.5k\n                                        "
                       ),
                       _c("small", { staticClass: "m-0 l-h-n" }, [
                         _vm._v("users signed up"),
@@ -1024,7 +975,7 @@ var staticRenderFns = [
                     { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
                     [
                       _vm._v(
-                        "\n                                            $10,203\n                                            "
+                        "\n                                        $10,203\n                                        "
                       ),
                       _c("small", { staticClass: "m-0 l-h-n" }, [
                         _vm._v("Visual Index Figure"),
@@ -1056,7 +1007,7 @@ var staticRenderFns = [
                     { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
                     [
                       _vm._v(
-                        "\n                                            - 103.72\n                                            "
+                        "\n                                        - 103.72\n                                        "
                       ),
                       _c("small", { staticClass: "m-0 l-h-n" }, [
                         _vm._v("Offset Balance Ratio"),
@@ -1088,7 +1039,7 @@ var staticRenderFns = [
                     { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
                     [
                       _vm._v(
-                        "\n                                            +40%\n                                            "
+                        "\n                                        +40%\n                                        "
                       ),
                       _c("small", { staticClass: "m-0 l-h-n" }, [
                         _vm._v("Product level increase"),
@@ -1108,141 +1059,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade modal-backdrop-transparent",
-        attrs: {
-          id: "modal-shortcut",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "modal-shortcut",
-          "aria-hidden": "true",
-        },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-top modal-transparent",
-            attrs: { role: "document" },
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "ul",
-                  { staticClass: "app-list w-auto h-auto p-0 text-left" },
-                  [
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "app-list-item text-white border-0 m-0",
-                          attrs: { href: "intel_introduction.html" },
-                        },
-                        [
-                          _c("div", { staticClass: "icon-stack" }, [
-                            _c("i", {
-                              staticClass:
-                                "base base-7 icon-stack-3x opacity-100 color-primary-500 ",
-                            }),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass:
-                                "base base-7 icon-stack-2x opacity-100 color-primary-300 ",
-                            }),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass:
-                                "fal fa-home icon-stack-1x opacity-100 color-white",
-                            }),
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "app-list-name" }, [
-                            _vm._v(
-                              "\n                                Home\n                            "
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "app-list-item text-white border-0 m-0",
-                          attrs: { href: "page_inbox_general.html" },
-                        },
-                        [
-                          _c("div", { staticClass: "icon-stack" }, [
-                            _c("i", {
-                              staticClass:
-                                "base base-7 icon-stack-3x opacity-100 color-success-500 ",
-                            }),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass:
-                                "base base-7 icon-stack-2x opacity-100 color-success-300 ",
-                            }),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass:
-                                "ni ni-envelope icon-stack-1x text-white",
-                            }),
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "app-list-name" }, [
-                            _vm._v(
-                              "\n                                Inbox\n                            "
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "app-list-item text-white border-0 m-0",
-                          attrs: { href: "intel_introduction.html" },
-                        },
-                        [
-                          _c("div", { staticClass: "icon-stack" }, [
-                            _c("i", {
-                              staticClass:
-                                "base base-7 icon-stack-2x opacity-100 color-primary-300 ",
-                            }),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass:
-                                "fal fa-plus icon-stack-1x opacity-100 color-white",
-                            }),
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "app-list-name" }, [
-                            _vm._v(
-                              "\n                                Add More\n                            "
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ]),
-                  ]
-                ),
-              ]),
-            ]),
-          ]
-        ),
       ]
     )
   },

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('estacionamiento', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
-            $table->string('sede');
-            $table->string('ubicación');
-            $table->dateTime('fecha_creacion');
-            $table->string('asignado');
+            $table->string('numero')->nullable();
+            $table->string('sede')->nullable();
+            $table->string('ubicación')->nullable();
+            $table->dateTime('fecha_creacion')->nullable();
+            $table->string('asignado')->nullable();
         });
     }
 
