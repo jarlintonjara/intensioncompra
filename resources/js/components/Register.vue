@@ -11,45 +11,59 @@
             </div>
             <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
                 <form >
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="">Nombres</label>
-                                <input type="text" v-model="form.nombre" id="" class="form-control">
+                                <label class="form-label" for="nombres">Nombres</label>
+                                <input type="text" v-model="form.nombre" id="nombres" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="">Apellidos</label>
-                                <input type="text" v-model="form.apellido" id="" class="form-control" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="">Email</label>
-                                <input type="email" v-model="form.email" id="" class="form-control" >
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="">Documento</label>
-                                <input type="text" v-model="form.documento" id="" class="form-control" >
+                                <label class="form-label" for="apellidos">Apellidos</label>
+                                <input type="text" v-model="form.apellido" id="apellidos" class="form-control" >
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="">Perfil</label>
-                                <input type="text" v-model="form.perfil" id="" class="form-control" >
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" v-model="form.email" id="email" class="form-control" >
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="documento">Documento</label>
+                                <input type="text" v-model="form.documento" id="documento" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="perfil">Perfil</label>
+                                <input type="text" v-model="form.perfil" id="perfil" class="form-control" >
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="password">Password</label>
                                 <input type="password" v-model="form.password" id="password" class="form-control">
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" v-model="form.password" id="password" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="password_confirm">Confirmar Password</label>
+                                <input type="password" v-model="form.password_confirmation" id="password_confirm" class="form-control">
                             </div>
                         </div>
                     </div>

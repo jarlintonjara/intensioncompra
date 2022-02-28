@@ -288,6 +288,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
@@ -2019,22 +2020,14 @@ var staticRenderFns = [
       "a",
       {
         staticClass:
-          "header-icon d-flex align-users-center justify-content-center ml-2",
+          "header-icon d-flex align-items-center justify-content-center ml-2",
         attrs: {
           href: "#",
           "data-toggle": "dropdown",
           title: "drlantern@gotbootstrap.com",
         },
       },
-      [
-        _c("img", {
-          staticClass: "profile-image rounded-circle",
-          attrs: {
-            src: "assets/img/demo/avatars/avatar-admin.png",
-            alt: "Dr. Codex Lantern",
-          },
-        }),
-      ]
+      [_c("i", { staticClass: "fas fa-user" })]
     )
   },
   function () {
@@ -2052,18 +2045,10 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "d-flex flex-row align-users-center mt-1 mb-1 color-white",
+              "d-flex flex-row align-items-center mt-1 mb-1 color-white",
           },
           [
-            _c("span", { staticClass: "mr-2" }, [
-              _c("img", {
-                staticClass: "rounded-circle profile-image",
-                attrs: {
-                  src: "assets/img/demo/avatars/avatar-admin.png",
-                  alt: "Dr. Codex Lantern",
-                },
-              }),
-            ]),
+            _c("span", { staticClass: "mr-2" }),
             _vm._v(" "),
             _c("div", { staticClass: "info-card-text" }, [
               _c("div", {
@@ -2082,7 +2067,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
         _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
-        _vm._v(" Estacionamiento \n                            "),
+        _vm._v(" Usuarios \n                            "),
         _c("small"),
       ]),
     ])

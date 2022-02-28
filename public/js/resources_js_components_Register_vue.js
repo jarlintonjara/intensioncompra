@@ -79,6 +79,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     var _form;
@@ -216,12 +230,12 @@ var render = function () {
           },
           [
             _c("form", [
-              _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "row mb-2" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
                       "label",
-                      { staticClass: "form-label", attrs: { for: "" } },
+                      { staticClass: "form-label", attrs: { for: "nombres" } },
                       [_vm._v("Nombres")]
                     ),
                     _vm._v(" "),
@@ -235,7 +249,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", id: "" },
+                      attrs: { type: "text", id: "nombres" },
                       domProps: { value: _vm.form.nombre },
                       on: {
                         input: function ($event) {
@@ -253,7 +267,10 @@ var render = function () {
                   _c("div", { staticClass: "form-group" }, [
                     _c(
                       "label",
-                      { staticClass: "form-label", attrs: { for: "" } },
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "apellidos" },
+                      },
                       [_vm._v("Apellidos")]
                     ),
                     _vm._v(" "),
@@ -267,7 +284,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", id: "" },
+                      attrs: { type: "text", id: "apellidos" },
                       domProps: { value: _vm.form.apellido },
                       on: {
                         input: function ($event) {
@@ -282,12 +299,12 @@ var render = function () {
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "row mb-2" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
                       "label",
-                      { staticClass: "form-label", attrs: { for: "" } },
+                      { staticClass: "form-label", attrs: { for: "email" } },
                       [_vm._v("Email")]
                     ),
                     _vm._v(" "),
@@ -301,7 +318,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "email", id: "" },
+                      attrs: { type: "email", id: "email" },
                       domProps: { value: _vm.form.email },
                       on: {
                         input: function ($event) {
@@ -319,7 +336,10 @@ var render = function () {
                   _c("div", { staticClass: "form-group" }, [
                     _c(
                       "label",
-                      { staticClass: "form-label", attrs: { for: "" } },
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "documento" },
+                      },
                       [_vm._v("Documento")]
                     ),
                     _vm._v(" "),
@@ -333,7 +353,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", id: "" },
+                      attrs: { type: "text", id: "documento" },
                       domProps: { value: _vm.form.documento },
                       on: {
                         input: function ($event) {
@@ -348,12 +368,12 @@ var render = function () {
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "row mb-2" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
                       "label",
-                      { staticClass: "form-label", attrs: { for: "" } },
+                      { staticClass: "form-label", attrs: { for: "perfil" } },
                       [_vm._v("Perfil")]
                     ),
                     _vm._v(" "),
@@ -367,7 +387,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", id: "" },
+                      attrs: { type: "text", id: "perfil" },
                       domProps: { value: _vm.form.perfil },
                       on: {
                         input: function ($event) {
@@ -380,7 +400,9 @@ var render = function () {
                     }),
                   ]),
                 ]),
-                _vm._v(" "),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mb-2" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
@@ -407,6 +429,45 @@ var render = function () {
                             return
                           }
                           _vm.$set(_vm.form, "password", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "password_confirm" },
+                      },
+                      [_vm._v("Confirmar Password")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.password_confirmation,
+                          expression: "form.password_confirmation",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "password", id: "password_confirm" },
+                      domProps: { value: _vm.form.password_confirmation },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "password_confirmation",
+                            $event.target.value
+                          )
                         },
                       },
                     }),
