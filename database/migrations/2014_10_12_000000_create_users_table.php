@@ -21,12 +21,10 @@ return new class extends Migration
             $table->string('cargo')->nullable();
             $table->string('perfil')->nullable();
             $table->string('area')->nullable();
-            $table->timestamp('fecha_creacion')->nullable();
-            $table->string('usuario')->nullable();
-            $table->tinyInteger('estado')->nullable();
             $table->string('documento')->nullable();
             $table->string('telefono')->nullable();
             $table->string('email')->unique();
+            $table->tinyInteger('status')->default('1');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\EstacionamientoModel;
+use App\Models\User;
 
-class EstacionamientoController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,7 +24,7 @@ class EstacionamientoController extends Controller
      */
     public function index()
     {   
-        $data = EstacionamientoModel::all();
+        $data = User::all();
         return response()->json($data);
     }
 
@@ -45,30 +45,29 @@ class EstacionamientoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        //$estacionamiento = EstacionamientoModel::create($request->post());
-        $estacionamiento = EstacionamientoModel::create($request->post());
-        return response()->json($estacionamiento);
+    {
+        $user = User::create($request->post());
+        return response()->json($user);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\EstacionamientoModel  $blog
+     * @param  \App\Models\User  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(EstacionamientoModel $estacionamiento)
+    public function show(User $user)
     {
-        return response()->json($estacionamiento);
+        return response()->json($user);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EstacionamientoModel  $blog
+     * @param  \App\Models\User  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(EstacionamientoModel $estacionamiento)
+    public function edit(User $user)
     {
         //
     }
@@ -81,23 +80,23 @@ class EstacionamientoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $estacionamiento = EstacionamientoModel::findOrFail($id);
-        $estacionamiento->update($request->all());
-        $data = EstacionamientoModel::all();
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        $data = User::all();
         return response()->json($data);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $estacionamiento = EstacionamientoModel::findOrFail($id);
-        $estacionamiento->delete();
-        $data = EstacionamientoModel::all();
+        $user = User::findOrFail($id);
+        $user->delete();
+        $data = User::all();
         return response()->json($data);
     }
 }

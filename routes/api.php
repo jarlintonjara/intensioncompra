@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EstacionamientoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,4 @@ Route::post('logout', [LoginController::class, 'logout']);
 
 //Route::resource('estacionamiento', EstacionamientoController::class)->only(['index']);
 Route::resource('estacionamiento', EstacionamientoController::class);
+Route::resource('usuario', UserController::class);

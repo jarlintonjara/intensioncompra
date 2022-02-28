@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('numero')->nullable();
             $table->string('sede')->nullable();
             $table->string('ubicación')->nullable();
-            $table->dateTime('fecha_creacion')->nullable();
+            $table->tinyInteger('status')->default('1');
             $table->string('asignado')->nullable();
+            $table->timestamps();
         });
     }
 

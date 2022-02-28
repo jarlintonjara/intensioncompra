@@ -1,28 +1,67 @@
 <template>
-      <div class="flex flex-wrap w-full justify-center items-center pt-56">
-        <div class="flex flex-wrap max-w-xl">
-            <div class="p-2 text-2xl text-gray-800 font-semibold"><h1>Register an account</h1></div>
+      <div class="">
+        <div class="blankpage-form-field" style="width: 600px">
+            <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+                <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+                    <span class="page-logo-text mr-1">Registro</span>
+                </a>
+            </div>
             <div class="p-2 w-full">
-                <label class="w-full" for="name">Name</label>
                 <span class="w-full text-red-500" v-if="errors.name">{{errors.name[0]}}</span>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Name" type="text" v-model="form.name" >
             </div>
-            <div class="p-2 w-full">
-                <label for="email">Your e-mail</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Email" type="email" v-model="form.email">
+            <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+                <form >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="">Nombres</label>
+                                <input type="text" v-model="form.nombre" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="">Apellidos</label>
+                                <input type="text" v-model="form.apellido" id="" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="">Email</label>
+                                <input type="email" v-model="form.email" id="" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="">Documento</label>
+                                <input type="text" v-model="form.documento" id="" class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="">Perfil</label>
+                                <input type="text" v-model="form.perfil" id="" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" v-model="form.password" id="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <button @click.prevent="saveForm" class="btn btn-primary float-right">Registrarse</button>
+                </form>
             </div>
-            <div class="p-2 w-full">
-                <label for="password">Password</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Password" type="password" v-model="form.password" name="password">
+            <div class="blankpage-footer text-center">
+                <router-link to="/"><strong>Recuperar Password</strong></router-link> |
+                <router-link to="/login"><strong>Login</strong></router-link>
             </div>
-            <div class="p-2 w-full">
-                <label for="confirm_password">Confirm Password</label>
-                <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="Confirm Password" type="password" v-model="form.password_confirmation" name="password_confirmation">
-            </div>
-            <div class="p-2 w-full mt-4">
-                <button @click.prevent="saveForm" type="submit" class="btn btn-primary">Register</button>
-            </div>
-        </div> 
+        </div>
     </div>
 </template>
 <script>
@@ -30,7 +69,11 @@ export default {
     data(){
         return{
             form:{
-                name: '',
+                nombre: '',
+                apellido: '',
+                email: '',
+                documento: '',
+                perfil: '',
                 email: '',
                 password:'',
                 password_confirmation:''

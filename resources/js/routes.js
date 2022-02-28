@@ -5,7 +5,9 @@ const Register = () => import('./components/Register.vue');
 const Dashboard = () => import('./components/Dashboard.vue');
 const NotFound = () => import('./components/NotFound.vue');
 
-const MostrarEstacionamiento = () => import('./components/estacionamiento/Mostrar.vue');
+const Usuario = () => import('./components/usuario/Index.vue');
+const Estacionamiento = () => import('./components/estacionamiento/Index.vue');
+const Programacion = () => import('./components/programacion/Index.vue');
 //const CrearEstacionamiento = () => import('./components/estacionamiento/Crear.vue');
 //const EditarEstacionamiento = () => import('./components/estacionamiento/Editar.vue');
 
@@ -46,9 +48,19 @@ export default{
             }
         },
         {
+            path: '/usuarios',
+            component: Usuario,
+            name: 'usuario'
+        },
+        {
             path: '/estacionamiento',
-            component: MostrarEstacionamiento,
+            component: Estacionamiento,
             name: 'estacionamiento'
+        },
+        {
+            path: '/programacion',
+            component: Programacion,
+            name: 'programacion'
         },
     ]
 }

@@ -44,6 +44,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
             'throttle:60,1',
         ],
     ];

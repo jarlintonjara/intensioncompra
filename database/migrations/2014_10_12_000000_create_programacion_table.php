@@ -25,6 +25,7 @@ return new class extends Migration
             $table->dateTime('fecha_creacion');
             $table->boolean('dia_completo');
             $table->boolean('dia_parcial');
+            $table->tinyInteger('status')->default('1');
         });
     }
 
