@@ -97,8 +97,10 @@ export default {
     },
     methods:{
         saveForm(){
-            axios.post('/api/register', this.form).then(() =>{
-                console.log('saved');
+            axios.post('/api/register', this.form).then((response) =>{
+                alert("registro creado");
+                this.$router.push({ name: "Login"})
+                console.log(response);
             }).catch((error) =>{
                 this.errors = error.response.data.errors;
             })

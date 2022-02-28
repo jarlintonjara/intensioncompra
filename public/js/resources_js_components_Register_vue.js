@@ -112,8 +112,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveForm: function saveForm() {
       var _this = this;
 
-      axios.post('/api/register', this.form).then(function () {
-        console.log('saved');
+      axios.post('/api/register', this.form).then(function (response) {
+        alert("registro creado");
+
+        _this.$router.push({
+          name: "Login"
+        });
+
+        console.log(response);
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });

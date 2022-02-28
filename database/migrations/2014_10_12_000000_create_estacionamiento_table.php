@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('numero')->nullable();
             $table->string('sede')->nullable();
-            $table->string('ubicación')->nullable();
+            $table->string('ubicacion')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->string('asignado')->nullable();
             $table->timestamps();

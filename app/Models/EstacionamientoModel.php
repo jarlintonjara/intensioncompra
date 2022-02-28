@@ -9,7 +9,7 @@ class EstacionamientoModel extends Model
 {
     use HasFactory;
     //protected $primaryKey = 'flight_id';
-    public $timestamps = false;
+    //public $timestamps = false;
 
     protected $table = 'estacionamiento';
 
