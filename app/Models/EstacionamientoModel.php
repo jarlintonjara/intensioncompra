@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class EstacionamientoModel extends Model
 {
     use HasFactory;
+    //protected $primaryKey = 'flight_id';
+    public $timestamps = false;
 
     protected $table = 'estacionamiento';
 
-    protected $visible = ['numero', 'sede', 'ubicacion','fecha_creacion', 'asignado'];
+    protected $visible = ['id', 'numero', 'sede', 'ubicacion','fecha_creacion', 'asignado'];
+
+    protected $fillable = ['numero', 'sede', 'ubicacion', 'fecha_creacion', 'asignado'];
 }
