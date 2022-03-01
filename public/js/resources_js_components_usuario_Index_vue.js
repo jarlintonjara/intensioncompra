@@ -311,6 +311,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -327,7 +355,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         nombre: '',
         apellido: '',
         documento: '',
-        email: ''
+        email: '',
+        cargo: '',
+        area: '',
+        perfil: '',
+        telefono: ''
       },
       titulo: '',
       btnCrear: false,
@@ -346,32 +378,89 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             this.$tablaGlobal('#sampleTable')
         });
     }, */
+    validarCampos: function validarCampos() {
+      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.perfil) {
+        this.$swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Completa los campos requeridos!'
+        });
+        return false;
+      }
+
+      return true;
+    },
     crear: function crear() {
       var _this = this;
 
-      axios.post('api/usuario', this.datos).then(function (response) {
-        _this.users.push(response.data); //this.getUser()
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var valid;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.validarCampos();
+
+              case 2:
+                valid = _context.sent;
+
+                if (valid) {
+                  axios.post('api/usuario', _this.datos).then(function (response) {
+                    _this.users.push(response.data); //this.getUser()
 
 
-        $('#modalForm').modal('hide');
-        alert("Usuario creado correctamente!"); //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
-      })["catch"](function (error) {
-        console.log(error);
-      });
+                    $('#modalForm').modal('hide');
+
+                    _this.$swal.fire('Usuario creado correctamente!', '', 'success');
+                  })["catch"](function (error) {
+                    console.log(error);
+                  });
+                }
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     editar: function editar() {
       var _this2 = this;
 
-      console.log(this.id);
-      axios.put('/api/usuario/' + this.id, this.datos).then(function (response) {
-        _this2.users = [].concat(response.data);
-        _this2.id = ''; //this.getUser()
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var valid;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.validarCampos();
 
-        $('#modalForm').modal('hide');
-        alert("usuario editado correctamente!"); //swal("Felicidades!", "Usuario editado correctamente!", "success");
-      })["catch"](function (error) {
-        console.log(error);
-      });
+              case 2:
+                valid = _context2.sent;
+
+                if (valid) {
+                  axios.put('/api/usuario/' + _this2.id, _this2.datos).then(function (response) {
+                    _this2.users = [].concat(response.data);
+                    _this2.id = ''; //this.getUser()
+
+                    $('#modalForm').modal('hide');
+
+                    _this2.$swal.fire('Usuario editado correctamente!', '', 'success');
+                  })["catch"](function (error) {
+                    console.log(error);
+                  });
+                }
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     borrar: function borrar(id) {
       var _this3 = this;
@@ -411,12 +500,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     mostrarusers: function mostrarusers() {
       var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context.next = 2;
+                _context3.next = 2;
                 return _this4.axios.get('/api/usuario').then(function (response) {
                   _this4.users = response.data;
                 })["catch"](function (error) {
@@ -426,14 +515,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee);
+        }, _callee3);
       }))();
     },
     getTable: function getTable() {
       $('#dt-basic-example').dataTable({});
+    },
+    cerrarModal: function cerrarModal() {
+      $('#modalForm').modal('hide');
     }
   }
 });
@@ -1856,19 +1948,20 @@ var render = function () {
                       "div",
                       { staticClass: "panel", attrs: { id: "panel-4" } },
                       [
-                        _c("div", { staticClass: "panel-hdr" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: _vm.abrirModalCrear },
-                            },
-                            [_vm._v("Nuevo")]
-                          ),
-                        ]),
-                        _vm._v(" "),
                         _c("div", { staticClass: "panel-container show" }, [
                           _c("div", { staticClass: "panel-content" }, [
+                            _c("div", { staticClass: "panel-hdr" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success",
+                                  on: { click: _vm.abrirModalCrear },
+                                },
+                                [_vm._v("Nuevo")]
+                              ),
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
                             _c(
                               "table",
                               {
@@ -1892,6 +1985,8 @@ var render = function () {
                                       _c("td", [
                                         _vm._v(_vm._s(user.documento)),
                                       ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v(_vm._s(user.perfil))]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(user.email))]),
                                       _vm._v(" "),
@@ -1952,169 +2047,381 @@ var render = function () {
                     "div",
                     { staticClass: "modal fade", attrs: { id: "modalForm" } },
                     [
-                      _c("div", { staticClass: "modal-dialog" }, [
+                      _c("div", { staticClass: "modal-dialog modal-lg" }, [
                         _c("div", { staticClass: "modal-content" }, [
-                          _c(
-                            "div",
-                            { staticClass: "modal-header bg-primary" },
-                            [
-                              _c("h5", { staticClass: "modal-title" }, [
-                                _c("i", { staticClass: "fa fa-user-plus" }),
-                                _vm._v(
-                                  " " +
-                                    _vm._s(_vm.titulo) +
-                                    "\n                                "
+                          _c("div", { staticClass: "modal-header" }, [
+                            _c("h5", { staticClass: "modal-title" }, [
+                              _c("i", { staticClass: "fa fa-user-plus" }),
+                              _vm._v(
+                                " " +
+                                  _vm._s(_vm.titulo) +
+                                  "\n                                "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "close",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal",
+                                  "aria-label": "Close",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.cerrarModal.apply(
+                                      null,
+                                      arguments
+                                    )
+                                  },
+                                },
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { attrs: { "aria-hidden": "true" } },
+                                  [_vm._v("×")]
                                 ),
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(2),
-                            ]
-                          ),
+                              ]
+                            ),
+                          ]),
                           _vm._v(" "),
                           _c("form", [
                             _c("div", { staticClass: "modal-body" }, [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "" } }, [
-                                  _vm._v("Nombres"),
-                                ]),
+                              _c("div", { staticClass: "form-row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-6" },
+                                  [
+                                    _c("label", { attrs: { for: "Nombres" } }, [
+                                      _vm._v("Nombres"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.nombre,
+                                          expression: "datos.nombre",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Nombres",
+                                        placeholder: "Nombres",
+                                        required: "",
+                                      },
+                                      domProps: { value: _vm.datos.nombre },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "nombre",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                                 _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.datos.nombre,
-                                      expression: "datos.nombre",
-                                    },
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Nombres",
-                                    required: "",
-                                  },
-                                  domProps: { value: _vm.datos.nombre },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.datos,
-                                        "nombre",
-                                        $event.target.value
-                                      )
-                                    },
-                                  },
-                                }),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-6" },
+                                  [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "Apellidos" } },
+                                      [_vm._v("Apellidos")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.apellido,
+                                          expression: "datos.apellido",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Apellidos",
+                                        placeholder: "Apellidos",
+                                        required: "",
+                                      },
+                                      domProps: { value: _vm.datos.apellido },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "apellido",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "" } }, [
-                                  _vm._v("Apellidos"),
-                                ]),
+                              _c("div", { staticClass: "form-row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "Documento" } },
+                                      [_vm._v("Documento")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.documento,
+                                          expression: "datos.documento",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Documento",
+                                        placeholder: "Documento",
+                                      },
+                                      domProps: { value: _vm.datos.documento },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "documento",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                                 _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.datos.apellido,
-                                      expression: "datos.apellido",
-                                    },
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Apellidos",
-                                    required: "",
-                                  },
-                                  domProps: { value: _vm.datos.apellido },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.datos,
-                                        "apellido",
-                                        $event.target.value
-                                      )
-                                    },
-                                  },
-                                }),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c(
+                                      "label",
+                                      { attrs: { for: "Telefono" } },
+                                      [_vm._v("Telefono")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.telefono,
+                                          expression: "datos.telefono",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Telefono",
+                                        placeholder: "Documento",
+                                      },
+                                      domProps: { value: _vm.datos.telefono },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "telefono",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c("label", { attrs: { for: "Email" } }, [
+                                      _vm._v("Email"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.email,
+                                          expression: "datos.email",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "email",
+                                        id: "Email",
+                                        placeholder: "Email",
+                                      },
+                                      domProps: { value: _vm.datos.email },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "email",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "" } }, [
-                                  _vm._v("Documento"),
-                                ]),
+                              _c("div", { staticClass: "form-row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c("label", { attrs: { for: "Cargo" } }, [
+                                      _vm._v("Cargo"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.cargo,
+                                          expression: "datos.cargo",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Cargo",
+                                        placeholder: "Cargo",
+                                      },
+                                      domProps: { value: _vm.datos.cargo },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "cargo",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                                 _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.datos.documento,
-                                      expression: "datos.documento",
-                                    },
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Documento",
-                                    required: "",
-                                  },
-                                  domProps: { value: _vm.datos.documento },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.datos,
-                                        "documento",
-                                        $event.target.value
-                                      )
-                                    },
-                                  },
-                                }),
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "" } }, [
-                                  _vm._v("Email"),
-                                ]),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c("label", { attrs: { for: "Area" } }, [
+                                      _vm._v("Area"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.area,
+                                          expression: "datos.area",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Area",
+                                        placeholder: "Area",
+                                      },
+                                      domProps: { value: _vm.datos.area },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "area",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                                 _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.datos.email,
-                                      expression: "datos.email",
-                                    },
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "ubicación",
-                                    required: "",
-                                  },
-                                  domProps: { value: _vm.datos.email },
-                                  on: {
-                                    input: function ($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.datos,
-                                        "email",
-                                        $event.target.value
-                                      )
-                                    },
-                                  },
-                                }),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c("label", { attrs: { for: "Perfil" } }, [
+                                      _vm._v("Perfil"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.datos.perfil,
+                                          expression: "datos.perfil",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        id: "Perfil",
+                                        placeholder: "Perfil",
+                                      },
+                                      domProps: { value: _vm.datos.perfil },
+                                      on: {
+                                        input: function ($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.datos,
+                                            "perfil",
+                                            $event.target.value
+                                          )
+                                        },
+                                      },
+                                    }),
+                                  ]
+                                ),
                               ]),
                             ]),
                             _vm._v(" "),
@@ -2126,6 +2433,15 @@ var render = function () {
                                   attrs: {
                                     type: "button",
                                     "data-dismiss": "modal",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.cerrarModal.apply(
+                                        null,
+                                        arguments
+                                      )
+                                    },
                                   },
                                 },
                                 [_vm._v("Cerrar")]
@@ -2227,28 +2543,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Documento")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Perfil")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fecha")]),
       ]),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close",
-        },
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
   },
 ]
 render._withStripped = true

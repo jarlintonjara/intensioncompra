@@ -6,10 +6,7 @@
                 <sidebar/>
                 <!-- END Left Aside -->
                 <div class="page-content-wrapper">
-                    <!-- BEGIN Page Header -->
                     <Navbar/>
-                    <!-- END Page Header -->
-                    <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                         
@@ -23,11 +20,11 @@
                         <br>
                         <div class="col-lg-12">
                                 <div id="panel-4" class="panel">
-                                    <div class="panel-hdr">
-                                        <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
-                                    </div>
                                     <div class="panel-container show">
                                         <div class="panel-content">
+                                            <div class="panel-hdr">
+                                                <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
+                                            </div><br>
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
@@ -63,11 +60,11 @@
                         <div class="modal fade" id="modalForm">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-primary">
+                                    <div class="modal-header">
                                     <h5 class="modal-title">
                                         <i class="fa fa-user-plus"></i> {{titulo}}
                                     </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" @click.prevent="cerrarModal" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
@@ -88,7 +85,7 @@
                                         
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-danger"  @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
                                         <button type="submit" class="btn btn-primary" @click.prevent="crear" v-if="btnCrear">Crear</button>
                                         <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Editar</button>
                                     </div>
@@ -189,7 +186,11 @@ export default {
                 this.items.push(response.data);
                 //this.getUser()
                 $('#modalForm').modal('hide');
-                alert("Estacionamiento creado correctamente!");
+                this.$swal.fire(
+                    'Estacionamiento creado correctamente!',
+                    '',
+                    'success'
+                )
                 //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
             }).catch(function (error) {
                 console.log(error);
@@ -202,7 +203,11 @@ export default {
                 this.id='';
                 //this.getUser()
                 $('#modalForm').modal('hide');
-                alert("Estacionamiento editado correctamente!");
+                this.$swal.fire(
+                    'Estacionamiento editado correctamente!',
+                    '',
+                    'success'
+                )
                 //swal("Felicidades!", "Usuario editado correctamente!", "success");
             }).catch(function (error) {
                 console.log(error);
@@ -219,18 +224,18 @@ export default {
         },
         abrirModalCrear(){
             this.datos= {numero:'', sede:'', ubicacion:''}
-            this.titulo=' Crear usuario'
+            this.titulo=' Crear estacionamiento'
             this.btnCrear=true
             this.btnEditar=false
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
             this.datos= {numero: datos.numero, sede: datos.sede, ubicacion: datos.ubicacion}
-            this.titulo=' Editar usuario'
+            this.titulo=' Editar estacionamiento'
             this.btnCrear=false
             this.btnEditar=true
             this.id=datos.id
-            $('#modalForm').modal('show')
+            $('#modalForm').modal('show');
         },
         async mostrarItems(){
             await this.axios.get('/api/estacionamiento')
@@ -244,6 +249,9 @@ export default {
         },
         getTable(){
             $('#dt-basic-example').dataTable({})
+        },
+        cerrarModal(){
+            $('#modalForm').modal('hide');
         }
     }
 }

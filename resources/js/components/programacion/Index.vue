@@ -15,45 +15,110 @@
                         
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> Programación
-                            
+                                <i class='subheader-icon fal fa-chart-area'></i> Programacion 
+                                <small>
+                                </small>
                             </h1>
                         </div>
                         <br>
                         <div class="col-lg-12">
-                                
+                            <div id="panel-4" class="panel">
+                               
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                         <div class="panel-hdr">
+                                            <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
+                                        </div><br>
+                                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                            <thead class="bg-warning-200">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Estacionamiento</th>
+                                                    <th>Usuario</th>
+                                                    <th>Fecha Programada</th>
+                                                    <th>Hora Incio</th>
+                                                    <th>Hora Final</th>
+                                                    <th>Fecha creación</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="schedule in schedules" :key="schedule.id">
+                                                    <td>{{ schedule.id }}</td>
+                                                    <td>{{ schedule.id_estacionamiento }}</td>
+                                                    <td>{{ schedule.id_usuario }}</td>
+                                                    <td>{{ schedule.fecha }}</td>
+                                                    <td>{{ schedule.hora_inicio }}</td>
+                                                    <td>{{ schedule.hora_fin }}</td>
+                                                    <td>{{ schedule.created_at }}</td>
+                                                    <td>
+                                                        <button class="btn btn-warning" @click="abrirModalEditar(schedule)"><i class="far fa-edit"></i></button>
+                                                        <button class="btn btn-danger" @click="borrar(schedule.id)"><i class="far fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- datatable end -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                           
                        
                         <div class="modal fade" id="modalForm">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-primary">
+                                    <div class="modal-header">
                                     <h5 class="modal-title">
                                         <i class="fa fa-user-plus"></i> {{titulo}}
                                     </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <form>
                                     <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="nombre">Número</label>
-                                            <input type="text" class="form-control" placeholder="numero" required="" v-model="datos.numero">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Usuario">Usuario</label>
+                                                <select id="Usuario" class="browser-default custom-select" v-model="datos.id_usuario">
+                                                    <option></option>
+                                                    <option v-for="user in users" :key="user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Estacionamiento">Estacionamiento</label>
+                                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.id_estacionamiento">
+                                                    <option></option>
+                                                    <option v-for="parking in parkings" :key="parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="nombres">Sede</label>
-                                            <input type="text" class="form-control" placeholder="sede" required="" v-model="datos.sede">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="Fecha">Fecha de programación</label>
+                                                <input type="date" id="Fecha" class="form-control" placeholder="Fecha" v-model="datos.fecha">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="hora_inicio">Hora Inicio</label>
+                                                <input type="text" id="hora_inicio" class="form-control" placeholder="Hora inicio" v-model="datos.hora_inicio">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="hora_fin">Hora Fin</label>
+                                                <input type="text" id="hora_fin" class="form-control" placeholder="Hora fin" v-model="datos.hora_fin">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="nombress">Ubicación</label>
-                                            <input type="text" class="form-control" placeholder="ubicación" required="" v-model="datos.ubicacion">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="Observaciones">Observaciones</label>
+                                                <textarea id="Observaciones" class="form-control" v-model="datos.observacion"></textarea>
+                                            </div>
                                         </div>
                                         
+                                       
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
                                         <button type="submit" class="btn btn-primary" @click.prevent="crear" v-if="btnCrear">Crear</button>
                                         <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Editar</button>
                                     </div>
@@ -61,51 +126,14 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal ver detalles -->
-                        <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-info">
-                                        <h5 class="modal-title"><i class="fas fa-info-circle"></i> Detalles del usuario</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-bordered table-striped">                  
-                                                <tbody>
-                                                    <tr>
-                                                    <th scope="row">Numero</th><td>{{info.name}}</td></tr>
-                                                    <tr>
-                                                    <th scope="row">E-Sede</th>                      
-                                                        <td>{{info.email}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                    <th scope="row">Ubicación</th>                      
-
-                                                    </tr>
-                                                    <tr>
-                                                    <th scope="row">Fecha actualización</th>
-                                                
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </main>
                     <!-- END Page Content -->
                                         <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">
-                        <!-- <div class="d-flex align-items-center flex-1 text-muted">
+                        <!-- <div class="d-flex align-users-center flex-1 text-muted">
                             <span class="hidden-md-down fw-700">2019 © servicios for PHP by&nbsp;<a href='index.html' class='text-primary fw-500' title='smartadmin.lodev09.com' target='_blank'>@lodev09</a></span>
                         </div> -->
                     </footer>
@@ -129,16 +157,11 @@ export default {
     },
     data(){
         return {
-            columns: [
-                    {label: 'Numero', field: 'numero'}, 
-                    {label: 'Sede', field: 'sede'},
-                    {label: 'Ubicacion', field: 'ubicacion'}
-                ],
-            page: 1,
-            per_page: 10,
-            items:[],
+            users:[],
+            parkings:[],
+            schedules:[],
             info: [],
-            datos: {numero:'', sede:'', ubicacion:''},
+            datos: {id_estacionamiento:'', id_usuario:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -146,76 +169,101 @@ export default {
         }
     },
     mounted(){
-        this.mostrarItems()
+        this.init()
     },
     methods:{
-        /* getUser(){
-            axios.get('listar_usuarios').then(res=>{
-                $('#sampleTable').DataTable().destroy()
-                this.usuarios = res.data         
-                this.$tablaGlobal('#sampleTable')
-            });
-        }, */
-        crear(){
-            axios.post('api/estacionamiento', this.datos).then(response=>{
-                this.items.push(response.data);
-                //this.getUser()
-                $('#modalForm').modal('hide');
-                alert("Estacionamiento creado correctamente!");
-                //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
-            }).catch(function (error) {
-                console.log(error);
-            });
+        validarCampos(){
+            console.log(this.datos);
+            if(!this.datos.id_estacionamiento || !this.datos.id_usuario || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin ){
+                this.$swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Completa los campos requeridos!',
+                });
+                return false;
+            }
+            return true;
         },
-        editar(){
-            console.log(this.id);
-            axios.put('/api/estacionamiento/'+this.id, this.datos).then(response=>{
-                this.items = [].concat(response.data);          
-                this.id='';
-                //this.getUser()
-                $('#modalForm').modal('hide');
-                alert("Estacionamiento editado correctamente!");
-                //swal("Felicidades!", "Usuario editado correctamente!", "success");
-            }).catch(function (error) {
-                console.log(error);
-            });
+        async crear(){
+            let valid = await this.validarCampos();
+            if(valid){
+                axios.post('api/programacion', this.datos).then(response=>{
+                    this.users.push(response.data);
+                    //this.getUser()
+                    $('#modalForm').modal('hide');
+                    this.$swal.fire(
+                        'Programación creado correctamente!',
+                        '',
+                        'success'
+                    )
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+           
+        },
+        async editar(){
+            let valid = await this.validarCampos();
+            if(valid){
+                axios.put('/api/programacion/'+this.id, this.datos).then(response=>{
+                    this.users = [].concat(response.data);          
+                    this.id='';
+                    //this.getUser()
+                    $('#modalForm').modal('hide');
+                    this.$swal.fire(
+                        'Programación editado correctamente!',
+                        '',
+                        'success'
+                    )
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
         },
         borrar(id){
             if(confirm("¿Confirma eliminar el registro?")){
-                this.axios.delete(`/api/estacionamiento/${id}`).then(response=>{
-                    this.items = [].concat(response.data);
+                this.axios.delete(`/api/programacion/${id}`).then(response=>{
+                    this.users = [].concat(response.data);
                 }).catch(error=>{
                     console.log(error)
                 })
             }
         },
         abrirModalCrear(){
-            this.datos= {numero:'', sede:'', ubicacion:''}
-            this.titulo=' Crear usuario'
-            this.btnCrear=true
-            this.btnEditar=false
+            this.datos = {id_estacionamiento:'', id_usuario:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''};
+            this.titulo='Crear programacion'
+            this.btnCrear=true;
+            this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.datos= {numero: datos.numero, sede: datos.sede, ubicacion: datos.ubicacion}
-            this.titulo=' Editar usuario'
+            this.datos= {id_estacionamiento: datos.id_estacionamiento, id_usuario: datos.id_usuario,
+             fecha: datos.fecha, hora_inicio: datos.hora_inicio, hora_fin: datos.hora_fin, observacion: datos.observacion};
+            this.titulo=' Editar Programación'
             this.btnCrear=false
             this.btnEditar=true
+            console.log(datos)
             this.id=datos.id
             $('#modalForm').modal('show')
         },
-        async mostrarItems(){
-            await this.axios.get('/api/estacionamiento')
-                    .then(response=>{
-                        this.items = response.data
+        async init(){
+            await this.axios.get('/api/programacion')
+                    .then(response=> {
+                        this.users = response.data.users;
+                        this.parkings = response.data.parkings;
+                        this.schedules = response.data.schedules;
+                        //this.users = response.data
                     })
                     .catch(error=>{
                         console.log(error);
-                        this.items =[]
+                        this.schedules =[]
                     })
         },
         getTable(){
             $('#dt-basic-example').dataTable({})
+        },
+        cerrarModal(){
+            $('#modalForm').modal('hide');
         }
     }
 }

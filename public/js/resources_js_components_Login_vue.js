@@ -76,6 +76,14 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
+
+        _this.$swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Email o password incorrectos!'
+        });
+
+        console.log(_this.errors);
       });
     }
   }
@@ -262,7 +270,7 @@ var render = function () {
                   },
                 },
               },
-              [_vm._v("Secure login")]
+              [_vm._v("Login")]
             ),
           ]),
         ]
@@ -275,7 +283,7 @@ var render = function () {
           _c("router-link", { attrs: { to: "/login" } }, [
             _c("strong", [_vm._v("Recuperar Password")]),
           ]),
-          _vm._v("|\n            "),
+          _vm._v(" |\n            "),
           _c("router-link", { attrs: { to: "/register" } }, [
             _c("strong", [_vm._v("Registrar Cuenta")]),
           ]),

@@ -13,20 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellido');
-            $table->string('cargo')->nullable();
-            $table->string('perfil');
-            $table->string('area')->nullable();
-            $table->string('documento')->nullable();
-            $table->string('telefono')->nullable();
-            $table->string('email')->unique();
+            $table->string('description')->nullable();
             $table->tinyInteger('status')->default('1');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

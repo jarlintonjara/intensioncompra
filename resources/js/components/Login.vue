@@ -28,11 +28,11 @@
                             <label class="custom-control-label" for="rememberme"> Recordar contraseña(30 días)</label>
                         </div>
                     </div>
-                    <button @click.prevent="loginUser" class="btn btn-primary float-right">Secure login</button>
+                    <button @click.prevent="loginUser" class="btn btn-primary float-right">Login</button>
                 </form>
             </div>
             <div class="blankpage-footer text-center">
-                <router-link to="/login"><strong>Recuperar Password</strong></router-link>|
+                <router-link to="/login"><strong>Recuperar Password</strong></router-link> |
                 <router-link to="/register"><strong>Registrar Cuenta</strong></router-link>
             </div>
         </div>
@@ -57,9 +57,15 @@ export default {
     methods:{
          loginUser(){
              axios.post('/api/login', this.form).then(() =>{
-                 this.$router.push({ name: "Dashboard"}); 
+                this.$router.push({ name: "Dashboard"}); 
              }).catch((error) =>{
-         this.errors = error.response.data.errors;
+                this.errors = error.response.data.errors;
+                this.$swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Email o password incorrectos!',
+                })
+                console.log(this.errors);
             })
          }
     }

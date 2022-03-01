@@ -22,77 +22,105 @@
                         </div>
                         <br>
                         <div class="col-lg-12">
-                                <div id="panel-4" class="panel">
-                                    <div class="panel-hdr">
-                                        <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
-                                                <thead class="bg-warning-200">
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombres</th>
-                                                        <th>Apellidos</th>
-                                                        <th>Documento</th>
-                                                        <th>Email</th>
-                                                        <th>Fecha</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="user in users" :key="user.id">
-                                                        <td>{{ user.id }}</td>
-                                                        <td>{{ user.nombre }}</td>
-                                                        <td>{{ user.apellido }}</td>
-                                                        <td>{{ user.documento }}</td>
-                                                        <td>{{ user.email }}</td>
-                                                        <td>{{ user.created_at }}</td>
-                                                        <td>
-                                                            <button class="btn btn-warning" @click="abrirModalEditar(user)"><i class="far fa-edit"></i></button>
-                                                            <button class="btn btn-danger" @click="borrar(user.id)"><i class="far fa-trash"></i></button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <!-- datatable end -->
-                                        </div>
+                            <div id="panel-4" class="panel">
+                               
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                         <div class="panel-hdr">
+                                            <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
+                                        </div><br>
+                                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                            <thead class="bg-warning-200">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nombres</th>
+                                                    <th>Apellidos</th>
+                                                    <th>Documento</th>
+                                                    <th>Perfil</th>
+                                                    <th>Email</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="user in users" :key="user.id">
+                                                    <td>{{ user.id }}</td>
+                                                    <td>{{ user.nombre }}</td>
+                                                    <td>{{ user.apellido }}</td>
+                                                    <td>{{ user.documento }}</td>
+                                                    <td>{{ user.perfil }}</td>
+                                                    <td>{{ user.email }}</td>
+                                                    <td>{{ user.created_at }}</td>
+                                                    <td>
+                                                        <button class="btn btn-warning" @click="abrirModalEditar(user)"><i class="far fa-edit"></i></button>
+                                                        <button class="btn btn-danger" @click="borrar(user.id)"><i class="far fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- datatable end -->
                                     </div>
                                 </div>
                             </div>
-                           
+                        </div>
                        
                         <div class="modal fade" id="modalForm">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-primary">
+                                    <div class="modal-header">
                                     <h5 class="modal-title">
                                         <i class="fa fa-user-plus"></i> {{titulo}}
                                     </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
                                     <form>
                                     <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="">Nombres</label>
-                                            <input type="text" class="form-control" placeholder="Nombres" required="" v-model="datos.nombre">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Nombres">Nombres</label>
+                                                <input type="text" id="Nombres" class="form-control" placeholder="Nombres" required="" v-model="datos.nombre">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Apellidos">Apellidos</label>
+                                                <input type="text" id="Apellidos" class="form-control" placeholder="Apellidos" required="" v-model="datos.apellido">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Apellidos</label>
-                                            <input type="text" class="form-control" placeholder="Apellidos" required="" v-model="datos.apellido">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="Documento">Documento</label>
+                                                <input type="text" id="Documento" class="form-control" placeholder="Documento" v-model="datos.documento">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="Telefono">Telefono</label>
+                                                <input type="text" id="Telefono" class="form-control" placeholder="Documento" v-model="datos.telefono">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="Email">Email</label>
+                                                <input type="email" id="Email" class="form-control" placeholder="Email" v-model="datos.email">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Documento</label>
-                                            <input type="text" class="form-control" placeholder="Documento" required="" v-model="datos.documento">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="Cargo">Cargo</label>
+                                                <input type="text" id="Cargo" class="form-control" placeholder="Cargo" v-model="datos.cargo">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="Area">Area</label>
+                                                <input type="text" id="Area" class="form-control" placeholder="Area" v-model="datos.area">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="Perfil">Perfil</label>
+                                                <input type="text" id="Perfil" class="form-control" placeholder="Perfil" v-model="datos.perfil">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Email</label>
-                                            <input type="text" class="form-control" placeholder="ubicación" required="" v-model="datos.email">
-                                        </div>
+                                        
+                                       
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
                                         <button type="submit" class="btn btn-primary" @click.prevent="crear" v-if="btnCrear">Crear</button>
                                         <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Editar</button>
                                     </div>
@@ -133,7 +161,7 @@ export default {
         return {
             users:[],
             info: [],
-            datos: {nombre:'', apellido:'', documento:'', email:''},
+            datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', perfil: '', telefono:''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -151,29 +179,52 @@ export default {
                 this.$tablaGlobal('#sampleTable')
             });
         }, */
-        crear(){
-            axios.post('api/usuario', this.datos).then(response=>{
-                this.users.push(response.data);
-                //this.getUser()
-                $('#modalForm').modal('hide');
-                alert("Usuario creado correctamente!");
-                //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
-            }).catch(function (error) {
-                console.log(error);
-            });
+        validarCampos(){
+            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.perfil ){
+                this.$swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Completa los campos requeridos!',
+                });
+                return false;
+            }
+            return true;
         },
-        editar(){
-            console.log(this.id);
-            axios.put('/api/usuario/'+this.id, this.datos).then(response=>{
-                this.users = [].concat(response.data);          
-                this.id='';
-                //this.getUser()
-                $('#modalForm').modal('hide');
-                alert("usuario editado correctamente!");
-                //swal("Felicidades!", "Usuario editado correctamente!", "success");
-            }).catch(function (error) {
-                console.log(error);
-            });
+        async crear(){
+            let valid = await this.validarCampos();
+            if(valid){
+                axios.post('api/usuario', this.datos).then(response=>{
+                    this.users.push(response.data);
+                    //this.getUser()
+                    $('#modalForm').modal('hide');
+                    this.$swal.fire(
+                        'Usuario creado correctamente!',
+                        '',
+                        'success'
+                    )
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+           
+        },
+        async editar(){
+            let valid = await this.validarCampos();
+            if(valid){
+                axios.put('/api/usuario/'+this.id, this.datos).then(response=>{
+                    this.users = [].concat(response.data);          
+                    this.id='';
+                    //this.getUser()
+                    $('#modalForm').modal('hide');
+                    this.$swal.fire(
+                        'Usuario editado correctamente!',
+                        '',
+                        'success'
+                    )
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
         },
         borrar(id){
             if(confirm("¿Confirma eliminar el registro?")){
@@ -211,6 +262,9 @@ export default {
         },
         getTable(){
             $('#dt-basic-example').dataTable({})
+        },
+        cerrarModal(){
+            $('#modalForm').modal('hide');
         }
     }
 }

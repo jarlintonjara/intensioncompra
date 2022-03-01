@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('estacionamiento', function (Blueprint $table) {
             $table->id();
-            $table->string('numero')->nullable();
+            $table->string('numero');
             $table->string('sede')->nullable();
             $table->string('ubicacion')->nullable();
             $table->tinyInteger('status')->default('1');
-            $table->string('asignado')->nullable();
+            $table->integer('id_usuario')->nullable();
             $table->timestamps();
         });
     }

@@ -15,5 +15,5 @@ class EstacionamientoModel extends Model
 
     protected $visible = ['id', 'numero', 'sede', 'ubicacion','fecha_creacion', 'asignado'];
 
-    protected $fillable = ['numero', 'sede', 'ubicacion', 'fecha_creacion', 'asignado'];
+    protected $fillable = ['id','numero', 'sede', 'ubicacion', 'fecha_creacion', 'asignado'];
 }

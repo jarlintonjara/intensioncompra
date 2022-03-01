@@ -341,9 +341,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -386,7 +383,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
         $('#modalForm').modal('hide');
-        alert("Estacionamiento creado correctamente!"); //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
+
+        _this.$swal.fire('Estacionamiento creado correctamente!', '', 'success'); //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
+
       })["catch"](function (error) {
         console.log(error);
       });
@@ -400,7 +399,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.id = ''; //this.getUser()
 
         $('#modalForm').modal('hide');
-        alert("Estacionamiento editado correctamente!"); //swal("Felicidades!", "Usuario editado correctamente!", "success");
+
+        _this2.$swal.fire('Estacionamiento editado correctamente!', '', 'success'); //swal("Felicidades!", "Usuario editado correctamente!", "success");
+
       })["catch"](function (error) {
         console.log(error);
       });
@@ -422,7 +423,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sede: '',
         ubicacion: ''
       };
-      this.titulo = ' Crear usuario';
+      this.titulo = ' Crear estacionamiento';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
@@ -433,7 +434,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sede: datos.sede,
         ubicacion: datos.ubicacion
       };
-      this.titulo = ' Editar usuario';
+      this.titulo = ' Editar estacionamiento';
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
@@ -465,6 +466,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     getTable: function getTable() {
       $('#dt-basic-example').dataTable({});
+    },
+    cerrarModal: function cerrarModal() {
+      $('#modalForm').modal('hide');
     }
   }
 });
@@ -1887,19 +1891,20 @@ var render = function () {
                       "div",
                       { staticClass: "panel", attrs: { id: "panel-4" } },
                       [
-                        _c("div", { staticClass: "panel-hdr" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              on: { click: _vm.abrirModalCrear },
-                            },
-                            [_vm._v("Nuevo")]
-                          ),
-                        ]),
-                        _vm._v(" "),
                         _c("div", { staticClass: "panel-container show" }, [
                           _c("div", { staticClass: "panel-content" }, [
+                            _c("div", { staticClass: "panel-hdr" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success",
+                                  on: { click: _vm.abrirModalCrear },
+                                },
+                                [_vm._v("Nuevo")]
+                              ),
+                            ]),
+                            _c("br"),
+                            _vm._v(" "),
                             _c(
                               "table",
                               {
@@ -1983,22 +1988,44 @@ var render = function () {
                     [
                       _c("div", { staticClass: "modal-dialog" }, [
                         _c("div", { staticClass: "modal-content" }, [
-                          _c(
-                            "div",
-                            { staticClass: "modal-header bg-primary" },
-                            [
-                              _c("h5", { staticClass: "modal-title" }, [
-                                _c("i", { staticClass: "fa fa-user-plus" }),
-                                _vm._v(
-                                  " " +
-                                    _vm._s(_vm.titulo) +
-                                    "\n                                "
+                          _c("div", { staticClass: "modal-header" }, [
+                            _c("h5", { staticClass: "modal-title" }, [
+                              _c("i", { staticClass: "fa fa-user-plus" }),
+                              _vm._v(
+                                " " +
+                                  _vm._s(_vm.titulo) +
+                                  "\n                                "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "close",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal",
+                                  "aria-label": "Close",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.cerrarModal.apply(
+                                      null,
+                                      arguments
+                                    )
+                                  },
+                                },
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { attrs: { "aria-hidden": "true" } },
+                                  [_vm._v("×")]
                                 ),
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(2),
-                            ]
-                          ),
+                              ]
+                            ),
+                          ]),
                           _vm._v(" "),
                           _c("form", [
                             _c("div", { staticClass: "modal-body" }, [
@@ -2120,6 +2147,15 @@ var render = function () {
                                     type: "button",
                                     "data-dismiss": "modal",
                                   },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.cerrarModal.apply(
+                                        null,
+                                        arguments
+                                      )
+                                    },
+                                  },
                                 },
                                 [_vm._v("Cerrar")]
                               ),
@@ -2184,7 +2220,7 @@ var render = function () {
                     [
                       _c("div", { staticClass: "modal-dialog" }, [
                         _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(3),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
                             _c("div", { staticClass: "table-responsive" }, [
@@ -2213,16 +2249,16 @@ var render = function () {
                                       ]),
                                     ]),
                                     _vm._v(" "),
-                                    _vm._m(4),
+                                    _vm._m(3),
                                     _vm._v(" "),
-                                    _vm._m(5),
+                                    _vm._m(4),
                                   ]),
                                 ]
                               ),
                             ]),
                           ]),
                           _vm._v(" "),
-                          _vm._m(6),
+                          _vm._m(5),
                         ]),
                       ]),
                     ]
@@ -2281,23 +2317,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Fecha")]),
       ]),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close",
-        },
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
   },
   function () {
     var _vm = this

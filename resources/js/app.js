@@ -1,4 +1,6 @@
 require('./bootstrap');
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 import Vue from 'vue';
 window.Vue = Vue;
@@ -6,6 +8,8 @@ window.Vue = Vue;
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 Vue.use(VueAxios, axios); 
+
+Vue.use(VueSweetalert2);
 
 import App from './components/App.vue';
 

@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('id_estacionamiento');
             $table->string('id_usuario');
-            $table->string('usuario_creador');
+            $table->string('usuario_creador')->nullable();
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->date('fecha');
-            $table->string('Observaciones');
+            $table->string('observacion')->nullable();
             $table->dateTime('fecha_creacion');
-            $table->boolean('dia_completo');
-            $table->boolean('dia_parcial');
+            $table->boolean('dia_completo')->nullable();
+            $table->boolean('dia_parcial')->nullable();
             $table->tinyInteger('status')->default('1');
         });
     }
