@@ -335,8 +335,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -370,8 +368,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     validarCampos: function validarCampos() {
-      console.log(this.datos);
-
       if (!this.datos.id_estacionamiento || !this.datos.id_usuario || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin) {
         this.$swal.fire({
           icon: 'error',

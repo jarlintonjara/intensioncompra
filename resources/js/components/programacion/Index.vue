@@ -128,10 +128,8 @@
                         </div>
                        
                     </main>
-                    <!-- END Page Content -->
-                                        <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
-                    <!-- BEGIN Page Footer -->
+
                     <footer class="page-footer" role="contentinfo">
                         <!-- <div class="d-flex align-users-center flex-1 text-muted">
                             <span class="hidden-md-down fw-700">2019 © servicios for PHP by&nbsp;<a href='index.html' class='text-primary fw-500' title='smartadmin.lodev09.com' target='_blank'>@lodev09</a></span>
@@ -173,7 +171,6 @@ export default {
     },
     methods:{
         validarCampos(){
-            console.log(this.datos);
             if(!this.datos.id_estacionamiento || !this.datos.id_usuario || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin ){
                 this.$swal.fire({
                     icon: 'error',
