@@ -22,10 +22,8 @@ return new class extends Migration
             $table->time('hora_fin');
             $table->date('fecha');
             $table->string('observacion')->nullable();
-            $table->dateTime('fecha_creacion');
-            $table->boolean('dia_completo')->nullable();
-            $table->boolean('dia_parcial')->nullable();
             $table->tinyInteger('status')->default('1');
+            $table->timestamps();
         });
     }
 

@@ -100,11 +100,11 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="hora_inicio">Hora Inicio</label>
-                                                <input type="text" id="hora_inicio" class="form-control" placeholder="Hora inicio" v-model="datos.hora_inicio">
+                                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" placeholder="Hora inicio" v-model="datos.hora_inicio">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="hora_fin">Hora Fin</label>
-                                                <input type="text" id="hora_fin" class="form-control" placeholder="Hora fin" v-model="datos.hora_fin">
+                                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" placeholder="Hora fin" v-model="datos.hora_fin">
                                             </div>
                                         </div>
 

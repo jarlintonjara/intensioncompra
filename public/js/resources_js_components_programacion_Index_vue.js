@@ -2311,7 +2311,9 @@ var render = function () {
                                       ],
                                       staticClass: "form-control",
                                       attrs: {
-                                        type: "text",
+                                        type: "time",
+                                        min: "06:00",
+                                        max: "18:00",
                                         id: "hora_inicio",
                                         placeholder: "Hora inicio",
                                       },
@@ -2355,7 +2357,9 @@ var render = function () {
                                       ],
                                       staticClass: "form-control",
                                       attrs: {
-                                        type: "text",
+                                        type: "time",
+                                        min: "06:00",
+                                        max: "18:00",
                                         id: "hora_fin",
                                         placeholder: "Hora fin",
                                       },
