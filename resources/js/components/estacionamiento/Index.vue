@@ -41,7 +41,7 @@
                                                         <td>{{ item.numero }}</td>
                                                         <td>{{ item.sede }}</td>
                                                         <td>{{ item.ubicacion }}</td>
-                                                        <td>{{ item.fecha_creacion }}</td>
+                                                        <td>{{ $dateFormat(item.created_at) }}</td>
                                                         <td>
                                                             <button class="btn btn-warning" @click="abrirModalEditar(item)"><i class="far fa-edit"></i></button>
                                                             <button class="btn btn-danger" @click="borrar(item.id)"><i class="far fa-trash"></i></button>
@@ -252,6 +252,13 @@ export default {
         },
         cerrarModal(){
             $('#modalForm').modal('hide');
+        },
+        dateFormat(date){
+            let dt = new Date(date);
+            let year  = dt.getFullYear();
+            let month = (dt.getMonth() + 1).toString().padStart(2, "0");
+            let day   = dt.getDate().toString().padStart(2, "0");
+            return day +"-"+ month+"-"+ year
         }
     }
 }

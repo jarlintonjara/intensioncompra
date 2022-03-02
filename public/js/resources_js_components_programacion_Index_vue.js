@@ -2052,7 +2052,11 @@ var render = function () {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(schedule.created_at)),
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.$dateFormat(schedule.created_at)
+                                          )
+                                        ),
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [

@@ -49,7 +49,7 @@
                                                     <td>{{ schedule.fecha }}</td>
                                                     <td>{{ schedule.hora_inicio }}</td>
                                                     <td>{{ schedule.hora_fin }}</td>
-                                                    <td>{{ schedule.created_at }}</td>
+                                                    <td>{{ $dateFormat(schedule.created_at) }}</td>
                                                     <td>
                                                         <button class="btn btn-warning" @click="abrirModalEditar(schedule)"><i class="far fa-edit"></i></button>
                                                         <button class="btn btn-danger" @click="borrar(schedule.id)"><i class="far fa-trash"></i></button>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EstacionamientoController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 //Route::resource('estacionamiento', EstacionamientoController::class)->only(['index']);
+Route::resource('dashboard', HomeController::class)->only(['index']);
 Route::resource('programacion', ProgramacionController::class);
 Route::resource('estacionamiento', EstacionamientoController::class);
 Route::resource('usuario', UserController::class);

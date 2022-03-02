@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EstacionamientoModel;
+use App\Models\ProgramacionModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $schedules = ProgramacionModel::all();
+        $users = User::all()->count();
+        $parkings = EstacionamientoModel::all()->count();
+        foreach ($schedules as $schedule) {
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
+        return response()->json([
+            "parkingsTotal" => $parkings,
+            "usersTotal" => $users,
+            "schedulesTotal" => count($schedules),
+            "schedules" => $schedules,
+        ]);
     }
 }

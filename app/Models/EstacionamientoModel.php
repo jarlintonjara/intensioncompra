@@ -13,7 +13,5 @@ class EstacionamientoModel extends Model
 
     protected $table = 'estacionamiento';
 
-    protected $visible = ['id', 'numero', 'sede', 'ubicacion','fecha_creacion', 'asignado'];
-
-    protected $fillable = ['id','numero', 'sede', 'ubicacion', 'fecha_creacion', 'asignado'];
+    protected $fillable = ['id','numero', 'sede', 'ubicacion', 'created_at', 'asignado'];
 }

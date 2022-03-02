@@ -469,6 +469,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
+    },
+    dateFormat: function dateFormat(date) {
+      var dt = new Date(date);
+      var year = dt.getFullYear();
+      var month = (dt.getMonth() + 1).toString().padStart(2, "0");
+      var day = dt.getDate().toString().padStart(2, "0");
+      return day + "-" + month + "-" + year;
     }
   }
 });
@@ -1939,7 +1946,11 @@ var render = function () {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(item.fecha_creacion)),
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.$dateFormat(item.created_at)
+                                          )
+                                        ),
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [

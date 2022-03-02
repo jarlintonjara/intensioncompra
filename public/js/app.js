@@ -5426,6 +5426,15 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue_axios__WEBPACK_IMPORTED_MODU
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()));
 
 
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.$dateFormat = function (date) {
+  var dt = new Date(date);
+  var year = dt.getFullYear();
+  var month = (dt.getMonth() + 1).toString().padStart(2, "0");
+  var day = dt.getDate().toString().padStart(2, "0");
+  return day + "-" + month + "-" + year;
+};
+
+
 
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({

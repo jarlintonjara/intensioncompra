@@ -13,6 +13,14 @@ Vue.use(VueSweetalert2);
 
 import App from './components/App.vue';
 
+Vue.prototype.$dateFormat = function(date){
+    let dt = new Date(date);
+    let year  = dt.getFullYear();
+    let month = (dt.getMonth() + 1).toString().padStart(2, "0");
+    let day   = dt.getDate().toString().padStart(2, "0");
+    return day +"-"+ month+"-"+ year
+}
+
 import VueRouter from 'vue-router';
 import routes from './routes';
 
