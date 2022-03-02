@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('programacion', function (Blueprint $table) {
             $table->id();
-            $table->string('id_estacionamiento');
-            $table->string('id_usuario');
-            $table->string('usuario_creador')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('estacionamiento_id');
+            $table->foreign('estacionamiento_id')->references('id')->on('estacionamiento');
+            $table->string('created')->nullable();
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->date('fecha');

@@ -44,8 +44,8 @@
                                             <tbody>
                                                 <tr v-for="schedule in schedules" :key="schedule.id">
                                                     <td>{{ schedule.id }}</td>
-                                                    <td>{{ schedule.id_estacionamiento }}</td>
-                                                    <td>{{ schedule.id_usuario }}</td>
+                                                    <td>{{ schedule.parking.numero }}</td>
+                                                    <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
                                                     <td>{{ schedule.fecha }}</td>
                                                     <td>{{ schedule.hora_inicio }}</td>
                                                     <td>{{ schedule.hora_fin }}</td>
@@ -79,16 +79,16 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Usuario">Usuario</label>
-                                                <select id="Usuario" class="browser-default custom-select" v-model="datos.id_usuario">
+                                                <select id="Usuario" class="browser-default custom-select" v-model="datos.user_id">
                                                     <option></option>
-                                                    <option v-for="user in users" :key="user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
+                                                    <option v-for="user in users" :key="user.nombre+user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Estacionamiento">Estacionamiento</label>
-                                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.id_estacionamiento">
+                                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id">
                                                     <option></option>
-                                                    <option v-for="parking in parkings" :key="parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                                    <option v-for="parking in parkings" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -100,11 +100,22 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="hora_inicio">Hora Inicio</label>
-                                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" placeholder="Hora inicio" v-model="datos.hora_inicio">
+                                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" :disabled="disabled" placeholder="Hora inicio" v-model="datos.hora_inicio">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="hora_fin">Hora Fin</label>
-                                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" placeholder="Hora fin" v-model="datos.hora_fin">
+                                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" :disabled="disabled" placeholder="Hora fin" v-model="datos.hora_fin">
+                                            </div>
+                                        </div>
+
+                                        <div class="frame-wrap bg-faded mb-5">
+                                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                                <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('day')">
+                                                <label class="custom-control-label" for="option-bordered">Dia completo</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="partialDay" @click="onChange('partial')">
+                                                <label class="custom-control-label" for="option-small">Medio dia</label>
                                             </div>
                                         </div>
 
@@ -158,8 +169,11 @@ export default {
             users:[],
             parkings:[],
             schedules:[],
+            allDay: false,
+            partialDay: false,
+            disabled: false,
             info: [],
-            datos: {id_estacionamiento:'', id_usuario:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''},
+            datos: {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -171,7 +185,7 @@ export default {
     },
     methods:{
         validarCampos(){
-            if(!this.datos.id_estacionamiento || !this.datos.id_usuario || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin ){
+            if(!this.datos.estacionamiento_id || !this.datos.user_id || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin ){
                 this.$swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -181,12 +195,31 @@ export default {
             }
             return true;
         },
+        onChange(param){
+            this.disabled = false;
+            if(param == "day"){ 
+                this.allDay = !this.allDay;
+                this.partialDay = false;
+                if(this.allDay){
+                    this.disabled = true;
+                    this.datos.hora_inicio = "06:00";
+                    this.datos.hora_fin = "18:00";
+                }
+            }else{
+                this.partialDay = !this.partialDay
+                this.allDay = false;
+                if(this.partialDay){
+                    this.disabled = true;
+                    this.datos.hora_inicio = "06:00";
+                    this.datos.hora_fin = "12:00";
+                }
+            }
+        },
         async crear(){
             let valid = await this.validarCampos();
             if(valid){
                 axios.post('api/programacion', this.datos).then(response=>{
-                    this.users.push(response.data);
-                    //this.getUser()
+                    this.schedules.push(response.data);
                     $('#modalForm').modal('hide');
                     this.$swal.fire(
                         'Programación creado correctamente!',
@@ -203,7 +236,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.put('/api/programacion/'+this.id, this.datos).then(response=>{
-                    this.users = [].concat(response.data);          
+                    this.schedules = [].concat(response.data);          
                     this.id='';
                     //this.getUser()
                     $('#modalForm').modal('hide');
@@ -220,26 +253,31 @@ export default {
         borrar(id){
             if(confirm("¿Confirma eliminar el registro?")){
                 this.axios.delete(`/api/programacion/${id}`).then(response=>{
-                    this.users = [].concat(response.data);
+                    this.schedules = [].concat(response.data);
                 }).catch(error=>{
                     console.log(error)
                 })
             }
         },
         abrirModalCrear(){
-            this.datos = {id_estacionamiento:'', id_usuario:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''};
+            this.allDay = false;
+            this.partialDay = false;
+            this.disabled = false;
+            this.datos = {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''};
             this.titulo='Crear programacion'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.datos= {id_estacionamiento: datos.id_estacionamiento, id_usuario: datos.id_usuario,
+            this.allDay = false;
+            this.partialDay = false;
+            this.disabled = false;
+            this.datos= {estacionamiento_id: datos.estacionamiento_id, user_id: datos.user_id,
              fecha: datos.fecha, hora_inicio: datos.hora_inicio, hora_fin: datos.hora_fin, observacion: datos.observacion};
             this.titulo=' Editar Programación'
             this.btnCrear=false
             this.btnEditar=true
-            console.log(datos)
             this.id=datos.id
             $('#modalForm').modal('show')
         },
@@ -249,7 +287,6 @@ export default {
                         this.users = response.data.users;
                         this.parkings = response.data.parkings;
                         this.schedules = response.data.schedules;
-                        //this.users = response.data
                     })
                     .catch(error=>{
                         console.log(error);

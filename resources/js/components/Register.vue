@@ -88,7 +88,6 @@ export default {
                 email: '',
                 documento: '',
                 perfil: '',
-                email: '',
                 password:'',
                 password_confirmation:''
             },
@@ -96,14 +95,31 @@ export default {
         }
     },
     methods:{
-        saveForm(){
-            axios.post('/api/register', this.form).then((response) =>{
-                alert("registro creado");
-                this.$router.push({ name: "Login"})
-                console.log(response);
-            }).catch((error) =>{
-                this.errors = error.response.data.errors;
-            })
+        validarCampos(){
+            if(!this.form.nombre || !this.form.apellido || !this.form.email || !this.form.perfil || !this.form.password || !this.form.password_confirmation ){
+                this.$swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Completa los campos requeridos!',
+                });
+                return false;
+            }
+            return true;
+        },
+        async saveForm(){
+            let valid = await this.validarCampos();
+            if(valid){
+                axios.post('/api/register', this.form).then((response) =>{
+                    this.$swal.fire(
+                        'Registro creado correctamente!',
+                        '',
+                        'success'
+                    )
+                    this.$router.push({ name: "Login"})
+                }).catch((error) =>{
+                    this.errors = error.response.data.errors;
+                })
+            }
         }
     }
 }

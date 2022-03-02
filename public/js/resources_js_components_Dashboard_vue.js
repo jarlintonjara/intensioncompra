@@ -152,6 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/user').then(function (res) {
       _this2.user = res.data;
+      console.log(_this2.user);
     });
   }
 });
@@ -1121,6 +1122,15 @@ var staticRenderFns = [
           },
         },
         [
+          _c("img", {
+            staticStyle: { width: "20%" },
+            attrs: {
+              src: "admin/logo.jfif",
+              alt: "derco",
+              "aria-roledescription": "logo",
+            },
+          }),
+          _vm._v(" "),
           _c("span", { staticClass: "page-logo-text mr-1" }, [_vm._v("DERCO")]),
           _vm._v(" "),
           _c("span", {

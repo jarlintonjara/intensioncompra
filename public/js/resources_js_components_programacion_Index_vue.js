@@ -335,6 +335,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -348,10 +359,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       users: [],
       parkings: [],
       schedules: [],
+      allDay: false,
+      partialDay: false,
+      disabled: false,
       info: [],
       datos: {
-        id_estacionamiento: '',
-        id_usuario: '',
+        estacionamiento_id: '',
+        user_id: '',
         fecha: '',
         hora_inicio: '',
         hora_fin: '',
@@ -368,7 +382,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     validarCampos: function validarCampos() {
-      if (!this.datos.id_estacionamiento || !this.datos.id_usuario || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin) {
+      if (!this.datos.estacionamiento_id || !this.datos.user_id || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin) {
         this.$swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -378,6 +392,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return true;
+    },
+    onChange: function onChange(param) {
+      this.disabled = false;
+
+      if (param == "day") {
+        this.allDay = !this.allDay;
+        this.partialDay = false;
+
+        if (this.allDay) {
+          this.disabled = true;
+          this.datos.hora_inicio = "06:00";
+          this.datos.hora_fin = "18:00";
+        }
+      } else {
+        this.partialDay = !this.partialDay;
+        this.allDay = false;
+
+        if (this.partialDay) {
+          this.disabled = true;
+          this.datos.hora_inicio = "06:00";
+          this.datos.hora_fin = "12:00";
+        }
+      }
     },
     crear: function crear() {
       var _this = this;
@@ -396,8 +433,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('api/programacion', _this.datos).then(function (response) {
-                    _this.users.push(response.data); //this.getUser()
-
+                    _this.schedules.push(response.data);
 
                     $('#modalForm').modal('hide');
 
@@ -432,7 +468,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/programacion/' + _this2.id, _this2.datos).then(function (response) {
-                    _this2.users = [].concat(response.data);
+                    _this2.schedules = [].concat(response.data);
                     _this2.id = ''; //this.getUser()
 
                     $('#modalForm').modal('hide');
@@ -456,16 +492,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("¿Confirma eliminar el registro?")) {
         this.axios["delete"]("/api/programacion/".concat(id)).then(function (response) {
-          _this3.users = [].concat(response.data);
+          _this3.schedules = [].concat(response.data);
         })["catch"](function (error) {
           console.log(error);
         });
       }
     },
     abrirModalCrear: function abrirModalCrear() {
+      this.allDay = false;
+      this.partialDay = false;
+      this.disabled = false;
       this.datos = {
-        id_estacionamiento: '',
-        id_usuario: '',
+        estacionamiento_id: '',
+        user_id: '',
         fecha: '',
         hora_inicio: '',
         hora_fin: '',
@@ -477,9 +516,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
+      this.allDay = false;
+      this.partialDay = false;
+      this.disabled = false;
       this.datos = {
-        id_estacionamiento: datos.id_estacionamiento,
-        id_usuario: datos.id_usuario,
+        estacionamiento_id: datos.estacionamiento_id,
+        user_id: datos.user_id,
         fecha: datos.fecha,
         hora_inicio: datos.hora_inicio,
         hora_fin: datos.hora_fin,
@@ -488,7 +530,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.titulo = ' Editar Programación';
       this.btnCrear = false;
       this.btnEditar = true;
-      console.log(datos);
       this.id = datos.id;
       $('#modalForm').modal('show');
     },
@@ -504,7 +545,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this4.axios.get('/api/programacion').then(function (response) {
                   _this4.users = response.data.users;
                   _this4.parkings = response.data.parkings;
-                  _this4.schedules = response.data.schedules; //this.users = response.data
+                  _this4.schedules = response.data.schedules;
                 })["catch"](function (error) {
                   console.log(error);
                   _this4.schedules = [];
@@ -1844,6 +1885,15 @@ var staticRenderFns = [
           },
         },
         [
+          _c("img", {
+            staticStyle: { width: "20%" },
+            attrs: {
+              src: "admin/logo.jfif",
+              alt: "derco",
+              "aria-roledescription": "logo",
+            },
+          }),
+          _vm._v(" "),
           _c("span", { staticClass: "page-logo-text mr-1" }, [_vm._v("DERCO")]),
           _vm._v(" "),
           _c("span", {
@@ -1976,13 +2026,17 @@ var render = function () {
                                       _c("td", [_vm._v(_vm._s(schedule.id))]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(
-                                          _vm._s(schedule.id_estacionamiento)
-                                        ),
+                                        _vm._v(_vm._s(schedule.parking.numero)),
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
-                                        _vm._v(_vm._s(schedule.id_usuario)),
+                                        _vm._v(
+                                          _vm._s(
+                                            schedule.user.nombre +
+                                              " " +
+                                              schedule.user.apellido
+                                          )
+                                        ),
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
@@ -2113,8 +2167,8 @@ var render = function () {
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.datos.id_usuario,
-                                            expression: "datos.id_usuario",
+                                            value: _vm.datos.user_id,
+                                            expression: "datos.user_id",
                                           },
                                         ],
                                         staticClass:
@@ -2139,7 +2193,7 @@ var render = function () {
                                                 })
                                             _vm.$set(
                                               _vm.datos,
-                                              "id_usuario",
+                                              "user_id",
                                               $event.target.multiple
                                                 ? $$selectedVal
                                                 : $$selectedVal[0]
@@ -2154,7 +2208,7 @@ var render = function () {
                                           return _c(
                                             "option",
                                             {
-                                              key: user.id,
+                                              key: user.nombre + user.id,
                                               domProps: { value: user.id },
                                             },
                                             [
@@ -2191,9 +2245,9 @@ var render = function () {
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.datos.id_estacionamiento,
+                                            value: _vm.datos.estacionamiento_id,
                                             expression:
-                                              "datos.id_estacionamiento",
+                                              "datos.estacionamiento_id",
                                           },
                                         ],
                                         staticClass:
@@ -2218,7 +2272,7 @@ var render = function () {
                                                 })
                                             _vm.$set(
                                               _vm.datos,
-                                              "id_estacionamiento",
+                                              "estacionamiento_id",
                                               $event.target.multiple
                                                 ? $$selectedVal
                                                 : $$selectedVal[0]
@@ -2235,7 +2289,8 @@ var render = function () {
                                             return _c(
                                               "option",
                                               {
-                                                key: parking.id,
+                                                key:
+                                                  parking.numero + parking.id,
                                                 domProps: { value: parking.id },
                                               },
                                               [_vm._v(_vm._s(parking.numero))]
@@ -2315,6 +2370,7 @@ var render = function () {
                                         min: "06:00",
                                         max: "18:00",
                                         id: "hora_inicio",
+                                        disabled: _vm.disabled,
                                         placeholder: "Hora inicio",
                                       },
                                       domProps: {
@@ -2361,6 +2417,7 @@ var render = function () {
                                         min: "06:00",
                                         max: "18:00",
                                         id: "hora_fin",
+                                        disabled: _vm.disabled,
                                         placeholder: "Hora fin",
                                       },
                                       domProps: { value: _vm.datos.hora_fin },
@@ -2380,6 +2437,146 @@ var render = function () {
                                   ]
                                 ),
                               ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "frame-wrap bg-faded mb-5" },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "custom-control custom-checkbox d-inline-flex mr-3",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.allDay,
+                                            expression: "allDay",
+                                          },
+                                        ],
+                                        staticClass: "custom-control-input",
+                                        attrs: {
+                                          type: "checkbox",
+                                          name: "bordered",
+                                          id: "option-bordered",
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(_vm.allDay)
+                                            ? _vm._i(_vm.allDay, null) > -1
+                                            : _vm.allDay,
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.onChange("day")
+                                          },
+                                          change: function ($event) {
+                                            var $$a = _vm.allDay,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.allDay = $$a.concat([
+                                                    $$v,
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.allDay = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.allDay = $$c
+                                            }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "custom-control-label",
+                                          attrs: { for: "option-bordered" },
+                                        },
+                                        [_vm._v("Dia completo")]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "custom-control custom-checkbox d-inline-flex mr-3",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.partialDay,
+                                            expression: "partialDay",
+                                          },
+                                        ],
+                                        staticClass: "custom-control-input",
+                                        attrs: {
+                                          type: "checkbox",
+                                          name: "small",
+                                          id: "option-small",
+                                        },
+                                        domProps: {
+                                          checked: Array.isArray(_vm.partialDay)
+                                            ? _vm._i(_vm.partialDay, null) > -1
+                                            : _vm.partialDay,
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.onChange("partial")
+                                          },
+                                          change: function ($event) {
+                                            var $$a = _vm.partialDay,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.partialDay = $$a.concat([
+                                                    $$v,
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.partialDay = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.partialDay = $$c
+                                            }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "custom-control-label",
+                                          attrs: { for: "option-small" },
+                                        },
+                                        [_vm._v("Medio dia")]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
                               _vm._v(" "),
                               _c("div", { staticClass: "form-row" }, [
                                 _c(

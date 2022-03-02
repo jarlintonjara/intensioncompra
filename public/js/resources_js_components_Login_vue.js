@@ -82,8 +82,6 @@ __webpack_require__.r(__webpack_exports__);
           title: 'Oops...',
           text: 'Email o password incorrectos!'
         });
-
-        console.log(_this.errors);
       });
     }
   }

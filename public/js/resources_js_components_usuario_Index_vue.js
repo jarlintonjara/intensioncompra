@@ -1847,6 +1847,15 @@ var staticRenderFns = [
           },
         },
         [
+          _c("img", {
+            staticStyle: { width: "20%" },
+            attrs: {
+              src: "admin/logo.jfif",
+              alt: "derco",
+              "aria-roledescription": "logo",
+            },
+          }),
+          _vm._v(" "),
           _c("span", { staticClass: "page-logo-text mr-1" }, [_vm._v("DERCO")]),
           _vm._v(" "),
           _c("span", {

@@ -29,10 +29,14 @@ class ProgramacionController extends Controller
         $schedules = ProgramacionModel::all();
         $users = User::all();
         $parkings = EstacionamientoModel::all();
+        foreach($schedules as $schedule){
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
         return response()->json([
             "parkings" => $parkings,
             "users" => $users,
-            "schedules" => $schedules
+            "schedules" => $schedules,
         ]);
     }
 

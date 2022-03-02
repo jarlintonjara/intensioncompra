@@ -65,7 +65,6 @@ export default {
                     title: 'Oops...',
                     text: 'Email o password incorrectos!',
                 })
-                console.log(this.errors);
             })
          }
     }
