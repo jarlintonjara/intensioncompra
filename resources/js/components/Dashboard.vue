@@ -72,7 +72,40 @@
                             </div> -->
                         </div>
                         <div class="row">
-                           
+                           <div class="col-lg-8">
+                                <div id="panel-4" class="panel">
+                                
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                                <thead class="bg-warning-200">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Estacionamiento</th>
+                                                        <th>Usuario</th>
+                                                        <th>Fecha Programada</th>
+                                                        <th>Hora Incio</th>
+                                                        <th>Hora Final</th>
+                                                        <th>Fecha creación</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="schedule in schedules" :key="schedule.id">
+                                                        <td>{{ schedule.id }}</td>
+                                                        <td>{{ schedule.parking.numero }}</td>
+                                                        <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
+                                                        <td>{{ schedule.fecha }}</td>
+                                                        <td>{{ schedule.hora_inicio }}</td>
+                                                        <td>{{ schedule.hora_fin }}</td>
+                                                        <td>{{ $dateFormat(schedule.created_at) }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- datatable end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </main>
                     <!-- END Page Content -->
@@ -116,7 +149,6 @@ export default {
         async init(){
              await this.axios.get('/api/dashboard')
                     .then(response=> {
-                        console.log(response);
                         let report = response.data;
                         this.report.totalUsers = report.usersTotal;
                         this.report.totalParkings = report.parkingsTotal;
@@ -132,7 +164,6 @@ export default {
         this.init();
         axios.get('/api/user').then((res)=>{
             this.user = res.data;
-            console.log(this.user)
         })
     }
 }
