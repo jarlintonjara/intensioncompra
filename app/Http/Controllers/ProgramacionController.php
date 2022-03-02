@@ -59,8 +59,10 @@ class ProgramacionController extends Controller
     public function store(Request $request)
     {
         //$estacionamiento = ProgramacionModel::create($request->post());
-        $estacionamiento = ProgramacionModel::create($request->post());
-        return response()->json($estacionamiento);
+        $schedule = ProgramacionModel::create($request->post());
+        $schedule["user"] = $schedule->user;
+        $schedule["parking"] = $schedule->parking;
+        return response()->json($schedule);
     }
 
     /**

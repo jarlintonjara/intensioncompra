@@ -433,6 +433,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('api/programacion', _this.datos).then(function (response) {
+                    console.log(response);
+
                     _this.schedules.push(response.data);
 
                     $('#modalForm').modal('hide');

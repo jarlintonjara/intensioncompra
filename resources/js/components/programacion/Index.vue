@@ -219,6 +219,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.post('api/programacion', this.datos).then(response=>{
+                    console.log(response);
                     this.schedules.push(response.data);
                     $('#modalForm').modal('hide');
                     this.$swal.fire(
