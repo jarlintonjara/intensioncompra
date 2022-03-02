@@ -1823,7 +1823,11 @@ var render = function () {
               _c(
                 "li",
                 { staticClass: "active" },
-                [_c("router-link", { attrs: { to: "/" } }, [_vm._v("Inicio")])],
+                [
+                  _c("router-link", { attrs: { to: "/dashboard" } }, [
+                    _vm._v("Inicio"),
+                  ]),
+                ],
                 1
               ),
               _vm._v(" "),

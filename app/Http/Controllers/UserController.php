@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,7 +47,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->post());
+        $data = $request->post();
+        if(!array_key_exists('password', $data)){
+            $data['password'] = Hash::make(12345678);
+        }
+        $user = User::create($data);
         return response()->json($user);
     }
 

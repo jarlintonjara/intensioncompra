@@ -25,7 +25,7 @@
                 
                     <ul>
                         <li class="active">
-                            <router-link to="/" class="">Inicio</router-link>
+                            <router-link to="/dashboard" class="">Inicio</router-link>
                         </li>
                         <li>
                             <router-link to="/usuarios" class="">Usuarios</router-link>
