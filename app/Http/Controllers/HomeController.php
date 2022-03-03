@@ -29,15 +29,31 @@ class HomeController extends Controller
         $schedules = ProgramacionModel::all();
         $users = User::all()->count();
         $parkings = EstacionamientoModel::all()->count();
+        
+        $fecha = date('Y-m-d');
+        $nuevafecha = strtotime ( '+1 day' , strtotime ( $fecha ) ) ;
+        $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+
+        $programacionManana = ProgramacionModel::whereDate("fecha",$nuevafecha)->get()->count();
+        $programacionMananalist = ProgramacionModel::whereDate("fecha",$nuevafecha)->get();
+
         foreach ($schedules as $schedule) {
             $schedule["user"] = $schedule->user;
             $schedule["parking"] = $schedule->parking;
         }
+
+        foreach ($programacionMananalist as $pml) {
+            $pml["user"] = $pml->user;
+            $pml["parking"] = $pml->parking;
+        }
+
         return response()->json([
             "parkingsTotal" => $parkings,
             "usersTotal" => $users,
             "schedulesTotal" => count($schedules),
             "schedules" => $schedules,
+            "programacionManana" => $programacionManana,
+            "programacionMananalist" => $programacionMananalist
         ]);
     }
 }

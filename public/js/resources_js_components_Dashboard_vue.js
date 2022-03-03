@@ -158,6 +158,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -172,7 +214,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       report: {
         totalUsers: 0,
         totalParkings: 0,
-        totalSchedules: 0
+        totalSchedules: 0,
+        programacionManana: 0,
+        programacionMananalist: 0
       }
     };
   },
@@ -200,7 +244,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.report.totalUsers = report.usersTotal;
                   _this2.report.totalParkings = report.parkingsTotal;
                   _this2.report.totalSchedules = report.schedulesTotal;
+                  _this2.report.programacionManana = report.programacionManana;
                   _this2.schedules = report.schedules;
+                  _this2.programacionMananalist = report.programacionMananalist;
+                  console.log(report.programacionMananalist);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1514,6 +1561,43 @@ var render = function () {
                         ]
                       ),
                     ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+                        },
+                        [
+                          _c("div", {}, [
+                            _c(
+                              "h3",
+                              {
+                                staticClass:
+                                  "display-4 d-block l-h-n m-0 fw-500",
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(_vm.report.programacionManana) +
+                                    "\n                                        "
+                                ),
+                                _c("small", { staticClass: "m-0 l-h-n" }, [
+                                  _vm._v("Programaciones para mañana"),
+                                ]),
+                              ]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass:
+                              "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
+                            staticStyle: { "font-size": "8rem" },
+                          }),
+                        ]
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
@@ -1583,6 +1667,65 @@ var render = function () {
                                   ),
                                 ]
                               ),
+                              _vm._v(" "),
+                              _c("td"),
+                              _vm._v(" "),
+                              _c(
+                                "table",
+                                {
+                                  staticClass:
+                                    "table table-bordered table-hover table-striped w-100",
+                                  attrs: { id: "dt-basic-example" },
+                                },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tbody",
+                                    _vm._l(
+                                      _vm.programacionMananalist,
+                                      function (pm) {
+                                        return _c("tr", { key: pm.id }, [
+                                          _c("td", [_vm._v(_vm._s(pm.id))]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(pm.parking.numero)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                pm.user.nombre +
+                                                  " " +
+                                                  pm.user.apellido
+                                              )
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [_vm._v(_vm._s(pm.fecha))]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(pm.hora_inicio)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(pm.hora_fin)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.$dateFormat(pm.created_at)
+                                              )
+                                            ),
+                                          ]),
+                                        ])
+                                      }
+                                    ),
+                                    0
+                                  ),
+                                ]
+                              ),
                             ]),
                           ]),
                         ]
@@ -1625,6 +1768,28 @@ var staticRenderFns = [
         _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
         _vm._v(" "),
         _c("small"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-warning-200" }, [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estacionamiento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Usuario")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha Programada")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hora Incio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hora Final")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha creación")]),
       ]),
     ])
   },
