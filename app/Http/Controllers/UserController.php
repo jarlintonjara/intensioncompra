@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EstacionamientoModel;
+use App\Models\RoleModel;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -24,9 +26,18 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
-        $data = User::all();
-        return response()->json($data);
+    {
+        $users = User::where('status', 1)->get();
+        $roles = RoleModel::where('status', 1)->get();
+        $parkings = EstacionamientoModel::where('status', 1)->get();
+        foreach ($users as $user) {
+            $users["role"] = $user->role;
+        }
+        return response()->json([
+            "roles" => $roles,
+            "parkings" => $parkings,
+            "users" => $users
+        ]);
     }
 
     /**

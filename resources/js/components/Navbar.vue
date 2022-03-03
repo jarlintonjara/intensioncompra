@@ -66,6 +66,7 @@
 <script>
 export default {
     name: "Navbar",
+    props:['session'],
     methods:{
         logout(){
             axios.post('/api/logout').then(()=>{

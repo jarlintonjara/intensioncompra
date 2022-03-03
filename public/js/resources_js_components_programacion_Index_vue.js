@@ -89,6 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
+  props: ['session'],
   methods: {
     logout: function logout() {
       var _this = this;
@@ -560,9 +561,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
-    },
-    getTable: function getTable() {
-      $('#dt-basic-example').dataTable({});
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
@@ -2020,7 +2018,7 @@ var render = function () {
                               {
                                 staticClass:
                                   "table table-bordered table-hover table-striped w-100",
-                                attrs: { id: "dt-basic-example" },
+                                attrs: { id: "sheduleTable" },
                               },
                               [
                                 _vm._m(1),

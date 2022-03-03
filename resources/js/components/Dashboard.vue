@@ -7,7 +7,7 @@
                 <!-- END Left Aside -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
-                    <Navbar/>
+                    <Navbar :session='user'/>
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
@@ -72,12 +72,12 @@
                             </div> -->
                         </div>
                         <div class="row">
-                           <div class="col-lg-8">
+                           <div class="col-lg-12">
                                 <div id="panel-4" class="panel">
                                 
                                     <div class="panel-container show">
                                         <div class="panel-content">
-                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                            <table id="sampleTable" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
                                                         <th>ID</th>
@@ -164,6 +164,7 @@ export default {
         this.init();
         axios.get('/api/user').then((res)=>{
             this.user = res.data;
+            //this.$tablaGlobal('#sampleTable')
         })
     }
 }

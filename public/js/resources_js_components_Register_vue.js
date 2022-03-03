@@ -118,7 +118,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         apellido: '',
         email: '',
         documento: '',
-        perfil: '',
         password: '',
         password_confirmation: ''
       },
@@ -127,7 +126,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     validarCampos: function validarCampos() {
-      if (!this.form.nombre || !this.form.apellido || !this.form.email || !this.form.perfil || !this.form.password || !this.form.password_confirmation) {
+      if (!this.form.nombre || !this.form.apellido || !this.form.email || !this.form.password || !this.form.password_confirmation) {
         this.$swal.fire({
           icon: 'error',
           title: 'Oops...',

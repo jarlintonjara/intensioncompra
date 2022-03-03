@@ -87,7 +87,6 @@ export default {
                 apellido: '',
                 email: '',
                 documento: '',
-                perfil: '',
                 password:'',
                 password_confirmation:''
             },
@@ -96,7 +95,7 @@ export default {
     },
     methods:{
         validarCampos(){
-            if(!this.form.nombre || !this.form.apellido || !this.form.email || !this.form.perfil || !this.form.password || !this.form.password_confirmation ){
+            if(!this.form.nombre || !this.form.apellido || !this.form.email || !this.form.password || !this.form.password_confirmation ){
                 this.$swal.fire({
                     icon: 'error',
                     title: 'Oops...',

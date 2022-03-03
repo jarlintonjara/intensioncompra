@@ -29,7 +29,7 @@
                                          <div class="panel-hdr">
                                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                                         </div><br>
-                                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                        <table id="sheduleTable" class="table table-bordered table-hover table-striped w-100">
                                             <thead class="bg-warning-200">
                                                 <tr>
                                                     <th>ID</th>
@@ -227,6 +227,7 @@ export default {
                         '',
                         'success'
                     )
+                   
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -285,6 +286,7 @@ export default {
         async init(){
             await this.axios.get('/api/programacion')
                     .then(response=> {
+                        
                         this.users = response.data.users;
                         this.parkings = response.data.parkings;
                         this.schedules = response.data.schedules;
@@ -293,9 +295,7 @@ export default {
                         console.log(error);
                         this.schedules =[]
                     })
-        },
-        getTable(){
-            $('#dt-basic-example').dataTable({})
+            
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

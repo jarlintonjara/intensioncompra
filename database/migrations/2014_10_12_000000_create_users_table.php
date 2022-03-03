@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('cargo')->nullable();
-            $table->string('perfil');
+            $table->tinyInteger('role_id')->default('2');
+            $table->tinyInteger('parking_id')->nullable();
             $table->string('area')->nullable();
             $table->string('documento')->nullable();
             $table->string('telefono')->nullable();

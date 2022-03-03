@@ -29,7 +29,7 @@
                                          <div class="panel-hdr">
                                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                                         </div><br>
-                                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                        <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
                                             <thead class="bg-warning-200">
                                                 <tr>
                                                     <th>ID</th>
@@ -47,7 +47,7 @@
                                                     <td>{{ user.nombre }}</td>
                                                     <td>{{ user.apellido }}</td>
                                                     <td>{{ user.documento }}</td>
-                                                    <td>{{ user.perfil }}</td>
+                                                    
                                                     <td>{{ user.email }}</td>
                                                     <td>{{ $dateFormat(user.created_at) }}</td>
                                                     <td>
@@ -108,17 +108,28 @@
                                                 <label for="Cargo">Cargo</label>
                                                 <input type="text" id="Cargo" class="form-control" placeholder="Cargo" v-model="datos.cargo">
                                             </div>
+                                            
+                                            <div class="form-group col-md-4">
+                                                <label for="Parking">Rol</label>
+                                                <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
+                                                    <option></option>
+                                                    <option v-for="parking in parkings" :key="12+parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="Role">Rol</label>
+                                                <select id="Perfil" class="browser-default custom-select" v-model="datos.role_id">
+                                                    <option></option>
+                                                    <option v-for="role in roles" :key="1+role.id" :value="role.id">{{ role.numero }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="Area">Area</label>
                                                 <input type="text" id="Area" class="form-control" placeholder="Area" v-model="datos.area">
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="Perfil">Perfil</label>
-                                                <input type="text" id="Perfil" class="form-control" placeholder="Perfil" v-model="datos.perfil">
-                                            </div>
                                         </div>
-                                        
-                                       
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
@@ -161,8 +172,9 @@ export default {
     data(){
         return {
             users:[],
-            info: [],
-            datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', perfil: '', telefono:''},
+            roles:[],
+            parkings:[],
+            datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', role_id: '', parking_id: '', telefono:''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -173,15 +185,8 @@ export default {
         this.mostrarusers()
     },
     methods:{
-        /* getUser(){
-            axios.get('listar_usuarios').then(res=>{
-                $('#sampleTable').DataTable().destroy()
-                this.usuarios = res.data         
-                this.$tablaGlobal('#sampleTable')
-            });
-        }, */
         validarCampos(){
-            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.perfil ){
+            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id ){
                 this.$swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -207,7 +212,6 @@ export default {
                     console.log(error);
                 });
             }
-           
         },
         async editar(){
             let valid = await this.validarCampos();
@@ -244,7 +248,7 @@ export default {
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.datos= {nombre: datos.nombre, apellido: datos.apellido, documento: datos.documento, email: datos.email}
+            this.datos= {nombre: datos.nombre, apellido: datos.apellido,  documento: datos.documento, email: datos.email, role_id: datos.role_id}
             this.titulo=' Editar usuario'
             this.btnCrear=false
             this.btnEditar=true
@@ -254,15 +258,15 @@ export default {
         async mostrarusers(){
             await this.axios.get('/api/usuario')
                     .then(response=>{
-                        this.users = response.data
+                        this.users = response.data.users;
+                        this.parkings = response.data.parkings;
+                        this.roles = response.data.roles;
+                        //this.$tablaGlobal('tableUser')
                     })
                     .catch(error=>{
                         console.log(error);
-                        this.users =[]
+                        //this.users =[]
                     })
-        },
-        getTable(){
-            $('#dt-basic-example').dataTable({})
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

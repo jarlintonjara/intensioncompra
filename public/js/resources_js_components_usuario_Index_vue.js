@@ -89,6 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
+  props: ['session'],
   methods: {
     logout: function logout() {
       var _this = this;
@@ -340,6 +341,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -351,7 +363,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       users: [],
-      info: [],
+      roles: [],
+      parkings: [],
       datos: {
         nombre: '',
         apellido: '',
@@ -359,7 +372,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: '',
         cargo: '',
         area: '',
-        perfil: '',
+        role_id: '',
+        parking_id: '',
         telefono: ''
       },
       titulo: '',
@@ -372,15 +386,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.mostrarusers();
   },
   methods: {
-    /* getUser(){
-        axios.get('listar_usuarios').then(res=>{
-            $('#sampleTable').DataTable().destroy()
-            this.usuarios = res.data         
-            this.$tablaGlobal('#sampleTable')
-        });
-    }, */
     validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.perfil) {
+      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id) {
         this.$swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -490,7 +497,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         nombre: datos.nombre,
         apellido: datos.apellido,
         documento: datos.documento,
-        email: datos.email
+        email: datos.email,
+        role_id: datos.role_id
       };
       this.titulo = ' Editar usuario';
       this.btnCrear = false;
@@ -508,10 +516,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.next = 2;
                 return _this4.axios.get('/api/usuario').then(function (response) {
-                  _this4.users = response.data;
+                  _this4.users = response.data.users;
+                  _this4.parkings = response.data.parkings;
+                  _this4.roles = response.data.roles; //this.$tablaGlobal('tableUser')
                 })["catch"](function (error) {
-                  console.log(error);
-                  _this4.users = [];
+                  console.log(error); //this.users =[]
                 });
 
               case 2:
@@ -521,9 +530,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
-    },
-    getTable: function getTable() {
-      $('#dt-basic-example').dataTable({});
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
@@ -1981,7 +1987,7 @@ var render = function () {
                               {
                                 staticClass:
                                   "table table-bordered table-hover table-striped w-100",
-                                attrs: { id: "dt-basic-example" },
+                                attrs: { id: "tableUser" },
                               },
                               [
                                 _vm._m(1),
@@ -1999,8 +2005,6 @@ var render = function () {
                                       _c("td", [
                                         _vm._v(_vm._s(user.documento)),
                                       ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(user.perfil))]),
                                       _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(user.email))]),
                                       _vm._v(" "),
@@ -2365,6 +2369,147 @@ var render = function () {
                                   "div",
                                   { staticClass: "form-group col-md-4" },
                                   [
+                                    _c("label", { attrs: { for: "Parking" } }, [
+                                      _vm._v("Rol"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.datos.parking_id,
+                                            expression: "datos.parking_id",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "browser-default custom-select",
+                                        attrs: { id: "Parking" },
+                                        on: {
+                                          change: function ($event) {
+                                            var $$selectedVal =
+                                              Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function (o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function (o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                            _vm.$set(
+                                              _vm.datos,
+                                              "parking_id",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("option"),
+                                        _vm._v(" "),
+                                        _vm._l(
+                                          _vm.parkings,
+                                          function (parking) {
+                                            return _c(
+                                              "option",
+                                              {
+                                                key: 12 + parking.id,
+                                                domProps: { value: parking.id },
+                                              },
+                                              [_vm._v(_vm._s(parking.numero))]
+                                            )
+                                          }
+                                        ),
+                                      ],
+                                      2
+                                    ),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
+                                    _c("label", { attrs: { for: "Role" } }, [
+                                      _vm._v("Rol"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.datos.role_id,
+                                            expression: "datos.role_id",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "browser-default custom-select",
+                                        attrs: { id: "Perfil" },
+                                        on: {
+                                          change: function ($event) {
+                                            var $$selectedVal =
+                                              Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function (o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function (o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                            _vm.$set(
+                                              _vm.datos,
+                                              "role_id",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("option"),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.roles, function (role) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: 1 + role.id,
+                                              domProps: { value: role.id },
+                                            },
+                                            [_vm._v(_vm._s(role.numero))]
+                                          )
+                                        }),
+                                      ],
+                                      2
+                                    ),
+                                  ]
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-md-4" },
+                                  [
                                     _c("label", { attrs: { for: "Area" } }, [
                                       _vm._v("Area"),
                                     ]),
@@ -2393,46 +2538,6 @@ var render = function () {
                                           _vm.$set(
                                             _vm.datos,
                                             "area",
-                                            $event.target.value
-                                          )
-                                        },
-                                      },
-                                    }),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "form-group col-md-4" },
-                                  [
-                                    _c("label", { attrs: { for: "Perfil" } }, [
-                                      _vm._v("Perfil"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.datos.perfil,
-                                          expression: "datos.perfil",
-                                        },
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "text",
-                                        id: "Perfil",
-                                        placeholder: "Perfil",
-                                      },
-                                      domProps: { value: _vm.datos.perfil },
-                                      on: {
-                                        input: function ($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.datos,
-                                            "perfil",
                                             $event.target.value
                                           )
                                         },

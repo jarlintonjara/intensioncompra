@@ -219,7 +219,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     this.init();
     axios.get('/api/user').then(function (res) {
-      _this3.user = res.data;
+      _this3.user = res.data; //this.$tablaGlobal('#sampleTable')
     });
   }
 });
@@ -304,6 +304,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
+  props: ['session'],
   methods: {
     logout: function logout() {
       var _this = this;
@@ -1392,7 +1393,7 @@ var render = function () {
             "div",
             { staticClass: "page-content-wrapper" },
             [
-              _c("Navbar"),
+              _c("Navbar", { attrs: { session: _vm.user } }),
               _vm._v(" "),
               _c(
                 "main",
@@ -1517,7 +1518,7 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-lg-8" }, [
+                    _c("div", { staticClass: "col-lg-12" }, [
                       _c(
                         "div",
                         { staticClass: "panel", attrs: { id: "panel-4" } },
@@ -1529,7 +1530,7 @@ var render = function () {
                                 {
                                   staticClass:
                                     "table table-bordered table-hover table-striped w-100",
-                                  attrs: { id: "dt-basic-example" },
+                                  attrs: { id: "sampleTable" },
                                 },
                                 [
                                   _vm._m(1),
