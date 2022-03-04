@@ -379,8 +379,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.init();
-    this.$tablaGlobal('#table-shedule');
+    this.init(); //this.$tablaGlobal('#table-shedule')
   },
   methods: {
     validarCampos: function validarCampos() {
@@ -435,8 +434,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('api/programacion', _this.datos).then(function (response) {
-                    console.log(response);
-
                     _this.schedules.push(response.data);
 
                     $('#modalForm').modal('hide');

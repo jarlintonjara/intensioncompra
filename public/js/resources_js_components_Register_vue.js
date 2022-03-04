@@ -97,19 +97,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1183,40 +1170,6 @@ var render = function () {
                             return
                           }
                           _vm.$set(_vm.form, "documento", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-2" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      { staticClass: "form-label", attrs: { for: "perfil" } },
-                      [_vm._v("Perfil")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.perfil,
-                          expression: "form.perfil",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", id: "perfil" },
-                      domProps: { value: _vm.form.perfil },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "perfil", $event.target.value)
                         },
                       },
                     }),

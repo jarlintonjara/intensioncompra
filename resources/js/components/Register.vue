@@ -39,20 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="perfil">Perfil</label>
-                                <input type="text" v-model="form.perfil" id="perfil" class="form-control" >
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="password">Password</label>
-                                <input type="password" v-model="form.password" id="password" class="form-control">
-                            </div>
-                        </div> -->
-                    </div>
+                    
                     <div class="row mb-2">
                         <div class="col-md-6">
                             <div class="form-group">
