@@ -36,7 +36,7 @@
                                         <td>{{ $dateFormat(item.created_at) }}</td>
                                         <td>
                                             <button class="btn btn-warning" @click="abrirModalEditar(item)"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-danger" @click="borrar(item.id)"><i class="far fa-trash"></i></button>
+                                            <button class="btn btn-danger" @click="borrar(item.id)"><i class="fa fa-trash"></i></button>
                                             <!--router-link :to="{name:'editarEstacionamiento', params:{id:item.id}}" class="btn btn-info"><i class="far fa-edit"></i></!--router-link-->
                                         </td>
                                     </tr>

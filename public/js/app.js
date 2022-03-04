@@ -5461,16 +5461,24 @@ vue__WEBPACK_IMPORTED_MODULE_8__["default"].prototype.$tablaGlobal = function (n
       responsive: true,
       "dom": '<"html5buttons"B>lTfgtip',
       "buttons": [{
+        "extend": 'copyHtml5',
+        "text": "<i class='fas fa-copy'></i> Copiar",
+        "titleAttr": 'Copy',
+        "className": "btn btn-primary"
+      }, {
         "extend": "excelHtml5",
         "text": "<i class='fas fa-file-excel'></i> Excel",
         "titleAttr": "Esportar a Excel",
         "className": "btn btn-success"
       }, {
         "extend": "print",
-        "text": "<i class='fas fa-file-csv'></i> Imprimir",
+        "text": "<i class='fas fa-print'></i> Imprimir",
         "titleAttr": "Imprimir archivo",
         "className": "btn btn-secondary"
-      }]
+      }],
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      }
     });
   });
 };

@@ -195,7 +195,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.parking_id) {
+      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id) {
         this.$swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -1308,7 +1308,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "far fa-trash" })]
+                            [_c("i", { staticClass: "fa fa-trash" })]
                           ),
                         ]),
                       ])

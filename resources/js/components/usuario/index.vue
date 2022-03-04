@@ -40,7 +40,7 @@
                                     <td>{{ $dateFormat(user.created_at) }}</td>
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(user)"><i class="far fa-edit"></i></button>
-                                        <button class="btn btn-danger" @click="borrar(user.id)"><i class="far fa-trash"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(user.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>

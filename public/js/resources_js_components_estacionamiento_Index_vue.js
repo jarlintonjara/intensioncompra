@@ -1216,7 +1216,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "far fa-trash" })]
+                            [_c("i", { staticClass: "fa fa-trash" })]
                           ),
                         ]),
                       ])
