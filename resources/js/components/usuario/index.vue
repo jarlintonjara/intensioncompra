@@ -27,6 +27,7 @@
                                     <th>Documento</th>
                                     <th>Email</th>
                                     <th>Fecha</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

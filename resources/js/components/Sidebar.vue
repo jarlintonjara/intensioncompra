@@ -36,6 +36,9 @@
                         <li>
                             <router-link v-if="user.role_id == 1 || user.role_id == 3" to="/programacion" class="">Programación</router-link>
                         </li>
+                        <li>
+                            <router-link v-if="user.role_id == 1 || user.role_id == 3" to="/rol" class="">Rol</router-link>
+                        </li>
                     </ul>
                 </li>
             </ul>

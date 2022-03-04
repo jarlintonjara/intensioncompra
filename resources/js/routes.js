@@ -5,7 +5,7 @@ const Register = () => import('./components/Register.vue');
 const Dashboard = () => import('./components/Dashboard.vue');
 const Layout = () => import('./components/Layout.vue');
 const NotFound = () => import('./components/NotFound.vue');
-
+const Rol = () => import('./components/rol/Index.vue');
 const Usuario = () => import('./components/usuario/Index.vue');
 const Estacionamiento = () => import('./components/estacionamiento/Index.vue');
 const Programacion = () => import('./components/programacion/Index.vue');
@@ -65,6 +65,11 @@ export default{
                     path: '/programacion',
                     component: Programacion,
                     name: 'programacion'
+                },
+                {
+                    path: '/rol',
+                    component: Rol,
+                    name: 'rol'
                 },
             ],
         },

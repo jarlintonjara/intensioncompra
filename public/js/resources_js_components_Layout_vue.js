@@ -257,6 +257,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1639,6 +1642,18 @@ var render = function () {
                   _vm.user.role_id == 1 || _vm.user.role_id == 3
                     ? _c("router-link", { attrs: { to: "/programacion" } }, [
                         _vm._v("Programación"),
+                      ])
+                    : _vm._e(),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _vm.user.role_id == 1 || _vm.user.role_id == 3
+                    ? _c("router-link", { attrs: { to: "/rol" } }, [
+                        _vm._v("Rol"),
                       ])
                     : _vm._e(),
                 ],

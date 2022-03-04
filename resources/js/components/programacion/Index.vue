@@ -28,6 +28,7 @@
                                     <th>Hora Incio</th>
                                     <th>Hora Final</th>
                                     <th>Fecha creación</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

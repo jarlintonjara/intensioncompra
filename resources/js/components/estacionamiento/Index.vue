@@ -25,6 +25,7 @@
                                         <th>Sede</th>
                                         <th>Ubicación</th>
                                         <th>Fecha</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>

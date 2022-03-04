@@ -1855,7 +1855,7 @@ var staticRenderFns = [
           staticClass: "app-forms hidden-xs-down",
           attrs: {
             role: "search",
-            action: "https://smartadmin.lodev09.com/page_search.php",
+            action: "",
             autocomplete: "off",
           },
         },
@@ -1865,7 +1865,7 @@ var staticRenderFns = [
             attrs: {
               type: "text",
               id: "search-field",
-              placeholder: "Search for anything",
+              placeholder: "Buscar",
               tabindex: "1",
             },
           }),
