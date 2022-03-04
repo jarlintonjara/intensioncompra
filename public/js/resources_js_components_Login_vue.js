@@ -56,6 +56,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -284,6 +285,10 @@ var render = function () {
           _vm._v(" |\n            "),
           _c("router-link", { attrs: { to: "/register" } }, [
             _c("strong", [_vm._v("Registrar Cuenta")]),
+          ]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: "/layout" } }, [
+            _c("strong", [_vm._v("Layout")]),
           ]),
         ],
         1

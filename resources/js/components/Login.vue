@@ -34,6 +34,7 @@
             <div class="blankpage-footer text-center">
                 <router-link to="/login"><strong>Recuperar Password</strong></router-link> |
                 <router-link to="/register"><strong>Registrar Cuenta</strong></router-link>
+                <router-link to="/layout"><strong>Layout</strong></router-link>
             </div>
         </div>
         <video poster="/public/admin/img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>

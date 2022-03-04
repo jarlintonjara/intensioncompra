@@ -5551,6 +5551,10 @@ var Dashboard = function Dashboard() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue"));
 };
 
+var Layout = function Layout() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_Layout_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Layout.vue */ "./resources/js/components/Layout.vue"));
+};
+
 var NotFound = function NotFound() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_NotFound_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/NotFound.vue */ "./resources/js/components/NotFound.vue"));
 };
@@ -5565,9 +5569,7 @@ var Estacionamiento = function Estacionamiento() {
 
 var Programacion = function Programacion() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_programacion_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/programacion/Index.vue */ "./resources/js/components/programacion/Index.vue"));
-}; //const CrearEstacionamiento = () => import('./components/estacionamiento/Crear.vue');
-//const EditarEstacionamiento = () => import('./components/estacionamiento/Editar.vue');
-
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mode: 'history',
@@ -5587,9 +5589,9 @@ var Programacion = function Programacion() {
     component: Login,
     name: 'Login'
   }, {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: Dashboard,
+    path: '/layout',
+    component: Layout,
+    name: 'Layout',
     beforeEnter: function beforeEnter(to, form, next) {
       axios.get('/api/athenticated').then(function () {
         next();
@@ -5599,19 +5601,24 @@ var Programacion = function Programacion() {
           name: 'Login'
         });
       });
-    }
-  }, {
-    path: '/usuarios',
-    component: Usuario,
-    name: 'usuario'
-  }, {
-    path: '/estacionamiento',
-    component: Estacionamiento,
-    name: 'estacionamiento'
-  }, {
-    path: '/programacion',
-    component: Programacion,
-    name: 'programacion'
+    },
+    children: [{
+      path: "/dashboard",
+      name: "Dashboard",
+      component: Dashboard
+    }, {
+      path: '/usuarios',
+      component: Usuario,
+      name: 'usuario'
+    }, {
+      path: '/estacionamiento',
+      component: Estacionamiento,
+      name: 'estacionamiento'
+    }, {
+      path: '/programacion',
+      component: Programacion,
+      name: 'programacion'
+    }]
   }]
 });
 
@@ -88092,7 +88099,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_usuario_Index_vue":1,"resources_js_components_estacionamiento_Index_vue":1,"resources_js_components_programacion_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_usuario_Index_vue":1,"resources_js_components_estacionamiento_Index_vue":1,"resources_js_components_programacion_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

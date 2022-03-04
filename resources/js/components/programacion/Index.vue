@@ -1,168 +1,140 @@
 <template>
-    <div>
-        <div class="page-wrapper">
-            <div class="page-inner">
-                <!-- BEGIN Left Aside -->
-                <sidebar/>
-                <!-- END Left Aside -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN Page Header -->
-                    <Navbar/>
-                    <!-- END Page Header -->
-                    <!-- BEGIN Page Content -->
-                    <!-- the #js-page-content id is needed for some plugins to initialize -->
-                    <main id="js-page-content" role="main" class="page-content">
-                        
-                        <div class="subheader">
-                            <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> Programacion 
-                                <small>
-                                </small>
-                            </h1>
-                        </div>
-                        <br>
-                        <div class="col-lg-12">
-                            <div id="panel-4" class="panel">
-                               
-                                <div class="panel-container show">
-                                    <div class="panel-content">
-                                         <div class="panel-hdr">
-                                            <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
-                                        </div><br>
-                                        <table id="table-shedule" class="table table-bordered table-hover table-striped w-100">
-                                            <thead class="bg-warning-200">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Estacionamiento</th>
-                                                    <th>Usuario</th>
-                                                    <th>Fecha Programada</th>
-                                                    <th>Hora Incio</th>
-                                                    <th>Hora Final</th>
-                                                    <th>Fecha creación</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="schedule in schedules" :key="schedule.id">
-                                                    <td>{{ schedule.id }}</td>
-                                                    <td>{{ schedule.parking.numero }}</td>
-                                                    <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
-                                                    <td>{{ schedule.fecha }}</td>
-                                                    <td>{{ schedule.hora_inicio }}</td>
-                                                    <td>{{ schedule.hora_fin }}</td>
-                                                    <td>{{ $dateFormat(schedule.created_at) }}</td>
-                                                    <td>
-                                                        <button class="btn btn-warning" @click="abrirModalEditar(schedule)"><i class="far fa-edit"></i></button>
-                                                        <button class="btn btn-danger" @click="borrar(schedule.id)"><i class="far fa-trash"></i></button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <!-- datatable end -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-                        <div class="modal fade" id="modalForm">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title">
-                                        <i class="fa fa-user-plus"></i> {{titulo}}
-                                    </h5>
-                                    <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <form>
-                                    <div class="modal-body">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="Usuario">Usuario</label>
-                                                <select id="Usuario" class="browser-default custom-select" v-model="datos.user_id">
-                                                    <option></option>
-                                                    <option v-for="user in users" :key="user.nombre+user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="Estacionamiento">Estacionamiento</label>
-                                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id">
-                                                    <option></option>
-                                                    <option v-for="parking in parkings" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label for="Fecha">Fecha de programación</label>
-                                                <input type="date" id="Fecha" class="form-control" placeholder="Fecha" v-model="datos.fecha">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="hora_inicio">Hora Inicio</label>
-                                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" :disabled="disabled" placeholder="Hora inicio" v-model="datos.hora_inicio">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="hora_fin">Hora Fin</label>
-                                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" :disabled="disabled" placeholder="Hora fin" v-model="datos.hora_fin">
-                                            </div>
-                                        </div>
-
-                                        <div class="frame-wrap bg-faded mb-5">
-                                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                                <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('day')">
-                                                <label class="custom-control-label" for="option-bordered">Dia completo</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="partialDay" @click="onChange('partial')">
-                                                <label class="custom-control-label" for="option-small">Medio dia</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="form-group col-md-12">
-                                                <label for="Observaciones">Observaciones</label>
-                                                <textarea id="Observaciones" class="form-control" v-model="datos.observacion"></textarea>
-                                            </div>
-                                        </div>
-                                        
-                                       
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" @click.prevent="crear" v-if="btnCrear">Crear</button>
-                                        <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Editar</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </main>
-                    <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
-
-                    <footer class="page-footer" role="contentinfo">
-                        <!-- <div class="d-flex align-users-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2019 © servicios for PHP by&nbsp;<a href='index.html' class='text-primary fw-500' title='smartadmin.lodev09.com' target='_blank'>@lodev09</a></span>
-                        </div> -->
-                    </footer>
-                    <!-- END Page Footer -->
-
+    
+    <main id="js-page-content" role="main" class="page-content">
+        
+        <div class="subheader">
+            <h1 class="subheader-title">
+                <i class='subheader-icon fal fa-chart-area'></i> Programacion 
+                <small>
+                </small>
+            </h1>
+        </div>
+        <br>
+        <div class="col-lg-12">
+            <div id="panel-4" class="panel">
+                
+                <div class="panel-container show">
+                    <div class="panel-content">
+                            <div class="panel-hdr">
+                            <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
+                        </div><br>
+                        <table id="table-shedule" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="bg-warning-200">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Estacionamiento</th>
+                                    <th>Usuario</th>
+                                    <th>Fecha Programada</th>
+                                    <th>Hora Incio</th>
+                                    <th>Hora Final</th>
+                                    <th>Fecha creación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="schedule in schedules" :key="schedule.id">
+                                    <td>{{ schedule.id }}</td>
+                                    <td>{{ schedule.parking.numero }}</td>
+                                    <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
+                                    <td>{{ schedule.fecha }}</td>
+                                    <td>{{ schedule.hora_inicio }}</td>
+                                    <td>{{ schedule.hora_fin }}</td>
+                                    <td>{{ $dateFormat(schedule.created_at) }}</td>
+                                    <td>
+                                        <button class="btn btn-warning" @click="abrirModalEditar(schedule)"><i class="far fa-edit"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(schedule.id)"><i class="far fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- datatable end -->
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- END Page Wrapper -->
-    </div>
+        
+        <div class="modal fade" id="modalForm">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-user-plus"></i> {{titulo}}
+                    </h5>
+                    <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Usuario">Usuario</label>
+                                <select id="Usuario" class="browser-default custom-select" v-model="datos.user_id">
+                                    <option></option>
+                                    <option v-for="user in users" :key="user.nombre+user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Estacionamiento">Estacionamiento</label>
+                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id">
+                                    <option></option>
+                                    <option v-for="parking in parkings" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="Fecha">Fecha de programación</label>
+                                <input type="date" id="Fecha" class="form-control" placeholder="Fecha" v-model="datos.fecha">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="hora_inicio">Hora Inicio</label>
+                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" :disabled="disabled" placeholder="Hora inicio" v-model="datos.hora_inicio">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="hora_fin">Hora Fin</label>
+                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" :disabled="disabled" placeholder="Hora fin" v-model="datos.hora_fin">
+                            </div>
+                        </div>
+
+                        <div class="frame-wrap bg-faded mb-5">
+                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('day')">
+                                <label class="custom-control-label" for="option-bordered">Dia completo</label>
+                            </div>
+                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="partialDay" @click="onChange('partial')">
+                                <label class="custom-control-label" for="option-small">Medio dia</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Observaciones">Observaciones</label>
+                                <textarea id="Observaciones" class="form-control" v-model="datos.observacion"></textarea>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" @click.prevent="crear" v-if="btnCrear">Crear</button>
+                        <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Editar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+                    
 </template>
 <script>
-import Sidebar from './../Sidebar.vue';
-import Navbar from './../Navbar.vue';
 
 export default {
     name: "Programacion",
     components: {
-        Sidebar,
-        Navbar
     },
     data(){
         return {
@@ -182,7 +154,6 @@ export default {
     },
     mounted(){
         this.init();
-        //this.$tablaGlobal('#table-shedule')
     },
     methods:{
         validarCampos(){

@@ -28,13 +28,13 @@
                             <router-link to="/dashboard" class="">Inicio</router-link>
                         </li>
                         <li>
-                            <router-link to="/usuarios" class="">Usuarios</router-link>
+                            <router-link v-if="user.role_id == 1" to="/usuarios" class="">Usuarios</router-link>
                         </li>
                         <li>
-                            <router-link to="/estacionamiento" class="">Estacionamiento</router-link>
+                            <router-link v-if="user.role_id == 1" to="/estacionamiento" class="">Estacionamiento</router-link>
                         </li>
                         <li>
-                            <router-link to="/programacion" class="">Programación</router-link>
+                            <router-link v-if="user.role_id == 1 || user.role_id == 3" to="/programacion" class="">Programación</router-link>
                         </li>
                     </ul>
                 </li>
@@ -48,6 +48,22 @@
 </template>
 <script>
 export default {
-    name: "sidebar"
+    name: "sidebar",
+    props:['session'],
+    mounted(){
+        this.init();
+    },
+    data(){
+        return {
+            user: []
+        }
+    },
+    methods:{
+        async init(){
+            await axios.get('/api/user').then((res)=>{
+                this.user = res.data;
+            })
+        }
+    }
 }
 </script>
