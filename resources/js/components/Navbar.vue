@@ -25,7 +25,7 @@
         </div>
         <div class="search">
             <form class="app-forms hidden-xs-down" role="search" action="https://smartadmin.lodev09.com/page_search.php" autocomplete="off">
-                <input type="text" id="search-field" placeholder="Search for anything" class="form-control" tabindex="1">
+                <input type="text" id="search-field" placeholder="Buscar" class="form-control" tabindex="1">
                 <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
                     <i class="fal fa-times"></i>
                 </a>
@@ -34,7 +34,7 @@
         <div class="ml-auto d-flex">
             <!-- app user menu -->
             <div>
-                <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                <a href="#" data-toggle="dropdown" title="Usuario" class="header-icon d-flex align-items-center justify-content-center ml-2">
                     <i class="fas fa-user"></i> {{ session.nombre }}
 
                 </a>

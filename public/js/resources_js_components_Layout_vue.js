@@ -1368,11 +1368,7 @@ var render = function () {
             {
               staticClass:
                 "header-icon d-flex align-items-center justify-content-center ml-2",
-              attrs: {
-                href: "#",
-                "data-toggle": "dropdown",
-                title: "drlantern@gotbootstrap.com",
-              },
+              attrs: { href: "#", "data-toggle": "dropdown", title: "Usuario" },
             },
             [
               _c("i", { staticClass: "fas fa-user" }),
@@ -1512,7 +1508,7 @@ var staticRenderFns = [
             attrs: {
               type: "text",
               id: "search-field",
-              placeholder: "Search for anything",
+              placeholder: "Buscar",
               tabindex: "1",
             },
           }),

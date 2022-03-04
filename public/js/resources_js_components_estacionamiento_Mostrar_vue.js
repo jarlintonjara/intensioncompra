@@ -1899,7 +1899,7 @@ var staticRenderFns = [
         attrs: {
           href: "#",
           "data-toggle": "dropdown",
-          title: "drlantern@gotbootstrap.com",
+          title: "Usuario",
         },
       },
       [
