@@ -22,6 +22,9 @@ Vue.use(VueSweetalert2);
 window.JSZip = jszip
 import App from './components/App.vue';
 
+document.title = "programacion";
+
+
 Vue.prototype.$dateFormat = function(date){
     let dt = new Date(date);
     let year  = dt.getFullYear();

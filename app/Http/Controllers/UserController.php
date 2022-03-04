@@ -28,15 +28,17 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('status', 1)->get();
+        $ids = [];
+        /* foreach ($users as $user) {
+            //array_push($ids, $user->parking_id);
+            //$users["role"] = $user->role;
+        } */
         $roles = RoleModel::where('status', 1)->get();
         $parkings = EstacionamientoModel::where('status', 1)->get();
-        foreach ($users as $user) {
-            $users["role"] = $user->role;
-        }
         return response()->json([
             "roles" => $roles,
             "parkings" => $parkings,
-            "users" => $users
+            "users" => $users,
         ]);
     }
 

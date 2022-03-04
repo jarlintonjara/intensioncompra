@@ -351,7 +351,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -365,6 +364,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       users: [],
       roles: [],
       parkings: [],
+      parkingsFilter: [],
       datos: {
         nombre: '',
         apellido: '',
@@ -387,7 +387,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id) {
+      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.parking_id) {
         this.$swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -482,24 +482,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     abrirModalCrear: function abrirModalCrear() {
+      var _this4 = this;
+
       this.datos = {
         nombre: '',
         apellido: '',
         documento: '',
-        email: ''
-      }, this.titulo = 'Crear usuario';
+        email: '',
+        role_id: '',
+        parking_id: '',
+        cargo: '',
+        area: ''
+      };
+      this.parkingsFilter = [];
+      this.parkings.map(function (i) {
+        if (!_this4.users.find(function (e) {
+          return e.parking_id == i.id;
+        })) {
+          _this4.parkingsFilter.push(i);
+        }
+      });
+      this.titulo = 'Crear usuario';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
+      var _this5 = this;
+
+      this.parkingsFilter = [];
       this.datos = {
         nombre: datos.nombre,
         apellido: datos.apellido,
         documento: datos.documento,
         email: datos.email,
-        role_id: datos.role_id
+        role_id: datos.role_id,
+        parking_id: datos.parking_id
       };
+      this.parkings.map(function (i) {
+        if (!_this5.users.find(function (e) {
+          return e.parking_id == i.id;
+        })) {
+          _this5.parkingsFilter.push(i);
+        }
+
+        if (i.id == _this5.datos.parking_id) {
+          _this5.parkingsFilter.push(i);
+        }
+      });
       this.titulo = ' Editar usuario';
       this.btnCrear = false;
       this.btnEditar = true;
@@ -507,7 +537,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       $('#modalForm').modal('show');
     },
     mostrarusers: function mostrarusers() {
-      var _this4 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
@@ -515,10 +545,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this4.axios.get('/api/usuario').then(function (response) {
-                  _this4.users = response.data.users;
-                  _this4.parkings = response.data.parkings;
-                  _this4.roles = response.data.roles; //this.$tablaGlobal('tableUser')
+                return _this6.axios.get('/api/usuario').then(function (response) {
+                  _this6.users = response.data.users;
+                  _this6.roles = response.data.roles;
+                  _this6.parkings = response.data.parkings;
                 })["catch"](function (error) {
                   console.log(error); //this.users =[]
                 });
@@ -2370,7 +2400,7 @@ var render = function () {
                                   { staticClass: "form-group col-md-4" },
                                   [
                                     _c("label", { attrs: { for: "Parking" } }, [
-                                      _vm._v("Rol"),
+                                      _vm._v("Estacionamiento"),
                                     ]),
                                     _vm._v(" "),
                                     _c(
@@ -2415,18 +2445,31 @@ var render = function () {
                                         },
                                       },
                                       [
-                                        _c("option"),
+                                        _c("option", [
+                                          _vm._v(
+                                            "Seleccione un estacionamiento"
+                                          ),
+                                        ]),
                                         _vm._v(" "),
                                         _vm._l(
-                                          _vm.parkings,
+                                          _vm.parkingsFilter,
                                           function (parking) {
                                             return _c(
                                               "option",
                                               {
-                                                key: 12 + parking.id,
+                                                key:
+                                                  parking.numero + parking.id,
                                                 domProps: { value: parking.id },
                                               },
-                                              [_vm._v(_vm._s(parking.numero))]
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    parking.numero +
+                                                      " - " +
+                                                      parking.sede
+                                                  )
+                                                ),
+                                              ]
                                             )
                                           }
                                         ),
@@ -2486,16 +2529,18 @@ var render = function () {
                                         },
                                       },
                                       [
-                                        _c("option"),
+                                        _c("option", [
+                                          _vm._v("Seleccione un rol"),
+                                        ]),
                                         _vm._v(" "),
                                         _vm._l(_vm.roles, function (role) {
                                           return _c(
                                             "option",
                                             {
-                                              key: 1 + role.id,
+                                              key: role.nombre + role.id,
                                               domProps: { value: role.id },
                                             },
-                                            [_vm._v(_vm._s(role.numero))]
+                                            [_vm._v(_vm._s(role.nombre))]
                                           )
                                         }),
                                       ],
@@ -2665,8 +2710,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Apellidos")]),
         _vm._v(" "),
         _c("th", [_vm._v("Documento")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Perfil")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),

@@ -36,7 +36,6 @@
                                                     <th>Nombres</th>
                                                     <th>Apellidos</th>
                                                     <th>Documento</th>
-                                                    <th>Perfil</th>
                                                     <th>Email</th>
                                                     <th>Fecha</th>
                                                 </tr>
@@ -110,17 +109,17 @@
                                             </div>
                                             
                                             <div class="form-group col-md-4">
-                                                <label for="Parking">Rol</label>
+                                                <label for="Parking">Estacionamiento</label>
                                                 <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
-                                                    <option></option>
-                                                    <option v-for="parking in parkings" :key="12+parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                                    <option>Seleccione un estacionamiento</option>
+                                                    <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero + " - "+parking.sede }}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="Role">Rol</label>
                                                 <select id="Perfil" class="browser-default custom-select" v-model="datos.role_id">
-                                                    <option></option>
-                                                    <option v-for="role in roles" :key="1+role.id" :value="role.id">{{ role.numero }}</option>
+                                                    <option>Seleccione un rol</option>
+                                                    <option v-for="role in roles" :key="role.nombre+role.id" :value="role.id">{{ role.nombre }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -174,6 +173,7 @@ export default {
             users:[],
             roles:[],
             parkings:[],
+            parkingsFilter:[],
             datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', role_id: '', parking_id: '', telefono:''},
             titulo:'',
             btnCrear:false,
@@ -186,7 +186,7 @@ export default {
     },
     methods:{
         validarCampos(){
-            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id ){
+            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.parking_id ){
                 this.$swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -241,14 +241,30 @@ export default {
             }
         },
         abrirModalCrear(){
-            this.datos = {nombre:'', apellido:'', documento:'', email:''},
+            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', parking_id:'', cargo: '', area: ''};
+            this.parkingsFilter = [];
+            this.parkings.map(i => {
+                if(!this.users.find(e => e.parking_id == i.id)){
+                    this.parkingsFilter.push(i)
+                }
+            })
             this.titulo='Crear usuario'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.datos= {nombre: datos.nombre, apellido: datos.apellido,  documento: datos.documento, email: datos.email, role_id: datos.role_id}
+            this.parkingsFilter = [];
+            this.datos= {nombre: datos.nombre, apellido: datos.apellido, documento: datos.documento, email: datos.email, 
+                        role_id: datos.role_id, parking_id: datos.parking_id };
+            this.parkings.map(i => {
+                if(!this.users.find(e => e.parking_id == i.id)){
+                    this.parkingsFilter.push(i)
+                }
+                if(i.id == this.datos.parking_id){
+                    this.parkingsFilter.push(i)
+                }
+            })
             this.titulo=' Editar usuario'
             this.btnCrear=false
             this.btnEditar=true
@@ -259,9 +275,9 @@ export default {
             await this.axios.get('/api/usuario')
                     .then(response=>{
                         this.users = response.data.users;
-                        this.parkings = response.data.parkings;
                         this.roles = response.data.roles;
-                        //this.$tablaGlobal('tableUser')
+                        this.parkings = response.data.parkings;
+
                     })
                     .catch(error=>{
                         console.log(error);
