@@ -29,7 +29,7 @@
                                          <div class="panel-hdr">
                                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                                         </div><br>
-                                        <table id="sheduleTable" class="table table-bordered table-hover table-striped w-100">
+                                        <table id="table-shedule" class="table table-bordered table-hover table-striped w-100">
                                             <thead class="bg-warning-200">
                                                 <tr>
                                                     <th>ID</th>
@@ -181,7 +181,8 @@ export default {
         }
     },
     mounted(){
-        this.init()
+        this.init();
+        this.$tablaGlobal('#table-shedule')
     },
     methods:{
         validarCampos(){
@@ -290,6 +291,7 @@ export default {
                         this.users = response.data.users;
                         this.parkings = response.data.parkings;
                         this.schedules = response.data.schedules;
+                        
                     })
                     .catch(error=>{
                         console.log(error);

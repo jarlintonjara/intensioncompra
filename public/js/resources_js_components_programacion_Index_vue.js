@@ -380,6 +380,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.init();
+    this.$tablaGlobal('#table-shedule');
   },
   methods: {
     validarCampos: function validarCampos() {
@@ -2018,7 +2019,7 @@ var render = function () {
                               {
                                 staticClass:
                                   "table table-bordered table-hover table-striped w-100",
-                                attrs: { id: "sheduleTable" },
+                                attrs: { id: "table-shedule" },
                               },
                               [
                                 _vm._m(1),

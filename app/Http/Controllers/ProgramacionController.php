@@ -97,8 +97,12 @@ class ProgramacionController extends Controller
     {
         $estacionamiento = ProgramacionModel::findOrFail($id);
         $estacionamiento->update($request->all());
-        $data = ProgramacionModel::all();
-        return response()->json($data);
+        $schedules = ProgramacionModel::all();
+        foreach ($schedules as $schedule) {
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
+        return response()->json($schedules);
     }
 
     /**

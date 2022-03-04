@@ -29,7 +29,8 @@ class HomeController extends Controller
         $schedules = ProgramacionModel::all();
         $users = User::all()->count();
         $parkings = EstacionamientoModel::all()->count();
-        
+
+        date_default_timezone_set("America/Lima");
         $fecha = date('Y-m-d');
         $nuevafecha = strtotime ( '+1 day' , strtotime ( $fecha ) ) ;
         $nuevafecha = date ( 'Y-m-d' , $nuevafecha );

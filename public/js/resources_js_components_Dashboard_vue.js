@@ -174,32 +174,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -211,12 +185,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       user: null,
       schedules: [],
+      programacionMananalist: [],
       report: {
         totalUsers: 0,
         totalParkings: 0,
         totalSchedules: 0,
-        programacionManana: 0,
-        programacionMananalist: 0
+        programacionManana: 0
       }
     };
   },
@@ -266,7 +240,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     this.init();
     axios.get('/api/user').then(function (res) {
-      _this3.user = res.data; //this.$tablaGlobal('#sampleTable')
+      _this3.user = res.data;
+
+      _this3.$tablaGlobal('#table-shedules');
     });
   }
 });
@@ -1614,113 +1590,57 @@ var render = function () {
                                 {
                                   staticClass:
                                     "table table-bordered table-hover table-striped w-100",
-                                  attrs: { id: "sampleTable" },
+                                  attrs: { id: "table-shedules" },
                                 },
                                 [
                                   _vm._m(1),
                                   _vm._v(" "),
                                   _c(
                                     "tbody",
-                                    _vm._l(_vm.schedules, function (schedule) {
-                                      return _c("tr", { key: schedule.id }, [
-                                        _c("td", [_vm._v(_vm._s(schedule.id))]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(schedule.parking.numero)
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              schedule.user.nombre +
-                                                " " +
-                                                schedule.user.apellido
-                                            )
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(schedule.fecha)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(schedule.hora_inicio)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(schedule.hora_fin)),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.$dateFormat(
-                                                schedule.created_at
-                                              )
-                                            )
-                                          ),
-                                        ]),
-                                      ])
-                                    }),
-                                    0
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("td"),
-                              _vm._v(" "),
-                              _c(
-                                "table",
-                                {
-                                  staticClass:
-                                    "table table-bordered table-hover table-striped w-100",
-                                  attrs: { id: "dt-basic-example" },
-                                },
-                                [
-                                  _vm._m(2),
-                                  _vm._v(" "),
-                                  _c(
-                                    "tbody",
                                     _vm._l(
                                       _vm.programacionMananalist,
                                       function (pm) {
-                                        return _c("tr", { key: pm.id }, [
-                                          _c("td", [_vm._v(_vm._s(pm.id))]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(_vm._s(pm.parking.numero)),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              _vm._s(
-                                                pm.user.nombre +
-                                                  " " +
-                                                  pm.user.apellido
-                                              )
-                                            ),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [_vm._v(_vm._s(pm.fecha))]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(_vm._s(pm.hora_inicio)),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(_vm._s(pm.hora_fin)),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              _vm._s(
-                                                _vm.$dateFormat(pm.created_at)
-                                              )
-                                            ),
-                                          ]),
-                                        ])
+                                        return _c(
+                                          "tr",
+                                          { key: pm.parking.numero + pm.id },
+                                          [
+                                            _c("td", [_vm._v(_vm._s(pm.id))]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(pm.parking.numero)),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  pm.user.nombre +
+                                                    " " +
+                                                    pm.user.apellido
+                                                )
+                                              ),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(pm.fecha)),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(pm.hora_inicio)),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(_vm._s(pm.hora_fin)),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.$dateFormat(pm.created_at)
+                                                )
+                                              ),
+                                            ]),
+                                          ]
+                                        )
                                       }
                                     ),
                                     0
@@ -1769,28 +1689,6 @@ var staticRenderFns = [
         _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
         _vm._v(" "),
         _c("small"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-warning-200" }, [
-      _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Estacionamiento")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Usuario")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha Programada")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Hora Incio")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Hora Final")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha creación")]),
       ]),
     ])
   },

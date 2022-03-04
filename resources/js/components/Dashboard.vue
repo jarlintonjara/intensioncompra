@@ -88,34 +88,8 @@
                                 
                                     <div class="panel-container show">
                                         <div class="panel-content">
-                                            <table id="sampleTable" class="table table-bordered table-hover table-striped w-100">
-                                                <thead class="bg-warning-200">
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Estacionamiento</th>
-                                                        <th>Usuario</th>
-                                                        <th>Fecha Programada</th>
-                                                        <th>Hora Incio</th>
-                                                        <th>Hora Final</th>
-                                                        <th>Fecha creación</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="schedule in schedules" :key="schedule.id">
-                                                        <td>{{ schedule.id }}</td>
-                                                        <td>{{ schedule.parking.numero }}</td>
-                                                        <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
-                                                        <td>{{ schedule.fecha }}</td>
-                                                        <td>{{ schedule.hora_inicio }}</td>
-                                                        <td>{{ schedule.hora_fin }}</td>
-                                                        <td>{{ $dateFormat(schedule.created_at) }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <!-- datatable end -->
-                                            <td></td>
                                             <!-- inicio datatable end -->
-                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                            <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
                                                         <th>ID</th>
@@ -128,7 +102,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr v-for="pm in programacionMananalist" :key="pm.id">
+                                                    <tr v-for="pm in programacionMananalist" :key="pm.parking.numero+pm.id">
                                                         <td>{{ pm.id }}</td>
                                                         <td>{{ pm.parking.numero }}</td>
                                                         <td>{{ pm.user.nombre + " " + pm.user.apellido }}</td>
@@ -175,12 +149,12 @@ export default {
         return{
             user: null,
             schedules: [],
+            programacionMananalist: [],
             report: {
                 totalUsers : 0,
                 totalParkings : 0,
                 totalSchedules: 0,
-                programacionManana: 0,
-                programacionMananalist: 0,
+                programacionManana: 0
             },
         }
     },
@@ -211,7 +185,7 @@ export default {
         this.init();
         axios.get('/api/user').then((res)=>{
             this.user = res.data;
-            //this.$tablaGlobal('#sampleTable')
+            this.$tablaGlobal('#table-shedules')
         })
     }
 }
