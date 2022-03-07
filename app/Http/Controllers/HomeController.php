@@ -39,22 +39,33 @@ class HomeController extends Controller
 
         $programacionManana = ProgramacionModel::whereDate("fecha",$nuevafecha)->get()->count();
         $programacionMananalist = ProgramacionModel::whereDate("fecha",$nuevafecha)->get();
-        $programacionMananalistd = ProgramacionModel::whereDate("fecha",'<',$fecha)->get();
+        $listadohoy = ProgramacionModel::whereDate("fecha",$fecha)->get();
+        $ids2= [];
+        foreach ($listadohoy as $pml) {
+             
+            array_push($ids2,$pml->id);
+
+            $pml["user"] = $pml->user;
+            $pml["parking"] = $pml->parking;
+        }
+        $estacioneslibreshoy = EstacionamientoModel::whereNotIn('id', $ids2)->get();
+        
+        $ids = [];
+        foreach ($programacionMananalist as $pml) {
+             
+            array_push($ids,$pml->id);
+
+            $pml["user"] = $pml->user;
+            $pml["parking"] = $pml->parking;
+        }
+
+        $estacioneslibres = EstacionamientoModel::whereNotIn('id', $ids)->get();
 
         foreach ($schedules as $schedule) {
             $schedule["user"] = $schedule->user;
             $schedule["parking"] = $schedule->parking;
         }
 
-        foreach ($programacionMananalist as $pml) {
-            $pml["user"] = $pml->user;
-            $pml["parking"] = $pml->parking;
-        }
-
-        foreach ($programacionMananalistd as $pmld) {
-            $pmld["user"] = $pmld->user;
-            $pmld["parking"] = $pmld->parking;
-        }
         return response()->json([
             "parkingsTotal" => $parkings,
             "usersTotal" => $users,
@@ -62,7 +73,9 @@ class HomeController extends Controller
             "schedules" => $schedules,
             "programacionManana" => $programacionManana,
             "programacionMananalist" => $programacionMananalist,
-            "programacionMananalistd" => $programacionMananalistd
+            "estacioneslibres" => $estacioneslibres,
+            "listadohoy" => $listadohoy,
+            "estacioneslibreshoy" => $estacioneslibreshoy
         ]);
     }
 }

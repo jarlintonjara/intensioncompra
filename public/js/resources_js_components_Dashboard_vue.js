@@ -175,13 +175,84 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      item1: true,
+      item2: false,
       user: null,
       schedules: [],
       programacionMananalist: [],
-      programacionMananalistd: [],
+      estacioneslibres: [],
+      estacioneslibreshoy: [],
       report: {
         totalUsers: 0,
         totalParkings: 0,
@@ -191,6 +262,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    showitem: function showitem(option) {
+      if (option == 1) {
+        this.item1 = true;
+        this.item2 = false;
+      } else {
+        this.item2 = true;
+        this.item1 = false;
+      }
+    },
     logout: function logout() {
       var _this = this;
 
@@ -217,8 +297,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.report.programacionManana = report.programacionManana;
                   _this2.schedules = report.schedules;
                   _this2.programacionMananalist = report.programacionMananalist;
-                  _this2.programacionMananalistd = report.programacionMananalistd;
-                  console.log(report.programacionMananalistd);
+                  _this2.estacioneslibres = report.estacioneslibres;
+                  _this2.estacioneslibreshoy = report.estacioneslibreshoy;
+                  console.log(report.estacioneslibres);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1181,176 +1262,296 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+        _c(
+          "div",
+          {
+            staticClass: "col-sm-6 col-xl-3",
+            on: {
+              click: function ($event) {
+                return _vm.showitem(1)
+              },
             },
-            [
-              _c("div", {}, [
-                _c(
-                  "h3",
-                  { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.report.totalSchedules) +
-                        "\n                        "
-                    ),
-                    _c("small", { staticClass: "m-0 l-h-n" }, [
-                      _vm._v("Programaciones de hoy"),
-                    ]),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("i", {
+          },
+          [
+            _c(
+              "div",
+              {
                 staticClass:
-                  "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
-                staticStyle: { "font-size": "8rem" },
-              }),
-            ]
-          ),
-        ]),
+                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.report.totalSchedules) +
+                          "\n                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Programaciones de hoy"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
+                  staticStyle: { "font-size": "8rem" },
+                }),
+              ]
+            ),
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+        _c(
+          "div",
+          {
+            staticClass: "col-sm-6 col-xl-3",
+            on: {
+              click: function ($event) {
+                return _vm.showitem(2)
+              },
             },
-            [
-              _c("div", {}, [
-                _c(
-                  "h3",
-                  { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.report.programacionManana) +
-                        "\n                        "
-                    ),
-                    _c("small", { staticClass: "m-0 l-h-n" }, [
-                      _vm._v("Programaciones para mañana"),
-                    ]),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("i", {
+          },
+          [
+            _c(
+              "div",
+              {
                 staticClass:
-                  "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
-                staticStyle: { "font-size": "8rem" },
-              }),
-            ]
-          ),
-        ]),
+                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.report.programacionManana) +
+                          "\n                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Programaciones para mañana"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
+                  staticStyle: { "font-size": "8rem" },
+                }),
+              ]
+            ),
+          ]
+        ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-lg-12" }, [
-          _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-            _c("div", { staticClass: "panel-container show" }, [
-              _c("div", { staticClass: "panel-content" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass:
-                      "table table-bordered table-hover table-striped w-100",
-                    attrs: { id: "table-shedules" },
-                  },
-                  [
-                    _vm._m(2),
+      _vm.item1
+        ? _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _c("div", { staticClass: "panel-container show" }, [
+                  _c("div", { staticClass: "panel-content" }, [
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
-                      "tbody",
-                      _vm._l(_vm.programacionMananalist, function (pm) {
-                        return _c("tr", { key: pm.parking.numero + pm.id }, [
-                          _c("td", [_vm._v(_vm._s(pm.id))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pm.parking.numero))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(pm.user.nombre + " " + pm.user.apellido)
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pm.fecha))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pm.hora_inicio))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(_vm.$dateFormat(pm.created_at))),
-                          ]),
-                        ])
-                      }),
-                      0
+                      "table",
+                      {
+                        staticClass:
+                          "table table-bordered table-hover table-striped w-100",
+                        attrs: { id: "table-shedules" },
+                      },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.listadohoy, function (pm) {
+                            return _c(
+                              "tr",
+                              { key: pm.parking.numero + pm.id },
+                              [
+                                _c("td", [_vm._v(_vm._s(pm.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.parking.numero))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      pm.user.nombre + " " + pm.user.apellido
+                                    )
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.fecha))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.hora_inicio))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(_vm.$dateFormat(pm.created_at))
+                                  ),
+                                ]),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                      ]
                     ),
-                  ]
-                ),
+                  ]),
+                ]),
               ]),
             ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-12" }, [
-          _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-            _c("div", { staticClass: "panel-container show" }, [
-              _c("div", { staticClass: "panel-content" }, [
-                _vm._m(3),
-                _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass:
-                      "table table-bordered table-hover table-striped w-100",
-                    attrs: { id: "table-shedules" },
-                  },
-                  [
-                    _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _c("div", { staticClass: "panel-container show" }, [
+                  _c("div", { staticClass: "panel-content" }, [
+                    _vm._m(3),
                     _vm._v(" "),
                     _c(
-                      "tbody",
-                      _vm._l(_vm.programacionMananalistd, function (pmd) {
-                        return _c("tr", { key: pmd.parking.numero + pmd.id }, [
-                          _c("td", [_vm._v(_vm._s(pmd.id))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pmd.parking.numero))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(pmd.user.nombre + " " + pmd.user.apellido)
-                            ),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pmd.fecha))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pmd.hora_inicio))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(pmd.hora_fin))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(_vm.$dateFormat(pmd.created_at))),
-                          ]),
-                        ])
-                      }),
-                      0
+                      "table",
+                      {
+                        staticClass:
+                          "table table-bordered table-hover table-striped w-100",
+                        attrs: { id: "table-shedules" },
+                      },
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.estacioneslibreshoy, function (pmd) {
+                            return _c("tr", { key: pmd.numero + pmd.id }, [
+                              _c("td", [_vm._v(_vm._s(pmd.id))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.numero))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.sede))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.ubicacion))]),
+                            ])
+                          }),
+                          0
+                        ),
+                      ]
                     ),
-                  ]
-                ),
+                  ]),
+                ]),
               ]),
             ]),
-          ]),
-        ]),
-      ]),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.item2
+        ? _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _c("div", { staticClass: "panel-container show" }, [
+                  _c("div", { staticClass: "panel-content" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-bordered table-hover table-striped w-100",
+                        attrs: { id: "table-shedules" },
+                      },
+                      [
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.programacionMananalist, function (pm) {
+                            return _c(
+                              "tr",
+                              { key: pm.parking.numero + pm.id },
+                              [
+                                _c("td", [_vm._v(_vm._s(pm.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.parking.numero))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      pm.user.nombre + " " + pm.user.apellido
+                                    )
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.fecha))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.hora_inicio))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(_vm.$dateFormat(pm.created_at))
+                                  ),
+                                ]),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _c("div", { staticClass: "panel-container show" }, [
+                  _c("div", { staticClass: "panel-content" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-bordered table-hover table-striped w-100",
+                        attrs: { id: "table-shedules" },
+                      },
+                      [
+                        _vm._m(8),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.estacioneslibres, function (pmd) {
+                            return _c("tr", { key: pmd.numero + pmd.id }, [
+                              _c("td", [_vm._v(_vm._s(pmd.id))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.numero))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.sede))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.ubicacion))]),
+                            ])
+                          }),
+                          0
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ])
+        : _vm._e(),
     ]
   )
 }
@@ -1366,6 +1567,60 @@ var staticRenderFns = [
         _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
         _vm._v(" "),
         _c("small"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticStyle: { "text-align": "center" } }, [
+      _c("b", [_vm._v(" ESTACIONAMIENTOS OCUPADOS HOY")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-warning-200" }, [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estacionamiento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Usuario")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha Programada")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hora Incio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hora Final")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha creación")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticStyle: { "text-align": "center" } }, [
+      _c("b", [_vm._v(" ESTACIONAMIENTOS DISPONIBLES HOY")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-warning-200" }, [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Número")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sede")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ubicación")]),
       ]),
     ])
   },
@@ -1415,17 +1670,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Estacionamiento")]),
+        _c("th", [_vm._v("Número")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Usuario")]),
+        _c("th", [_vm._v("Sede")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Fecha Programada")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Hora Incio")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Hora Final")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha creación")]),
+        _c("th", [_vm._v("Ubicación")]),
       ]),
     ])
   },
