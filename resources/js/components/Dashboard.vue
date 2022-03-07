@@ -139,7 +139,6 @@ export default {
                         this.report.programacionManana = report.programacionManana;
                         this.schedules = report.schedules;
                         this.programacionMananalist = report.programacionMananalist;
-                        console.log(report.programacionMananalist);
                     })
                     .catch(error=>{
                         console.log(error);
@@ -151,7 +150,12 @@ export default {
         axios.get('/api/user').then((res)=>{
             this.user = res.data;
             this.$tablaGlobal('#table-shedules')
-        })
+        });
+        /* axios.get('/sanctum/csrf-cookie').then(response => {
+            console.log('response:::')
+            console.log(response)
+            
+        }) */
     }
 }
 </script>

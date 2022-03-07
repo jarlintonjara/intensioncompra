@@ -16,6 +16,7 @@ window.Vue = Vue;
 
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+
 Vue.use(VueAxios, axios); 
 
 Vue.use(VueSweetalert2);
@@ -36,7 +37,10 @@ Vue.prototype.$tablaGlobal = function(nombreTabla) {
     this.$nextTick(() => {
         $(nombreTabla).DataTable( {
             responsive: true,
-            "dom": '<"html5buttons"B>lTfgtip',
+            dom: `<'row'<'col-sm-12 mb-3'B>>
+                    <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                             "<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>`,
             "buttons": [
                 {
                     "extend":    'copyHtml5',

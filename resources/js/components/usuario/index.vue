@@ -24,7 +24,9 @@
                                     <th>ID</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
+                                    <th>Rol</th>
                                     <th>Documento</th>
+                                    <th>Estacionamiento</th>
                                     <th>Email</th>
                                     <th>Fecha</th>
                                     <th>Acciones</th>
@@ -35,8 +37,9 @@
                                     <td>{{ user.id }}</td>
                                     <td>{{ user.nombre }}</td>
                                     <td>{{ user.apellido }}</td>
+                                    <td>{{ user.role.description }}</td>
                                     <td>{{ user.documento }}</td>
-                                    
+                                    <td>{{ user.parking.numero + " - "+ user.parking.sede}}</td>
                                     <td>{{ user.email }}</td>
                                     <td>{{ $dateFormat(user.created_at) }}</td>
                                     <td>
@@ -248,6 +251,7 @@ export default {
                         this.users = response.data.users;
                         this.roles = response.data.roles;
                         this.parkings = response.data.parkings;
+                        console.log(this.users)
 
                     })
                     .catch(error=>{

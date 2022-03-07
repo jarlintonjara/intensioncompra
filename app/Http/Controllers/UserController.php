@@ -29,10 +29,12 @@ class UserController extends Controller
     {
         $users = User::where('status', 1)->get();
         $ids = [];
-        /* foreach ($users as $user) {
-            //array_push($ids, $user->parking_id);
-            //$users["role"] = $user->role;
-        } */
+        foreach ($users as $user) {
+            if($user->parking_id){
+                $user["parking"] = $user->parking;
+            }
+            $user["role"] = $user->role;
+        } 
         $roles = RoleModel::where('status', 1)->get();
         $parkings = EstacionamientoModel::where('status', 1)->get();
         return response()->json([

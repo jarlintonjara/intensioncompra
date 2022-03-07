@@ -5459,7 +5459,7 @@ vue__WEBPACK_IMPORTED_MODULE_8__["default"].prototype.$tablaGlobal = function (n
   this.$nextTick(function () {
     $(nombreTabla).DataTable({
       responsive: true,
-      "dom": '<"html5buttons"B>lTfgtip',
+      dom: "<'row'<'col-sm-12 mb-3'B>>\n                    <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>\" +\n                        \"<'row'<'col-sm-12'tr>>\" +\n                             \"<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>",
       "buttons": [{
         "extend": 'copyHtml5',
         "text": "<i class='fas fa-copy'></i> Copiar",
@@ -5585,7 +5585,6 @@ var Programacion = function Programacion() {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mode: 'history',
-  linkActiveClass: 'font-semibold',
   routes: [{
     path: '*',
     component: NotFound

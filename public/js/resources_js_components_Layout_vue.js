@@ -83,7 +83,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return axios.get('/api/user').then(function (res) {
                   _this.user = res.data;
-                  console.log(_this.user);
                 });
 
               case 2:
@@ -1651,7 +1650,7 @@ var render = function () {
               _c(
                 "li",
                 [
-                  _vm.user.role_id == 1 || _vm.user.role_id == 3
+                  _vm.user.role_id == 1
                     ? _c("router-link", { attrs: { to: "/rol" } }, [
                         _vm._v("Rol"),
                       ])

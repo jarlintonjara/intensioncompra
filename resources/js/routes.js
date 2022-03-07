@@ -12,7 +12,6 @@ const Programacion = () => import('./components/programacion/Index.vue');
 
 export default{
     mode: 'history',
-    linkActiveClass: 'font-semibold',
     routes: [
         {
             path: '*',
@@ -34,7 +33,7 @@ export default{
             name: 'Login'
         },
         {
-            path: '/layout',
+             path: '/layout',
             component: Layout,
             name: 'Layout',
             beforeEnter: (to, form, next) =>{

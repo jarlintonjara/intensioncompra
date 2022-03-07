@@ -165,6 +165,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
   components: {},
@@ -358,6 +361,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this6.users = response.data.users;
                   _this6.roles = response.data.roles;
                   _this6.parkings = response.data.parkings;
+                  console.log(_this6.users);
                 })["catch"](function (error) {
                   console.log(error); //this.users =[]
                 });
@@ -1277,7 +1281,17 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.apellido))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.role.description))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.documento))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              user.parking.numero + " - " + user.parking.sede
+                            )
+                          ),
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.email))]),
                         _vm._v(" "),
@@ -1779,7 +1793,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Apellidos")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Rol")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Documento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estacionamiento")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),

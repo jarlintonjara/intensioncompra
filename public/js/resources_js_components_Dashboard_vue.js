@@ -180,7 +180,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.report.programacionManana = report.programacionManana;
                   _this2.schedules = report.schedules;
                   _this2.programacionMananalist = report.programacionMananalist;
-                  console.log(report.programacionMananalist);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -203,6 +202,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       _this3.$tablaGlobal('#table-shedules');
     });
+    /* axios.get('/sanctum/csrf-cookie').then(response => {
+        console.log('response:::')
+        console.log(response)
+        
+    }) */
   }
 });
 

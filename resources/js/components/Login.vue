@@ -31,16 +31,15 @@
                     <button @click.prevent="loginUser" class="btn btn-primary float-right">Login</button>
                 </form>
             </div>
-            <div class="blankpage-footer text-center">
+            <!-- <div class="blankpage-footer text-center">
                 <router-link to="/login"><strong>Recuperar Password</strong></router-link> |
                 <router-link to="/register"><strong>Registrar Cuenta</strong></router-link>
-                <router-link to="/layout"><strong>Layout</strong></router-link>
-            </div>
+            </div> -->
         </div>
-        <video poster="/public/admin/img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
-            <source src="/public/admin/assets/media/video/cc.webm" type="video/webm">
+        <!-- <video poster="/public/admin/img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
+            <source src="./public/admin/assets/media/video/cc.webm" type="video/webm">
             <source src="/public/admin/assets/media/video/cc.mp4" type="video/mp4">
-        </video>
+        </video> -->
     </div>
     
 </template>
@@ -57,9 +56,10 @@ export default {
     },
     methods:{
          loginUser(){
-             axios.post('/api/login', this.form).then(() =>{
+            axios.post('/api/login', this.form).then((response) =>{
+                localStorage.setItem('access_token', response.data.access_token);
                 this.$router.push({ name: "Dashboard"}); 
-             }).catch((error) =>{
+            }).catch((error) =>{
                 this.errors = error.response.data.errors;
                 this.$swal.fire({
                     icon: 'error',

@@ -56,7 +56,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -71,7 +70,9 @@ __webpack_require__.r(__webpack_exports__);
     loginUser: function loginUser() {
       var _this = this;
 
-      axios.post('/api/login', this.form).then(function () {
+      axios.post('/api/login', this.form).then(function (response) {
+        localStorage.setItem('access_token', response.data.access_token);
+
         _this.$router.push({
           name: "Dashboard"
         });
@@ -274,56 +275,7 @@ var render = function () {
           ]),
         ]
       ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "blankpage-footer text-center" },
-        [
-          _c("router-link", { attrs: { to: "/login" } }, [
-            _c("strong", [_vm._v("Recuperar Password")]),
-          ]),
-          _vm._v(" |\n            "),
-          _c("router-link", { attrs: { to: "/register" } }, [
-            _c("strong", [_vm._v("Registrar Cuenta")]),
-          ]),
-          _vm._v(" "),
-          _c("router-link", { attrs: { to: "/layout" } }, [
-            _c("strong", [_vm._v("Layout")]),
-          ]),
-        ],
-        1
-      ),
     ]),
-    _vm._v(" "),
-    _c(
-      "video",
-      {
-        attrs: {
-          poster: "/public/admin/img/backgrounds/clouds.png",
-          id: "bgvid",
-          playsinline: "",
-          autoplay: "",
-          muted: "",
-          loop: "",
-        },
-        domProps: { muted: true },
-      },
-      [
-        _c("source", {
-          attrs: {
-            src: "/public/admin/assets/media/video/cc.webm",
-            type: "video/webm",
-          },
-        }),
-        _vm._v(" "),
-        _c("source", {
-          attrs: {
-            src: "/public/admin/assets/media/video/cc.mp4",
-            type: "video/mp4",
-          },
-        }),
-      ]
-    ),
   ])
 }
 var staticRenderFns = [
