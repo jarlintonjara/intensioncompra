@@ -139,12 +139,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       user: null,
       schedules: [],
       programacionMananalist: [],
+      programacionMananalistd: [],
       report: {
         totalUsers: 0,
         totalParkings: 0,
@@ -180,6 +217,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.report.programacionManana = report.programacionManana;
                   _this2.schedules = report.schedules;
                   _this2.programacionMananalist = report.programacionMananalist;
+                  _this2.programacionMananalistd = report.programacionMananalistd;
+                  console.log(report.programacionMananalistd);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1216,6 +1255,8 @@ var render = function () {
           _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
             _c("div", { staticClass: "panel-container show" }, [
               _c("div", { staticClass: "panel-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
                 _c(
                   "table",
                   {
@@ -1224,7 +1265,7 @@ var render = function () {
                     attrs: { id: "table-shedules" },
                   },
                   [
-                    _vm._m(1),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -1259,6 +1300,56 @@ var render = function () {
             ]),
           ]),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+            _c("div", { staticClass: "panel-container show" }, [
+              _c("div", { staticClass: "panel-content" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-bordered table-hover table-striped w-100",
+                    attrs: { id: "table-shedules" },
+                  },
+                  [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.programacionMananalistd, function (pmd) {
+                        return _c("tr", { key: pmd.parking.numero + pmd.id }, [
+                          _c("td", [_vm._v(_vm._s(pmd.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(pmd.parking.numero))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(pmd.user.nombre + " " + pmd.user.apellido)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(pmd.fecha))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(pmd.hora_inicio))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(pmd.hora_fin))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm.$dateFormat(pmd.created_at))),
+                          ]),
+                        ])
+                      }),
+                      0
+                    ),
+                  ]
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
       ]),
     ]
   )
@@ -1276,6 +1367,44 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("small"),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticStyle: { "text-align": "center" } }, [
+      _c("b", [_vm._v(" ESTACIONAMIENTOS OCUPADOS PARA MAÑANA")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-warning-200" }, [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estacionamiento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Usuario")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha Programada")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hora Incio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Hora Final")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha creación")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticStyle: { "text-align": "center" } }, [
+      _c("b", [_vm._v(" ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA")]),
     ])
   },
   function () {

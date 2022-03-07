@@ -68,9 +68,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div id="panel-4" class="panel">
-                
+                    
                     <div class="panel-container show">
                         <div class="panel-content">
+                            <h2 style="text-align: center;"><b> ESTACIONAMIENTOS OCUPADOS PARA MAÑANA</b></h2>
                             <!-- inicio datatable end -->
                             <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
@@ -99,11 +100,46 @@
                             <!-- datatable end -->
                         </div>
                     </div>
-
-    
-
                 </div>
             </div>
+
+            <div class="col-lg-12">
+                <div id="panel-4" class="panel">
+                 
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <h2 style="text-align: center;"><b> ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA</b></h2>
+                            <!-- inicio datatable end -->
+                            <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
+                                <thead class="bg-warning-200">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Estacionamiento</th>
+                                        <th>Usuario</th>
+                                        <th>Fecha Programada</th>
+                                        <th>Hora Incio</th>
+                                        <th>Hora Final</th>
+                                        <th>Fecha creación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="pmd in programacionMananalistd" :key="pmd.parking.numero+pmd.id">
+                                        <td>{{ pmd.id }}</td>
+                                        <td>{{ pmd.parking.numero }}</td>
+                                        <td>{{ pmd.user.nombre + " " + pmd.user.apellido }}</td>
+                                        <td>{{ pmd.fecha }}</td>
+                                        <td>{{ pmd.hora_inicio }}</td>
+                                        <td>{{ pmd.hora_fin }}</td>
+                                        <td>{{ $dateFormat(pmd.created_at) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- datatable end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 </template>
@@ -115,6 +151,7 @@ export default {
             user: null,
             schedules: [],
             programacionMananalist: [],
+            programacionMananalistd: [],
             report: {
                 totalUsers : 0,
                 totalParkings : 0,
@@ -139,6 +176,8 @@ export default {
                         this.report.programacionManana = report.programacionManana;
                         this.schedules = report.schedules;
                         this.programacionMananalist = report.programacionMananalist;
+                        this.programacionMananalistd = report.programacionMananalistd;
+                        console.log(report.programacionMananalistd);
                     })
                     .catch(error=>{
                         console.log(error);

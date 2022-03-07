@@ -34,9 +34,12 @@ class HomeController extends Controller
         $fecha = date('Y-m-d');
         $nuevafecha = strtotime ( '+1 day' , strtotime ( $fecha ) ) ;
         $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
+        $nuevafechad = strtotime ( '+1 day' , strtotime ( $fecha ) ) ;
+        $nuevafechad = date ( 'Y-m-d' , $nuevafechad );
 
         $programacionManana = ProgramacionModel::whereDate("fecha",$nuevafecha)->get()->count();
         $programacionMananalist = ProgramacionModel::whereDate("fecha",$nuevafecha)->get();
+        $programacionMananalistd = ProgramacionModel::whereDate("fecha",'<',$fecha)->get();
 
         foreach ($schedules as $schedule) {
             $schedule["user"] = $schedule->user;
@@ -48,13 +51,18 @@ class HomeController extends Controller
             $pml["parking"] = $pml->parking;
         }
 
+        foreach ($programacionMananalistd as $pmld) {
+            $pmld["user"] = $pmld->user;
+            $pmld["parking"] = $pmld->parking;
+        }
         return response()->json([
             "parkingsTotal" => $parkings,
             "usersTotal" => $users,
             "schedulesTotal" => count($schedules),
             "schedules" => $schedules,
             "programacionManana" => $programacionManana,
-            "programacionMananalist" => $programacionMananalist
+            "programacionMananalist" => $programacionMananalist,
+            "programacionMananalistd" => $programacionMananalistd
         ]);
     }
 }
