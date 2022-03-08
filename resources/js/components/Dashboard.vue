@@ -74,26 +74,30 @@
                         <div class="panel-content">
                             <h2 style="text-align: center;"><b> ESTACIONAMIENTOS OCUPADOS HOY</b></h2>
                             <!-- inicio datatable end -->
-                            <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
+                            <table id="td-ocupadoshoy" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
                                         <th>ID</th>
                                         <th>Estacionamiento</th>
                                         <th>Usuario</th>
+                                        <th>DNI</th>
                                         <th>Fecha Programada</th>
                                         <th>Hora Incio</th>
                                         <th>Hora Final</th>
+                                        <th>Propietario</th>
                                         <th>Fecha creación</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pm in listadohoy" :key="pm.parking.numero+pm.id">
+                                    <tr v-for="pm in programacionhoy" :key="pm.parking.numero+pm.id">
                                         <td>{{ pm.id }}</td>
                                         <td>{{ pm.parking.numero }}</td>
                                         <td>{{ pm.user.nombre + " " + pm.user.apellido }}</td>
+                                        <td>{{ pm.user.documento }}</td>
                                         <td>{{ pm.fecha }}</td>
                                         <td>{{ pm.hora_inicio }}</td>
                                         <td>{{ pm.hora_fin }}</td>
+                                        <td>{{ pm.created }}</td>
                                         <td>{{ $dateFormat(pm.created_at) }}</td>
                                     </tr>
                                 </tbody>
@@ -111,20 +115,22 @@
                         <div class="panel-content">
                             <h2 style="text-align: center;"><b> ESTACIONAMIENTOS DISPONIBLES HOY</b></h2>
                             <!-- inicio datatable end -->
-                            <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
+                            <table id="td-disponibleshoy" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
                                         <th>ID</th>
                                         <th>Número</th>
+                                        <th>Propietario</th>
                                         <th>Sede</th>
                                         <th>Ubicación</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pmd in estacioneslibreshoy" :key="pmd.numero+pmd.id">
+                                    <tr v-for="pmd in estacioneshoy" :key="pmd.numero+pmd.id">
                                         <td>{{ pmd.id }}</td>
                                         <td>{{ pmd.numero }}</td>
+                                        <td>{{ pmd.nombre }}</td>
                                         <td>{{ pmd.sede }}</td>
                                         <td>{{ pmd.ubicacion }}</td>
                                     </tr>
@@ -146,26 +152,30 @@
                         <div class="panel-content">
                             <h2 style="text-align: center;"><b> ESTACIONAMIENTOS OCUPADOS PARA MAÑANA</b></h2>
                             <!-- inicio datatable end -->
-                            <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
+                            <table id="td-ocupadosman" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
                                         <th>ID</th>
                                         <th>Estacionamiento</th>
                                         <th>Usuario</th>
+                                        <th>DNI</th>
                                         <th>Fecha Programada</th>
                                         <th>Hora Incio</th>
                                         <th>Hora Final</th>
+                                        <th>Propietario</th>
                                         <th>Fecha creación</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pm in programacionMananalist" :key="pm.parking.numero+pm.id">
+                                    <tr v-for="pm in programacionma" :key="pm.parking.numero+pm.id">
                                         <td>{{ pm.id }}</td>
                                         <td>{{ pm.parking.numero }}</td>
                                         <td>{{ pm.user.nombre + " " + pm.user.apellido }}</td>
+                                        <td>{{ pm.user.documento }}</td>
                                         <td>{{ pm.fecha }}</td>
                                         <td>{{ pm.hora_inicio }}</td>
                                         <td>{{ pm.hora_fin }}</td>
+                                        <td>{{ pm.created }}</td>
                                         <td>{{ $dateFormat(pm.created_at) }}</td>
                                     </tr>
                                 </tbody>
@@ -183,20 +193,22 @@
                         <div class="panel-content">
                             <h2 style="text-align: center;"><b> ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA</b></h2>
                             <!-- inicio datatable end -->
-                            <table id="table-shedules" class="table table-bordered table-hover table-striped w-100">
+                            <table id="disponiblesman" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
                                         <th>ID</th>
                                         <th>Número</th>
+                                        <th>Propietario</th>
                                         <th>Sede</th>
                                         <th>Ubicación</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pmd in estacioneslibres" :key="pmd.numero+pmd.id">
+                                    <tr v-for="pmd in estacioneshoy" :key="pmd.numero+pmd.id">
                                         <td>{{ pmd.id }}</td>
                                         <td>{{ pmd.numero }}</td>
+                                        <td>{{ pmd.nombre }}</td>
                                         <td>{{ pmd.sede }}</td>
                                         <td>{{ pmd.ubicacion }}</td>
                                     </tr>
@@ -255,10 +267,13 @@ export default {
                         this.report.totalSchedules = report.schedulesTotal;
                         this.report.programacionManana = report.programacionManana;
                         this.schedules = report.schedules;
-                        this.programacionMananalist = report.programacionMananalist;
-                        this.estacioneslibres = report.estacioneslibres;
-                        this.estacioneslibreshoy = report.estacioneslibreshoy;
+
+                        this.programacionma = report.programacionma;
+                        this.estacionesma = report.estacionesma;
+                        this.programacionhoy = report.programacionhoy;
+                        this.estacioneshoy = report.estacioneshoy;
                         console.log(report.estacioneslibres);
+
                     })
                     .catch(error=>{
                         console.log(error);
@@ -269,7 +284,10 @@ export default {
         this.init();
         axios.get('/api/user').then((res)=>{
             this.user = res.data;
-            this.$tablaGlobal('#table-shedules')
+            this.$tablaGlobal('#td-ocupadoshoy');
+            this.$tablaGlobal('#td-disponibleshoy');
+            this.$tablaGlobal('#td-ocupadosman');
+            this.$tablaGlobal('#td-disponiblesman');
         });
         /* axios.get('/sanctum/csrf-cookie').then(response => {
             console.log('response:::')

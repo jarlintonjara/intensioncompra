@@ -38,28 +38,45 @@ class HomeController extends Controller
         $nuevafechad = date ( 'Y-m-d' , $nuevafechad );
 
         $programacionManana = ProgramacionModel::whereDate("fecha",$nuevafecha)->get()->count();
-        $programacionMananalist = ProgramacionModel::whereDate("fecha",$nuevafecha)->get();
-        $listadohoy = ProgramacionModel::whereDate("fecha",$fecha)->get();
+
+        $programacionma = ProgramacionModel::whereDate("fecha",$nuevafecha)->get();
+
+        $programacionhoy = ProgramacionModel::whereDate("fecha",$fecha)->get();
         $ids2= [];
-        foreach ($listadohoy as $pml) {
+        foreach ($programacionhoy as $pml) {
              
             array_push($ids2,$pml->id);
 
             $pml["user"] = $pml->user;
             $pml["parking"] = $pml->parking;
         }
-        $estacioneslibreshoy = EstacionamientoModel::whereNotIn('id', $ids2)->get();
+        $estacioneshoy = User::select('estacionamiento.id','estacionamiento.numero','users.nombre','estacionamiento.sede','estacionamiento.ubicacion')
+                ->join('estacionamiento', 'users.parking_id', '=', 'estacionamiento.id')
+                ->whereNotIn('estacionamiento.id', $ids2)
+                ->get();
+
         
         $ids = [];
-        foreach ($programacionMananalist as $pml) {
+        foreach ($programacionma as $pml) {
              
             array_push($ids,$pml->id);
 
             $pml["user"] = $pml->user;
             $pml["parking"] = $pml->parking;
         }
+        $estacionesma = User::select('estacionamiento.id','estacionamiento.numero','users.nombre','estacionamiento.sede','estacionamiento.ubicacion')
+        ->join('estacionamiento', 'users.parking_id', '=', 'estacionamiento.id')
+        ->whereNotIn('estacionamiento.id', $ids)
+        ->get();
 
-        $estacioneslibres = EstacionamientoModel::whereNotIn('id', $ids)->get();
+        
+
+        //$estacioneslibres = EstacionamientoModel::whereNotIn('id', $ids)->get();
+
+        foreach ($schedules as $schedule) {
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
 
         foreach ($schedules as $schedule) {
             $schedule["user"] = $schedule->user;
@@ -72,10 +89,11 @@ class HomeController extends Controller
             "schedulesTotal" => count($schedules),
             "schedules" => $schedules,
             "programacionManana" => $programacionManana,
-            "programacionMananalist" => $programacionMananalist,
-            "estacioneslibres" => $estacioneslibres,
-            "listadohoy" => $listadohoy,
-            "estacioneslibreshoy" => $estacioneslibreshoy
+            
+            "programacionma" => $programacionma,
+            "estacionesma" => $estacionesma,
+            "programacionhoy" => $programacionhoy,
+            "estacioneshoy" => $estacioneshoy
         ]);
     }
 }

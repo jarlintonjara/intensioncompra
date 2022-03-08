@@ -23,7 +23,7 @@ Vue.use(VueSweetalert2);
 window.JSZip = jszip
 import App from './components/App.vue';
 
-document.title = "programacion";
+document.title = "Progrmación de estacionamiento";
 
 
 Vue.prototype.$dateFormat = function(date){

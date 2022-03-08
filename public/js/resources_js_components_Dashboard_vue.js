@@ -243,6 +243,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -296,9 +308,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.report.totalSchedules = report.schedulesTotal;
                   _this2.report.programacionManana = report.programacionManana;
                   _this2.schedules = report.schedules;
-                  _this2.programacionMananalist = report.programacionMananalist;
-                  _this2.estacioneslibres = report.estacioneslibres;
-                  _this2.estacioneslibreshoy = report.estacioneslibreshoy;
+                  _this2.programacionma = report.programacionma;
+                  _this2.estacionesma = report.estacionesma;
+                  _this2.programacionhoy = report.programacionhoy;
+                  _this2.estacioneshoy = report.estacioneshoy;
                   console.log(report.estacioneslibres);
                 })["catch"](function (error) {
                   console.log(error);
@@ -320,7 +333,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     axios.get('/api/user').then(function (res) {
       _this3.user = res.data;
 
-      _this3.$tablaGlobal('#table-shedules');
+      _this3.$tablaGlobal('#td-ocupadoshoy');
+
+      _this3.$tablaGlobal('#td-disponibleshoy');
+
+      _this3.$tablaGlobal('#td-ocupadosman');
+
+      _this3.$tablaGlobal('#td-disponiblesman');
     });
     /* axios.get('/sanctum/csrf-cookie').then(response => {
         console.log('response:::')
@@ -1366,14 +1385,14 @@ var render = function () {
                       {
                         staticClass:
                           "table table-bordered table-hover table-striped w-100",
-                        attrs: { id: "table-shedules" },
+                        attrs: { id: "td-ocupadoshoy" },
                       },
                       [
                         _vm._m(2),
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.listadohoy, function (pm) {
+                          _vm._l(_vm.programacionhoy, function (pm) {
                             return _c(
                               "tr",
                               { key: pm.parking.numero + pm.id },
@@ -1390,11 +1409,15 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.user.documento))]),
+                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.fecha))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.hora_inicio))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.created))]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
@@ -1424,18 +1447,20 @@ var render = function () {
                       {
                         staticClass:
                           "table table-bordered table-hover table-striped w-100",
-                        attrs: { id: "table-shedules" },
+                        attrs: { id: "td-disponibleshoy" },
                       },
                       [
                         _vm._m(4),
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.estacioneslibreshoy, function (pmd) {
+                          _vm._l(_vm.estacioneshoy, function (pmd) {
                             return _c("tr", { key: pmd.numero + pmd.id }, [
                               _c("td", [_vm._v(_vm._s(pmd.id))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.numero))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.nombre))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.sede))]),
                               _vm._v(" "),
@@ -1466,14 +1491,14 @@ var render = function () {
                       {
                         staticClass:
                           "table table-bordered table-hover table-striped w-100",
-                        attrs: { id: "table-shedules" },
+                        attrs: { id: "td-ocupadosman" },
                       },
                       [
                         _vm._m(6),
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.programacionMananalist, function (pm) {
+                          _vm._l(_vm.programacionma, function (pm) {
                             return _c(
                               "tr",
                               { key: pm.parking.numero + pm.id },
@@ -1490,11 +1515,15 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.user.documento))]),
+                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.fecha))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.hora_inicio))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(pm.created))]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
@@ -1524,18 +1553,20 @@ var render = function () {
                       {
                         staticClass:
                           "table table-bordered table-hover table-striped w-100",
-                        attrs: { id: "table-shedules" },
+                        attrs: { id: "disponiblesman" },
                       },
                       [
                         _vm._m(8),
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.estacioneslibres, function (pmd) {
+                          _vm._l(_vm.estacioneshoy, function (pmd) {
                             return _c("tr", { key: pmd.numero + pmd.id }, [
                               _c("td", [_vm._v(_vm._s(pmd.id))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.numero))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(pmd.nombre))]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.sede))]),
                               _vm._v(" "),
@@ -1590,11 +1621,15 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Usuario")]),
         _vm._v(" "),
+        _c("th", [_vm._v("DNI")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Fecha Programada")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Incio")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Final")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Propietario")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fecha creación")]),
       ]),
@@ -1617,6 +1652,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", [_vm._v("Número")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Propietario")]),
         _vm._v(" "),
         _c("th", [_vm._v("Sede")]),
         _vm._v(" "),
@@ -1644,11 +1681,15 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Usuario")]),
         _vm._v(" "),
+        _c("th", [_vm._v("DNI")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Fecha Programada")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Incio")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Final")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Propietario")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fecha creación")]),
       ]),
@@ -1671,6 +1712,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", [_vm._v("Número")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Propietario")]),
         _vm._v(" "),
         _c("th", [_vm._v("Sede")]),
         _vm._v(" "),
