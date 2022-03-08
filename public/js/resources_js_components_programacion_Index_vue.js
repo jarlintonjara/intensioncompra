@@ -160,6 +160,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
   components: {},
@@ -388,6 +392,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                           $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
                         });
                       });
+                    },
+                    responsive: true,
+                    dom: "<'row'<'col-sm-12 mb-3'B>>\n                        <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>\" +\n                            \"<'row'<'col-sm-12'tr>>\" +\n                                \"<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>",
+                    "buttons": [{
+                      "extend": 'copyHtml5',
+                      "text": "<i class='fas fa-copy'></i> Copiar",
+                      "titleAttr": 'Copy',
+                      "className": "btn btn-primary"
+                    }, {
+                      "extend": "excelHtml5",
+                      "text": "<i class='fas fa-file-excel'></i> Excel",
+                      "titleAttr": "Esportar a Excel",
+                      "className": "btn btn-success"
+                    }, {
+                      "extend": "print",
+                      "text": "<i class='fas fa-print'></i> Imprimir",
+                      "titleAttr": "Imprimir archivo",
+                      "className": "btn btn-secondary"
+                    }],
+                    "language": {
+                      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                     }
                   });
                 });
@@ -1674,7 +1699,7 @@ var render = function () {
                           staticClass: "custom-control-label",
                           attrs: { for: "option-bordered" },
                         },
-                        [_vm._v("Dia completo")]
+                        [_vm._v("Todo el día")]
                       ),
                     ]
                   ),
@@ -1691,8 +1716,8 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.partialDay,
-                            expression: "partialDay",
+                            value: _vm.morning,
+                            expression: "morning",
                           },
                         ],
                         staticClass: "custom-control-input",
@@ -1702,31 +1727,31 @@ var render = function () {
                           id: "option-small",
                         },
                         domProps: {
-                          checked: Array.isArray(_vm.partialDay)
-                            ? _vm._i(_vm.partialDay, null) > -1
-                            : _vm.partialDay,
+                          checked: Array.isArray(_vm.morning)
+                            ? _vm._i(_vm.morning, null) > -1
+                            : _vm.morning,
                         },
                         on: {
                           click: function ($event) {
-                            return _vm.onChange("partial")
+                            return _vm.onChange("morning")
                           },
                           change: function ($event) {
-                            var $$a = _vm.partialDay,
+                            var $$a = _vm.morning,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
                               var $$v = null,
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
-                                $$i < 0 && (_vm.partialDay = $$a.concat([$$v]))
+                                $$i < 0 && (_vm.morning = $$a.concat([$$v]))
                               } else {
                                 $$i > -1 &&
-                                  (_vm.partialDay = $$a
+                                  (_vm.morning = $$a
                                     .slice(0, $$i)
                                     .concat($$a.slice($$i + 1)))
                               }
                             } else {
-                              _vm.partialDay = $$c
+                              _vm.morning = $$c
                             }
                           },
                         },
@@ -1738,7 +1763,71 @@ var render = function () {
                           staticClass: "custom-control-label",
                           attrs: { for: "option-small" },
                         },
-                        [_vm._v("Medio dia")]
+                        [_vm._v("Mañana")]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "custom-control custom-checkbox d-inline-flex mr-3",
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.afternoon,
+                            expression: "afternoon",
+                          },
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: {
+                          type: "checkbox",
+                          name: "small",
+                          id: "option-small",
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.afternoon)
+                            ? _vm._i(_vm.afternoon, null) > -1
+                            : _vm.afternoon,
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.onChange("afternoon")
+                          },
+                          change: function ($event) {
+                            var $$a = _vm.afternoon,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 && (_vm.afternoon = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.afternoon = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.afternoon = $$c
+                            }
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          attrs: { for: "option-small" },
+                        },
+                        [_vm._v("Tarde")]
                       ),
                     ]
                   ),

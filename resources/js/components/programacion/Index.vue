@@ -98,11 +98,15 @@
                         <div class="frame-wrap bg-faded mb-5">
                             <div class="custom-control custom-checkbox d-inline-flex mr-3">
                                 <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('day')">
-                                <label class="custom-control-label" for="option-bordered">Dia completo</label>
+                                <label class="custom-control-label" for="option-bordered">Todo el día</label>
                             </div>
                             <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="partialDay" @click="onChange('partial')">
-                                <label class="custom-control-label" for="option-small">Medio dia</label>
+                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="morning" @click="onChange('morning')">
+                                <label class="custom-control-label" for="option-small">Mañana</label>
+                            </div>
+                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="afternoon" @click="onChange('afternoon')">
+                                <label class="custom-control-label" for="option-small">Tarde</label>
                             </div>
                         </div>
 
@@ -321,8 +325,37 @@ export default {
                                             .setSelectionRange(cursorPosition, cursorPosition);
                                     });
                             });
+                            
                     },
-                });
+                                responsive: true,
+                dom: `<'row'<'col-sm-12 mb-3'B>>
+                        <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                                "<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>`,
+                "buttons": [
+                    {
+                        "extend":    'copyHtml5',
+                        "text": "<i class='fas fa-copy'></i> Copiar",
+                        "titleAttr": 'Copy',
+                        "className": "btn btn-primary"
+                    },
+                    {
+                        "extend": "excelHtml5",
+                        "text": "<i class='fas fa-file-excel'></i> Excel",
+                        "titleAttr": "Esportar a Excel",
+                        "className": "btn btn-success"
+                    },
+                    {
+                        "extend": "print",
+                        "text": "<i class='fas fa-print'></i> Imprimir",
+                        "titleAttr": "Imprimir archivo",
+                        "className": "btn btn-secondary"
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+                    });
             });
 
         },
