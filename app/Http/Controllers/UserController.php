@@ -28,10 +28,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('status', 1)->get();
-        $ids = [];
         foreach ($users as $user) {
             if($user->parking_id){
                 $user["parking"] = $user->parking;
+            }else{
+                $user["parking"] = [
+                    "numero" => "",
+                    "sede" => ""
+                ];
             }
             $user["role"] = $user->role;
         } 
@@ -67,6 +71,15 @@ class UserController extends Controller
             $data['password'] = Hash::make(12345678);
         }
         $user = User::create($data);
+        if ($user->parking_id) {
+            $user["parking"] = $user->parking;
+        } else {
+            $user["parking"] = [
+                "numero" => "",
+                "sede" => ""
+            ];
+            $user["role"] = $user->role;
+        } 
         return response()->json($user);
     }
 

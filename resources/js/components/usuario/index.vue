@@ -140,8 +140,6 @@
 
 export default {
     name: "Usuario",
-    components: {
-    },
     data(){
         return {
             users:[],
@@ -253,7 +251,6 @@ export default {
                         this.users = response.data.users;
                         this.roles = response.data.roles;
                         this.parkings = response.data.parkings;
-                        console.log(this.users)
 
                     })
                     .catch(error=>{

@@ -1639,9 +1639,18 @@ var render = function () {
                 "li",
                 [
                   _vm.user.role_id == 1 || _vm.user.role_id == 3
-                    ? _c("router-link", { attrs: { to: "/programacion" } }, [
-                        _vm._v("Programación"),
-                      ])
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "programacion",
+                              query: { ps: _vm.session },
+                            },
+                          },
+                        },
+                        [_vm._v("Programación")]
+                      )
                     : _vm._e(),
                 ],
                 1

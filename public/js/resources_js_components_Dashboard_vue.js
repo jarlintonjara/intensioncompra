@@ -261,20 +261,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -282,14 +268,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       item2: false,
       user: null,
       schedules: [],
-      programacionMananalist: [],
-      estacioneslibres: [],
-      estacioneslibreshoy: [],
+      programacionma: [],
+      estacionesma: [],
+      programacionhoy: [],
+      estacioneshoy: [],
       report: {
         totalUsers: 0,
         totalParkings: 0,
         totalSchedules: 0,
         programacionManana: 0
+      },
+      indices: {
+        totalHoy: 0,
+        totalManana: 0
       }
     };
   },
@@ -332,7 +323,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.estacionesma = report.estacionesma;
                   _this2.programacionhoy = report.programacionhoy;
                   _this2.estacioneshoy = report.estacioneshoy;
-                  console.log(report.estacioneslibres);
+                  _this2.indices.totalManana = _this2.programacionma.length / (_this2.programacionma.length + _this2.estacionesma.length) * 100;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1381,100 +1372,20 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("i", {
-                  staticClass:
-                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
-                  staticStyle: { "font-size": "8rem" },
-                }),
-              ]
-            ),
-          ]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "col-sm-6 col-xl-3",
-            on: {
-              click: function ($event) {
-                return _vm.showitem(1)
-              },
-            },
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
-              },
-              [
-                _c("div", {}, [
-                  _c(
-                    "h3",
-                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
-                    [
+                _c("div", { staticClass: "d-flex align-items-center" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex-1" }, [
+                    _c("span", { staticClass: "h6 m-0 fw-700" }, [
                       _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.report.totalSchedules) +
-                          "\n                        "
+                        "\n                            " +
+                          _vm._s(_vm.indices.totalManana) +
+                          "\n                            % Complete\n                            "
                       ),
-                      _c("small", { staticClass: "m-0 l-h-n" }, [
-                        _vm._v("Ocupabilidad"),
-                      ]),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass:
-                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
-                  staticStyle: { "font-size": "8rem" },
-                }),
-              ]
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "col-sm-6 col-xl-3",
-            on: {
-              click: function ($event) {
-                return _vm.showitem(2)
-              },
-            },
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
-              },
-              [
-                _c("div", {}, [
-                  _c(
-                    "h3",
-                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
-                    [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.report.programacionManana) +
-                          "\n                        "
-                      ),
-                      _c("small", { staticClass: "m-0 l-h-n" }, [
-                        _vm._v("Ocupabilidad"),
-                      ]),
-                    ]
-                  ),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("i", {
@@ -1494,7 +1405,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(1),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1504,7 +1415,7 @@ var render = function () {
                         attrs: { id: "td-ocupadoshoy" },
                       },
                       [
-                        _vm._m(2),
+                        _vm._m(4),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1556,7 +1467,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(3),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1566,7 +1477,7 @@ var render = function () {
                         attrs: { id: "td-disponibleshoy" },
                       },
                       [
-                        _vm._m(4),
+                        _vm._m(6),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1600,7 +1511,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(5),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1610,7 +1521,7 @@ var render = function () {
                         attrs: { id: "td-ocupadosman" },
                       },
                       [
-                        _vm._m(6),
+                        _vm._m(8),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1662,7 +1573,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(7),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1672,11 +1583,11 @@ var render = function () {
                         attrs: { id: "disponiblesman" },
                       },
                       [
-                        _vm._m(8),
+                        _vm._m(10),
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.estacioneshoy, function (pmd) {
+                          _vm._l(_vm.estacionesma, function (pmd) {
                             return _c("tr", { key: pmd.numero + pmd.id }, [
                               _c("td", [_vm._v(_vm._s(pmd.id))]),
                               _vm._v(" "),
@@ -1715,6 +1626,32 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("small"),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-icon width-1" }, [
+      _c("i", { staticClass: "fal fa-sync fs-xl fa-spin" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "progress mt-1 progress-xs" }, [
+      _c("div", {
+        staticClass:
+          "progress-bar progress-bar-striped progress-bar-animated bg-success-600",
+        staticStyle: { width: "55%" },
+        attrs: {
+          role: "progressbar",
+          "aria-valuenow": "55",
+          "aria-valuemin": "0",
+          "aria-valuemax": "100",
+        },
+      }),
     ])
   },
   function () {

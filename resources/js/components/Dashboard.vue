@@ -50,43 +50,29 @@
                             <small class="m-0 l-h-n">Programaciones para mañana</small>
                         </h3>
                     </div>
-                    <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-xl-3">
-
-            </div>
-            <div class="col-sm-6 col-xl-3">
-
-            </div>
-            <div class="col-sm-6 col-xl-3" @click="showitem(1)">
-                <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
-                    <div class="">
-                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                            {{ report.totalSchedules }}
-                            <small class="m-0 l-h-n">Ocupabilidad</small>
-                        </h3>
-                    </div>
-                    <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3" @click="showitem(2)">
-                <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
-                    <div class="">
-                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                            {{ report.programacionManana }}
-                            <small class="m-0 l-h-n">Ocupabilidad</small>
-                        </h3>
+                    <div class="d-flex align-items-center">
+                        <div class="alert-icon width-1">
+                            <i class="fal fa-sync fs-xl fa-spin"></i>
+                        </div>
+                        <div class="flex-1">
+                            <span class="h6 m-0 fw-700">
+                                {{
+                                   indices.totalManana  
+                                }}
+                                % Complete
+                                </span>
+                            <div class="progress mt-1 progress-xs">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
                     </div>
                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                 </div>
             </div>
         </div>
+        
 
-
-                <div class="row" v-if="item1">
+        <div class="row" v-if="item1">
             <div class="col-lg-12">
                 <div id="panel-4" class="panel">
                     
@@ -225,7 +211,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pmd in estacioneshoy" :key="pmd.numero+pmd.id">
+                                    <tr v-for="pmd in estacionesma" :key="pmd.numero+pmd.id">
                                         <td>{{ pmd.id }}</td>
                                         <td>{{ pmd.numero }}</td>
                                         <td>{{ pmd.nombre }}</td>
@@ -252,15 +238,20 @@ export default {
             item2:false,
             user: null,
             schedules: [],
-            programacionMananalist: [],
-            estacioneslibres: [],
-            estacioneslibreshoy: [],
+            programacionma: [],
+            estacionesma: [],
+            programacionhoy: [],
+            estacioneshoy: [],
             report: {
                 totalUsers : 0,
                 totalParkings : 0,
                 totalSchedules: 0,
                 programacionManana: 0
             },
+            indices: {
+                totalHoy: 0,
+                totalManana: 0
+            }
         }
     },
     methods:{
@@ -290,9 +281,11 @@ export default {
 
                         this.programacionma = report.programacionma;
                         this.estacionesma = report.estacionesma;
+
                         this.programacionhoy = report.programacionhoy;
                         this.estacioneshoy = report.estacioneshoy;
-                        console.log(report.estacioneslibres);
+
+                        this.indices.totalManana = (this.programacionma.length / (this.programacionma.length + this.estacionesma.length) ) * 100;
 
                     })
                     .catch(error=>{

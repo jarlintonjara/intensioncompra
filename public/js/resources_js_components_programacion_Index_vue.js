@@ -164,16 +164,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
-  components: {},
   data: function data() {
     return {
       users: [],
+      session: {},
       parkings: [],
+      usersFilter: [],
+      parkingsFilter: [],
       schedules: [],
+      schedulesFilter: [],
       allDay: false,
-      partialDay: false,
+      morning: false,
+      afternoon: false,
       disabled: false,
       info: [],
       datos: {
@@ -191,6 +196,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
+    this.session = this.$route.query.ps;
     this.init();
   },
   methods: {
@@ -206,31 +212,78 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return true;
     },
+    validarRole: function validarRole() {
+      var _this = this;
+
+      this.parkingsFilter = [];
+      this.usersFilter = [];
+      this.schedulesFilter = [];
+
+      if (this.session.role_id === 1) {
+        this.usersFilter = this.users;
+        this.parkingsFilter = this.parkings;
+        this.schedulesFilter = this.schedules;
+      } else if (this.session.role_id == 3) {
+        this.parkingsFilter = [].concat(this.parkings.filter(function (e) {
+          return e.id == _this.session.parking_id;
+        }));
+        this.usersFilter = [].concat(this.users.filter(function (e) {
+          return e.id == _this.session.id;
+        }));
+        this.schedulesFilter = [].concat(this.schedules.filter(function (e) {
+          return e.user_id == _this.session.id;
+        }));
+        this.datos.estacionamiento_id = this.session.parking_id;
+        this.datos.user_id = this.session.id;
+      }
+    },
     onChange: function onChange(param) {
       this.disabled = false;
 
-      if (param == "day") {
-        this.allDay = !this.allDay;
-        this.partialDay = false;
+      switch (param) {
+        case "day":
+          this.allDay = !this.allDay;
+          this.morning = false;
+          this.afternoon = false;
 
-        if (this.allDay) {
-          this.disabled = true;
-          this.datos.hora_inicio = "06:00";
-          this.datos.hora_fin = "18:00";
-        }
-      } else {
-        this.partialDay = !this.partialDay;
-        this.allDay = false;
+          if (this.allDay) {
+            this.disabled = true;
+            this.datos.hora_inicio = "06:00";
+            this.datos.hora_fin = "18:00";
+          }
 
-        if (this.partialDay) {
-          this.disabled = true;
-          this.datos.hora_inicio = "06:00";
-          this.datos.hora_fin = "12:00";
-        }
+          break;
+
+        case "morning":
+          this.morning = !this.morning;
+          this.allDay = false;
+          this.afternoon = false;
+
+          if (this.morning) {
+            this.disabled = true;
+            this.datos.hora_inicio = "06:00";
+            this.datos.hora_fin = "12:00";
+          }
+
+          break;
+
+        case "afternoon":
+          console.log(this.afternoon);
+          this.afternoon = !this.afternoon;
+          this.morning = false;
+          this.allDay = false;
+
+          if (this.afternoon) {
+            this.disabled = true;
+            this.datos.hora_inicio = "12:00";
+            this.datos.hora_fin = "18:00";
+          }
+
+          break;
       }
     },
     crear: function crear() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var valid;
@@ -239,18 +292,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.validarCampos();
+                return _this2.validarCampos();
 
               case 2:
                 valid = _context.sent;
 
                 if (valid) {
-                  axios.post('api/programacion', _this.datos).then(function (response) {
-                    _this.schedules.push(response.data);
+                  axios.post('api/programacion', _this2.datos).then(function (response) {
+                    _this2.schedules.push(response.data);
 
                     $('#modalForm').modal('hide');
 
-                    _this.$swal.fire('Programación creado correctamente!', '', 'success');
+                    _this2.$swal.fire('Programación creado correctamente!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -265,7 +318,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     editar: function editar() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var valid;
@@ -274,19 +327,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.validarCampos();
+                return _this3.validarCampos();
 
               case 2:
                 valid = _context2.sent;
 
                 if (valid) {
-                  axios.put('/api/programacion/' + _this2.id, _this2.datos).then(function (response) {
-                    _this2.schedules = [].concat(response.data);
-                    _this2.id = ''; //this.getUser()
+                  axios.put('/api/programacion/' + _this3.id, _this3.datos).then(function (response) {
+                    _this3.schedules = [].concat(response.data);
+                    _this3.id = ''; //this.getUser()
 
                     $('#modalForm').modal('hide');
 
-                    _this2.$swal.fire('Programación editado correctamente!', '', 'success');
+                    _this3.$swal.fire('Programación editado correctamente!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -301,11 +354,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     borrar: function borrar(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (confirm("¿Confirma eliminar el registro?")) {
         this.axios["delete"]("/api/programacion/".concat(id)).then(function (response) {
-          _this3.schedules = [].concat(response.data);
+          _this4.schedules = [].concat(response.data);
         })["catch"](function (error) {
           console.log(error);
         });
@@ -347,77 +400,80 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       $('#modalForm').modal('show');
     },
     init: function init() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var table;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this4.axios.get('/api/programacion').then(function (response) {
-                  _this4.users = response.data.users;
-                  _this4.parkings = response.data.parkings;
-                  _this4.schedules = response.data.schedules;
+                return _this5.axios.get('/api/programacion').then(function (response) {
+                  _this5.users = response.data.users;
+                  _this5.parkings = response.data.parkings;
+                  _this5.schedules = response.data.schedules; //$('#td-schedule').DataTable();
                 })["catch"](function (error) {
                   console.log(error);
-                  _this4.schedules = [];
+                  _this5.schedules = [];
                 });
 
               case 2:
-                $(document).ready(function () {
-                  // Setup - add a text input to each footer cell
-                  $('#td-schedule thead tr').clone(true).addClass('filters').appendTo('#td-schedule thead');
-                  var table = $('#td-schedule').DataTable({
-                    orderCellsTop: true,
-                    fixedHeader: true,
-                    initComplete: function initComplete() {
-                      var api = this.api(); // For each column
+                _context3.next = 4;
+                return _this5.validarRole();
 
-                      api.columns().eq(0).each(function (colIdx) {
-                        // Set the header cell to contain the input element
-                        var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
-                        var title = $(cell).text();
-                        $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />'); // On every keypress in this input
+              case 4:
+                // Setup - add a text input to each footer cell
+                $('#td-schedule thead tr').clone(true).addClass('filters').appendTo('#td-schedule thead');
+                table = $('#td-schedule').DataTable({
+                  orderCellsTop: true,
+                  fixedHeader: true,
+                  initComplete: function initComplete() {
+                    var api = this.api(); // For each column
 
-                        $('input', $('.filters th').eq($(api.column(colIdx).header()).index())).off('keyup change').on('keyup change', function (e) {
-                          e.stopPropagation(); // Get the search value
+                    api.columns().eq(0).each(function (colIdx) {
+                      // Set the header cell to contain the input element
+                      var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+                      var title = $(cell).text();
+                      $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />'); // On every keypress in this input
 
-                          $(this).attr('title', $(this).val());
-                          var regexr = '({search})'; //$(this).parents('th').find('select').val();
+                      $('input', $('.filters th').eq($(api.column(colIdx).header()).index())).off('keyup change').on('keyup change', function (e) {
+                        e.stopPropagation(); // Get the search value
 
-                          var cursorPosition = this.selectionStart; // Search the column for that value
+                        $(this).attr('title', $(this).val());
+                        var regexr = '({search})'; //$(this).parents('th').find('select').val();
 
-                          api.column(colIdx).search(this.value != '' ? regexr.replace('{search}', '(((' + this.value + ')))') : '', this.value != '', this.value == '').draw();
-                          $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
-                        });
+                        var cursorPosition = this.selectionStart; // Search the column for that value
+
+                        api.column(colIdx).search(this.value != '' ? regexr.replace('{search}', '(((' + this.value + ')))') : '', this.value != '', this.value == '').draw();
+                        $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
                       });
-                    },
-                    responsive: true,
-                    dom: "<'row'<'col-sm-12 mb-3'B>>\n                        <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>\" +\n                            \"<'row'<'col-sm-12'tr>>\" +\n                                \"<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>",
-                    "buttons": [{
-                      "extend": 'copyHtml5',
-                      "text": "<i class='fas fa-copy'></i> Copiar",
-                      "titleAttr": 'Copy',
-                      "className": "btn btn-primary"
-                    }, {
-                      "extend": "excelHtml5",
-                      "text": "<i class='fas fa-file-excel'></i> Excel",
-                      "titleAttr": "Esportar a Excel",
-                      "className": "btn btn-success"
-                    }, {
-                      "extend": "print",
-                      "text": "<i class='fas fa-print'></i> Imprimir",
-                      "titleAttr": "Imprimir archivo",
-                      "className": "btn btn-secondary"
-                    }],
-                    "language": {
-                      "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                    }
-                  });
+                    });
+                  },
+                  responsive: true,
+                  dom: "<'row'<'col-sm-12 mb-3'B>>\n                            <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>\" +\n                                \"<'row'<'col-sm-12'tr>>\" +\n                                    \"<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>",
+                  "buttons": [{
+                    "extend": 'copyHtml5',
+                    "text": "<i class='fas fa-copy'></i> Copiar",
+                    "titleAttr": 'Copy',
+                    "className": "btn btn-primary"
+                  }, {
+                    "extend": "excelHtml5",
+                    "text": "<i class='fas fa-file-excel'></i> Excel",
+                    "titleAttr": "Esportar a Excel",
+                    "className": "btn btn-success"
+                  }, {
+                    "extend": "print",
+                    "text": "<i class='fas fa-print'></i> Imprimir",
+                    "titleAttr": "Imprimir archivo",
+                    "className": "btn btn-secondary"
+                  }],
+                  "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                  }
                 });
 
-              case 3:
+              case 6:
               case "end":
                 return _context3.stop();
             }
@@ -1316,7 +1372,7 @@ var render = function () {
                 "table",
                 {
                   staticClass:
-                    "table table-bordered table-hover table-secondary m-0",
+                    "table table-bordered table-hover table-striped w-100",
                   attrs: { id: "td-schedule" },
                 },
                 [
@@ -1324,7 +1380,7 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.schedules, function (schedule) {
+                    _vm._l(_vm.schedulesFilter, function (schedule) {
                       return _c("tr", { key: schedule.id }, [
                         _c("td", [_vm._v(_vm._s(schedule.parking.numero))]),
                         _vm._v(" "),
@@ -1459,7 +1515,7 @@ var render = function () {
                       [
                         _c("option"),
                         _vm._v(" "),
-                        _vm._l(_vm.users, function (user) {
+                        _vm._l(_vm.usersFilter, function (user) {
                           return _c(
                             "option",
                             {
@@ -1515,7 +1571,7 @@ var render = function () {
                       [
                         _c("option"),
                         _vm._v(" "),
-                        _vm._l(_vm.parkings, function (parking) {
+                        _vm._l(_vm.parkingsFilter, function (parking) {
                           return _c(
                             "option",
                             {
@@ -1788,7 +1844,7 @@ var render = function () {
                         attrs: {
                           type: "checkbox",
                           name: "small",
-                          id: "option-small",
+                          id: "option-small2",
                         },
                         domProps: {
                           checked: Array.isArray(_vm.afternoon)
@@ -1825,7 +1881,7 @@ var render = function () {
                         "label",
                         {
                           staticClass: "custom-control-label",
-                          attrs: { for: "option-small" },
+                          attrs: { for: "option-small2" },
                         },
                         [_vm._v("Tarde")]
                       ),
@@ -1942,7 +1998,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "table-secondary" }, [
+    return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
         _c("th", [_vm._v("N_Estac")]),
         _vm._v(" "),

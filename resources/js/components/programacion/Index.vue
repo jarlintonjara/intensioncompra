@@ -18,8 +18,9 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                         </div><br>
-                        <table id="td-schedule" class="table table-bordered table-hover table-secondary m-0">
-                            <thead class="table-secondary">
+                       
+                        <table id="td-schedule" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="bg-warning-200">
                                 <tr>
                                     <th>N_Estac</th>
                                     <th>Usuario</th>
@@ -30,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="schedule in schedules" :key="schedule.id">
+                                <tr v-for="schedule in schedulesFilter" :key="schedule.id">
                                     <td>{{ schedule.parking.numero }}</td>
                                     <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
                                     <td>{{ schedule.fecha }}</td>
@@ -68,14 +69,14 @@
                                 <label for="Usuario">Usuario</label>
                                 <select id="Usuario" class="browser-default custom-select" v-model="datos.user_id">
                                     <option></option>
-                                    <option v-for="user in users" :key="user.nombre+user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
+                                    <option v-for="user in usersFilter" :key="user.nombre+user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Estacionamiento">Estacionamiento</label>
                                 <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id">
                                     <option></option>
-                                    <option v-for="parking in parkings" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                    <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
                                 </select>
                             </div>
                         </div>
@@ -105,8 +106,8 @@
                                 <label class="custom-control-label" for="option-small">Mañana</label>
                             </div>
                             <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="afternoon" @click="onChange('afternoon')">
-                                <label class="custom-control-label" for="option-small">Tarde</label>
+                                <input type="checkbox" class="custom-control-input" name="small" id="option-small2" v-model="afternoon" @click="onChange('afternoon')">
+                                <label class="custom-control-label" for="option-small2">Tarde</label>
                             </div>
                         </div>
 
@@ -136,15 +137,18 @@
 
 export default {
     name: "Programacion",
-    components: {
-    },
     data(){
         return {
             users:[],
+            session: {},
             parkings:[],
+            usersFilter: [],
+            parkingsFilter: [],
             schedules:[],
+            schedulesFilter:[],
             allDay: false,
-            partialDay: false,
+            morning: false,
+            afternoon: false,
             disabled: false,
             info: [],
             datos: {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''},
@@ -155,6 +159,7 @@ export default {
         }
     },
     mounted(){
+        this.session = this.$route.query.ps;
         this.init();
     },
     methods:{
@@ -169,25 +174,57 @@ export default {
             }
             return true;
         },
+        validarRole(){
+            this.parkingsFilter = [];
+            this.usersFilter = [];
+            this.schedulesFilter = [];
+            if(this.session.role_id === 1){
+                this.usersFilter = this.users;
+                this.parkingsFilter = this.parkings;
+                this.schedulesFilter = this.schedules;
+                
+            }else if(this.session.role_id == 3){
+                this.parkingsFilter = [].concat(this.parkings.filter(e => e.id == this.session.parking_id))
+                this.usersFilter = [].concat(this.users.filter(e => e.id == this.session.id));
+                this.schedulesFilter = [].concat(this.schedules.filter(e => e.user_id == this.session.id));
+                this.datos.estacionamiento_id = this.session.parking_id;
+                this.datos.user_id = this.session.id;
+            }
+        },
         onChange(param){
-
             this.disabled = false;
-            if(param == "day"){ 
-                this.allDay = !this.allDay;
-                this.partialDay = false;
-                if(this.allDay){
-                    this.disabled = true;
-                    this.datos.hora_inicio = "06:00";
-                    this.datos.hora_fin = "18:00";
-                }
-            }else{
-                this.partialDay = !this.partialDay
-                this.allDay = false;
-                if(this.partialDay){
-                    this.disabled = true;
-                    this.datos.hora_inicio = "06:00";
-                    this.datos.hora_fin = "12:00";
-                }
+            switch(param){
+                case "day":
+                    this.allDay = !this.allDay;
+                    this.morning = false;
+                    this.afternoon = false;
+                    if(this.allDay){
+                        this.disabled = true;
+                        this.datos.hora_inicio = "06:00";
+                        this.datos.hora_fin = "18:00";
+                    }
+                    break;
+                case "morning":
+                    this.morning = !this.morning
+                    this.allDay = false;
+                    this.afternoon = false;
+                    if(this.morning){
+                        this.disabled = true;
+                        this.datos.hora_inicio = "06:00";
+                        this.datos.hora_fin = "12:00";
+                    }
+                    break;
+                case "afternoon":
+                    console.log(this.afternoon)
+                    this.afternoon = !this.afternoon;
+                    this.morning = false;
+                    this.allDay = false;
+                    if(this.afternoon){
+                        this.disabled = true;
+                        this.datos.hora_inicio = "12:00";
+                        this.datos.hora_fin = "18:00";
+                    }
+                    break
             }
         },
         async crear(){
@@ -240,7 +277,7 @@ export default {
             this.partialDay = false;
             this.disabled = false;
             this.datos = {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''};
-            this.titulo='Crear programacion'
+            this.titulo='Crear programacion';
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
@@ -259,104 +296,104 @@ export default {
         },
         async init(){
             await this.axios.get('/api/programacion')
-                    .then(response=> {
-                        this.users = response.data.users;
-                        this.parkings = response.data.parkings;
-                        this.schedules = response.data.schedules;
-                    })
-                    .catch(error=>{
-                        console.log(error);
-                        this.schedules =[]
-                    })
+                .then(response=> {
+                    this.users = response.data.users;
+                    this.parkings = response.data.parkings;
+                    this.schedules = response.data.schedules;
+                    //$('#td-schedule').DataTable();
+                })
+                .catch(error=>{
+                    console.log(error);
+                    this.schedules =[]
+                })
+                await this.validarRole();
 
-            $(document).ready(function () {
                 // Setup - add a text input to each footer cell
                 $('#td-schedule thead tr')
                     .clone(true)
                     .addClass('filters')
                     .appendTo('#td-schedule thead');
             
-                var table = $('#td-schedule').DataTable({
-                    orderCellsTop: true,
-                    fixedHeader: true,
-                    initComplete: function () {
-                        var api = this.api();
-            
-                        // For each column
-                        api
-                            .columns()
-                            .eq(0)
-                            .each(function (colIdx) {
-                                // Set the header cell to contain the input element
-                                var cell = $('.filters th').eq(
-                                    $(api.column(colIdx).header()).index()
-                                );
-                                var title = $(cell).text();
-                                $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />');
-            
-                                // On every keypress in this input
-                                $(
-                                    'input',
-                                    $('.filters th').eq($(api.column(colIdx).header()).index())
-                                )
-                                    .off('keyup change')
-                                    .on('keyup change', function (e) {
-                                        e.stopPropagation();
-            
-                                        // Get the search value
-                                        $(this).attr('title', $(this).val());
-                                        var regexr = '({search})'; //$(this).parents('th').find('select').val();
-            
-                                        var cursorPosition = this.selectionStart;
-                                        // Search the column for that value
-                                        api
-                                            .column(colIdx)
-                                            .search(
-                                                this.value != ''
-                                                    ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                                    : '',
-                                                this.value != '',
-                                                this.value == ''
-                                            )
-                                            .draw();
-            
-                                        $(this)
-                                            .focus()[0]
-                                            .setSelectionRange(cursorPosition, cursorPosition);
-                                    });
-                            });
-                            
-                    },
-                                responsive: true,
-                dom: `<'row'<'col-sm-12 mb-3'B>>
-                        <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
-                            "<'row'<'col-sm-12'tr>>" +
-                                "<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>`,
-                "buttons": [
-                    {
-                        "extend":    'copyHtml5',
-                        "text": "<i class='fas fa-copy'></i> Copiar",
-                        "titleAttr": 'Copy',
-                        "className": "btn btn-primary"
-                    },
-                    {
-                        "extend": "excelHtml5",
-                        "text": "<i class='fas fa-file-excel'></i> Excel",
-                        "titleAttr": "Esportar a Excel",
-                        "className": "btn btn-success"
-                    },
-                    {
-                        "extend": "print",
-                        "text": "<i class='fas fa-print'></i> Imprimir",
-                        "titleAttr": "Imprimir archivo",
-                        "className": "btn btn-secondary"
+                    var table = $('#td-schedule').DataTable({
+                        orderCellsTop: true,
+                        fixedHeader: true,
+                        initComplete: function () {
+                            var api = this.api();
+                
+                            // For each column
+                            api
+                                .columns()
+                                .eq(0)
+                                .each(function (colIdx) {
+                                    // Set the header cell to contain the input element
+                                    var cell = $('.filters th').eq(
+                                        $(api.column(colIdx).header()).index()
+                                    );
+                                    var title = $(cell).text();
+                                    $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />');
+                
+                                    // On every keypress in this input
+                                    $(
+                                        'input',
+                                        $('.filters th').eq($(api.column(colIdx).header()).index())
+                                    )
+                                        .off('keyup change')
+                                        .on('keyup change', function (e) {
+                                            e.stopPropagation();
+                
+                                            // Get the search value
+                                            $(this).attr('title', $(this).val());
+                                            var regexr = '({search})'; //$(this).parents('th').find('select').val();
+                
+                                            var cursorPosition = this.selectionStart;
+                                            // Search the column for that value
+                                            api
+                                                .column(colIdx)
+                                                .search(
+                                                    this.value != ''
+                                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                                        : '',
+                                                    this.value != '',
+                                                    this.value == ''
+                                                )
+                                                .draw();
+                
+                                            $(this)
+                                                .focus()[0]
+                                                .setSelectionRange(cursorPosition, cursorPosition);
+                                        });
+                                });
+                                
+                        },
+                                    responsive: true,
+                    dom: `<'row'<'col-sm-12 mb-3'B>>
+                            <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
+                                "<'row'<'col-sm-12'tr>>" +
+                                    "<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>`,
+                    "buttons": [
+                        {
+                            "extend":    'copyHtml5',
+                            "text": "<i class='fas fa-copy'></i> Copiar",
+                            "titleAttr": 'Copy',
+                            "className": "btn btn-primary"
+                        },
+                        {
+                            "extend": "excelHtml5",
+                            "text": "<i class='fas fa-file-excel'></i> Excel",
+                            "titleAttr": "Esportar a Excel",
+                            "className": "btn btn-success"
+                        },
+                        {
+                            "extend": "print",
+                            "text": "<i class='fas fa-print'></i> Imprimir",
+                            "titleAttr": "Imprimir archivo",
+                            "className": "btn btn-secondary"
+                        }
+                    ],
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                     }
-                ],
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                }
-                    });
-            });
+                });
 
         },
         cerrarModal(){
