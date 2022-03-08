@@ -337,8 +337,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.estacionesma = report.estacionesma;
                   _this2.programacionhoy = report.programacionhoy;
                   _this2.estacioneshoy = report.estacioneshoy;
-                  _this2.indices.totalManana = _this2.programacionma.length / (_this2.programacionma.length + _this2.estacionesma.length) * 100;
-                  _this2.indices.totalHoy = _this2.programacionhoy.length / (_this2.programacionhoy.length + _this2.estacioneshoy.length) * 100;
+                  _this2.indices.totalManana = Math.round(_this2.programacionma.length / (_this2.programacionma.length + _this2.estacionesma.length) * 100);
+                  _this2.indices.totalHoy = Math.round(_this2.programacionhoy.length / (_this2.programacionhoy.length + _this2.estacioneshoy.length) * 100);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1364,7 +1364,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
                   _vm._v(
-                    "\n                    Ocupabilidad\n                    "
+                    "\n                    Ocupabilidad Hoy\n                    "
                   ),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _vm._v(" " + _vm._s(_vm.indices.totalHoy) + " %"),
@@ -1403,7 +1403,7 @@ var render = function () {
               [
                 _c("div", { staticClass: "d-flex mt-2" }, [
                   _vm._v(
-                    "\n                    Estaciones ocupados hoy\n                    "
+                    "\n                    Estaciones ocupados mañana\n                    "
                   ),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _vm._v(
@@ -1421,7 +1421,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
                   _vm._v(
-                    "\n                    Estaciones libres hoy\n                    "
+                    "\n                    Estaciones libres mañana\n                    "
                   ),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _vm._v(
@@ -1440,7 +1440,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
                   _vm._v(
-                    "\n                    Ocupabilidad\n                    "
+                    "\n                    Ocupabilidad mañana\n                    "
                   ),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _vm._v(" " + _vm._s(_vm.indices.totalManana) + " %"),

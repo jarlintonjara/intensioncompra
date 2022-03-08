@@ -48,7 +48,7 @@
                         <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Ocupabilidad
+                        Ocupabilidad Hoy
                         <span class="d-inline-block ml-auto"> {{ indices.totalHoy }} %</span>
                     </div>
                     <div class="progress progress-sm mb-3">
@@ -60,21 +60,21 @@
             <div class="col-sm-6 col-xl-3" @click="showitem(2)">
                 <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="d-flex mt-2">
-                        Estaciones ocupados hoy
+                        Estaciones ocupados mañana
                         <span class="d-inline-block ml-auto">{{ programacionma.length }} / {{ programacionma.length + estacionesma.length }} </span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Estaciones libres hoy
+                        Estaciones libres mañana
                         <span class="d-inline-block ml-auto"> {{ estacionesma.length }} / {{ programacionma.length + estacionesma.length }} </span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Ocupabilidad
+                        Ocupabilidad mañana
                         <span class="d-inline-block ml-auto"> {{ indices.totalManana }} %</span>
                     </div>
                     <div class="progress progress-sm mb-3">
@@ -299,8 +299,8 @@ export default {
                         this.programacionhoy = report.programacionhoy;
                         this.estacioneshoy = report.estacioneshoy;
 
-                        this.indices.totalManana = (this.programacionma.length / (this.programacionma.length + this.estacionesma.length) ) * 100;
-                        this.indices.totalHoy = (this.programacionhoy.length / (this.programacionhoy.length + this.estacioneshoy.length) ) * 100;
+                        this.indices.totalManana = Math.round((this.programacionma.length / (this.programacionma.length + this.estacionesma.length) ) * 100);
+                        this.indices.totalHoy = Math.round((this.programacionhoy.length / (this.programacionhoy.length + this.estacioneshoy.length) ) * 100);
 
                     })
                     .catch(error=>{
