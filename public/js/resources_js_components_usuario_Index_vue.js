@@ -170,7 +170,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
-  components: {},
   data: function data() {
     return {
       users: [],
@@ -361,7 +360,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this6.users = response.data.users;
                   _this6.roles = response.data.roles;
                   _this6.parkings = response.data.parkings;
-                  console.log(_this6.users);
                 })["catch"](function (error) {
                   console.log(error); //this.users =[]
                 });

@@ -33,38 +33,52 @@
             </div>
             <div class="col-sm-6 col-xl-3" @click="showitem(1)">
                 <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
-                    <div class="">
-                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                            {{ report.totalSchedules }}
-                            <small class="m-0 l-h-n">Programaciones de hoy</small>
-                        </h3>
+                    <div class="d-flex mt-2">
+                        Estaciones ocupados hoy
+                        <span class="d-inline-block ml-auto">{{ programacionhoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </span>
+                    </div>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                        <div class="d-flex">
+                        Estaciones libres hoy
+                        <span class="d-inline-block ml-auto"> {{ estacioneshoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </span>
+                    </div>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                        <div class="d-flex">
+                        Ocupabilidad
+                        <span class="d-inline-block ml-auto"> {{ indices.totalHoy }} %</span>
+                    </div>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3" @click="showitem(2)">
-                <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
-                    <div class="">
-                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                            {{ report.programacionManana }}
-                            <small class="m-0 l-h-n">Programaciones para mañana</small>
-                        </h3>
+                <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="d-flex mt-2">
+                        Estaciones ocupados hoy
+                        <span class="d-inline-block ml-auto">{{ programacionma.length }} / {{ programacionma.length + estacionesma.length }} </span>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <div class="alert-icon width-1">
-                            <i class="fal fa-sync fs-xl fa-spin"></i>
-                        </div>
-                        <div class="flex-1">
-                            <span class="h6 m-0 fw-700">
-                                {{
-                                   indices.totalManana  
-                                }}
-                                % Complete
-                                </span>
-                            <div class="progress mt-1 progress-xs">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                        <div class="d-flex">
+                        Estaciones libres hoy
+                        <span class="d-inline-block ml-auto"> {{ estacionesma.length }} / {{ programacionma.length + estacionesma.length }} </span>
+                    </div>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                        <div class="d-flex">
+                        Ocupabilidad
+                        <span class="d-inline-block ml-auto"> {{ indices.totalManana }} %</span>
+                    </div>
+                    <div class="progress progress-sm mb-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                 </div>
@@ -286,6 +300,7 @@ export default {
                         this.estacioneshoy = report.estacioneshoy;
 
                         this.indices.totalManana = (this.programacionma.length / (this.programacionma.length + this.estacionesma.length) ) * 100;
+                        this.indices.totalHoy = (this.programacionhoy.length / (this.programacionhoy.length + this.estacioneshoy.length) ) * 100;
 
                     })
                     .catch(error=>{
