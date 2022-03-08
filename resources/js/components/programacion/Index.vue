@@ -18,34 +18,31 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                         </div><br>
-                        <table id="table-shedule" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="bg-warning-200">
+                        <table id="td-schedule" class="table table-bordered table-hover table-secondary m-0">
+                            <thead class="table-secondary">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Estacionamiento</th>
+                                    <th>N_Estac</th>
                                     <th>Usuario</th>
-                                    <th>Fecha Programada</th>
+                                    <th>Fecha</th>
                                     <th>Hora Incio</th>
                                     <th>Hora Final</th>
-                                    <th>Fecha creación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="schedule in schedules" :key="schedule.id">
-                                    <td>{{ schedule.id }}</td>
                                     <td>{{ schedule.parking.numero }}</td>
                                     <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
                                     <td>{{ schedule.fecha }}</td>
                                     <td>{{ schedule.hora_inicio }}</td>
                                     <td>{{ schedule.hora_fin }}</td>
-                                    <td>{{ $dateFormat(schedule.created_at) }}</td>
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(schedule)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(schedule.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
+                        
                         </table>
                         <!-- datatable end -->
                     </div>
@@ -259,21 +256,80 @@ export default {
         async init(){
             await this.axios.get('/api/programacion')
                     .then(response=> {
-                        
                         this.users = response.data.users;
                         this.parkings = response.data.parkings;
                         this.schedules = response.data.schedules;
-                        
                     })
                     .catch(error=>{
                         console.log(error);
                         this.schedules =[]
                     })
+
+            $(document).ready(function () {
+                // Setup - add a text input to each footer cell
+                $('#td-schedule thead tr')
+                    .clone(true)
+                    .addClass('filters')
+                    .appendTo('#td-schedule thead');
             
+                var table = $('#td-schedule').DataTable({
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    initComplete: function () {
+                        var api = this.api();
+            
+                        // For each column
+                        api
+                            .columns()
+                            .eq(0)
+                            .each(function (colIdx) {
+                                // Set the header cell to contain the input element
+                                var cell = $('.filters th').eq(
+                                    $(api.column(colIdx).header()).index()
+                                );
+                                var title = $(cell).text();
+                                $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />');
+            
+                                // On every keypress in this input
+                                $(
+                                    'input',
+                                    $('.filters th').eq($(api.column(colIdx).header()).index())
+                                )
+                                    .off('keyup change')
+                                    .on('keyup change', function (e) {
+                                        e.stopPropagation();
+            
+                                        // Get the search value
+                                        $(this).attr('title', $(this).val());
+                                        var regexr = '({search})'; //$(this).parents('th').find('select').val();
+            
+                                        var cursorPosition = this.selectionStart;
+                                        // Search the column for that value
+                                        api
+                                            .column(colIdx)
+                                            .search(
+                                                this.value != ''
+                                                    ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                                    : '',
+                                                this.value != '',
+                                                this.value == ''
+                                            )
+                                            .draw();
+            
+                                        $(this)
+                                            .focus()[0]
+                                            .setSelectionRange(cursorPosition, cursorPosition);
+                                    });
+                            });
+                    },
+                });
+            });
+
         },
         cerrarModal(){
             $('#modalForm').modal('hide');
         }
     }
 }
+
 </script>

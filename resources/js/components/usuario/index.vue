@@ -186,6 +186,7 @@ export default {
                     console.log(error);
                 });
             }
+
         },
         async editar(){
             let valid = await this.validarCampos();
@@ -213,6 +214,7 @@ export default {
                     console.log(error)
                 })
             }
+
         },
         abrirModalCrear(){
             this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', parking_id:'', cargo: '', area: ''};

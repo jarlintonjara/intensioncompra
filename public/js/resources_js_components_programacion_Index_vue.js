@@ -160,9 +160,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
   components: {},
@@ -364,6 +361,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
+                $(document).ready(function () {
+                  // Setup - add a text input to each footer cell
+                  $('#td-schedule thead tr').clone(true).addClass('filters').appendTo('#td-schedule thead');
+                  var table = $('#td-schedule').DataTable({
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    initComplete: function initComplete() {
+                      var api = this.api(); // For each column
+
+                      api.columns().eq(0).each(function (colIdx) {
+                        // Set the header cell to contain the input element
+                        var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />'); // On every keypress in this input
+
+                        $('input', $('.filters th').eq($(api.column(colIdx).header()).index())).off('keyup change').on('keyup change', function (e) {
+                          e.stopPropagation(); // Get the search value
+
+                          $(this).attr('title', $(this).val());
+                          var regexr = '({search})'; //$(this).parents('th').find('select').val();
+
+                          var cursorPosition = this.selectionStart; // Search the column for that value
+
+                          api.column(colIdx).search(this.value != '' ? regexr.replace('{search}', '(((' + this.value + ')))') : '', this.value != '', this.value == '').draw();
+                          $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
+                        });
+                      });
+                    }
+                  });
+                });
+
+              case 3:
               case "end":
                 return _context3.stop();
             }
@@ -1262,8 +1291,8 @@ var render = function () {
                 "table",
                 {
                   staticClass:
-                    "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "table-shedule" },
+                    "table table-bordered table-hover table-secondary m-0",
+                  attrs: { id: "td-schedule" },
                 },
                 [
                   _vm._m(1),
@@ -1272,8 +1301,6 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.schedules, function (schedule) {
                       return _c("tr", { key: schedule.id }, [
-                        _c("td", [_vm._v(_vm._s(schedule.id))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(schedule.parking.numero))]),
                         _vm._v(" "),
                         _c("td", [
@@ -1291,10 +1318,6 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(schedule.hora_inicio))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(schedule.hora_fin))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm.$dateFormat(schedule.created_at))),
-                        ]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1830,21 +1853,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-warning-200" }, [
+    return _c("thead", { staticClass: "table-secondary" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Estacionamiento")]),
+        _c("th", [_vm._v("N_Estac")]),
         _vm._v(" "),
         _c("th", [_vm._v("Usuario")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Fecha Programada")]),
+        _c("th", [_vm._v("Fecha")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Incio")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Final")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha creación")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),

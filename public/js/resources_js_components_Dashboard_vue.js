@@ -255,6 +255,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1356,6 +1376,102 @@ var render = function () {
                       ),
                       _c("small", { staticClass: "m-0 l-h-n" }, [
                         _vm._v("Programaciones para mañana"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
+                  staticStyle: { "font-size": "8rem" },
+                }),
+              ]
+            ),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-6 col-xl-3" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-6 col-xl-3" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-sm-6 col-xl-3",
+            on: {
+              click: function ($event) {
+                return _vm.showitem(1)
+              },
+            },
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.report.totalSchedules) +
+                          "\n                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Ocupabilidad"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
+                  staticStyle: { "font-size": "8rem" },
+                }),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-sm-6 col-xl-3",
+            on: {
+              click: function ($event) {
+                return _vm.showitem(2)
+              },
+            },
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.report.programacionManana) +
+                          "\n                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Ocupabilidad"),
                       ]),
                     ]
                   ),
