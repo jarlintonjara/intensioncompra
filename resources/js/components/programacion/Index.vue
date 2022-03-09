@@ -18,13 +18,13 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                         </div><br>
-                       
+                     
                         <table id="td-schedule" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
                                     <th>N_Estac</th>
                                     <th>Usuario</th>
-                                    <th>Fecha</th>
+                                    <th>Dia de semana</th>
                                     <th>Hora Incio</th>
                                     <th>Hora Final</th>
                                     <th>Acciones</th>
@@ -34,7 +34,7 @@
                                 <tr v-for="schedule in schedulesFilter" :key="schedule.id">
                                     <td>{{ schedule.parking.numero }}</td>
                                     <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
-                                    <td>{{ schedule.fecha }}</td>
+                                    <td>{{ schedule.dia }}</td>
                                     <td>{{ schedule.hora_inicio }}</td>
                                     <td>{{ schedule.hora_fin }}</td>
                                     <td>
@@ -45,6 +45,7 @@
                             </tbody>
                         
                         </table>
+                       
                         <!-- datatable end -->
                     </div>
                 </div>
@@ -58,7 +59,8 @@
                     <h5 class="modal-title">
                         <i class="fa fa-user-plus"></i> {{titulo}}
                     </h5>
-                    <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    
+                <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
@@ -67,10 +69,10 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="Usuario">Usuario</label>
-                                <select id="Usuario" class="browser-default custom-select" v-model="datos.user_id">
-                                    <option></option>
-                                    <option v-for="user in usersFilter" :key="user.nombre+user.id" :value="user.id">{{ user.nombre + " " + user.apellido }}</option>
-                                </select>
+                                <v-select class="vue-select2" name="select2" 
+                                    :options="usersFilter" v-model="datos.user_id" :reduce="label => label.code">
+                                </v-select>
+
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Estacionamiento">Estacionamiento</label>
@@ -134,9 +136,13 @@
                     
 </template>
 <script>
+//import Select2 from '../common/select2.vue'
 
 export default {
     name: "Programacion",
+    components: {
+
+    },
     data(){
         return {
             users:[],
@@ -151,7 +157,7 @@ export default {
             afternoon: false,
             disabled: false,
             info: [],
-            datos: {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''},
+            datos: {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: '', created_by : ''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -160,6 +166,7 @@ export default {
     },
     mounted(){
         this.session = this.$route.query.ps;
+        this.datos.created_by = this.session.id
         this.init();
     },
     methods:{
@@ -180,13 +187,15 @@ export default {
             this.schedulesFilter = [];
             if(this.session.role_id === 1){
                 this.usersFilter = this.users;
+                this.usersFilter = this.usersFilter.map(e => { return { code : e.id, label: e.nombre + " " + e.apellido } })
                 this.parkingsFilter = this.parkings;
                 this.schedulesFilter = this.schedules;
                 
             }else if(this.session.role_id == 3){
                 this.parkingsFilter = [].concat(this.parkings.filter(e => e.id == this.session.parking_id))
-                this.usersFilter = [].concat(this.users.filter(e => e.id == this.session.id));
-                this.schedulesFilter = [].concat(this.schedules.filter(e => e.user_id == this.session.id));
+                this.usersFilter = this.users;
+                this.usersFilter = this.usersFilter.map(e => { return { code : e.id, label: e.nombre + " " + e.apellido } })
+                this.schedulesFilter = [].concat(this.schedules.filter(e => e.created_by == this.session.id));
                 this.datos.estacionamiento_id = this.session.parking_id;
                 this.datos.user_id = this.session.id;
             }
@@ -228,10 +237,11 @@ export default {
             }
         },
         async crear(){
+            
             let valid = await this.validarCampos();
             if(valid){
                 axios.post('api/programacion', this.datos).then(response=>{
-                    this.schedules.push(response.data);
+                    this.schedulesFilter.push(response.data);
                     $('#modalForm').modal('hide');
                     this.$swal.fire(
                         'Programación creado correctamente!',
@@ -249,7 +259,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.put('/api/programacion/'+this.id, this.datos).then(response=>{
-                    this.schedules = [].concat(response.data);          
+                    this.schedulesFilter = [].concat(response.data);          
                     this.id='';
                     //this.getUser()
                     $('#modalForm').modal('hide');
@@ -276,7 +286,12 @@ export default {
             this.allDay = false;
             this.partialDay = false;
             this.disabled = false;
-            this.datos = {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: ''};
+            this.datos.estacionamiento_id = '';
+            this.datos.user_id = '';
+            this.datos.fecha = '';
+            this.datos.hora_inicio = '';
+            this.datos.hora_fin = '';
+            this.datos.observacion = '';
             this.titulo='Crear programacion';
             this.btnCrear=true;
             this.btnEditar=false;
@@ -286,8 +301,12 @@ export default {
             this.allDay = false;
             this.partialDay = false;
             this.disabled = false;
-            this.datos= {estacionamiento_id: datos.estacionamiento_id, user_id: datos.user_id,
-             fecha: datos.fecha, hora_inicio: datos.hora_inicio, hora_fin: datos.hora_fin, observacion: datos.observacion};
+            this.datos.estacionamiento_id = datos.estacionamiento_id;
+            this.datos.user_id = datos.user_id;
+            this.datos.fecha = datos.fecha;
+            this.datos.hora_inicio = datos.hora_inicio;
+            this.datos.hora_fin = datos.hora_fin;
+            this.datos.observacion = datos.observacion;
             this.titulo=' Editar Programación'
             this.btnCrear=false
             this.btnEditar=true

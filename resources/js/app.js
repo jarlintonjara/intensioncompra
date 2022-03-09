@@ -7,19 +7,19 @@ import 'datatables.net-buttons/js/buttons.print.js'
 import 'datatables.net-buttons/js/buttons.colVis.js'
 import 'datatables.net-buttons/js/buttons.html5.js'
 
-import 'select2';                       // globally assign select2 fn to $ element
-import 'select2/dist/css/select2.css';  // optional if you have css loader
-
-
-import print from 'datatables.net-buttons/js/buttons.print'
+//import print from 'datatables.net-buttons/js/buttons.print'
 import jszip from 'jszip/dist/jszip'
-
 
 import Vue from 'vue';
 window.Vue = Vue;
 
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+
+import vSelect from 'vue-select'
+
+Vue.component('v-select', vSelect)
+import 'vue-select/dist/vue-select.css';
 
 Vue.use(VueAxios, axios); 
 

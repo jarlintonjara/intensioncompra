@@ -15,7 +15,7 @@ class ProgramacionModel extends Model
         'id',
         'user_id',
         'estacionamiento_id',
-        'created',
+        'created_by',
         'hora_inicio',
         'hora_fin',
         'fecha',

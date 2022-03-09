@@ -165,8 +165,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//import Select2 from '../common/select2.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
+  components: {},
   data: function data() {
     return {
       users: [],
@@ -187,7 +191,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         fecha: '',
         hora_inicio: '',
         hora_fin: '',
-        observacion: ''
+        observacion: '',
+        created_by: ''
       },
       titulo: '',
       btnCrear: false,
@@ -197,6 +202,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.session = this.$route.query.ps;
+    this.datos.created_by = this.session.id;
     this.init();
   },
   methods: {
@@ -221,17 +227,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (this.session.role_id === 1) {
         this.usersFilter = this.users;
+        this.usersFilter = this.usersFilter.map(function (e) {
+          return {
+            code: e.id,
+            label: e.nombre + " " + e.apellido
+          };
+        });
         this.parkingsFilter = this.parkings;
         this.schedulesFilter = this.schedules;
       } else if (this.session.role_id == 3) {
         this.parkingsFilter = [].concat(this.parkings.filter(function (e) {
           return e.id == _this.session.parking_id;
         }));
-        this.usersFilter = [].concat(this.users.filter(function (e) {
-          return e.id == _this.session.id;
-        }));
+        this.usersFilter = this.users;
+        this.usersFilter = this.usersFilter.map(function (e) {
+          return {
+            code: e.id,
+            label: e.nombre + " " + e.apellido
+          };
+        });
         this.schedulesFilter = [].concat(this.schedules.filter(function (e) {
-          return e.user_id == _this.session.id;
+          return e.created_by == _this.session.id;
         }));
         this.datos.estacionamiento_id = this.session.parking_id;
         this.datos.user_id = this.session.id;
@@ -299,7 +315,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('api/programacion', _this2.datos).then(function (response) {
-                    _this2.schedules.push(response.data);
+                    _this2.schedulesFilter.push(response.data);
 
                     $('#modalForm').modal('hide');
 
@@ -334,7 +350,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/programacion/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.schedules = [].concat(response.data);
+                    _this3.schedulesFilter = [].concat(response.data);
                     _this3.id = ''; //this.getUser()
 
                     $('#modalForm').modal('hide');
@@ -368,14 +384,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.allDay = false;
       this.partialDay = false;
       this.disabled = false;
-      this.datos = {
-        estacionamiento_id: '',
-        user_id: '',
-        fecha: '',
-        hora_inicio: '',
-        hora_fin: '',
-        observacion: ''
-      };
+      this.datos.estacionamiento_id = '';
+      this.datos.user_id = '';
+      this.datos.fecha = '';
+      this.datos.hora_inicio = '';
+      this.datos.hora_fin = '';
+      this.datos.observacion = '';
       this.titulo = 'Crear programacion';
       this.btnCrear = true;
       this.btnEditar = false;
@@ -385,14 +399,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.allDay = false;
       this.partialDay = false;
       this.disabled = false;
-      this.datos = {
-        estacionamiento_id: datos.estacionamiento_id,
-        user_id: datos.user_id,
-        fecha: datos.fecha,
-        hora_inicio: datos.hora_inicio,
-        hora_fin: datos.hora_fin,
-        observacion: datos.observacion
-      };
+      this.datos.estacionamiento_id = datos.estacionamiento_id;
+      this.datos.user_id = datos.user_id;
+      this.datos.fecha = datos.fecha;
+      this.datos.hora_inicio = datos.hora_inicio;
+      this.datos.hora_fin = datos.hora_fin;
+      this.datos.observacion = datos.observacion;
       this.titulo = ' Editar Programación';
       this.btnCrear = false;
       this.btnEditar = true;
@@ -1394,7 +1406,7 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(schedule.fecha))]),
+                        _c("td", [_vm._v(_vm._s(schedule.dia))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(schedule.hora_inicio))]),
                         _vm._v(" "),
@@ -1474,61 +1486,34 @@ var render = function () {
             _c("form", [
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "Usuario" } }, [
-                      _vm._v("Usuario"),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.datos.user_id,
-                            expression: "datos.user_id",
-                          },
-                        ],
-                        staticClass: "browser-default custom-select",
-                        attrs: { id: "Usuario" },
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.datos,
-                              "user_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-6" },
+                    [
+                      _c("label", { attrs: { for: "Usuario" } }, [
+                        _vm._v("Usuario"),
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "vue-select2",
+                        attrs: {
+                          name: "select2",
+                          options: _vm.usersFilter,
+                          reduce: function (label) {
+                            return label.code
                           },
                         },
-                      },
-                      [
-                        _c("option"),
-                        _vm._v(" "),
-                        _vm._l(_vm.usersFilter, function (user) {
-                          return _c(
-                            "option",
-                            {
-                              key: user.nombre + user.id,
-                              domProps: { value: user.id },
-                            },
-                            [_vm._v(_vm._s(user.nombre + " " + user.apellido))]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
-                  ]),
+                        model: {
+                          value: _vm.datos.user_id,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.datos, "user_id", $$v)
+                          },
+                          expression: "datos.user_id",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-6" }, [
                     _c("label", { attrs: { for: "Estacionamiento" } }, [
@@ -2004,7 +1989,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Usuario")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Fecha")]),
+        _c("th", [_vm._v("Dia de semana")]),
         _vm._v(" "),
         _c("th", [_vm._v("Hora Incio")]),
         _vm._v(" "),
