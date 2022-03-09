@@ -30,6 +30,7 @@
         "datatables.net-dt": "^1.10.22",
         "jszip": "^3.7.1",
         "moment": "^2.29.1",
+        "select2": "^4.1.0-rc.0",
         "vue-axios": "^3.4.1",
         "vue-router": "^3.5.2",
         "vue-sweetalert2": "^5.0.2",

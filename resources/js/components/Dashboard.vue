@@ -9,18 +9,16 @@
             </h1>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-xl-3">
-                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="col-sm-12 col-md-6 col-md-2 col-xl-2">
+                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g" style="margin-bottom: 1%!important;">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                             {{ report.totalUsers }}
                             <small class="m-0 l-h-n">Usuarios</small>
                         </h3>
                     </div>
-                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem; margin-bottom: 1%!important;"></i>
                 </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
                 <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -31,25 +29,26 @@
                     <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3" @click="showitem(1)">
+
+            <div class="col-sm-12 col-md-6 col-md-5 col-xl-5" @click="showitem(1)">
                 <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="d-flex mt-2">
-                        Estaciones ocupados hoy
-                        <span class="d-inline-block ml-auto">{{ programacionhoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </span>
+                        <h5><b>ESTACIONES OCUPADOS HOY</b></h5>
+                        <span class="d-inline-block ml-auto"><h5><b> {{ programacionhoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Estaciones libres hoy
-                        <span class="d-inline-block ml-auto"> {{ estacioneshoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </span>
+                        <h5><b>ESTACIONES DISPONIBLES HOY</b></h5>
+                        <span class="d-inline-block ml-auto"><h5><b> {{ estacioneshoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Ocupabilidad Hoy
-                        <span class="d-inline-block ml-auto"> {{ indices.totalHoy }} %</span>
+                        <h5><b>OCUPABILIDAD HOY</b></h5>
+                        <span class="d-inline-block ml-auto"> <h5><b>{{ indices.totalHoy }} %</b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
@@ -57,25 +56,25 @@
                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3" @click="showitem(2)">
+            <div class="col-sm-12 col-md-6 col-md-5 col-xl-5" @click="showitem(2)">
                 <div class="p-3 bg-danger-200 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="d-flex mt-2">
-                        Estaciones ocupados mañana
-                        <span class="d-inline-block ml-auto">{{ programacionma.length }} / {{ programacionma.length + estacionesma.length }} </span>
+                        <h5><b>ESTACIONES OCUPADOS MAÑANA</b></h5>
+                        <span class="d-inline-block ml-auto"><h5><b> {{ programacionma.length }} / {{ programacionma.length + estacionesma.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Estaciones libres mañana
-                        <span class="d-inline-block ml-auto"> {{ estacionesma.length }} / {{ programacionma.length + estacionesma.length }} </span>
+                        <h5><b>ESTACIONES DISPONIBLES MAÑANA</b></h5>
+                        <span class="d-inline-block ml-auto"><h5><b> {{ estacionesma.length }} / {{ programacionma.length + estacionesma.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
-                        Ocupabilidad mañana
-                        <span class="d-inline-block ml-auto"> {{ indices.totalManana }} %</span>
+                        <h5><b>OCUPABILIDAD MAÑANA</b></h5>
+                        <span class="d-inline-block ml-auto"> <h5><b>{{ indices.totalManana }} %</b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>

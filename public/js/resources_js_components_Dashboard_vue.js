@@ -274,7 +274,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1239,12 +1238,13 @@ var render = function () {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+        _c("div", { staticClass: "col-sm-12 col-md-6 col-md-2 col-xl-2" }, [
           _c(
             "div",
             {
               staticClass:
                 "p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g",
+              staticStyle: { "margin-bottom": "1%!important" },
             },
             [
               _c("div", {}, [
@@ -1267,13 +1267,14 @@ var render = function () {
               _c("i", {
                 staticClass:
                   "fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1",
-                staticStyle: { "font-size": "6rem" },
+                staticStyle: {
+                  "font-size": "6rem",
+                  "margin-bottom": "1%!important",
+                },
               }),
             ]
           ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+          _vm._v(" "),
           _c(
             "div",
             {
@@ -1310,7 +1311,7 @@ var render = function () {
         _c(
           "div",
           {
-            staticClass: "col-sm-6 col-xl-3",
+            staticClass: "col-sm-12 col-md-6 col-md-5 col-xl-5",
             on: {
               click: function ($event) {
                 return _vm.showitem(1)
@@ -1326,52 +1327,62 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "d-flex mt-2" }, [
-                  _vm._v(
-                    "\n                    Estaciones ocupados hoy\n                    "
-                  ),
+                  _vm._m(1),
+                  _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
-                    _vm._v(
-                      _vm._s(_vm.programacionhoy.length) +
-                        " / " +
-                        _vm._s(
-                          _vm.programacionhoy.length + _vm.estacioneshoy.length
-                        ) +
-                        " "
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _c("div", { staticClass: "d-flex" }, [
-                  _vm._v(
-                    "\n                    Estaciones libres hoy\n                    "
-                  ),
-                  _c("span", { staticClass: "d-inline-block ml-auto" }, [
-                    _vm._v(
-                      " " +
-                        _vm._s(_vm.estacioneshoy.length) +
-                        " / " +
-                        _vm._s(
-                          _vm.programacionhoy.length + _vm.estacioneshoy.length
-                        ) +
-                        " "
-                    ),
+                    _c("h5", [
+                      _c("b", [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.programacionhoy.length) +
+                            " / " +
+                            _vm._s(
+                              _vm.programacionhoy.length +
+                                _vm.estacioneshoy.length
+                            ) +
+                            " "
+                        ),
+                      ]),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
                 _vm._m(2),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._v(
-                    "\n                    Ocupabilidad Hoy\n                    "
-                  ),
+                  _vm._m(3),
+                  _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
-                    _vm._v(" " + _vm._s(_vm.indices.totalHoy) + " %"),
+                    _c("h5", [
+                      _c("b", [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.estacioneshoy.length) +
+                            " / " +
+                            _vm._s(
+                              _vm.programacionhoy.length +
+                                _vm.estacioneshoy.length
+                            ) +
+                            " "
+                        ),
+                      ]),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(3),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "d-flex" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "d-inline-block ml-auto" }, [
+                    _c("h5", [
+                      _c("b", [_vm._v(_vm._s(_vm.indices.totalHoy) + " %")]),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("i", {
                   staticClass:
@@ -1386,7 +1397,7 @@ var render = function () {
         _c(
           "div",
           {
-            staticClass: "col-sm-6 col-xl-3",
+            staticClass: "col-sm-12 col-md-6 col-md-5 col-xl-5",
             on: {
               click: function ($event) {
                 return _vm.showitem(2)
@@ -1402,52 +1413,62 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "d-flex mt-2" }, [
-                  _vm._v(
-                    "\n                    Estaciones ocupados mañana\n                    "
-                  ),
+                  _vm._m(7),
+                  _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
-                    _vm._v(
-                      _vm._s(_vm.programacionma.length) +
-                        " / " +
-                        _vm._s(
-                          _vm.programacionma.length + _vm.estacionesma.length
-                        ) +
-                        " "
-                    ),
+                    _c("h5", [
+                      _c("b", [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.programacionma.length) +
+                            " / " +
+                            _vm._s(
+                              _vm.programacionma.length +
+                                _vm.estacionesma.length
+                            ) +
+                            " "
+                        ),
+                      ]),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(8),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._v(
-                    "\n                    Estaciones libres mañana\n                    "
-                  ),
+                  _vm._m(9),
+                  _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
-                    _vm._v(
-                      " " +
-                        _vm._s(_vm.estacionesma.length) +
-                        " / " +
-                        _vm._s(
-                          _vm.programacionma.length + _vm.estacionesma.length
-                        ) +
-                        " "
-                    ),
+                    _c("h5", [
+                      _c("b", [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.estacionesma.length) +
+                            " / " +
+                            _vm._s(
+                              _vm.programacionma.length +
+                                _vm.estacionesma.length
+                            ) +
+                            " "
+                        ),
+                      ]),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(5),
+                _vm._m(10),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._v(
-                    "\n                    Ocupabilidad mañana\n                    "
-                  ),
+                  _vm._m(11),
+                  _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
-                    _vm._v(" " + _vm._s(_vm.indices.totalManana) + " %"),
+                    _c("h5", [
+                      _c("b", [_vm._v(_vm._s(_vm.indices.totalManana) + " %")]),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(6),
+                _vm._m(12),
                 _vm._v(" "),
                 _c("i", {
                   staticClass:
@@ -1466,7 +1487,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(7),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1476,7 +1497,7 @@ var render = function () {
                         attrs: { id: "td-ocupadoshoy" },
                       },
                       [
-                        _vm._m(8),
+                        _vm._m(14),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1528,7 +1549,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(9),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1538,7 +1559,7 @@ var render = function () {
                         attrs: { id: "td-disponibleshoy" },
                       },
                       [
-                        _vm._m(10),
+                        _vm._m(16),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1572,7 +1593,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(11),
+                    _vm._m(17),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1582,7 +1603,7 @@ var render = function () {
                         attrs: { id: "td-ocupadosman" },
                       },
                       [
-                        _vm._m(12),
+                        _vm._m(18),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1634,7 +1655,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(13),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1644,7 +1665,7 @@ var render = function () {
                         attrs: { id: "disponiblesman" },
                       },
                       [
-                        _vm._m(14),
+                        _vm._m(20),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1693,6 +1714,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("ESTACIONES OCUPADOS HOY")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress progress-sm mb-3" }, [
       _c("div", {
         staticClass: "progress-bar bg-fusion-400",
@@ -1710,6 +1737,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("ESTACIONES DISPONIBLES HOY")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress progress-sm mb-3" }, [
       _c("div", {
         staticClass: "progress-bar bg-success-500",
@@ -1722,6 +1755,12 @@ var staticRenderFns = [
         },
       }),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("OCUPABILIDAD HOY")])])
   },
   function () {
     var _vm = this
@@ -1745,6 +1784,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("ESTACIONES OCUPADOS MAÑANA")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress progress-sm mb-3" }, [
       _c("div", {
         staticClass: "progress-bar bg-fusion-400",
@@ -1762,6 +1807,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("ESTACIONES DISPONIBLES MAÑANA")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress progress-sm mb-3" }, [
       _c("div", {
         staticClass: "progress-bar bg-success-500",
@@ -1774,6 +1825,12 @@ var staticRenderFns = [
         },
       }),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("b", [_vm._v("OCUPABILIDAD MAÑANA")])])
   },
   function () {
     var _vm = this
