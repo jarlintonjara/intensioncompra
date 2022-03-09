@@ -293,7 +293,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       indices: {
         totalHoy: 0,
-        totalManana: 0
+        totalManana: 0,
+        totallHoy: 0,
+        totallManana: 0
       }
     };
   },
@@ -1347,10 +1349,21 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _c("div", { staticClass: "progress progress-sm mb-3" }, [
+                  _c("div", {
+                    staticClass: "progress-bar bg-fusion-400",
+                    style: { width: _vm.indices.totalHoy + "%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "65",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1370,10 +1383,28 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _c("div", { staticClass: "progress progress-sm mb-3" }, [
+                  _c("div", {
+                    staticClass: "progress-bar bg-success-500",
+                    style: {
+                      width:
+                        (_vm.estacioneshoy.length /
+                          (_vm.programacionhoy.length +
+                            _vm.estacioneshoy.length)) *
+                          100 +
+                        "%",
+                    },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "34",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(5),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1382,7 +1413,19 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(6),
+                _c("div", { staticClass: "progress progress-sm mb-3" }, [
+                  _c("div", {
+                    staticClass:
+                      "progress-bar progress-bar-striped progress-bar-animated bg-success-600",
+                    style: { width: _vm.indices.totalHoy + "%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "77",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("i", {
                   staticClass:
@@ -1413,7 +1456,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "d-flex mt-2" }, [
-                  _vm._m(7),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1433,10 +1476,21 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(8),
+                _c("div", { staticClass: "progress progress-sm mb-3" }, [
+                  _c("div", {
+                    staticClass: "progress-bar bg-fusion-400",
+                    style: { width: _vm.indices.totalManana + "%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "65",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(9),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1456,10 +1510,28 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(10),
+                _c("div", { staticClass: "progress progress-sm mb-3" }, [
+                  _c("div", {
+                    staticClass: "progress-bar bg-success-500",
+                    style: {
+                      width:
+                        (_vm.estacionesma.length /
+                          (_vm.programacionma.length +
+                            _vm.estacionesma.length)) *
+                          100 +
+                        "%",
+                    },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "34",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(11),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1468,7 +1540,19 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(12),
+                _c("div", { staticClass: "progress progress-sm mb-3" }, [
+                  _c("div", {
+                    staticClass:
+                      "progress-bar progress-bar-striped progress-bar-animated bg-success-600",
+                    style: { width: _vm.indices.totalManana + "%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "77",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    },
+                  }),
+                ]),
                 _vm._v(" "),
                 _c("i", {
                   staticClass:
@@ -1487,7 +1571,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(13),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1497,7 +1581,7 @@ var render = function () {
                         attrs: { id: "td-ocupadoshoy" },
                       },
                       [
-                        _vm._m(14),
+                        _vm._m(8),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1549,7 +1633,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(15),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1559,7 +1643,7 @@ var render = function () {
                         attrs: { id: "td-disponibleshoy" },
                       },
                       [
-                        _vm._m(16),
+                        _vm._m(10),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1593,7 +1677,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(17),
+                    _vm._m(11),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1603,7 +1687,7 @@ var render = function () {
                         attrs: { id: "td-ocupadosman" },
                       },
                       [
-                        _vm._m(18),
+                        _vm._m(12),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1655,7 +1739,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(19),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1665,7 +1749,7 @@ var render = function () {
                         attrs: { id: "disponiblesman" },
                       },
                       [
-                        _vm._m(20),
+                        _vm._m(14),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1720,41 +1804,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm mb-3" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-fusion-400",
-        staticStyle: { width: "65%" },
-        attrs: {
-          role: "progressbar",
-          "aria-valuenow": "65",
-          "aria-valuemin": "0",
-          "aria-valuemax": "100",
-        },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("h5", [_c("b", [_vm._v("ESTACIONES DISPONIBLES HOY")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm mb-3" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-success-500",
-        staticStyle: { width: "34%" },
-        attrs: {
-          role: "progressbar",
-          "aria-valuenow": "34",
-          "aria-valuemin": "0",
-          "aria-valuemax": "100",
-        },
-      }),
-    ])
   },
   function () {
     var _vm = this
@@ -1766,42 +1816,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm mb-3" }, [
-      _c("div", {
-        staticClass:
-          "progress-bar progress-bar-striped progress-bar-animated bg-success-600",
-        staticStyle: { width: "77%" },
-        attrs: {
-          role: "progressbar",
-          "aria-valuenow": "77",
-          "aria-valuemin": "0",
-          "aria-valuemax": "100",
-        },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("h5", [_c("b", [_vm._v("ESTACIONES OCUPADOS MAÑANA")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm mb-3" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-fusion-400",
-        staticStyle: { width: "65%" },
-        attrs: {
-          role: "progressbar",
-          "aria-valuenow": "65",
-          "aria-valuemin": "0",
-          "aria-valuemax": "100",
-        },
-      }),
-    ])
   },
   function () {
     var _vm = this
@@ -1813,42 +1828,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm mb-3" }, [
-      _c("div", {
-        staticClass: "progress-bar bg-success-500",
-        staticStyle: { width: "34%" },
-        attrs: {
-          role: "progressbar",
-          "aria-valuenow": "34",
-          "aria-valuemin": "0",
-          "aria-valuemax": "100",
-        },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("h5", [_c("b", [_vm._v("OCUPABILIDAD MAÑANA")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress progress-sm mb-3" }, [
-      _c("div", {
-        staticClass:
-          "progress-bar progress-bar-striped progress-bar-animated bg-success-600",
-        staticStyle: { width: "77%" },
-        attrs: {
-          role: "progressbar",
-          "aria-valuenow": "77",
-          "aria-valuemin": "0",
-          "aria-valuemax": "100",
-        },
-      }),
-    ])
   },
   function () {
     var _vm = this

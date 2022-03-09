@@ -37,21 +37,21 @@
                         <span class="d-inline-block ml-auto"><h5><b> {{ programacionhoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
-                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-fusion-400" role="progressbar" v-bind:style="{ width: indices.totalHoy + '%' }" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
                         <h5><b>ESTACIONES DISPONIBLES HOY</b></h5>
                         <span class="d-inline-block ml-auto"><h5><b> {{ estacioneshoy.length }} / {{ programacionhoy.length + estacioneshoy.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
-                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success-500" role="progressbar" v-bind:style="{ width: ((estacioneshoy.length / (programacionhoy.length + estacioneshoy.length)) * 100) + '%' }" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
                         <h5><b>OCUPABILIDAD HOY</b></h5>
                         <span class="d-inline-block ml-auto"> <h5><b>{{ indices.totalHoy }} %</b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" v-bind:style="{ width: indices.totalHoy + '%' }" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                 </div>
@@ -63,21 +63,21 @@
                         <span class="d-inline-block ml-auto"><h5><b> {{ programacionma.length }} / {{ programacionma.length + estacionesma.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
-                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-fusion-400" role="progressbar" v-bind:style="{ width: indices.totalManana + '%' }" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
                         <h5><b>ESTACIONES DISPONIBLES MAÑANA</b></h5>
                         <span class="d-inline-block ml-auto"><h5><b> {{ estacionesma.length }} / {{ programacionma.length + estacionesma.length }} </b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
-                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success-500" role="progressbar" v-bind:style="{ width: ((estacionesma.length / (programacionma.length + estacionesma.length)) * 100) + '%' }" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                         <div class="d-flex">
                         <h5><b>OCUPABILIDAD MAÑANA</b></h5>
                         <span class="d-inline-block ml-auto"> <h5><b>{{ indices.totalManana }} %</b></h5></span>
                     </div>
                     <div class="progress progress-sm mb-3">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success-600" role="progressbar" v-bind:style="{ width: indices.totalManana + '%' }" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                 </div>
@@ -263,7 +263,9 @@ export default {
             },
             indices: {
                 totalHoy: 0,
-                totalManana: 0
+                totalManana: 0,
+                totallHoy: 0,
+                totallManana: 0
             }
         }
     },
@@ -300,7 +302,6 @@ export default {
 
                         this.indices.totalManana = Math.round((this.programacionma.length / (this.programacionma.length + this.estacionesma.length) ) * 100);
                         this.indices.totalHoy = Math.round((this.programacionhoy.length / (this.programacionhoy.length + this.estacioneshoy.length) ) * 100);
-
                     })
                     .catch(error=>{
                         console.log(error);
