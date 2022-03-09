@@ -39,7 +39,8 @@ class ProgramacionController extends Controller
             ->groupBy(function ($date) {
                 return Carbon::parse($date->fecha)->format('W');
             });
-        $schedulesFilter = $schedules[Carbon::now()->weekOfYear];
+        $week = Carbon::now()->weekOfYear;
+        $schedulesFilter = isset($schedules->week)? $schedules->week : [] ;
         foreach ($schedulesFilter as $schedule) {
             $schedule["dia"] = self::DAYS[Carbon::parse($schedule->fecha)->dayOfWeekIso];
             $schedule["user"] = $schedule->user;
