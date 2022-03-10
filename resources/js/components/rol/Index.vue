@@ -18,10 +18,9 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                         </div><br>
-                        <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
+                        <table id="tableRol" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
-                                    <th>ID</th>
                                     <th>Nombres</th>
                                     <th>Descripción</th>
                                     <th>Estado</th>
@@ -30,7 +29,6 @@
                             </thead>
                             <tbody>
                                 <tr v-for="rol in items" :key="rol.id">
-                                    <td>{{ rol.id }}</td>
                                     <td>{{ rol.nombre }}</td>
                                     <td>{{ rol.description }}</td>
                                     <td>{{ rol.status }}</td>
@@ -106,7 +104,8 @@ export default {
         }
     },
     mounted(){
-        this.mostrarItems()
+        this.mostrarItems();
+        
     },
     methods:{
 
@@ -175,6 +174,7 @@ export default {
                         console.log(error);
                         this.items =[]
                     })
+                    $('#tableRol').DataTable();
         },
         getTable(){
             $('#dt-basic-example').dataTable({})

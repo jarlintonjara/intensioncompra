@@ -1746,7 +1746,7 @@ var render = function () {
                       {
                         staticClass:
                           "table table-bordered table-hover table-striped w-100",
-                        attrs: { id: "disponiblesman" },
+                        attrs: { id: "td-disponiblesman" },
                       },
                       [
                         _vm._m(14),

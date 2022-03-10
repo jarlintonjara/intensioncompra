@@ -21,7 +21,6 @@
                         <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
-                                    <th>ID</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
                                     <th>Rol</th>
@@ -34,7 +33,6 @@
                             </thead>
                             <tbody>
                                 <tr v-for="user in users" :key="user.id">
-                                    <td>{{ user.id }}</td>
                                     <td>{{ user.nombre }}</td>
                                     <td>{{ user.apellido }}</td>
                                     <td>{{ user.role.description }}</td>
@@ -251,12 +249,16 @@ export default {
                         this.users = response.data.users;
                         this.roles = response.data.roles;
                         this.parkings = response.data.parkings;
-
+                         
                     })
                     .catch(error=>{
                         console.log(error);
                         //this.users =[]
                     })
+                    
+                    $(document).ready(function() {
+                        $('#tableUser').DataTable();
+                    } );
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

@@ -360,6 +360,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this6.users = response.data.users;
                   _this6.roles = response.data.roles;
                   _this6.parkings = response.data.parkings;
+                  $('#tableUser').DataTable();
                 })["catch"](function (error) {
                   console.log(error); //this.users =[]
                 });
