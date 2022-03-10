@@ -212,7 +212,7 @@
                         <div class="panel-content">
                             <h2 style="text-align: center;"><b> ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA</b></h2>
                             <!-- inicio datatable end -->
-                            <table id="disponiblesman" class="table table-bordered table-hover table-striped w-100">
+                            <table id="td-disponiblesman" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
                                         <th>ID</th>
