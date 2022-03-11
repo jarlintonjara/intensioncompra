@@ -274,6 +274,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1569,10 +1598,10 @@ var render = function () {
         ? _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-lg-12" }, [
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _vm._m(7),
+                _vm._v(" "),
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(7),
-                    _vm._v(" "),
                     _c(
                       "table",
                       {
@@ -1631,10 +1660,10 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "col-lg-12" }, [
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _vm._m(9),
+                _vm._v(" "),
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(9),
-                    _vm._v(" "),
                     _c(
                       "table",
                       {
@@ -1649,11 +1678,11 @@ var render = function () {
                           "tbody",
                           _vm._l(_vm.estacioneshoy, function (pmd) {
                             return _c("tr", { key: pmd.numero + pmd.id }, [
-                              _c("td", [_vm._v(_vm._s(pmd.id))]),
-                              _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.numero))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(pmd.nombre))]),
+                              _c("td", [
+                                _vm._v(_vm._s(pmd.nombre + " " + pmd.apellido)),
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.sede))]),
                               _vm._v(" "),
@@ -1675,10 +1704,10 @@ var render = function () {
         ? _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-lg-12" }, [
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _vm._m(11),
+                _vm._v(" "),
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(11),
-                    _vm._v(" "),
                     _c(
                       "table",
                       {
@@ -1696,8 +1725,6 @@ var render = function () {
                               "tr",
                               { key: pm.parking.numero + pm.id },
                               [
-                                _c("td", [_vm._v(_vm._s(pm.id))]),
-                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.parking.numero))]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -1737,10 +1764,10 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "col-lg-12" }, [
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+                _vm._m(13),
+                _vm._v(" "),
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(13),
-                    _vm._v(" "),
                     _c(
                       "table",
                       {
@@ -1755,11 +1782,11 @@ var render = function () {
                           "tbody",
                           _vm._l(_vm.estacionesma, function (pmd) {
                             return _c("tr", { key: pmd.numero + pmd.id }, [
-                              _c("td", [_vm._v(_vm._s(pmd.id))]),
-                              _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.numero))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(pmd.nombre))]),
+                              _c("td", [
+                                _vm._v(_vm._s(pmd.nombre + " " + pmd.apellido)),
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.sede))]),
                               _vm._v(" "),
@@ -1834,8 +1861,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticStyle: { "text-align": "center" } }, [
-      _c("b", [_vm._v(" ESTACIONAMIENTOS OCUPADOS HOY")]),
+    return _c("div", { staticClass: "panel-hdr" }, [
+      _c("h2", [
+        _c(
+          "h2",
+          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+          [_c("b", [_vm._v(" ESTACIONAMIENTOS OCUPADOS HOY")])]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-toolbar" }, [
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-collapse",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Collapse",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-fullscreen",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Fullscreen",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-close",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Close",
+          },
+        }),
+      ]),
     ])
   },
   function () {
@@ -1868,8 +1933,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticStyle: { "text-align": "center" } }, [
-      _c("b", [_vm._v(" ESTACIONAMIENTOS DISPONIBLES HOY")]),
+    return _c("div", { staticClass: "panel-hdr" }, [
+      _c("h2", [
+        _c(
+          "h2",
+          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+          [_c("b", [_vm._v(" ESTACIONAMIENTOS DISPONIBLES HOY")])]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-toolbar" }, [
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-collapse",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Collapse",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-fullscreen",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Fullscreen",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-close",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Close",
+          },
+        }),
+      ]),
     ])
   },
   function () {
@@ -1878,8 +1981,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Número")]),
         _vm._v(" "),
         _c("th", [_vm._v("Propietario")]),
@@ -1894,8 +1995,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticStyle: { "text-align": "center" } }, [
-      _c("b", [_vm._v(" ESTACIONAMIENTOS OCUPADOS PARA MAÑANA")]),
+    return _c("div", { staticClass: "panel-hdr" }, [
+      _c("h2", [
+        _c(
+          "h2",
+          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+          [_c("b", [_vm._v(" ESTACIONAMIENTOS OCUPADOS PARA MAÑANA")])]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-toolbar" }, [
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-collapse",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Collapse",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-fullscreen",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Fullscreen",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-close",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Close",
+          },
+        }),
+      ]),
     ])
   },
   function () {
@@ -1904,8 +2043,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Estacionamiento")]),
         _vm._v(" "),
         _c("th", [_vm._v("Usuario")]),
@@ -1928,8 +2065,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticStyle: { "text-align": "center" } }, [
-      _c("b", [_vm._v(" ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA")]),
+    return _c("div", { staticClass: "panel-hdr" }, [
+      _c("h2", [
+        _c(
+          "h2",
+          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+          [_c("b", [_vm._v(" ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA")])]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-toolbar" }, [
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-collapse",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Collapse",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-fullscreen",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Fullscreen",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-close",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Close",
+          },
+        }),
+      ]),
     ])
   },
   function () {
@@ -1938,8 +2113,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Número")]),
         _vm._v(" "),
         _c("th", [_vm._v("Propietario")]),

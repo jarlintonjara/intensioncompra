@@ -4,7 +4,7 @@
         
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-chart-area'></i> Programacion 
+                <i class='subheader-icon fal fa-chart-area'></i> PROGRAMACIÓN DE ESTACIONAMIENTOS
                 <small>
                 </small>
             </h1>
@@ -12,7 +12,14 @@
         <br>
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
-                
+                <div class="panel-hdr">
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b> SEMANA ACTUAL</b></h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
                 <div class="panel-container show">
                     <div class="panel-content">
                             <div class="panel-hdr">
@@ -23,7 +30,7 @@
                             <thead class="bg-warning-200">
                                 <tr>
                                     <th>N_Estac</th>
-                                    <th>Usuario</th>
+                                    <th>Asignado</th>
                                     <th>Dia de semana</th>
                                     <th>Hora Incio</th>
                                     <th>Hora Final</th>
@@ -326,94 +333,7 @@ export default {
                     this.schedules =[]
                 })
                 await this.validarRole();
-
-                // Setup - add a text input to each footer cell
-                $('#td-schedule thead tr')
-                    .clone(true)
-                    .addClass('filters')
-                    .appendTo('#td-schedule thead');
-            
-                    var table = $('#td-schedule').DataTable({
-                        orderCellsTop: true,
-                        fixedHeader: true,
-                        initComplete: function () {
-                            var api = this.api();
-                
-                            // For each column
-                            api
-                                .columns()
-                                .eq(0)
-                                .each(function (colIdx) {
-                                    // Set the header cell to contain the input element
-                                    var cell = $('.filters th').eq(
-                                        $(api.column(colIdx).header()).index()
-                                    );
-                                    var title = $(cell).text();
-                                    $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />');
-                
-                                    // On every keypress in this input
-                                    $(
-                                        'input',
-                                        $('.filters th').eq($(api.column(colIdx).header()).index())
-                                    )
-                                        .off('keyup change')
-                                        .on('keyup change', function (e) {
-                                            e.stopPropagation();
-                
-                                            // Get the search value
-                                            $(this).attr('title', $(this).val());
-                                            var regexr = '({search})'; //$(this).parents('th').find('select').val();
-                
-                                            var cursorPosition = this.selectionStart;
-                                            // Search the column for that value
-                                            api
-                                                .column(colIdx)
-                                                .search(
-                                                    this.value != ''
-                                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                                        : '',
-                                                    this.value != '',
-                                                    this.value == ''
-                                                )
-                                                .draw();
-                
-                                            $(this)
-                                                .focus()[0]
-                                                .setSelectionRange(cursorPosition, cursorPosition);
-                                        });
-                                });
-                                
-                        },
-                                    responsive: true,
-                    dom: `<'row'<'col-sm-12 mb-3'B>>
-                            <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
-                                "<'row'<'col-sm-12'tr>>" +
-                                    "<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>`,
-                    "buttons": [
-                        {
-                            "extend":    'copyHtml5',
-                            "text": "<i class='fas fa-copy'></i> Copiar",
-                            "titleAttr": 'Copy',
-                            "className": "btn btn-primary"
-                        },
-                        {
-                            "extend": "excelHtml5",
-                            "text": "<i class='fas fa-file-excel'></i> Excel",
-                            "titleAttr": "Esportar a Excel",
-                            "className": "btn btn-success"
-                        },
-                        {
-                            "extend": "print",
-                            "text": "<i class='fas fa-print'></i> Imprimir",
-                            "titleAttr": "Imprimir archivo",
-                            "className": "btn btn-secondary"
-                        }
-                    ],
-                    "language": {
-                        "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                    }
-                });
-
+                this.$tablaGlobal('#td-schedule');
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

@@ -98,13 +98,9 @@
                                 <label for="Cargo">Cargo</label>
                                 <input type="text" id="Cargo" class="form-control" placeholder="Cargo" v-model="datos.cargo">
                             </div>
-                            
                             <div class="form-group col-md-4">
-                                <label for="Parking">Estacionamiento</label>
-                                <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
-                                    <option>Seleccione un estacionamiento</option>
-                                    <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero + " - "+parking.sede }}</option>
-                                </select>
+                                <label for="Area">Area</label>
+                                <input type="text" id="Area" class="form-control" placeholder="Area" v-model="datos.area">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Role">Rol</label>
@@ -114,12 +110,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="Area">Area</label>
-                                <input type="text" id="Area" class="form-control" placeholder="Area" v-model="datos.area">
-                            </div>
+                        <div v-if="datos.role_id=='3'" class="form-group col-md-4">
+                            <label for="Parking">Estacionamiento</label>
+                            <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
+                                <option>Seleccione un estacionamiento</option>
+                                <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero + " - "+parking.sede }}</option>
+                            </select>
                         </div>
+                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
@@ -153,6 +152,7 @@ export default {
     },
     mounted(){
         this.mostrarusers()
+        
     },
     methods:{
         validarCampos(){
@@ -254,11 +254,8 @@ export default {
                     .catch(error=>{
                         console.log(error);
                         //this.users =[]
-                    })
-                    
-                    $(document).ready(function() {
-                        $('#tableUser').DataTable();
-                    } );
+                    }) 
+            await $('#tableUser').DataTable();      
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

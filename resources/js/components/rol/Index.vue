@@ -174,11 +174,11 @@ export default {
                         console.log(error);
                         this.items =[]
                     })
-                    $('#tableRol').DataTable();
+                   await $('#tableRol').DataTable();
         },
-        getTable(){
-            $('#dt-basic-example').dataTable({})
-        },
+        // getTable(){
+        //     $('#dt-basic-example').dataTable({})
+        // },
         cerrarModal(){
             $('#modalForm').modal('hide');
         },

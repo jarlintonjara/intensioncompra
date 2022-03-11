@@ -221,9 +221,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
-                $('#tableRol').DataTable();
+                _context.next = 4;
+                return $('#tableRol').DataTable();
 
-              case 3:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -231,9 +232,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    getTable: function getTable() {
-      $('#dt-basic-example').dataTable({});
-    },
+    // getTable(){
+    //     $('#dt-basic-example').dataTable({})
+    // },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
     },

@@ -1302,7 +1302,12 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "SEDE", required: "" },
+                    attrs: {
+                      value: "OLGUIN",
+                      type: "text",
+                      id: "sede",
+                      required: "",
+                    },
                     domProps: { value: _vm.datos.sede },
                     on: {
                       input: function ($event) {
@@ -1332,7 +1337,7 @@ var render = function () {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      placeholder: "ubicación",
+                      placeholder: "Ej. SOTANO 1",
                       required: "",
                     },
                     domProps: { value: _vm.datos.ubicacion },

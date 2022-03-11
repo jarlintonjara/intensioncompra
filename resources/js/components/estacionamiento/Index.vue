@@ -65,11 +65,11 @@
                         </div>
                         <div class="form-group">
                             <label for="nombres">Sede</label>
-                            <input type="text" class="form-control" placeholder="SEDE" required="" v-model="datos.sede">
+                            <input value="OLGUIN" type="text" class="form-control" id="sede" required="" v-model="datos.sede">
                         </div>
                         <div class="form-group">
                             <label for="nombress">Ubicación</label>
-                            <input type="text" class="form-control" placeholder="ubicación" required="" v-model="datos.ubicacion">
+                            <input type="text" class="form-control" placeholder="Ej. SOTANO 1" required="" v-model="datos.ubicacion">
                         </div>
                         
                     </div>
@@ -156,10 +156,12 @@ export default {
                     '',
                     'success'
                 )
+                
                 //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
             }).catch(function (error) {
                 console.log(error);
             });
+        
         },
         editar(){
             console.log(this.id);

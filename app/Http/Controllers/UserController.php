@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('status', 1)->get();
+        $users = User::where('status', 1)->orderBy('apellido', 'ASC')->get();
         foreach ($users as $user) {
             if($user->parking_id){
                 $user["parking"] = $user->parking;
