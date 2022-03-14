@@ -168,7 +168,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       info: [],
       datos: {
         numero: '',
-        sede: '',
+        sede: 'OLGUIN',
         ubicacion: ''
       },
       titulo: '',
@@ -224,11 +224,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     abrirModalCrear: function abrirModalCrear() {
-      this.datos = {
-        numero: '',
-        sede: '',
-        ubicacion: ''
-      };
+      this.datos.numero = '';
+      this.datos.ubicacion = '';
       this.titulo = ' Crear estacionamiento';
       this.btnCrear = true;
       this.btnEditar = false;

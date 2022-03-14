@@ -274,6 +274,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -351,6 +352,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    sendEmail: function sendEmail() {
+      axios.get('/api/sendEmail').then(function (res) {
+        console.log(res);
+      });
     }
   },
   mounted: function mounted() {
@@ -1237,7 +1243,21 @@ var render = function () {
       attrs: { id: "js-page-content", role: "main" },
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "subheader" }, [
+        _c("h1", { staticClass: "subheader-title" }, [
+          _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", on: { click: _vm.sendEmail } },
+            [_vm._v("send email")]
+          ),
+          _vm._v(" "),
+          _c("small"),
+        ]),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-sm-12 col-md-6 col-md-2 col-xl-2" }, [
@@ -1329,7 +1349,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "d-flex mt-2" }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1363,7 +1383,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1404,7 +1424,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1456,7 +1476,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "d-flex mt-2" }, [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1490,7 +1510,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1531,7 +1551,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "d-flex" }, [
-                  _vm._m(6),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("span", { staticClass: "d-inline-block ml-auto" }, [
                     _c("h5", [
@@ -1571,7 +1591,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(7),
+                    _vm._m(6),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1581,7 +1601,7 @@ var render = function () {
                         attrs: { id: "td-ocupadoshoy" },
                       },
                       [
-                        _vm._m(8),
+                        _vm._m(7),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1610,7 +1630,15 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(pm.created))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      pm.propietario.nombre +
+                                        " " +
+                                        pm.propietario.apellido
+                                    )
+                                  ),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
@@ -1633,7 +1661,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(9),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1643,7 +1671,7 @@ var render = function () {
                         attrs: { id: "td-disponibleshoy" },
                       },
                       [
-                        _vm._m(10),
+                        _vm._m(9),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1677,7 +1705,7 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(11),
+                    _vm._m(10),
                     _vm._v(" "),
                     _c(
                       "table",
@@ -1687,7 +1715,7 @@ var render = function () {
                         attrs: { id: "td-ocupadosman" },
                       },
                       [
-                        _vm._m(12),
+                        _vm._m(11),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1739,17 +1767,17 @@ var render = function () {
               _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
                 _c("div", { staticClass: "panel-container show" }, [
                   _c("div", { staticClass: "panel-content" }, [
-                    _vm._m(13),
+                    _vm._m(12),
                     _vm._v(" "),
                     _c(
                       "table",
                       {
                         staticClass:
                           "table table-bordered table-hover table-striped w-100",
-                        attrs: { id: "disponiblesman" },
+                        attrs: { id: "td-disponiblesman" },
                       },
                       [
-                        _vm._m(14),
+                        _vm._m(13),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -1780,20 +1808,6 @@ var render = function () {
   )
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "subheader" }, [
-      _c("h1", { staticClass: "subheader-title" }, [
-        _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
-        _vm._v(" "),
-        _c("small"),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

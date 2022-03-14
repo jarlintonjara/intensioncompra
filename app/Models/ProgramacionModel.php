@@ -39,4 +39,9 @@ class ProgramacionModel extends Model
         return $this->hasOne(EstacionamientoModel::class, 'id', 'estacionamiento_id');
         //return $parking->numero;
     }
+    public function propietario()
+    {
+        return $this->hasOne(User::class, 'parking_id', 'estacionamiento_id');
+        //return $parking->numero;
+    }
 }

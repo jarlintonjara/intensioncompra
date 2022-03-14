@@ -34,8 +34,10 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 //Route::resource('estacionamiento', EstacionamientoController::class)->only(['index']);
-Route::resource('dashboard', HomeController::class)->only(['index']);
+Route::get('dashboard', [HomeController::class, 'index']);
+Route::get('sendEmail', [HomeController::class, 'sendEmail']);
 Route::resource('programacion', ProgramacionController::class);
 Route::resource('estacionamiento', EstacionamientoController::class);
 Route::resource('usuario', UserController::class);
 Route::resource('rol', RoleController::class);
+

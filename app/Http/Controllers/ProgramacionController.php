@@ -11,13 +11,30 @@ use Illuminate\Http\Request;
 class ProgramacionController extends Controller
 {
     protected const DAYS = [
-        'Domingo',
+        '',
         'Lunes',
         'Martes',
         'Miercoles',
         'Jueves',
         'Viernes',
-        'Sabado'
+        'Sabado',
+        'Domingo'
+    ];
+
+    protected const MONTHS = [
+        '',
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Setiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre'
     ];
 
     public function __construct()
@@ -41,8 +58,10 @@ class ProgramacionController extends Controller
             });
         $week = Carbon::now()->weekOfYear;
         $schedulesFilter = isset($schedules[$week])? $schedules[$week] : [] ;
+        
         foreach ($schedulesFilter as $schedule) {
-            $schedule["dia"] = self::DAYS[Carbon::parse($schedule->fecha)->dayOfWeekIso];
+            $newDate = Carbon::parse($schedule->fecha);
+            $schedule["dia"] = self::DAYS[$newDate->dayOfWeekIso]." ". $newDate->day." de ". self::MONTHS[$newDate->month];
             $schedule["user"] = $schedule->user;
             $schedule["parking"] = $schedule->parking;
         }

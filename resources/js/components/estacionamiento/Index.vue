@@ -138,7 +138,7 @@ export default {
         return {
             items:[],
             info: [],
-            datos: {numero:'', sede:'', ubicacion:''},
+            datos: {numero:'', sede:'OLGUIN', ubicacion:''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -192,7 +192,8 @@ export default {
             }
         },
         abrirModalCrear(){
-            this.datos= {numero:'', sede:'', ubicacion:''}
+            this.datos.numero = ''; 
+            this.datos.ubicacion = '';
             this.titulo=' Crear estacionamiento'
             this.btnCrear=true
             this.btnEditar=false

@@ -4,6 +4,7 @@
         <div class="subheader">
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
+                <button @click="sendEmail" class="btn btn-primary">send email</button>
                 <small>
                 </small>
             </h1>
@@ -116,7 +117,7 @@
                                         <td>{{ pm.fecha }}</td>
                                         <td>{{ pm.hora_inicio }}</td>
                                         <td>{{ pm.hora_fin }}</td>
-                                        <td>{{ pm.created }}</td>
+                                        <td>{{ pm.propietario.nombre + " " + pm.propietario.apellido }}</td>
                                         <td>{{ $dateFormat(pm.created_at) }}</td>
                                     </tr>
                                 </tbody>
@@ -306,6 +307,11 @@ export default {
                     .catch(error=>{
                         console.log(error);
                     })
+        },
+        sendEmail(){
+            axios.get('/api/sendEmail').then((res)=>{
+                console.log(res)
+            }); 
         }
     },
     mounted(){
