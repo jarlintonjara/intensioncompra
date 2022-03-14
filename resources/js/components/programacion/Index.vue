@@ -24,8 +24,8 @@
                     <div class="panel-content">
                         <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
-                            <button class="btn btn-success" @click="showT(1)">Semana Actual</button>
-                            <button class="btn btn-success" @click="showT(2)">Semana siguiente</button>
+                            <button style="margin-left: 62%;" class="btn btn-danger" @click="showT(1)">Semana Actual</button>
+                            <button style="margin-left: auto;" class="btn btn-danger" @click="showT(2)">Semana siguiente</button>
                         </div><br>
                      
                         <table id="td-schedule" class="table table-bordered table-hover table-striped w-100">
@@ -190,7 +190,7 @@ export default {
                     observacion: '', 
                     created_by : ''},
             titulo:'',
-            title:'SEMANA ACTUAL',
+            title:'',
             btnCrear:false,
             btnEditar:false,
             id:'',

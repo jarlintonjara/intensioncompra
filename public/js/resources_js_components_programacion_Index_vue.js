@@ -220,7 +220,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         created_by: ''
       },
       titulo: '',
-      title: 'SEMANA ACTUAL',
+      title: '',
       btnCrear: false,
       btnEditar: false,
       id: '',
@@ -1428,7 +1428,8 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-success",
+                    staticClass: "btn btn-danger",
+                    staticStyle: { "margin-left": "62%" },
                     on: {
                       click: function ($event) {
                         return _vm.showT(1)
@@ -1441,7 +1442,8 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-success",
+                    staticClass: "btn btn-danger",
+                    staticStyle: { "margin-left": "auto" },
                     on: {
                       click: function ($event) {
                         return _vm.showT(2)
