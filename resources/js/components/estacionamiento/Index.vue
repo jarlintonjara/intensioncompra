@@ -17,24 +17,20 @@
                             <div class="panel-hdr">
                                 <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                             </div><br>
-                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                            <table id="dt-estacionamiento" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Número</th>
+                                        <th>N.Estación</th>
                                         <th>Sede</th>
                                         <th>Ubicación</th>
-                                        <th>Fecha</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="item in items" :key="item.id">
-                                        <td>{{ item.id }}</td>
                                         <td>{{ item.numero }}</td>
                                         <td>{{ item.sede }}</td>
                                         <td>{{ item.ubicacion }}</td>
-                                        <td>{{ $dateFormat(item.created_at) }}</td>
                                         <td>
                                             <button class="btn btn-warning" @click="abrirModalEditar(item)"><i class="far fa-edit"></i></button>
                                             <button class="btn btn-danger" @click="borrar(item.id)"><i class="fa fa-trash"></i></button>
@@ -69,11 +65,11 @@
                         </div>
                         <div class="form-group">
                             <label for="nombres">Sede</label>
-                            <input type="text" class="form-control" placeholder="sede" required="" v-model="datos.sede">
+                            <input value="OLGUIN" type="text" class="form-control" id="sede" required="" v-model="datos.sede">
                         </div>
                         <div class="form-group">
                             <label for="nombress">Ubicación</label>
-                            <input type="text" class="form-control" placeholder="ubicación" required="" v-model="datos.ubicacion">
+                            <input type="text" class="form-control" placeholder="Ej. SOTANO 1" required="" v-model="datos.ubicacion">
                         </div>
                         
                     </div>
@@ -146,7 +142,7 @@ export default {
         }
     },
     mounted(){
-        this.mostrarItems()
+        this.mostrarItems();
     },
     methods:{
 
@@ -160,10 +156,12 @@ export default {
                     '',
                     'success'
                 )
+                
                 //swal("Felicidades!", "Estacionamiento creado correctamente!", "success");
             }).catch(function (error) {
                 console.log(error);
             });
+        
         },
         editar(){
             console.log(this.id);
@@ -216,10 +214,12 @@ export default {
                         console.log(error);
                         this.items =[]
                     })
+                    $('#dt-estacionamiento').DataTable();        
         },
-        getTable(){
-            $('#dt-basic-example').dataTable({})
-        },
+        // getTable(){
+        //     $('#dt-basic-example').dataTable({})
+        // },
+        
         cerrarModal(){
             $('#modalForm').modal('hide');
         },
@@ -231,5 +231,7 @@ export default {
             return day +"-"+ month+"-"+ year
         }
     }
+    
 }
+
 </script>

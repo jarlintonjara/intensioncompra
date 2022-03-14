@@ -89,10 +89,18 @@
         <div class="row" v-if="item1">
             <div class="col-lg-12">
                 <div id="panel-4" class="panel">
-                    
+                <div class="panel-hdr">
+                    <h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b> ESTACIONAMIENTOS OCUPADOS HOY</b></h2>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            <h2 style="text-align: center;"><b> ESTACIONAMIENTOS OCUPADOS HOY</b></h2>
                             <!-- inicio datatable end -->
                             <table id="td-ocupadoshoy" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
@@ -130,15 +138,23 @@
 
             <div class="col-lg-12">
                 <div id="panel-4" class="panel">
-                 
+                <div class="panel-hdr">
+                    <h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b> ESTACIONAMIENTOS DISPONIBLES HOY</b></h2>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            <h2 style="text-align: center;"><b> ESTACIONAMIENTOS DISPONIBLES HOY</b></h2>
+
                             <!-- inicio datatable end -->
                             <table id="td-disponibleshoy" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
-                                        <th>ID</th>
                                         <th>Número</th>
                                         <th>Propietario</th>
                                         <th>Sede</th>
@@ -148,9 +164,8 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="pmd in estacioneshoy" :key="pmd.numero+pmd.id">
-                                        <td>{{ pmd.id }}</td>
                                         <td>{{ pmd.numero }}</td>
-                                        <td>{{ pmd.nombre }}</td>
+                                        <td>{{ pmd.nombre + " " + pmd.apellido }}</td>
                                         <td>{{ pmd.sede }}</td>
                                         <td>{{ pmd.ubicacion }}</td>
                                     </tr>
@@ -167,15 +182,23 @@
         <div class="row"  v-if="item2">
             <div class="col-lg-12">
                 <div id="panel-4" class="panel">
-                    
+                <div class="panel-hdr">
+                    <h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b> ESTACIONAMIENTOS OCUPADOS PARA MAÑANA</b></h2>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            <h2 style="text-align: center;"><b> ESTACIONAMIENTOS OCUPADOS PARA MAÑANA</b></h2>
+                            
                             <!-- inicio datatable end -->
                             <table id="td-ocupadosman" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
-                                        <th>ID</th>
                                         <th>Estacionamiento</th>
                                         <th>Usuario</th>
                                         <th>DNI</th>
@@ -188,7 +211,6 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="pm in programacionma" :key="pm.parking.numero+pm.id">
-                                        <td>{{ pm.id }}</td>
                                         <td>{{ pm.parking.numero }}</td>
                                         <td>{{ pm.user.nombre + " " + pm.user.apellido }}</td>
                                         <td>{{ pm.user.documento }}</td>
@@ -208,15 +230,23 @@
 
             <div class="col-lg-12">
                 <div id="panel-4" class="panel">
-                 
+                <div class="panel-hdr">
+                    <h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b> ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA</b></h2>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                    </div>
+                </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            <h2 style="text-align: center;"><b> ESTACIONAMIENTOS DISPONIBLES PARA MAÑANA</b></h2>
+                        
                             <!-- inicio datatable end -->
                             <table id="td-disponiblesman" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
-                                        <th>ID</th>
                                         <th>Número</th>
                                         <th>Propietario</th>
                                         <th>Sede</th>
@@ -226,9 +256,8 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="pmd in estacionesma" :key="pmd.numero+pmd.id">
-                                        <td>{{ pmd.id }}</td>
                                         <td>{{ pmd.numero }}</td>
-                                        <td>{{ pmd.nombre }}</td>
+                                        <td>{{ pmd.nombre + " " + pmd.apellido}}</td>
                                         <td>{{ pmd.sede }}</td>
                                         <td>{{ pmd.ubicacion }}</td>
                                     </tr>

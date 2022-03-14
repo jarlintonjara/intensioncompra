@@ -5451,7 +5451,7 @@ vue__WEBPACK_IMPORTED_MODULE_8__["default"].use(vue_axios__WEBPACK_IMPORTED_MODU
 vue__WEBPACK_IMPORTED_MODULE_8__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()));
 window.JSZip = (jszip_dist_jszip__WEBPACK_IMPORTED_MODULE_7___default());
 
-document.title = "Progrmación de estacionamiento";
+document.title = "Programación de estacionamiento";
 
 vue__WEBPACK_IMPORTED_MODULE_8__["default"].prototype.$dateFormat = function (date) {
   var dt = new Date(date);

@@ -155,10 +155,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Estacionamiento",
   components: {},
@@ -260,6 +256,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
+                $('#dt-estacionamiento').DataTable();
+
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -267,9 +266,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    getTable: function getTable() {
-      $('#dt-basic-example').dataTable({});
-    },
+    // getTable(){
+    //     $('#dt-basic-example').dataTable({})
+    // },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
     },
@@ -1169,7 +1168,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "dt-basic-example" },
+                  attrs: { id: "dt-estacionamiento" },
                 },
                 [
                   _vm._m(1),
@@ -1178,17 +1177,11 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.items, function (item) {
                       return _c("tr", { key: item.id }, [
-                        _c("td", [_vm._v(_vm._s(item.id))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.numero))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.sede))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.ubicacion))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm.$dateFormat(item.created_at))),
-                        ]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1306,7 +1299,12 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "sede", required: "" },
+                    attrs: {
+                      value: "OLGUIN",
+                      type: "text",
+                      id: "sede",
+                      required: "",
+                    },
                     domProps: { value: _vm.datos.sede },
                     on: {
                       input: function ($event) {
@@ -1336,7 +1334,7 @@ var render = function () {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      placeholder: "ubicación",
+                      placeholder: "Ej. SOTANO 1",
                       required: "",
                     },
                     domProps: { value: _vm.datos.ubicacion },
@@ -1484,15 +1482,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Número")]),
+        _c("th", [_vm._v("N.Estación")]),
         _vm._v(" "),
         _c("th", [_vm._v("Sede")]),
         _vm._v(" "),
         _c("th", [_vm._v("Ubicación")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),

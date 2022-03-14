@@ -118,8 +118,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Rol",
   components: {},
@@ -223,6 +221,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
+                _context.next = 4;
+                return $('#tableRol').DataTable();
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -230,9 +232,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    getTable: function getTable() {
-      $('#dt-basic-example').dataTable({});
-    },
+    // getTable(){
+    //     $('#dt-basic-example').dataTable({})
+    // },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
     },
@@ -1132,7 +1134,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tableUser" },
+                  attrs: { id: "tableRol" },
                 },
                 [
                   _vm._m(1),
@@ -1141,8 +1143,6 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.items, function (rol) {
                       return _c("tr", { key: rol.id }, [
-                        _c("td", [_vm._v(_vm._s(rol.id))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(rol.nombre))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(rol.description))]),
@@ -1393,8 +1393,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Nombres")]),
         _vm._v(" "),
         _c("th", [_vm._v("Descripción")]),

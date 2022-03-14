@@ -165,9 +165,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
   data: function data() {
@@ -365,6 +362,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
+                _context3.next = 4;
+                return $('#tableUser').DataTable();
+
+              case 4:
               case "end":
                 return _context3.stop();
             }
@@ -1273,8 +1274,6 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.users, function (user) {
                       return _c("tr", { key: user.id }, [
-                        _c("td", [_vm._v(_vm._s(user.id))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.nombre))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.apellido))]),
@@ -1566,63 +1565,29 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c("label", { attrs: { for: "Parking" } }, [
-                      _vm._v("Estacionamiento"),
-                    ]),
+                    _c("label", { attrs: { for: "Area" } }, [_vm._v("Area")]),
                     _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.datos.parking_id,
-                            expression: "datos.parking_id",
-                          },
-                        ],
-                        staticClass: "browser-default custom-select",
-                        attrs: { id: "Parking" },
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.datos,
-                              "parking_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.area,
+                          expression: "datos.area",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "Area", placeholder: "Area" },
+                      domProps: { value: _vm.datos.area },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "area", $event.target.value)
                         },
                       },
-                      [
-                        _c("option", [_vm._v("Seleccione un estacionamiento")]),
-                        _vm._v(" "),
-                        _vm._l(_vm.parkingsFilter, function (parking) {
-                          return _c(
-                            "option",
-                            {
-                              key: parking.numero + parking.id,
-                              domProps: { value: parking.id },
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(parking.numero + " - " + parking.sede)
-                              ),
-                            ]
-                          )
-                        }),
-                      ],
-                      2
-                    ),
+                    }),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-4" }, [
@@ -1680,33 +1645,69 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c("label", { attrs: { for: "Area" } }, [_vm._v("Area")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
+                _vm.datos.role_id == "3"
+                  ? _c("div", { staticClass: "form-group col-md-4" }, [
+                      _c("label", { attrs: { for: "Parking" } }, [
+                        _vm._v("Estacionamiento"),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.area,
-                          expression: "datos.area",
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.datos.parking_id,
+                              expression: "datos.parking_id",
+                            },
+                          ],
+                          staticClass: "browser-default custom-select",
+                          attrs: { id: "Parking" },
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.datos,
+                                "parking_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                          },
                         },
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", id: "Area", placeholder: "Area" },
-                      domProps: { value: _vm.datos.area },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "area", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
+                        [
+                          _c("option", [
+                            _vm._v("Seleccione un estacionamiento"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.parkingsFilter, function (parking) {
+                            return _c(
+                              "option",
+                              {
+                                key: parking.numero + parking.id,
+                                domProps: { value: parking.id },
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(parking.numero + " - " + parking.sede)
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                    ])
+                  : _vm._e(),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -1785,8 +1786,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Nombres")]),
         _vm._v(" "),
         _c("th", [_vm._v("Apellidos")]),

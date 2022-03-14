@@ -167,6 +167,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 //import Select2 from '../common/select2.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
@@ -415,7 +422,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var table;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -435,57 +441,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this5.validarRole();
 
               case 4:
-                // Setup - add a text input to each footer cell
-                $('#td-schedule thead tr').clone(true).addClass('filters').appendTo('#td-schedule thead');
-                table = $('#td-schedule').DataTable({
-                  orderCellsTop: true,
-                  fixedHeader: true,
-                  initComplete: function initComplete() {
-                    var api = this.api(); // For each column
+                _this5.$tablaGlobal('#td-schedule');
 
-                    api.columns().eq(0).each(function (colIdx) {
-                      // Set the header cell to contain the input element
-                      var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
-                      var title = $(cell).text();
-                      $(cell).html('<input type="text" placeholder="' + title + '" style="width:100%;" />'); // On every keypress in this input
-
-                      $('input', $('.filters th').eq($(api.column(colIdx).header()).index())).off('keyup change').on('keyup change', function (e) {
-                        e.stopPropagation(); // Get the search value
-
-                        $(this).attr('title', $(this).val());
-                        var regexr = '({search})'; //$(this).parents('th').find('select').val();
-
-                        var cursorPosition = this.selectionStart; // Search the column for that value
-
-                        api.column(colIdx).search(this.value != '' ? regexr.replace('{search}', '(((' + this.value + ')))') : '', this.value != '', this.value == '').draw();
-                        $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
-                      });
-                    });
-                  },
-                  responsive: true,
-                  dom: "<'row'<'col-sm-12 mb-3'B>>\n                            <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>\" +\n                                \"<'row'<'col-sm-12'tr>>\" +\n                                    \"<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>",
-                  "buttons": [{
-                    "extend": 'copyHtml5',
-                    "text": "<i class='fas fa-copy'></i> Copiar",
-                    "titleAttr": 'Copy',
-                    "className": "btn btn-primary"
-                  }, {
-                    "extend": "excelHtml5",
-                    "text": "<i class='fas fa-file-excel'></i> Excel",
-                    "titleAttr": "Esportar a Excel",
-                    "className": "btn btn-success"
-                  }, {
-                    "extend": "print",
-                    "text": "<i class='fas fa-print'></i> Imprimir",
-                    "titleAttr": "Imprimir archivo",
-                    "className": "btn btn-secondary"
-                  }],
-                  "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                  }
-                });
-
-              case 6:
+              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -1366,6 +1324,8 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+          _vm._m(1),
+          _vm._v(" "),
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [
               _c("div", { staticClass: "panel-hdr" }, [
@@ -1388,7 +1348,7 @@ var render = function () {
                   attrs: { id: "td-schedule" },
                 },
                 [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -1974,8 +1934,52 @@ var staticRenderFns = [
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
         _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
-        _vm._v(" Programacion \n            "),
+        _vm._v(" PROGRAMACIÓN DE ESTACIONAMIENTOS\n            "),
         _c("small"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-hdr" }, [
+      _c(
+        "h2",
+        { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+        [_c("b", [_vm._v(" SEMANA ACTUAL")])]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-toolbar" }, [
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-collapse",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Collapse",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-fullscreen",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Fullscreen",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-close",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Close",
+          },
+        }),
       ]),
     ])
   },
@@ -1987,7 +1991,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("N_Estac")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Usuario")]),
+        _c("th", [_vm._v("Asignado")]),
         _vm._v(" "),
         _c("th", [_vm._v("Dia de semana")]),
         _vm._v(" "),
