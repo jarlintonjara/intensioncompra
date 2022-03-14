@@ -56,6 +56,8 @@ class ProgramacionController extends Controller
             ->groupBy(function ($date) {
                 return Carbon::parse($date->fecha)->format('W');
             });
+
+        //Programaciones de la semana actual
         $week = Carbon::now()->weekOfYear;
         $schedulesFilter = isset($schedules[$week])? $schedules[$week] : [] ;
         
@@ -65,10 +67,22 @@ class ProgramacionController extends Controller
             $schedule["user"] = $schedule->user;
             $schedule["parking"] = $schedule->parking;
         }
+        //Programaciones de la semana siguiente
+        $week = Carbon::now()->weekOfYear + 1;
+        $nextSchedules = isset($schedules[$week]) ? $schedules[$week] : [];
+
+        foreach ($nextSchedules as $schedule) {
+            $newDate = Carbon::parse($schedule->fecha);
+            $schedule["dia"] = self::DAYS[$newDate->dayOfWeekIso] . " " . $newDate->day . " de " . self::MONTHS[$newDate->month];
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
         return response()->json([
             "parkings" => $parkings,
             "users" => $users,
-            "schedules" => $schedulesFilter
+            "schedules" => $schedulesFilter,
+            "nextSchedules" => $nextSchedules,
+            "schedulesW" => $schedules
         ]);
     }
 
@@ -76,33 +90,109 @@ class ProgramacionController extends Controller
     {
         //
     }
-
+    public function validateSchedule($request)
+    {
+        $register = ProgramacionModel::where("user_id", $request->user_id)
+            ->whereDate("fecha", $request->fecha)->first();
+        if ($register) {
+            switch ($register->turno) {
+                case "D":
+                    $message = "El usuario ya tiene una programación todo el día";
+                    break;
+                case "M":
+                    $message = "El usuario ya tiene una programación en la mañana";
+                    break;
+                case "T":
+                    $message = "El usuario ya tiene una programación en la tarde";
+                    break;
+                default:
+                    $message = "El usuario ya tiene una programación";
+            }
+            return response()->json([
+                "message" => $message,
+                "isSuccess" => false
+            ]);
+        }
+    }
     public function store(Request $request)
     {
         //$estacionamiento = ProgramacionModel::create($request->post());
+        $register = ProgramacionModel::where("user_id", $request->user_id)
+            ->whereDate("fecha", $request->fecha)->first();
+        if ($register) {
+            if( ($request->turno == "M" || $request->turno == "D" ) && $register->turno == "M"){
+                return response()->json([
+                    "message" => "El usuario ya tiene una programación en la mañana",
+                    "isSuccess" => false
+                ]);
+            } else if( ($request->turno == "T" || $request->turno == "D" ) && $register->turno == "T"){
+                return response()->json([
+                    "message" => "El usuario ya tiene una programación en la tarde",
+                    "isSuccess" => false
+                ]);
+            } else if ($register->turno == "D") {
+                return response()->json([
+                    "message" => "El usuario ya tiene una programación todo el día",
+                    "isSuccess" => false
+                ]);
+            }
+        }
         $schedule = ProgramacionModel::create($request->post());
-        $weekSchedule = Carbon::parse($schedule->fecha)->format('W');
-        if ($weekSchedule == Carbon::now()->weekOfYear) {
+        $schedules = ProgramacionModel::select('*')
+            ->get()
+            ->groupBy(function ($date) {
+                return Carbon::parse($date->fecha)->format('W');
+            });
+        //Programaciones de la semana actual
+        $week = Carbon::now()->weekOfYear;
+        $schedulesFilter = isset($schedules[$week]) ? $schedules[$week] : [];
+
+        foreach ($schedulesFilter as $schedule) {
+            $newDate = Carbon::parse($schedule->fecha);
+            $schedule["dia"] = self::DAYS[$newDate->dayOfWeekIso] . " " . $newDate->day . " de " . self::MONTHS[$newDate->month];
             $schedule["user"] = $schedule->user;
             $schedule["parking"] = $schedule->parking;
-        }else{
-             $schedule = null;
         }
-        return response()->json($schedule);
-    }
+        //Programaciones de la semana siguiente
+        $week = Carbon::now()->weekOfYear + 1;
+        $nextSchedules = isset($schedules[$week]) ? $schedules[$week] : [];
 
-    public function show(ProgramacionModel $estacionamiento)
-    {
-        return response()->json($estacionamiento);
-    }
-
-    public function edit(ProgramacionModel $estacionamiento)
-    {
-        //
+        foreach ($nextSchedules as $schedule) {
+            $newDate = Carbon::parse($schedule->fecha);
+            $schedule["dia"] = self::DAYS[$newDate->dayOfWeekIso] . " " . $newDate->day . " de " . self::MONTHS[$newDate->month];
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
+        return response()->json([
+            "isSuccess" => true,
+            "schedules" => $schedulesFilter,
+            "nextSchedules" => $nextSchedules
+        ]);
     }
 
     public function update(Request $request, $id)
     {
+        $register = ProgramacionModel::where("user_id", $request->user_id)
+            ->whereDate("fecha", $request->fecha)->first();
+        if ($register) {
+            switch ($register->turno) {
+                case "D":
+                    $message = "El usuario ya tiene una programación todo el día";
+                    break;
+                case "M":
+                    $message = "El usuario ya tiene una programación en la mañana";
+                    break;
+                case "T":
+                    $message = "El usuario ya tiene una programación en la tarde";
+                    break;
+                default:
+                    $message = "El usuario ya tiene una programación";
+            }
+            return response()->json([
+                "message" => $message,
+                "isSuccess" => false
+            ]);
+        }
         $updateSchedule = ProgramacionModel::findOrFail($id);
         $updateSchedule->update($request->all());
         $schedules = ProgramacionModel::select('*')
@@ -110,13 +200,31 @@ class ProgramacionController extends Controller
             ->groupBy(function ($date) {
                 return Carbon::parse($date->fecha)->format('W');
             });
+        //Programaciones de la semana actual
         $week = Carbon::now()->weekOfYear;
         $schedulesFilter = isset($schedules[$week]) ? $schedules[$week] : [];
+
         foreach ($schedulesFilter as $schedule) {
+            $newDate = Carbon::parse($schedule->fecha);
+            $schedule["dia"] = self::DAYS[$newDate->dayOfWeekIso] . " " . $newDate->day . " de " . self::MONTHS[$newDate->month];
             $schedule["user"] = $schedule->user;
             $schedule["parking"] = $schedule->parking;
         }
-        return response()->json($schedulesFilter);
+        //Programaciones de la semana siguiente
+        $week = Carbon::now()->weekOfYear + 1;
+        $nextSchedules = isset($schedules[$week]) ? $schedules[$week] : [];
+
+        foreach ($nextSchedules as $schedule) {
+            $newDate = Carbon::parse($schedule->fecha);
+            $schedule["dia"] = self::DAYS[$newDate->dayOfWeekIso] . " " . $newDate->day . " de " . self::MONTHS[$newDate->month];
+            $schedule["user"] = $schedule->user;
+            $schedule["parking"] = $schedule->parking;
+        }
+        return response()->json([
+            "isSuccess" => true,
+            "schedules" => $schedulesFilter,
+            "nextSchedules" => $nextSchedules
+        ]);
     }
 
     public function destroy($id)

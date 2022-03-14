@@ -31,15 +31,11 @@ class HomeController extends Controller
         $nuevafechad = date ( 'Y-m-d' , $nuevafechad );
 
         $programacionManana = ProgramacionModel::whereDate("fecha",$nuevafecha)->get()->count();
-
         $programacionma = ProgramacionModel::whereDate("fecha",$nuevafecha)->get();
-
         $programacionhoy = ProgramacionModel::whereDate("fecha",$fecha)->get();
         $ids2= [];
         foreach ($programacionhoy as $pml) {
-             
             array_push($ids2,$pml->id);
-
             $pml["user"] = $pml->user;
             $pml["parking"] = $pml->parking;
             $pml["propietario"] = $pml->propietario;
@@ -49,12 +45,9 @@ class HomeController extends Controller
                 ->whereNotIn('estacionamiento.id', $ids2)
                 ->get();
 
-        
         $ids = [];
         foreach ($programacionma as $pml) {
-             
             array_push($ids,$pml->id);
-
             $pml["user"] = $pml->user;
             $pml["parking"] = $pml->parking;
         }
@@ -62,10 +55,6 @@ class HomeController extends Controller
         ->rightJoin('estacionamiento', 'users.parking_id', '=', 'estacionamiento.id')
         ->whereNotIn('estacionamiento.id', $ids)
         ->get();
-
-        
-
-        //$estacioneslibres = EstacionamientoModel::whereNotIn('id', $ids)->get();
 
         foreach ($schedules as $schedule) {
             $schedule["user"] = $schedule->user;

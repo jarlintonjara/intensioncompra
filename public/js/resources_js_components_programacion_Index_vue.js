@@ -174,6 +174,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import Select2 from '../common/select2.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
@@ -187,6 +202,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       parkingsFilter: [],
       schedules: [],
       schedulesFilter: [],
+      nextSchedules: [],
+      nextSchedulesFilter: [],
       allDay: false,
       morning: false,
       afternoon: false,
@@ -198,13 +215,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         fecha: '',
         hora_inicio: '',
         hora_fin: '',
+        turno: '',
         observacion: '',
         created_by: ''
       },
       titulo: '',
+      title: 'SEMANA ACTUAL',
       btnCrear: false,
       btnEditar: false,
-      id: ''
+      id: '',
+      showTable: true,
+      showTable2: false
     };
   },
   mounted: function mounted() {
@@ -213,6 +234,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.init();
   },
   methods: {
+    init: function init() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.axios.get('/api/programacion').then(function (response) {
+                  _this.users = response.data.users;
+                  _this.parkings = response.data.parkings;
+                  _this.schedules = response.data.schedules;
+                  _this.nextSchedules = response.data.nextSchedules; //$('#td-schedule').DataTable();
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this.schedules = [];
+                });
+
+              case 2:
+                _context.next = 4;
+                return _this.validarRole();
+
+              case 4:
+                _this.$tablaGlobal('#td-schedule');
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     validarCampos: function validarCampos() {
       if (!this.datos.estacionamiento_id || !this.datos.user_id || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin) {
         this.$swal.fire({
@@ -226,11 +281,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return true;
     },
     validarRole: function validarRole() {
-      var _this = this;
+      var _this2 = this;
 
       this.parkingsFilter = [];
       this.usersFilter = [];
       this.schedulesFilter = [];
+      this.nextSchedulesFilter = [];
 
       if (this.session.role_id === 1) {
         this.usersFilter = this.users;
@@ -242,9 +298,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         this.parkingsFilter = this.parkings;
         this.schedulesFilter = this.schedules;
+        this.nextSchedulesFilter = this.nextSchedules;
       } else if (this.session.role_id == 3) {
         this.parkingsFilter = [].concat(this.parkings.filter(function (e) {
-          return e.id == _this.session.parking_id;
+          return e.id == _this2.session.parking_id;
         }));
         this.usersFilter = this.users;
         this.usersFilter = this.usersFilter.map(function (e) {
@@ -254,17 +311,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           };
         });
         this.schedulesFilter = [].concat(this.schedules.filter(function (e) {
-          return e.created_by == _this.session.id;
+          return e.created_by == _this2.session.id;
+        }));
+        this.nextSchedulesFilter = [].concat(this.nextSchedules.filter(function (e) {
+          return e.created_by == _this2.session.id;
         }));
         this.datos.estacionamiento_id = this.session.parking_id;
         this.datos.user_id = this.session.id;
+      }
+    },
+    showT: function showT(id) {
+      if (id == 1) {
+        this.showTable = true;
+        this.showTable2 = false;
+        this.title = "SEMANA ACTUAL";
+      } else {
+        this.showTable = false;
+        this.showTable2 = true;
+        this.title = "SEMANA SIGUIENTE";
       }
     },
     onChange: function onChange(param) {
       this.disabled = false;
 
       switch (param) {
-        case "day":
+        case "D":
           this.allDay = !this.allDay;
           this.morning = false;
           this.afternoon = false;
@@ -273,11 +344,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             this.disabled = true;
             this.datos.hora_inicio = "06:00";
             this.datos.hora_fin = "18:00";
+            this.datos.turno = "D";
           }
 
           break;
 
-        case "morning":
+        case "M":
           this.morning = !this.morning;
           this.allDay = false;
           this.afternoon = false;
@@ -286,12 +358,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             this.disabled = true;
             this.datos.hora_inicio = "06:00";
             this.datos.hora_fin = "12:00";
+            this.datos.turno = "M";
           }
 
           break;
 
-        case "afternoon":
-          console.log(this.afternoon);
+        case "T":
           this.afternoon = !this.afternoon;
           this.morning = false;
           this.allDay = false;
@@ -300,47 +372,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             this.disabled = true;
             this.datos.hora_inicio = "12:00";
             this.datos.hora_fin = "18:00";
+            this.datos.turno = "T";
           }
 
           break;
       }
     },
     crear: function crear() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var valid;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this2.validarCampos();
-
-              case 2:
-                valid = _context.sent;
-
-                if (valid) {
-                  axios.post('api/programacion', _this2.datos).then(function (response) {
-                    _this2.schedulesFilter.push(response.data);
-
-                    $('#modalForm').modal('hide');
-
-                    _this2.$swal.fire('Programación creado correctamente!', '', 'success');
-                  })["catch"](function (error) {
-                    console.log(error);
-                  });
-                }
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    editar: function editar() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -355,20 +393,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 valid = _context2.sent;
 
-                if (valid) {
-                  axios.put('/api/programacion/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.schedulesFilter = [].concat(response.data);
-                    _this3.id = ''; //this.getUser()
-
-                    $('#modalForm').modal('hide');
-
-                    _this3.$swal.fire('Programación editado correctamente!', '', 'success');
-                  })["catch"](function (error) {
-                    console.log(error);
-                  });
+                if (!valid) {
+                  _context2.next = 8;
+                  break;
                 }
 
-              case 4:
+                _context2.next = 6;
+                return axios.post('api/programacion', _this3.datos).then(function (response) {
+                  if (response.data.isSuccess == false) {
+                    _this3.$swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: response.data.message
+                    });
+                  } else {
+                    _this3.schedules = [].concat(response.data.schedules);
+                    _this3.nextSchedules = [].concat(response.data.nextSchedules);
+                    $('#modalForm').modal('hide');
+
+                    _this3.$swal.fire('Programación creado correctamente!', '', 'success');
+                  }
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 6:
+                _context2.next = 8;
+                return _this3.validarRole();
+
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -376,12 +429,64 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    borrar: function borrar(id) {
+    editar: function editar() {
       var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var valid;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this4.validarCampos();
+
+              case 2:
+                valid = _context3.sent;
+
+                if (!valid) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                _context3.next = 6;
+                return axios.put('/api/programacion/' + _this4.id, _this4.datos).then(function (response) {
+                  if (response.data.isSuccess == false) {
+                    _this4.$swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: response.data.message
+                    });
+                  } else {
+                    _this4.schedules = [].concat(response.data.schedules);
+                    _this4.nextSchedules = [].concat(response.data.nextSchedules);
+                    _this4.id = '';
+                    $('#modalForm').modal('hide');
+
+                    _this4.$swal.fire('Programación editado correctamente!', '', 'success');
+                  }
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 6:
+                _context3.next = 8;
+                return _this4.validarRole();
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    borrar: function borrar(id) {
+      var _this5 = this;
 
       if (confirm("¿Confirma eliminar el registro?")) {
         this.axios["delete"]("/api/programacion/".concat(id)).then(function (response) {
-          _this4.schedules = [].concat(response.data);
+          _this5.schedules = [].concat(response.data);
         })["catch"](function (error) {
           console.log(error);
         });
@@ -411,45 +516,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.datos.fecha = datos.fecha;
       this.datos.hora_inicio = datos.hora_inicio;
       this.datos.hora_fin = datos.hora_fin;
+      this.datos.turno = datos.turno;
       this.datos.observacion = datos.observacion;
       this.titulo = ' Editar Programación';
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
+      this.onChange(this.datos.turno);
       $('#modalForm').modal('show');
-    },
-    init: function init() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return _this5.axios.get('/api/programacion').then(function (response) {
-                  _this5.users = response.data.users;
-                  _this5.parkings = response.data.parkings;
-                  _this5.schedules = response.data.schedules; //$('#td-schedule').DataTable();
-                })["catch"](function (error) {
-                  console.log(error);
-                  _this5.schedules = [];
-                });
-
-              case 2:
-                _context3.next = 4;
-                return _this5.validarRole();
-
-              case 4:
-                _this5.$tablaGlobal('#td-schedule');
-
-              case 5:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
@@ -1324,7 +1398,20 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-          _vm._m(1),
+          _c("div", { staticClass: "panel-hdr" }, [
+            _c(
+              "h2",
+              {
+                staticStyle: {
+                  "text-align": "center",
+                  "font-size": "1.125rem",
+                },
+              },
+              [_c("b", [_vm._v(_vm._s(_vm.title) + " ")])]
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [
@@ -1336,6 +1423,32 @@ var render = function () {
                     on: { click: _vm.abrirModalCrear },
                   },
                   [_vm._v("Nuevo")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function ($event) {
+                        return _vm.showT(1)
+                      },
+                    },
+                  },
+                  [_vm._v("Semana Actual")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function ($event) {
+                        return _vm.showT(2)
+                      },
+                    },
+                  },
+                  [_vm._v("Semana siguiente")]
                 ),
               ]),
               _c("br"),
@@ -1350,59 +1463,117 @@ var render = function () {
                 [
                   _vm._m(2),
                   _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.schedulesFilter, function (schedule) {
-                      return _c("tr", { key: schedule.id }, [
-                        _c("td", [_vm._v(_vm._s(schedule.parking.numero))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              schedule.user.nombre +
-                                " " +
-                                schedule.user.apellido
-                            )
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(schedule.dia))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(schedule.hora_inicio))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(schedule.hora_fin))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.abrirModalEditar(schedule)
+                  _vm.showTable
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.schedulesFilter, function (schedule) {
+                          return _c("tr", { key: schedule.id }, [
+                            _c("td", [_vm._v(_vm._s(schedule.parking.numero))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  schedule.user.nombre +
+                                    " " +
+                                    schedule.user.apellido
+                                )
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(schedule.dia))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(schedule.hora_inicio))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(schedule.hora_fin))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-warning",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.abrirModalEditar(schedule)
+                                    },
+                                  },
                                 },
-                              },
-                            },
-                            [_c("i", { staticClass: "far fa-edit" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.borrar(schedule.id)
+                                [_c("i", { staticClass: "far fa-edit" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.borrar(schedule.id)
+                                    },
+                                  },
                                 },
-                              },
-                            },
-                            [_c("i", { staticClass: "fa fa-trash" })]
-                          ),
-                        ]),
-                      ])
-                    }),
-                    0
-                  ),
+                                [_c("i", { staticClass: "fa fa-trash" })]
+                              ),
+                            ]),
+                          ])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.showTable2
+                    ? _c(
+                        "tbody",
+                        _vm._l(_vm.nextSchedulesFilter, function (schedule) {
+                          return _c("tr", { key: schedule.id }, [
+                            _c("td", [_vm._v(_vm._s(schedule.parking.numero))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  schedule.user.nombre +
+                                    " " +
+                                    schedule.user.apellido
+                                )
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(schedule.dia))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(schedule.hora_inicio))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(schedule.hora_fin))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-warning",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.abrirModalEditar(schedule)
+                                    },
+                                  },
+                                },
+                                [_c("i", { staticClass: "far fa-edit" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.borrar(schedule.id)
+                                    },
+                                  },
+                                },
+                                [_c("i", { staticClass: "fa fa-trash" })]
+                              ),
+                            ]),
+                          ])
+                        }),
+                        0
+                      )
+                    : _vm._e(),
                 ]
               ),
             ]),
@@ -1585,7 +1756,7 @@ var render = function () {
                         min: "06:00",
                         max: "18:00",
                         id: "hora_inicio",
-                        disabled: _vm.disabled,
+                        disabled: true,
                         placeholder: "Hora inicio",
                       },
                       domProps: { value: _vm.datos.hora_inicio },
@@ -1624,7 +1795,7 @@ var render = function () {
                         min: "06:00",
                         max: "18:00",
                         id: "hora_fin",
-                        disabled: _vm.disabled,
+                        disabled: true,
                         placeholder: "Hora fin",
                       },
                       domProps: { value: _vm.datos.hora_fin },
@@ -1670,7 +1841,7 @@ var render = function () {
                         },
                         on: {
                           click: function ($event) {
-                            return _vm.onChange("day")
+                            return _vm.onChange("D")
                           },
                           change: function ($event) {
                             var $$a = _vm.allDay,
@@ -1734,7 +1905,7 @@ var render = function () {
                         },
                         on: {
                           click: function ($event) {
-                            return _vm.onChange("morning")
+                            return _vm.onChange("M")
                           },
                           change: function ($event) {
                             var $$a = _vm.morning,
@@ -1798,7 +1969,7 @@ var render = function () {
                         },
                         on: {
                           click: function ($event) {
-                            return _vm.onChange("afternoon")
+                            return _vm.onChange("T")
                           },
                           change: function ($event) {
                             var $$a = _vm.afternoon,
@@ -1943,44 +2114,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel-hdr" }, [
-      _c(
-        "h2",
-        { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-        [_c("b", [_vm._v(" SEMANA ACTUAL")])]
-      ),
+    return _c("div", { staticClass: "panel-toolbar" }, [
+      _c("button", {
+        staticClass: "btn btn-panel waves-effect waves-themed",
+        attrs: {
+          "data-action": "panel-collapse",
+          "data-toggle": "tooltip",
+          "data-offset": "0,10",
+          "data-original-title": "Collapse",
+        },
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "panel-toolbar" }, [
-        _c("button", {
-          staticClass: "btn btn-panel waves-effect waves-themed",
-          attrs: {
-            "data-action": "panel-collapse",
-            "data-toggle": "tooltip",
-            "data-offset": "0,10",
-            "data-original-title": "Collapse",
-          },
-        }),
-        _vm._v(" "),
-        _c("button", {
-          staticClass: "btn btn-panel waves-effect waves-themed",
-          attrs: {
-            "data-action": "panel-fullscreen",
-            "data-toggle": "tooltip",
-            "data-offset": "0,10",
-            "data-original-title": "Fullscreen",
-          },
-        }),
-        _vm._v(" "),
-        _c("button", {
-          staticClass: "btn btn-panel waves-effect waves-themed",
-          attrs: {
-            "data-action": "panel-close",
-            "data-toggle": "tooltip",
-            "data-offset": "0,10",
-            "data-original-title": "Close",
-          },
-        }),
-      ]),
+      _c("button", {
+        staticClass: "btn btn-panel waves-effect waves-themed",
+        attrs: {
+          "data-action": "panel-fullscreen",
+          "data-toggle": "tooltip",
+          "data-offset": "0,10",
+          "data-original-title": "Fullscreen",
+        },
+      }),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "btn btn-panel waves-effect waves-themed",
+        attrs: {
+          "data-action": "panel-close",
+          "data-toggle": "tooltip",
+          "data-offset": "0,10",
+          "data-original-title": "Close",
+        },
+      }),
     ])
   },
   function () {

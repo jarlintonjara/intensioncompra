@@ -1299,7 +1299,7 @@ var render = function () {
         "div",
         { staticClass: "page-inner" },
         [
-          _c("sidebar", { attrs: { session: _vm.user } }),
+          _c("Sidebar", { attrs: { session: _vm.user } }),
           _vm._v(" "),
           _c(
             "div",

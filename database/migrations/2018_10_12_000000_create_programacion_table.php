@@ -19,10 +19,11 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('estacionamiento_id');
             $table->foreign('estacionamiento_id')->references('id')->on('estacionamiento');
-            $table->tinyInteger('created_by')->nullable();
+            $table->integer('created_by')->nullable();
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->date('fecha');
+            $table->string('turno')->nullable();
             $table->string('observacion')->nullable();
             $table->tinyInteger('status')->default('1');
             $table->timestamps();

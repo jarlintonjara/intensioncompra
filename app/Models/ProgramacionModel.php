@@ -18,6 +18,7 @@ class ProgramacionModel extends Model
         'created_by',
         'hora_inicio',
         'hora_fin',
+        'turno',
         'fecha',
         'observacion',
         'created_at',

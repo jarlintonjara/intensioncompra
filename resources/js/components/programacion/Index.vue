@@ -13,7 +13,7 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                        <h2 style="text-align: center; font-size: 1.125rem;"><b> SEMANA ACTUAL</b></h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b>{{title}} </b></h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
@@ -22,8 +22,10 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
-                            <div class="panel-hdr">
+                        <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
+                            <button class="btn btn-success" @click="showT(1)">Semana Actual</button>
+                            <button class="btn btn-success" @click="showT(2)">Semana siguiente</button>
                         </div><br>
                      
                         <table id="td-schedule" class="table table-bordered table-hover table-striped w-100">
@@ -37,8 +39,21 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody v-if="showTable">
                                 <tr v-for="schedule in schedulesFilter" :key="schedule.id">
+                                    <td>{{ schedule.parking.numero }}</td>
+                                    <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
+                                    <td>{{ schedule.dia }}</td>
+                                    <td>{{ schedule.hora_inicio }}</td>
+                                    <td>{{ schedule.hora_fin }}</td>
+                                    <td>
+                                        <button class="btn btn-warning" @click="abrirModalEditar(schedule)"><i class="far fa-edit"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(schedule.id)"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody v-if="showTable2">
+                                <tr v-for="schedule in nextSchedulesFilter" :key="schedule.id">
                                     <td>{{ schedule.parking.numero }}</td>
                                     <td>{{ schedule.user.nombre + " " + schedule.user.apellido }}</td>
                                     <td>{{ schedule.dia }}</td>
@@ -97,25 +112,25 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="hora_inicio">Hora Inicio</label>
-                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" :disabled="disabled" placeholder="Hora inicio" v-model="datos.hora_inicio">
+                                <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" :disabled="true" placeholder="Hora inicio" v-model="datos.hora_inicio">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="hora_fin">Hora Fin</label>
-                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" :disabled="disabled" placeholder="Hora fin" v-model="datos.hora_fin">
+                                <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" :disabled="true" placeholder="Hora fin" v-model="datos.hora_fin">
                             </div>
                         </div>
 
                         <div class="frame-wrap bg-faded mb-5">
                             <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('day')">
+                                <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('D')">
                                 <label class="custom-control-label" for="option-bordered">Todo el día</label>
                             </div>
                             <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="morning" @click="onChange('morning')">
+                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="morning" @click="onChange('M')">
                                 <label class="custom-control-label" for="option-small">Mañana</label>
                             </div>
                             <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="small" id="option-small2" v-model="afternoon" @click="onChange('afternoon')">
+                                <input type="checkbox" class="custom-control-input" name="small" id="option-small2" v-model="afternoon" @click="onChange('T')">
                                 <label class="custom-control-label" for="option-small2">Tarde</label>
                             </div>
                         </div>
@@ -159,16 +174,28 @@ export default {
             parkingsFilter: [],
             schedules:[],
             schedulesFilter:[],
+            nextSchedules:[],
+            nextSchedulesFilter:[],
             allDay: false,
             morning: false,
             afternoon: false,
             disabled: false,
             info: [],
-            datos: {estacionamiento_id:'', user_id:'', fecha:'', hora_inicio:'', hora_fin: '', observacion: '', created_by : ''},
+            datos: {estacionamiento_id:'', 
+                    user_id:'', 
+                    fecha:'', 
+                    hora_inicio:'', 
+                    hora_fin: '', 
+                    turno: '', 
+                    observacion: '', 
+                    created_by : ''},
             titulo:'',
+            title:'SEMANA ACTUAL',
             btnCrear:false,
             btnEditar:false,
-            id:''
+            id:'',
+            showTable: true,
+            showTable2: false
         }
     },
     mounted(){
@@ -177,6 +204,22 @@ export default {
         this.init();
     },
     methods:{
+        async init(){
+            await this.axios.get('/api/programacion')
+                .then(response=> {
+                    this.users = response.data.users;
+                    this.parkings = response.data.parkings;
+                    this.schedules = response.data.schedules;
+                    this.nextSchedules = response.data.nextSchedules;
+                    //$('#td-schedule').DataTable();
+                })
+                .catch(error=>{
+                    console.log(error);
+                    this.schedules =[]
+                })
+                await this.validarRole();
+                this.$tablaGlobal('#td-schedule');
+        },
         validarCampos(){
             if(!this.datos.estacionamiento_id || !this.datos.user_id || !this.datos.fecha || !this.datos.hora_inicio || !this.datos.hora_fin ){
                 this.$swal.fire({
@@ -192,25 +235,39 @@ export default {
             this.parkingsFilter = [];
             this.usersFilter = [];
             this.schedulesFilter = [];
+            this.nextSchedulesFilter = [];
             if(this.session.role_id === 1){
                 this.usersFilter = this.users;
                 this.usersFilter = this.usersFilter.map(e => { return { code : e.id, label: e.nombre + " " + e.apellido } })
                 this.parkingsFilter = this.parkings;
                 this.schedulesFilter = this.schedules;
+                this.nextSchedulesFilter = this.nextSchedules;
                 
             }else if(this.session.role_id == 3){
                 this.parkingsFilter = [].concat(this.parkings.filter(e => e.id == this.session.parking_id))
                 this.usersFilter = this.users;
                 this.usersFilter = this.usersFilter.map(e => { return { code : e.id, label: e.nombre + " " + e.apellido } })
                 this.schedulesFilter = [].concat(this.schedules.filter(e => e.created_by == this.session.id));
+                this.nextSchedulesFilter = [].concat(this.nextSchedules.filter(e => e.created_by == this.session.id));
                 this.datos.estacionamiento_id = this.session.parking_id;
                 this.datos.user_id = this.session.id;
+            }
+        },
+        showT(id){
+            if(id == 1){
+                this.showTable = true;
+                this.showTable2 = false;
+                this.title = "SEMANA ACTUAL";
+            }else{
+                this.showTable = false;
+                this.showTable2 = true;
+                this.title = "SEMANA SIGUIENTE";
             }
         },
         onChange(param){
             this.disabled = false;
             switch(param){
-                case "day":
+                case "D":
                     this.allDay = !this.allDay;
                     this.morning = false;
                     this.afternoon = false;
@@ -218,9 +275,10 @@ export default {
                         this.disabled = true;
                         this.datos.hora_inicio = "06:00";
                         this.datos.hora_fin = "18:00";
+                        this.datos.turno = "D";
                     }
                     break;
-                case "morning":
+                case "M":
                     this.morning = !this.morning
                     this.allDay = false;
                     this.afternoon = false;
@@ -228,10 +286,10 @@ export default {
                         this.disabled = true;
                         this.datos.hora_inicio = "06:00";
                         this.datos.hora_fin = "12:00";
+                        this.datos.turno = "M";
                     }
                     break;
-                case "afternoon":
-                    console.log(this.afternoon)
+                case "T":
                     this.afternoon = !this.afternoon;
                     this.morning = false;
                     this.allDay = false;
@@ -239,6 +297,7 @@ export default {
                         this.disabled = true;
                         this.datos.hora_inicio = "12:00";
                         this.datos.hora_fin = "18:00";
+                        this.datos.turno = "T";
                     }
                     break
             }
@@ -247,37 +306,57 @@ export default {
             
             let valid = await this.validarCampos();
             if(valid){
-                axios.post('api/programacion', this.datos).then(response=>{
-                    this.schedulesFilter.push(response.data);
-                    $('#modalForm').modal('hide');
-                    this.$swal.fire(
-                        'Programación creado correctamente!',
-                        '',
-                        'success'
-                    )
+                await axios.post('api/programacion', this.datos).then(response=>{
+                    if(response.data.isSuccess == false){
+                        this.$swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.data.message,
+                        })
+                    }else{
+                        this.schedules = [].concat(response.data.schedules);          
+                        this.nextSchedules = [].concat(response.data.nextSchedules);
+                        $('#modalForm').modal('hide');
+                        this.$swal.fire(
+                            'Programación creado correctamente!',
+                            '',
+                            'success'
+                        )
+                    }
                    
                 }).catch(function (error) {
                     console.log(error);
                 });
+                await this.validarRole();
             }
            
         },
         async editar(){
             let valid = await this.validarCampos();
             if(valid){
-                axios.put('/api/programacion/'+this.id, this.datos).then(response=>{
-                    this.schedulesFilter = [].concat(response.data);          
-                    this.id='';
-                    //this.getUser()
-                    $('#modalForm').modal('hide');
-                    this.$swal.fire(
-                        'Programación editado correctamente!',
-                        '',
-                        'success'
-                    )
+                await axios.put('/api/programacion/'+this.id, this.datos).then(response=>{
+                    if(response.data.isSuccess == false){
+                        this.$swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.data.message,
+                        })
+                    }else{
+                        this.schedules = [].concat(response.data.schedules);          
+                        this.nextSchedules = [].concat(response.data.nextSchedules);          
+                        this.id='';
+                        $('#modalForm').modal('hide');
+                        this.$swal.fire(
+                            'Programación editado correctamente!',
+                            '',
+                            'success'
+                        )
+                    }
+                    
                 }).catch(function (error) {
                     console.log(error);
                 });
+                await this.validarRole();
             }
         },
         borrar(id){
@@ -313,27 +392,14 @@ export default {
             this.datos.fecha = datos.fecha;
             this.datos.hora_inicio = datos.hora_inicio;
             this.datos.hora_fin = datos.hora_fin;
+            this.datos.turno = datos.turno;
             this.datos.observacion = datos.observacion;
             this.titulo=' Editar Programación'
             this.btnCrear=false
             this.btnEditar=true
-            this.id=datos.id
+            this.id=datos.id;
+            this.onChange(this.datos.turno);
             $('#modalForm').modal('show')
-        },
-        async init(){
-            await this.axios.get('/api/programacion')
-                .then(response=> {
-                    this.users = response.data.users;
-                    this.parkings = response.data.parkings;
-                    this.schedules = response.data.schedules;
-                    //$('#td-schedule').DataTable();
-                })
-                .catch(error=>{
-                    console.log(error);
-                    this.schedules =[]
-                })
-                await this.validarRole();
-                this.$tablaGlobal('#td-schedule');
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

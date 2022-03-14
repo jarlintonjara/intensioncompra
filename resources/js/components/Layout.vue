@@ -3,7 +3,7 @@
         <div class="page-wrapper">
             <div class="page-inner">
 
-                <sidebar :session="user"/>
+                <Sidebar :session="user"/>
 
                 <div class="page-content-wrapper">
 
