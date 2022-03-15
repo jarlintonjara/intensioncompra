@@ -50,6 +50,7 @@ class HomeController extends Controller
             array_push($ids,$pml->id);
             $pml["user"] = $pml->user;
             $pml["parking"] = $pml->parking;
+            $pml["propietario"] = $pml->propietario;
         }
         $estacionesma = User::select('estacionamiento.id','estacionamiento.numero','users.nombre','users.apellido','estacionamiento.sede','estacionamiento.ubicacion')
         ->rightJoin('estacionamiento', 'users.parking_id', '=', 'estacionamiento.id')

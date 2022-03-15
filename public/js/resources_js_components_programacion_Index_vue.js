@@ -382,7 +382,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var valid;
+        var valid, resp;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -392,13 +392,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 valid = _context2.sent;
+                resp = false;
 
                 if (!valid) {
-                  _context2.next = 8;
+                  _context2.next = 10;
                   break;
                 }
 
-                _context2.next = 6;
+                _context2.next = 7;
                 return axios.post('api/programacion', _this3.datos).then(function (response) {
                   if (response.data.isSuccess == false) {
                     _this3.$swal.fire({
@@ -407,6 +408,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       text: response.data.message
                     });
                   } else {
+                    resp = true;
                     _this3.schedules = [].concat(response.data.schedules);
                     _this3.nextSchedules = [].concat(response.data.nextSchedules);
                     $('#modalForm').modal('hide');
@@ -417,11 +419,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 6:
-                _context2.next = 8;
+              case 7:
+                if (!resp) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                _context2.next = 10;
                 return _this3.validarRole();
 
-              case 8:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -433,7 +440,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var valid;
+        var valid, resp;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -445,11 +452,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 valid = _context3.sent;
 
                 if (!valid) {
-                  _context3.next = 8;
+                  _context3.next = 10;
                   break;
                 }
 
-                _context3.next = 6;
+                resp = false;
+                _context3.next = 7;
                 return axios.put('/api/programacion/' + _this4.id, _this4.datos).then(function (response) {
                   if (response.data.isSuccess == false) {
                     _this4.$swal.fire({
@@ -458,6 +466,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       text: response.data.message
                     });
                   } else {
+                    resp = true;
                     _this4.schedules = [].concat(response.data.schedules);
                     _this4.nextSchedules = [].concat(response.data.nextSchedules);
                     _this4.id = '';
@@ -469,11 +478,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 6:
-                _context3.next = 8;
+              case 7:
+                if (!resp) {
+                  _context3.next = 10;
+                  break;
+                }
+
+                _context3.next = 10;
                 return _this4.validarRole();
 
-              case 8:
+              case 10:
               case "end":
                 return _context3.stop();
             }

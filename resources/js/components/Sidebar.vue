@@ -20,25 +20,23 @@
             </div>
             
             <ul class="nav-menu" id="js-nav-menu">
-                
                 <li class="active open">
-                
                     <ul>
-                        <li class="active">
-                            <router-link to="/dashboard" class="">Inicio</router-link>
-                        </li>
-                        <li>
-                            <router-link v-if="user.role_id == 1" to="/usuarios" class="">Usuarios</router-link>
-                        </li>
-                        <li>
-                            <router-link v-if="user.role_id == 1" to="/estacionamiento" class="">Estacionamiento</router-link>
-                        </li>
-                        <li>
-                            <router-link v-if="user.role_id == 1 || user.role_id == 3" :to="{ name: 'programacion', query: { ps: session } }" class="">Programación</router-link>
-                        </li>
-                        <li>
-                            <router-link v-if="user.role_id == 1" to="/rol" class="">Rol</router-link>
-                        </li>
+                        <router-link tag="li" to="/dashboard" active-class="active">
+                            <a >Inicio</a>
+                        </router-link>
+                        <router-link tag="li" v-if="user.role_id == 1" to="/usuarios" active-class="active">
+                            <a >Usuarios</a>
+                        </router-link>
+                        <router-link tag="li" v-if="user.role_id == 1" to="/estacionamiento" active-class="active">
+                            <a>Estacionamiento</a>
+                        </router-link>
+                        <router-link tag="li" v-if="user.role_id == 1 || user.role_id == 3" :to="{ name: 'programacion', query: { ps: session } }" active-class="active">
+                            <a >Programación</a>
+                        </router-link>
+                        <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">
+                            <a >Rol</a>
+                        </router-link>
                     </ul>
                 </li>
             </ul>

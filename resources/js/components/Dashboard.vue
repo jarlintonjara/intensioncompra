@@ -105,7 +105,6 @@
                             <table id="td-ocupadoshoy" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="bg-warning-200">
                                     <tr>
-                                        <th>ID</th>
                                         <th>Estacionamiento</th>
                                         <th>Usuario</th>
                                         <th>DNI</th>
@@ -118,7 +117,6 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="pm in programacionhoy" :key="pm.parking.numero+pm.id">
-                                        <td>{{ pm.id }}</td>
                                         <td>{{ pm.parking.numero }}</td>
                                         <td>{{ pm.user.nombre + " " + pm.user.apellido }}</td>
                                         <td>{{ pm.user.documento }}</td>
@@ -217,7 +215,7 @@
                                         <td>{{ pm.fecha }}</td>
                                         <td>{{ pm.hora_inicio }}</td>
                                         <td>{{ pm.hora_fin }}</td>
-                                        <td>{{ pm.created }}</td>
+                                        <td>{{ pm.propietario.nombre + " " + pm.propietario.apellido }}</td>
                                         <td>{{ $dateFormat(pm.created_at) }}</td>
                                     </tr>
                                 </tbody>

@@ -305,6 +305,7 @@ export default {
         async crear(){
             
             let valid = await this.validarCampos();
+            let resp = false;
             if(valid){
                 await axios.post('api/programacion', this.datos).then(response=>{
                     if(response.data.isSuccess == false){
@@ -314,6 +315,7 @@ export default {
                             text: response.data.message,
                         })
                     }else{
+                        resp = true;
                         this.schedules = [].concat(response.data.schedules);          
                         this.nextSchedules = [].concat(response.data.nextSchedules);
                         $('#modalForm').modal('hide');
@@ -327,21 +329,25 @@ export default {
                 }).catch(function (error) {
                     console.log(error);
                 });
-                await this.validarRole();
+                if(resp){
+                    await this.validarRole();
+                }
             }
-           
         },
         async editar(){
             let valid = await this.validarCampos();
             if(valid){
+                let resp = false;
                 await axios.put('/api/programacion/'+this.id, this.datos).then(response=>{
                     if(response.data.isSuccess == false){
+                        
                         this.$swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: response.data.message,
                         })
                     }else{
+                        resp = true;
                         this.schedules = [].concat(response.data.schedules);          
                         this.nextSchedules = [].concat(response.data.nextSchedules);          
                         this.id='';
@@ -356,7 +362,9 @@ export default {
                 }).catch(function (error) {
                     console.log(error);
                 });
-                await this.validarRole();
+                if(resp){
+                    await this.validarRole();
+                }
             }
         },
         borrar(id){

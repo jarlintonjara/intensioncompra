@@ -257,8 +257,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1599,75 +1597,82 @@ var render = function () {
         _vm._v(" "),
         _c("ul", { staticClass: "nav-menu", attrs: { id: "js-nav-menu" } }, [
           _c("li", { staticClass: "active open" }, [
-            _c("ul", [
-              _c(
-                "li",
-                { staticClass: "active" },
-                [
-                  _c("router-link", { attrs: { to: "/dashboard" } }, [
-                    _vm._v("Inicio"),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _vm.user.role_id == 1
-                    ? _c("router-link", { attrs: { to: "/usuarios" } }, [
-                        _vm._v("Usuarios"),
-                      ])
-                    : _vm._e(),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _vm.user.role_id == 1
-                    ? _c("router-link", { attrs: { to: "/estacionamiento" } }, [
-                        _vm._v("Estacionamiento"),
-                      ])
-                    : _vm._e(),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _vm.user.role_id == 1 || _vm.user.role_id == 3
-                    ? _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "programacion",
-                              query: { ps: _vm.session },
-                            },
-                          },
+            _c(
+              "ul",
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      tag: "li",
+                      to: "/dashboard",
+                      "active-class": "active",
+                    },
+                  },
+                  [_c("a", [_vm._v("Inicio")])]
+                ),
+                _vm._v(" "),
+                _vm.user.role_id == 1
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/usuarios",
+                          "active-class": "active",
                         },
-                        [_vm._v("Programación")]
-                      )
-                    : _vm._e(),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _vm.user.role_id == 1
-                    ? _c("router-link", { attrs: { to: "/rol" } }, [
-                        _vm._v("Rol"),
-                      ])
-                    : _vm._e(),
-                ],
-                1
-              ),
-            ]),
+                      },
+                      [_c("a", [_vm._v("Usuarios")])]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.user.role_id == 1
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/estacionamiento",
+                          "active-class": "active",
+                        },
+                      },
+                      [_c("a", [_vm._v("Estacionamiento")])]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.user.role_id == 1 || _vm.user.role_id == 3
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: {
+                            name: "programacion",
+                            query: { ps: _vm.session },
+                          },
+                          "active-class": "active",
+                        },
+                      },
+                      [_c("a", [_vm._v("Programación")])]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.user.role_id == 1
+                  ? _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/rol",
+                          "active-class": "active",
+                        },
+                      },
+                      [_c("a", [_vm._v("Rol")])]
+                    )
+                  : _vm._e(),
+              ],
+              1
+            ),
           ]),
         ]),
         _vm._v(" "),

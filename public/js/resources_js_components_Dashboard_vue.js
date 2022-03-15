@@ -302,8 +302,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1625,8 +1623,6 @@ var render = function () {
                               "tr",
                               { key: pm.parking.numero + pm.id },
                               [
-                                _c("td", [_vm._v(_vm._s(pm.id))]),
-                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.parking.numero))]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -1757,7 +1753,15 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(pm.hora_fin))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(pm.created))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      pm.propietario.nombre +
+                                        " " +
+                                        pm.propietario.apellido
+                                    )
+                                  ),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
@@ -1923,8 +1927,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-warning-200" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Estacionamiento")]),
         _vm._v(" "),
         _c("th", [_vm._v("Usuario")]),

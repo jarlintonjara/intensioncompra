@@ -173,7 +173,9 @@ class ProgramacionController extends Controller
     public function update(Request $request, $id)
     {
         $register = ProgramacionModel::where("user_id", $request->user_id)
+            ->where("id", "!=", $id)
             ->whereDate("fecha", $request->fecha)->first();
+
         if ($register) {
             switch ($register->turno) {
                 case "D":
@@ -190,7 +192,8 @@ class ProgramacionController extends Controller
             }
             return response()->json([
                 "message" => $message,
-                "isSuccess" => false
+                "isSuccess" => false,
+                "regis" => $register
             ]);
         }
         $updateSchedule = ProgramacionModel::findOrFail($id);
