@@ -1390,21 +1390,6 @@ var render = function () {
               _c("div", { staticClass: "dropdown-divider m-0" }),
               _vm._v(" "),
               _c(
-                "router-link",
-                {
-                  staticClass: "dropdown-item fw-500 pt-3 pb-3",
-                  attrs: { to: { name: "perfil", query: { ps: _vm.session } } },
-                },
-                [
-                  _c("span", { attrs: { "data-i18n": "drpdwn.page-logout" } }, [
-                    _vm._v("Perfil"),
-                  ]),
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "dropdown-divider m-0" }),
-              _vm._v(" "),
-              _c(
                 "a",
                 {
                   staticClass: "dropdown-item fw-500 pt-3 pb-3",
@@ -1422,8 +1407,7 @@ var render = function () {
                   ]),
                 ]
               ),
-            ],
-            1
+            ]
           ),
         ]),
       ]),

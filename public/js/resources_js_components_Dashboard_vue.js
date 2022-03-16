@@ -327,7 +327,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  mounted: function mounted() {
+    this.init();
+  },
   methods: {
+    init: function init() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.axios.get('/api/dashboard').then(function (response) {
+                  var report = response.data;
+                  _this.report.totalUsers = report.usersTotal;
+                  _this.report.totalParkings = report.parkingsTotal;
+                  _this.report.totalSchedules = report.schedulesTotal;
+                  _this.report.programacionManana = report.programacionManana;
+                  _this.schedules = report.schedules;
+                  _this.programacionma = report.programacionma;
+                  _this.estacionesma = report.estacionesma;
+                  _this.programacionhoy = report.programacionhoy;
+                  _this.estacioneshoy = report.estacioneshoy;
+                  _this.indices.totalManana = Math.round(_this.programacionma.length / (_this.programacionma.length + _this.estacionesma.length) * 100);
+                  _this.indices.totalHoy = Math.round(_this.programacionhoy.length / (_this.programacionhoy.length + _this.estacioneshoy.length) * 100);
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+                _this.$tablaGlobal('#td-ocupadoshoy');
+
+                _this.$tablaGlobal('#td-disponibleshoy');
+
+                _this.$tablaGlobal('#td-ocupadosman');
+
+                _this.$tablaGlobal('#td-disponiblesman');
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     showitem: function showitem(option) {
       if (option == 1) {
         this.item1 = true;
@@ -338,74 +384,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     logout: function logout() {
-      var _this = this;
+      var _this2 = this;
 
       axios.post('/api/logout').then(function () {
-        _this.$router.push({
+        _this2.$router.push({
           name: "Login"
         });
       });
-    },
-    init: function init() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this2.axios.get('/api/dashboard').then(function (response) {
-                  var report = response.data;
-                  _this2.report.totalUsers = report.usersTotal;
-                  _this2.report.totalParkings = report.parkingsTotal;
-                  _this2.report.totalSchedules = report.schedulesTotal;
-                  _this2.report.programacionManana = report.programacionManana;
-                  _this2.schedules = report.schedules;
-                  _this2.programacionma = report.programacionma;
-                  _this2.estacionesma = report.estacionesma;
-                  _this2.programacionhoy = report.programacionhoy;
-                  _this2.estacioneshoy = report.estacioneshoy;
-                  _this2.indices.totalManana = Math.round(_this2.programacionma.length / (_this2.programacionma.length + _this2.estacionesma.length) * 100);
-                  _this2.indices.totalHoy = Math.round(_this2.programacionhoy.length / (_this2.programacionhoy.length + _this2.estacioneshoy.length) * 100);
-                })["catch"](function (error) {
-                  console.log(error);
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
     },
     sendEmail: function sendEmail() {
       axios.get('/api/sendEmail').then(function (res) {
         console.log(res);
       });
     }
-  },
-  mounted: function mounted() {
-    var _this3 = this;
-
-    this.init();
-    axios.get('/api/user').then(function (res) {
-      _this3.user = res.data;
-
-      _this3.$tablaGlobal('#td-ocupadoshoy');
-
-      _this3.$tablaGlobal('#td-disponibleshoy');
-
-      _this3.$tablaGlobal('#td-ocupadosman');
-
-      _this3.$tablaGlobal('#td-disponiblesman');
-    });
-    /* axios.get('/sanctum/csrf-cookie').then(response => {
-        console.log('response:::')
-        console.log(response)
-        
-    }) */
   }
 });
 

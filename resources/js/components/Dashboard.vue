@@ -297,21 +297,10 @@ export default {
             }
         }
     },
+    mounted(){
+        this.init();
+    },
     methods:{
-        showitem(option){
-            if(option == 1){
-                this.item1 = true;
-                this.item2 = false;
-            }else{
-                this.item2 = true;
-                this.item1 = false;
-            }
-        },
-        logout(){
-            axios.post('/api/logout').then(()=>{
-                this.$router.push({ name: "Login"})
-            })
-        },
         async init(){
              await this.axios.get('/api/dashboard')
                     .then(response=> {
@@ -334,27 +323,30 @@ export default {
                     .catch(error=>{
                         console.log(error);
                     })
+                    this.$tablaGlobal('#td-ocupadoshoy');
+                    this.$tablaGlobal('#td-disponibleshoy');
+                    this.$tablaGlobal('#td-ocupadosman');
+                    this.$tablaGlobal('#td-disponiblesman');
+        },
+        showitem(option){
+            if(option == 1){
+                this.item1 = true;
+                this.item2 = false;
+            }else{
+                this.item2 = true;
+                this.item1 = false;
+            }
+        },
+        logout(){
+            axios.post('/api/logout').then(()=>{
+                this.$router.push({ name: "Login"})
+            })
         },
         sendEmail(){
             axios.get('/api/sendEmail').then((res)=>{
                 console.log(res)
             }); 
         }
-    },
-    mounted(){
-        this.init();
-        axios.get('/api/user').then((res)=>{
-            this.user = res.data;
-            this.$tablaGlobal('#td-ocupadoshoy');
-            this.$tablaGlobal('#td-disponibleshoy');
-            this.$tablaGlobal('#td-ocupadosman');
-            this.$tablaGlobal('#td-disponiblesman');
-        });
-        /* axios.get('/sanctum/csrf-cookie').then(response => {
-            console.log('response:::')
-            console.log(response)
-            
-        }) */
     }
 }
 </script>
