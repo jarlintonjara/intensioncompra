@@ -165,6 +165,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
   data: function data() {
@@ -300,7 +305,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         role_id: '',
         parking_id: '',
         cargo: '',
-        area: ''
+        area: '',
+        password: ''
       };
       this.parkingsFilter = [];
       this.parkings.map(function (i) {
@@ -325,7 +331,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         documento: datos.documento,
         email: datos.email,
         role_id: datos.role_id,
-        parking_id: datos.parking_id
+        parking_id: datos.parking_id,
+        password: datos.password
       };
       this.parkings.map(function (i) {
         if (!_this5.users.find(function (e) {
@@ -1645,69 +1652,105 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm.datos.role_id == "3"
-                  ? _c("div", { staticClass: "form-group col-md-4" }, [
-                      _c("label", { attrs: { for: "Parking" } }, [
-                        _vm._v("Estacionamiento"),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.datos.parking_id,
-                              expression: "datos.parking_id",
-                            },
-                          ],
-                          staticClass: "browser-default custom-select",
-                          attrs: { id: "Parking" },
-                          on: {
-                            change: function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.datos,
-                                "parking_id",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
+                _c("div", { staticClass: "form-row" }, [
+                  _vm.datos.role_id == "3"
+                    ? _c("div", { staticClass: "form-group col-md-4" }, [
+                        _c("label", { attrs: { for: "Parking" } }, [
+                          _vm._v("Estacionamiento"),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.parking_id,
+                                expression: "datos.parking_id",
+                              },
+                            ],
+                            staticClass: "browser-default custom-select",
+                            attrs: { id: "Parking" },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.datos,
+                                  "parking_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
                             },
                           },
+                          [
+                            _c("option", [
+                              _vm._v("Seleccione un estacionamiento"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.parkingsFilter, function (parking) {
+                              return _c(
+                                "option",
+                                {
+                                  key: parking.numero + parking.id,
+                                  domProps: { value: parking.id },
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      parking.numero + " - " + parking.sede
+                                    )
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "password" } }, [
+                      _vm._v("Contraseña"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.password,
+                          expression: "datos.password",
                         },
-                        [
-                          _c("option", [
-                            _vm._v("Seleccione un estacionamiento"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.parkingsFilter, function (parking) {
-                            return _c(
-                              "option",
-                              {
-                                key: parking.numero + parking.id,
-                                domProps: { value: parking.id },
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(parking.numero + " - " + parking.sede)
-                                ),
-                              ]
-                            )
-                          }),
-                        ],
-                        2
-                      ),
-                    ])
-                  : _vm._e(),
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        id: "password",
+                        placeholder: "password",
+                      },
+                      domProps: { value: _vm.datos.password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "password", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [

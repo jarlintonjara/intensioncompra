@@ -67,9 +67,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->post();
-        if(!array_key_exists('password', $data)){
-            $data['password'] = Hash::make(12345678);
-        }
+        $data['password'] = Hash::make($request->password);
+        
         $user = User::create($data);
         if ($user->parking_id) {
             $user["parking"] = $user->parking;
@@ -114,6 +113,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        // $data = $request->post();
+        $request['password'] = Hash::make($request->password);
         $user->update($request->all());
         $data = User::all();
         return response()->json($data);
