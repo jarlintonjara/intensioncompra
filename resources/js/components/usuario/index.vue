@@ -110,14 +110,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div v-if="datos.role_id=='3'" class="form-group col-md-4">
-                            <label for="Parking">Estacionamiento</label>
-                            <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
-                                <option>Seleccione un estacionamiento</option>
-                                <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero + " - "+parking.sede }}</option>
-                            </select>
+                        <div class="form-row">
+                            <div v-if="datos.role_id=='3'" class="form-group col-md-4">
+                                <label for="Parking">Estacionamiento</label>
+                                <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
+                                    <option>Seleccione un estacionamiento</option>
+                                    <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero + " - "+parking.sede }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" class="form-control" placeholder="password" v-model="datos.password">
+                            </div>
                         </div>
-                        
 
                     </div>
                     <div class="modal-footer">
@@ -152,7 +157,7 @@ export default {
     },
     mounted(){
         this.mostrarusers()
-        
+
     },
     methods:{
         validarCampos(){
@@ -213,7 +218,7 @@ export default {
 
         },
         abrirModalCrear(){
-            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', parking_id:'', cargo: '', area: ''};
+            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', parking_id:'', cargo: '', area: '', password: ''};
             this.parkingsFilter = [];
             this.parkings.map(i => {
                 if(!this.users.find(e => e.parking_id == i.id)){
@@ -228,7 +233,7 @@ export default {
         abrirModalEditar(datos){
             this.parkingsFilter = [];
             this.datos= {nombre: datos.nombre, apellido: datos.apellido, documento: datos.documento, email: datos.email, 
-                        role_id: datos.role_id, parking_id: datos.parking_id };
+                        role_id: datos.role_id, parking_id: datos.parking_id, password: datos.password };
             this.parkings.map(i => {
                 if(!this.users.find(e => e.parking_id == i.id)){
                     this.parkingsFilter.push(i)
@@ -255,6 +260,7 @@ export default {
                         console.log(error);
                         //this.users =[]
                     }) 
+            
             await $('#tableUser').DataTable();      
         },
         cerrarModal(){
