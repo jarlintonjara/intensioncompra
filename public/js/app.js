@@ -5581,6 +5581,10 @@ var Usuario = function Usuario() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_usuario_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/usuario/Index.vue */ "./resources/js/components/usuario/Index.vue"));
 };
 
+var Perfil = function Perfil() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_usuario_Perfil_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/usuario/Perfil.vue */ "./resources/js/components/usuario/Perfil.vue"));
+};
+
 var Estacionamiento = function Estacionamiento() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_estacionamiento_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/estacionamiento/Index.vue */ "./resources/js/components/estacionamiento/Index.vue"));
 };
@@ -5639,6 +5643,10 @@ var Programacion = function Programacion() {
       path: '/rol',
       component: Rol,
       name: 'rol'
+    }, {
+      path: '/perfil',
+      component: Perfil,
+      name: 'perfil'
     }]
   }]
 });
@@ -88185,7 +88193,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_rol_Index_vue":1,"resources_js_components_usuario_Index_vue":1,"resources_js_components_estacionamiento_Index_vue":1,"resources_js_components_programacion_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_rol_Index_vue":1,"resources_js_components_usuario_Index_vue":1,"resources_js_components_usuario_Perfil_vue":1,"resources_js_components_estacionamiento_Index_vue":1,"resources_js_components_programacion_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -83,40 +83,39 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $blog
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         return response()->json($user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $blog
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
         $data = User::all();
         return response()->json($data);
+    }
+
+    public function updateProfile(Request $request,User $idUser)
+    {
+        $data = request()->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $idUser->id],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+        ]);
+        // validar si la contraseña es vacia
+        if (empty($request->password)) {
+            $data['password'] = $idUser->password;
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
+        $idUser->update($data);
     }
 
     /**

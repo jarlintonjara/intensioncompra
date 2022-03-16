@@ -7,6 +7,7 @@ const Layout = () => import('./components/Layout.vue');
 const NotFound = () => import('./components/NotFound.vue');
 const Rol = () => import('./components/rol/Index.vue');
 const Usuario = () => import('./components/usuario/Index.vue');
+const Perfil = () => import('./components/usuario/Perfil.vue');
 const Estacionamiento = () => import('./components/estacionamiento/Index.vue');
 const Programacion = () => import('./components/programacion/Index.vue');
 
@@ -69,6 +70,11 @@ export default{
                     path: '/rol',
                     component: Rol,
                     name: 'rol'
+                },
+                {
+                    path: '/perfil',
+                    component: Perfil,
+                    name: 'perfil'
                 },
             ],
         },

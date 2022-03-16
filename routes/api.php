@@ -39,5 +39,6 @@ Route::get('sendEmail', [HomeController::class, 'sendEmail']);
 Route::resource('programacion', ProgramacionController::class);
 Route::resource('estacionamiento', EstacionamientoController::class);
 Route::resource('usuario', UserController::class);
+Route::match(['put', 'patch'], 'updateProfile/{usuario}', [UserController::class, 'updateProfile']);
 Route::resource('rol', RoleController::class);
 
