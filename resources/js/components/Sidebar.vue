@@ -37,6 +37,9 @@
                         <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">
                             <a >Rol</a>
                         </router-link>
+                        <router-link tag="li" v-if="user.role_id == 1" to="/export" active-class="active">
+                            <a >users</a>
+                        </router-link>
                     </ul>
                 </li>
             </ul>

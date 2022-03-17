@@ -302,6 +302,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -394,6 +395,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     sendEmail: function sendEmail() {
       axios.get('/sendEmail').then(function (res) {
+        console.log(res);
+      });
+    },
+    exportExcel: function exportExcel() {
+      axios.get('/api/export').then(function (res) {
         console.log(res);
       });
     }
@@ -1271,6 +1277,12 @@ var render = function () {
             "button",
             { staticClass: "btn btn-primary", on: { click: _vm.sendEmail } },
             [_vm._v("send email")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", on: { click: _vm.exportExcel } },
+            [_vm._v("Excel")]
           ),
           _vm._v(" "),
           _c("small"),
