@@ -102,21 +102,21 @@ class UserController extends Controller
         return response()->json($data);
     }
 
-    public function updateProfile(Request $request,User $idUser)
+    public function updateProfile(Request $request, $id)
     {
-        $data = request()->validate([
-            'nombre' => ['required', 'string', 'max:255'],
-            'apellido' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $idUser->id],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-        ]);
         // validar si la contraseña es vacia
+        $data = $request->all();
+        $user = User::findOrFail($id);
         if (empty($request->password)) {
-            $data['password'] = $idUser->password;
+            $data['password'] = $user->password;
         } else {
             $data['password'] = Hash::make($data['password']);
         }
-        $idUser->update($data);
+        $user->update($data);
+        return response()->json([
+            "message" => "Se guardo correctamente",
+            "isSuccess" => True
+        ]);
     }
 
     /**

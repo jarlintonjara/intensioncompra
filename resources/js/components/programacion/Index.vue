@@ -98,8 +98,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Estacionamiento">Estacionamiento</label>
-                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id">
-                                    <option></option>
+                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id" @change="parkingChanged()">
                                     <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
                                 </select>
                             </div>
@@ -247,11 +246,14 @@ export default {
                 this.parkingsFilter = [].concat(this.parkings.filter(e => e.id == this.session.parking_id))
                 this.usersFilter = this.users;
                 this.usersFilter = this.usersFilter.map(e => { return { code : e.id, label: e.nombre + " " + e.apellido } })
-                this.schedulesFilter = [].concat(this.schedules.filter(e => e.created_by == this.session.id));
+                this.schedulesFilter = [].concat(this.schedules.filter(e => e.estacionamiento_id == this.session.parking_id));
                 this.nextSchedulesFilter = [].concat(this.nextSchedules.filter(e => e.created_by == this.session.id));
                 this.datos.estacionamiento_id = this.session.parking_id;
                 this.datos.user_id = this.session.id;
             }
+        },
+        parkingChanged(){
+             this.datos.estacionamiento_id = this.session.parking_id;
         },
         showT(id){
             if(id == 1){

@@ -1,7 +1,9 @@
 <?php
 
+use App\Mail\SchedulesForTomorrow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 //Auth::routes(); 
+Route::get('sendEmail', function () {
+    $correo = new SchedulesForTomorrow;
+    print_r($correo);
+    Mail::to('fredy.acp25@gmail.com ')->send($correo);
+    return "Mensaje enviado";
+});
 
 Route::get('/{any}', function () {
     return view('welcome');

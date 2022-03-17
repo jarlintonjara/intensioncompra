@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" @click.prevent="editar" >Editar</button>
+                                <button type="submit" class="btn btn-primary" @click.prevent="editar" >Guardar datos</button>
                             </div>
                         </form>
                         <br>

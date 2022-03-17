@@ -188,7 +188,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 //import Select2 from '../common/select2.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
@@ -311,7 +310,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           };
         });
         this.schedulesFilter = [].concat(this.schedules.filter(function (e) {
-          return e.created_by == _this2.session.id;
+          return e.estacionamiento_id == _this2.session.parking_id;
         }));
         this.nextSchedulesFilter = [].concat(this.nextSchedules.filter(function (e) {
           return e.created_by == _this2.session.id;
@@ -319,6 +318,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.datos.estacionamiento_id = this.session.parking_id;
         this.datos.user_id = this.session.id;
       }
+    },
+    parkingChanged: function parkingChanged() {
+      this.datos.estacionamiento_id = this.session.parking_id;
     },
     showT: function showT(id) {
       if (id == 1) {
@@ -1681,40 +1683,41 @@ var render = function () {
                         staticClass: "browser-default custom-select",
                         attrs: { id: "Estacionamiento" },
                         on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.datos,
-                              "estacionamiento_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
+                          change: [
+                            function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.datos,
+                                "estacionamiento_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                            function ($event) {
+                              return _vm.parkingChanged()
+                            },
+                          ],
                         },
                       },
-                      [
-                        _c("option"),
-                        _vm._v(" "),
-                        _vm._l(_vm.parkingsFilter, function (parking) {
-                          return _c(
-                            "option",
-                            {
-                              key: parking.numero + parking.id,
-                              domProps: { value: parking.id },
-                            },
-                            [_vm._v(_vm._s(parking.numero))]
-                          )
-                        }),
-                      ],
-                      2
+                      _vm._l(_vm.parkingsFilter, function (parking) {
+                        return _c(
+                          "option",
+                          {
+                            key: parking.numero + parking.id,
+                            domProps: { value: parking.id },
+                          },
+                          [_vm._v(_vm._s(parking.numero))]
+                        )
+                      }),
+                      0
                     ),
                   ]),
                 ]),

@@ -42,3 +42,5 @@ Route::resource('usuario', UserController::class);
 Route::match(['put', 'patch'], 'updateProfile/{usuario}', [UserController::class, 'updateProfile']);
 Route::resource('rol', RoleController::class);
 
+
+

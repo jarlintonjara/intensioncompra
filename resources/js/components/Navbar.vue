@@ -51,10 +51,10 @@
                     </div>
 
                         
-                    <!-- <div class="dropdown-divider m-0"></div>
+                    <div class="dropdown-divider m-0"></div>
                     <router-link :to="{ name: 'perfil', query: { ps: session } }" class="dropdown-item fw-500 pt-3 pb-3">
                        <span data-i18n="drpdwn.page-logout">Perfil</span> 
-                    </router-link> -->
+                    </router-link>
 
                     <div class="dropdown-divider m-0"></div>
                     <a class="dropdown-item fw-500 pt-3 pb-3" href="" @click.prevent="logout">

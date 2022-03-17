@@ -102,13 +102,11 @@ class HomeController extends Controller
         $title = $request->subject;
         $content = $request->bodymessage; */
 
-        Mail::to("fredy.acp25@gmail.com")->send(new SchedulesForTomorrow);
+        //Mail::to("fredy.acp25@gmail.com")->send(new SchedulesForTomorrow);
 
-        /* Mail::send('mail.schedulesTomorrow', [], function ($message) {
-
+        Mail::send('mail.schedulesTomorrow', [], function ($message) {
             $message->to('fredy.acp25@gmail.com')->subject('Prueba !');
-        }); */
-
+        }); 
         return response()->json(["message" => "exitoso"]);
     }
 }

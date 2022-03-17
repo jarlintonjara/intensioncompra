@@ -116,9 +116,10 @@ class ProgramacionController extends Controller
     }
     public function store(Request $request)
     {
-        //$estacionamiento = ProgramacionModel::create($request->post());
-        $register = ProgramacionModel::where("user_id", $request->user_id)
-            ->whereDate("fecha", $request->fecha)->first();
+        //Validacion por fecha y estacionamiento
+        $register = ProgramacionModel::where("estacionamiento_id", $request->estacionamiento_id)
+            ->whereDate("fecha", $request->fecha)
+            ->first();
         if ($register) {
             if( ($request->turno == "M" || $request->turno == "D" ) && $register->turno == "M"){
                 return response()->json([
@@ -131,6 +132,29 @@ class ProgramacionController extends Controller
                     "isSuccess" => false
                 ]);
             } else if ($register->turno == "D") {
+                return response()->json([
+                    "message" => "El usuario ya tiene una programación todo el día",
+                    "isSuccess" => false
+                ]);
+            }
+        }
+
+        //validacion por usuario y fecha
+        $register2 = ProgramacionModel::where("user_id", $request->user_id)
+        ->whereDate("fecha", $request->fecha)
+            ->first();
+        if ($register2) {
+            if (($request->turno == "M" || $request->turno == "D") && $register2->turno == "M") {
+                return response()->json([
+                    "message" => "El usuario ya tiene una programación en la mañana",
+                    "isSuccess" => false
+                ]);
+            } else if (($request->turno == "T" || $request->turno == "D") && $register2->turno == "T") {
+                return response()->json([
+                    "message" => "El usuario ya tiene una programación en la tarde",
+                    "isSuccess" => false
+                ]);
+            } else if ($register2->turno == "D") {
                 return response()->json([
                     "message" => "El usuario ya tiene una programación todo el día",
                     "isSuccess" => false
@@ -166,7 +190,8 @@ class ProgramacionController extends Controller
         return response()->json([
             "isSuccess" => true,
             "schedules" => $schedulesFilter,
-            "nextSchedules" => $nextSchedules
+            "nextSchedules" => $nextSchedules,
+            "register" => $register
         ]);
     }
 
@@ -174,6 +199,7 @@ class ProgramacionController extends Controller
     {
         $register = ProgramacionModel::where("user_id", $request->user_id)
             ->where("id", "!=", $id)
+            ->where("estacionamiento_id", $request->estacionamiento_id)
             ->whereDate("fecha", $request->fecha)->first();
 
         if ($register) {

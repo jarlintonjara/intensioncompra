@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SchedulesForTomorrow extends Mailable
+class Programacion extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +28,6 @@ class SchedulesForTomorrow extends Mailable
      */
     public function build()
     {
-        return $this->from('example@example.com')
-        ->view('mail.schedulesTomorrow');
+        return $this->view('view.name');
     }
 }

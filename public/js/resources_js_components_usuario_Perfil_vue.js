@@ -1365,7 +1365,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Editar")]
+                    [_vm._v("Guardar datos")]
                   ),
                 ]),
               ]),
