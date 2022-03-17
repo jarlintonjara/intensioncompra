@@ -47,6 +47,3 @@ Route::resource('rol', RoleController::class);
 
 // Route::get('export', [UserExportController::class, 'export']);
 Route::get('export/', [ScheduleExportController::class, 'export']);
-
-
-

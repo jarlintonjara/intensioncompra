@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SendMail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('command:sendEmail')->everyMinute();
+        $schedule->command('send:mail')->everyMinute();
     }
 
     /**
@@ -26,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
-
+        SendMail::class;
         require base_path('routes/console.php');
     }
 }

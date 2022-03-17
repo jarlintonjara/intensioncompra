@@ -25,7 +25,9 @@ use App\Http\Controllers\UserExportController;
 Route::get('sendEmail', function () {
     $correo = new SchedulesForTomorrow;
     print_r($correo);
-    Mail::to('fredy.acp25@gmail.com ')->send($correo);
+    Mail::to('alejarahi@gmail.com ')
+    ->cc('jjara@csticorp.biz')
+    ->send($correo);
     return "Mensaje enviado";
 });
 
@@ -46,8 +48,3 @@ Route::get('/{any}', function () {
 |
 */
  
-// Route::controller(UserExportController::class)->group(function(){
-//     Route::get('users', 'index');
-//     Route::get('users-export', 'export')->name('users.export');
-//     Route::post('users-import', 'import')->name('users.import');
-// });
