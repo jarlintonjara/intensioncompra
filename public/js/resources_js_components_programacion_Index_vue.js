@@ -349,8 +349,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           if (this.allDay) {
             this.disabled = true;
-            this.datos.hora_inicio = "06:00";
-            this.datos.hora_fin = "18:00";
+            this.datos.hora_inicio = "07:00";
+            this.datos.hora_fin = "19:00";
             this.datos.turno = "D";
           }
 
@@ -363,8 +363,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           if (this.morning) {
             this.disabled = true;
-            this.datos.hora_inicio = "06:00";
-            this.datos.hora_fin = "12:00";
+            this.datos.hora_inicio = "07:00";
+            this.datos.hora_fin = "13:30";
             this.datos.turno = "M";
           }
 
@@ -377,8 +377,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           if (this.afternoon) {
             this.disabled = true;
-            this.datos.hora_inicio = "12:00";
-            this.datos.hora_fin = "18:00";
+            this.datos.hora_inicio = "13:31";
+            this.datos.hora_fin = "19:00";
             this.datos.turno = "T";
           }
 
@@ -2122,7 +2122,7 @@ var render = function () {
                           },
                         },
                       },
-                      [_vm._v("Editar")]
+                      [_vm._v("Guardar")]
                     )
                   : _vm._e(),
               ]),

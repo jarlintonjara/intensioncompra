@@ -151,7 +151,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary" @click.prevent="crear" v-if="btnCrear">Crear</button>
-                        <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Editar</button>
+                        <button type="submit" class="btn btn-primary" @click.prevent="editar" v-if="btnEditar">Guardar</button>
                     </div>
                     </form>
                 </div>
@@ -273,40 +273,48 @@ export default {
         },
         onChange(param){
             this.disabled = false;
-            switch(param){
+                  switch (param) {
                 case "D":
-                    this.allDay = !this.allDay;
-                    this.morning = false;
-                    this.afternoon = false;
-                    if(this.allDay){
-                        this.disabled = true;
-                        this.datos.hora_inicio = "06:00";
-                        this.datos.hora_fin = "18:00";
-                        this.datos.turno = "D";
-                    }
-                    break;
+                this.allDay = !this.allDay;
+                this.morning = false;
+                this.afternoon = false;
+
+                if (this.allDay) {
+                    this.disabled = true;
+                    this.datos.hora_inicio = "07:00";
+                    this.datos.hora_fin = "19:00";
+                    this.datos.turno = "D";
+                }
+
+                break;
+
                 case "M":
-                    this.morning = !this.morning
-                    this.allDay = false;
-                    this.afternoon = false;
-                    if(this.morning){
-                        this.disabled = true;
-                        this.datos.hora_inicio = "06:00";
-                        this.datos.hora_fin = "12:00";
-                        this.datos.turno = "M";
-                    }
-                    break;
+                this.morning = !this.morning;
+                this.allDay = false;
+                this.afternoon = false;
+
+                if (this.morning) {
+                    this.disabled = true;
+                    this.datos.hora_inicio = "07:00";
+                    this.datos.hora_fin = "13:30";
+                    this.datos.turno = "M";
+                }
+
+                break;
+
                 case "T":
-                    this.afternoon = !this.afternoon;
-                    this.morning = false;
-                    this.allDay = false;
-                    if(this.afternoon){
-                        this.disabled = true;
-                        this.datos.hora_inicio = "12:00";
-                        this.datos.hora_fin = "18:00";
-                        this.datos.turno = "T";
-                    }
-                    break
+                this.afternoon = !this.afternoon;
+                this.morning = false;
+                this.allDay = false;
+
+                if (this.afternoon) {
+                    this.disabled = true;
+                    this.datos.hora_inicio = "13:31";
+                    this.datos.hora_fin = "19:00";
+                    this.datos.turno = "T";
+                }
+
+                break;
             }
         },
         async crear(){
