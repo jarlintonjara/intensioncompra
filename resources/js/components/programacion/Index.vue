@@ -109,30 +109,35 @@
                                 <label for="Fecha">Fecha de programación</label>
                                 <input type="date" id="Fecha" class="form-control" placeholder="Fecha" v-model="datos.fecha">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="frame-wrap bg-faded col-md-8" style="text-align: center; margin: auto;">
+                                <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                    <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('D')">
+                                    <label class="custom-control-label" for="option-bordered">Todo el día</label>
+                                </div>
+                                <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                    <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="morning" @click="onChange('M')">
+                                    <label class="custom-control-label" for="option-small">Mañana</label>
+                                </div>
+                                <div class="custom-control custom-checkbox d-inline-flex mr-3">
+                                    <input type="checkbox" class="custom-control-input" name="small" id="option-small2" v-model="afternoon" @click="onChange('T')">
+                                    <label class="custom-control-label" for="option-small2">Tarde</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                            </div>
+                            <div class="form-group col-md-3">
+                            </div>
+                            <div class="form-group col-md-3">
                                 <label for="hora_inicio">Hora Inicio</label>
                                 <input type="time" min="06:00" max="18:00"  id="hora_inicio" class="form-control" :disabled="true" placeholder="Hora inicio" v-model="datos.hora_inicio">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label for="hora_fin">Hora Fin</label>
                                 <input type="time" min="06:00" max="18:00" id="hora_fin" class="form-control" :disabled="true" placeholder="Hora fin" v-model="datos.hora_fin">
                             </div>
                         </div>
 
-                        <div class="frame-wrap bg-faded mb-5">
-                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="bordered" id="option-bordered" v-model="allDay" @click="onChange('D')">
-                                <label class="custom-control-label" for="option-bordered">Todo el día</label>
-                            </div>
-                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="small" id="option-small" v-model="morning" @click="onChange('M')">
-                                <label class="custom-control-label" for="option-small">Mañana</label>
-                            </div>
-                            <div class="custom-control custom-checkbox d-inline-flex mr-3">
-                                <input type="checkbox" class="custom-control-input" name="small" id="option-small2" v-model="afternoon" @click="onChange('T')">
-                                <label class="custom-control-label" for="option-small2">Tarde</label>
-                            </div>
-                        </div>
+
 
                         <div class="form-row">
                             <div class="form-group col-md-12">

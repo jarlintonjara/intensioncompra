@@ -188,6 +188,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 //import Select2 from '../common/select2.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Programacion",
@@ -1755,7 +1760,213 @@ var render = function () {
                     }),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "frame-wrap bg-faded col-md-8",
+                      staticStyle: { "text-align": "center", margin: "auto" },
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "custom-control custom-checkbox d-inline-flex mr-3",
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.allDay,
+                                expression: "allDay",
+                              },
+                            ],
+                            staticClass: "custom-control-input",
+                            attrs: {
+                              type: "checkbox",
+                              name: "bordered",
+                              id: "option-bordered",
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.allDay)
+                                ? _vm._i(_vm.allDay, null) > -1
+                                : _vm.allDay,
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.onChange("D")
+                              },
+                              change: function ($event) {
+                                var $$a = _vm.allDay,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.allDay = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.allDay = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.allDay = $$c
+                                }
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "option-bordered" },
+                            },
+                            [_vm._v("Todo el día")]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "custom-control custom-checkbox d-inline-flex mr-3",
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.morning,
+                                expression: "morning",
+                              },
+                            ],
+                            staticClass: "custom-control-input",
+                            attrs: {
+                              type: "checkbox",
+                              name: "small",
+                              id: "option-small",
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.morning)
+                                ? _vm._i(_vm.morning, null) > -1
+                                : _vm.morning,
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.onChange("M")
+                              },
+                              change: function ($event) {
+                                var $$a = _vm.morning,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.morning = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.morning = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.morning = $$c
+                                }
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "option-small" },
+                            },
+                            [_vm._v("Mañana")]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "custom-control custom-checkbox d-inline-flex mr-3",
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.afternoon,
+                                expression: "afternoon",
+                              },
+                            ],
+                            staticClass: "custom-control-input",
+                            attrs: {
+                              type: "checkbox",
+                              name: "small",
+                              id: "option-small2",
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.afternoon)
+                                ? _vm._i(_vm.afternoon, null) > -1
+                                : _vm.afternoon,
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.onChange("T")
+                              },
+                              change: function ($event) {
+                                var $$a = _vm.afternoon,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.afternoon = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.afternoon = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.afternoon = $$c
+                                }
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "option-small2" },
+                            },
+                            [_vm._v("Tarde")]
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
                     _c("label", { attrs: { for: "hora_inicio" } }, [
                       _vm._v("Hora Inicio"),
                     ]),
@@ -1794,7 +2005,7 @@ var render = function () {
                     }),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
+                  _c("div", { staticClass: "form-group col-md-3" }, [
                     _c("label", { attrs: { for: "hora_fin" } }, [
                       _vm._v("Hora Fin"),
                     ]),
@@ -1828,200 +2039,6 @@ var render = function () {
                       },
                     }),
                   ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "frame-wrap bg-faded mb-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "custom-control custom-checkbox d-inline-flex mr-3",
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.allDay,
-                            expression: "allDay",
-                          },
-                        ],
-                        staticClass: "custom-control-input",
-                        attrs: {
-                          type: "checkbox",
-                          name: "bordered",
-                          id: "option-bordered",
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.allDay)
-                            ? _vm._i(_vm.allDay, null) > -1
-                            : _vm.allDay,
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.onChange("D")
-                          },
-                          change: function ($event) {
-                            var $$a = _vm.allDay,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 && (_vm.allDay = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.allDay = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.allDay = $$c
-                            }
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "option-bordered" },
-                        },
-                        [_vm._v("Todo el día")]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "custom-control custom-checkbox d-inline-flex mr-3",
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.morning,
-                            expression: "morning",
-                          },
-                        ],
-                        staticClass: "custom-control-input",
-                        attrs: {
-                          type: "checkbox",
-                          name: "small",
-                          id: "option-small",
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.morning)
-                            ? _vm._i(_vm.morning, null) > -1
-                            : _vm.morning,
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.onChange("M")
-                          },
-                          change: function ($event) {
-                            var $$a = _vm.morning,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 && (_vm.morning = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.morning = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.morning = $$c
-                            }
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "option-small" },
-                        },
-                        [_vm._v("Mañana")]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "custom-control custom-checkbox d-inline-flex mr-3",
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.afternoon,
-                            expression: "afternoon",
-                          },
-                        ],
-                        staticClass: "custom-control-input",
-                        attrs: {
-                          type: "checkbox",
-                          name: "small",
-                          id: "option-small2",
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.afternoon)
-                            ? _vm._i(_vm.afternoon, null) > -1
-                            : _vm.afternoon,
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.onChange("T")
-                          },
-                          change: function ($event) {
-                            var $$a = _vm.afternoon,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 && (_vm.afternoon = $$a.concat([$$v]))
-                              } else {
-                                $$i > -1 &&
-                                  (_vm.afternoon = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
-                              }
-                            } else {
-                              _vm.afternoon = $$c
-                            }
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "option-small2" },
-                        },
-                        [_vm._v("Tarde")]
-                      ),
-                    ]
-                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-row" }, [
