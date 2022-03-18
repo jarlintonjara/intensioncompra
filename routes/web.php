@@ -22,14 +22,14 @@ use App\Http\Controllers\UserExportController;
 });*/
 
 //Auth::routes(); 
-Route::get('sendEmail', function () {
-    $correo = new SchedulesForTomorrow;
-    print_r($correo);
-    Mail::to('alejarahi@gmail.com ')
-    ->cc('jjara@csticorp.biz')
-    ->send($correo);
-    return "Mensaje enviado";
-});
+// Route::get('sendEmail', function () {
+//     $correo = new SchedulesForTomorrow;
+//     print_r($correo);
+//     Mail::to('alejarahi@gmail.com ')
+//     ->cc('jjara@csticorp.biz')
+//     ->send($correo);
+//     return "Mensaje enviado";
+// });
 
 Route::get('/{any}', function () {
     return view('welcome');

@@ -324,9 +324,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.datos.user_id = this.session.id;
       }
     },
-    parkingChanged: function parkingChanged() {
-      this.datos.estacionamiento_id = this.session.parking_id;
-    },
     showT: function showT(id) {
       if (id == 1) {
         this.showTable = true;
@@ -1688,28 +1685,23 @@ var render = function () {
                         staticClass: "browser-default custom-select",
                         attrs: { id: "Estacionamiento" },
                         on: {
-                          change: [
-                            function ($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function (o) {
-                                  return o.selected
-                                })
-                                .map(function (o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.datos,
-                                "estacionamiento_id",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            },
-                            function ($event) {
-                              return _vm.parkingChanged()
-                            },
-                          ],
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "estacionamiento_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
                       },
                       _vm._l(_vm.parkingsFilter, function (parking) {

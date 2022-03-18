@@ -98,7 +98,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Estacionamiento">Estacionamiento</label>
-                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id" @change="parkingChanged()">
+                                <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id" >
                                     <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
                                 </select>
                             </div>
@@ -257,9 +257,7 @@ export default {
                 this.datos.user_id = this.session.id;
             }
         },
-        parkingChanged(){
-             this.datos.estacionamiento_id = this.session.parking_id;
-        },
+
         showT(id){
             if(id == 1){
                 this.showTable = true;
