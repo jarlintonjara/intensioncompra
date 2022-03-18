@@ -26,7 +26,7 @@ Route::get('sendEmail', function () {
     $correo = new SchedulesForTomorrow;
     print_r($correo);
     Mail::to('alejarahi@gmail.com ')
-    ->cc('jjara@csticorp.biz')
+    // ->cc('jjara@csticorp.biz')
     ->send($correo);
     return "Mensaje enviado";
 });

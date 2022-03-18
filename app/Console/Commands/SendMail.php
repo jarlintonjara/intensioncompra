@@ -30,8 +30,8 @@ class SendMail extends Command
      */
     public function handle()
     {
-        $texto = "Hola";
-        Storage::append("archivo.txt",$texto);
+        // $texto = "Hola";
+        // Storage::append("archivo.txt",$texto);
         Storage::delete('schedule.xlsx');
 
         $s = new ScheduleExportController;
@@ -40,7 +40,7 @@ class SendMail extends Command
         $correo = new SchedulesForTomorrow;
         print_r($correo);
         Mail::to('alejarahi@gmail.com ')
-        ->cc('jurier.albino@derco.pe')
+        // ->cc('jurier.albino@derco.pe')
         ->send($correo);
         return "Mensaje enviado";
     }
