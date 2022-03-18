@@ -29,10 +29,10 @@ class SchedulesForTomorrow extends Mailable
     public function build()
     {
         return $this->view('mail.schedulesTomorrow')
-        ->subject('Programación de estacionamientos');
-        // ->attachFromStorage('schedule.xlsx', 'Programación.xlsx', [
-        //     'mime' => 'application/xlsx'
-        // ]);
+        ->subject('Programación de estacionamientos')
+        ->attachFromStorage('schedule.xlsx', 'Programación.xlsx', [
+            'mime' => 'application/xlsx'
+        ]);
 
     }
 }
