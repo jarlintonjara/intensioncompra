@@ -37,11 +37,11 @@ class SendMail extends Command
         $s = new ScheduleExportController;
         $s->export();
 
-        // $correo = new SchedulesForTomorrow;
-        // print_r($correo);
-        // Mail::to('alejarahi@gmail.com ')
-        // ->cc('jurier.albino@derco.pe')
-        // ->send($correo);
-        // return "Mensaje enviado";
+        $correo = new SchedulesForTomorrow;
+        print_r($correo);
+        Mail::to('alejarahi@gmail.com ')
+        ->cc('jurier.albino@derco.pe')
+        ->send($correo);
+        return "Mensaje enviado";
     }
 }
