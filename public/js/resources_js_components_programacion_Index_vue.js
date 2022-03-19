@@ -500,21 +500,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     borrar: function borrar(id) {
-      var _this5 = this;
-
-      if (confirm("¿Confirma eliminar el registro?")) {
-        this.axios["delete"]("/api/programacion/".concat(id)).then(function (response) {
-          _this5.schedules = [].concat(response.data);
+      var self = this;
+      this.$swal.fire({
+        title: 'Seguro de eliminar?',
+        text: "",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si'
+      }).then(function () {
+        self.axios["delete"]("/api/programacion/".concat(id)).then(function (response) {
+          var id = response.data.id;
+          self.schedulesFilter = [].concat(self.schedulesFilter.filter(function (e) {
+            return e.id !== id;
+          }));
+          self.nextSchedulesFilter = [].concat(self.nextSchedulesFilter.filter(function (e) {
+            return e.id !== id;
+          }));
+          self.$swal.fire('Eliminado!', '', 'success');
         })["catch"](function (error) {
           console.log(error);
         });
-      }
+      });
     },
     abrirModalCrear: function abrirModalCrear() {
       this.allDay = false;
       this.partialDay = false;
       this.disabled = false;
-      this.datos.estacionamiento_id = '';
+      this.datos.estacionamiento_id = this.parkingsFilter.length == 1 ? this.parkingsFilter[0].id : '';
       this.datos.user_id = '';
       this.datos.fecha = '';
       this.datos.hora_inicio = '';
@@ -1708,7 +1722,7 @@ var render = function () {
                         return _c(
                           "option",
                           {
-                            key: parking.numero + parking.id,
+                            key: parking.numero,
                             domProps: { value: parking.id },
                           },
                           [_vm._v(_vm._s(parking.numero))]

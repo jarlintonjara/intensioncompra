@@ -99,7 +99,7 @@
                             <div class="form-group col-md-6">
                                 <label for="Estacionamiento">Estacionamiento</label>
                                 <select id="Estacionamiento" class="browser-default custom-select" v-model="datos.estacionamiento_id" >
-                                    <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero }}</option>
+                                    <option v-for="parking in parkingsFilter" :key="parking.numero" :value="parking.id">{{ parking.numero }}</option>
                                 </select>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
 export default {
     name: "Programacion",
     components: {
-
+        
     },
     data(){
         return {
@@ -185,14 +185,16 @@ export default {
             afternoon: false,
             disabled: false,
             info: [],
-            datos: {estacionamiento_id:'', 
-                    user_id:'', 
-                    fecha:'', 
-                    hora_inicio:'', 
-                    hora_fin: '', 
-                    turno: '', 
-                    observacion: '', 
-                    created_by : ''},
+            datos: {
+                estacionamiento_id:'', 
+                user_id:'', 
+                fecha:'', 
+                hora_inicio:'', 
+                hora_fin: '', 
+                turno: '', 
+                observacion: '', 
+                created_by : ''
+            },
             titulo:'',
             title:'',
             btnCrear:false,
@@ -271,48 +273,44 @@ export default {
         },
         onChange(param){
             this.disabled = false;
-                  switch (param) {
+            switch (param) {
                 case "D":
-                this.allDay = !this.allDay;
-                this.morning = false;
-                this.afternoon = false;
+                    this.allDay = !this.allDay;
+                    this.morning = false;
+                    this.afternoon = false;
 
-                if (this.allDay) {
-                    this.disabled = true;
-                    this.datos.hora_inicio = "07:00";
-                    this.datos.hora_fin = "19:00";
-                    this.datos.turno = "D";
-                }
+                    if (this.allDay) {
+                        this.disabled = true;
+                        this.datos.hora_inicio = "07:00";
+                        this.datos.hora_fin = "19:00";
+                        this.datos.turno = "D";
+                    }
 
-                break;
-
+                    break;
                 case "M":
-                this.morning = !this.morning;
-                this.allDay = false;
-                this.afternoon = false;
+                    this.morning = !this.morning;
+                    this.allDay = false;
+                    this.afternoon = false;
 
-                if (this.morning) {
-                    this.disabled = true;
-                    this.datos.hora_inicio = "07:00";
-                    this.datos.hora_fin = "13:30";
-                    this.datos.turno = "M";
-                }
-
-                break;
-
+                    if (this.morning) {
+                        this.disabled = true;
+                        this.datos.hora_inicio = "07:00";
+                        this.datos.hora_fin = "13:30";
+                        this.datos.turno = "M";
+                    }
+                    break;
                 case "T":
-                this.afternoon = !this.afternoon;
-                this.morning = false;
-                this.allDay = false;
+                    this.afternoon = !this.afternoon;
+                    this.morning = false;
+                    this.allDay = false;
 
-                if (this.afternoon) {
-                    this.disabled = true;
-                    this.datos.hora_inicio = "13:31";
-                    this.datos.hora_fin = "19:00";
-                    this.datos.turno = "T";
-                }
-
-                break;
+                    if (this.afternoon) {
+                        this.disabled = true;
+                        this.datos.hora_inicio = "13:31";
+                        this.datos.hora_fin = "19:00";
+                        this.datos.turno = "T";
+                    }
+                    break;
             }
         },
         async crear(){
@@ -381,19 +379,36 @@ export default {
             }
         },
         borrar(id){
-            if(confirm("¿Confirma eliminar el registro?")){
-                this.axios.delete(`/api/programacion/${id}`).then(response=>{
-                    this.schedules = [].concat(response.data);
+            let self = this;
+            this.$swal.fire({
+                title: 'Seguro de eliminar?',
+                text: "",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+            }).then(function () {
+                
+                self.axios.delete(`/api/programacion/${id}`).then(response => {
+                    let id = response.data.id;
+                    self.schedulesFilter = [].concat(self.schedulesFilter.filter(e => e.id !== id));
+                    self.nextSchedulesFilter =  [].concat(self.nextSchedulesFilter.filter(e => e.id !== id));
+                    self.$swal.fire(
+                        'Eliminado!',
+                        '',
+                        'success'
+                    );
                 }).catch(error=>{
                     console.log(error)
                 })
-            }
+            })
         },
         abrirModalCrear(){
             this.allDay = false;
             this.partialDay = false;
             this.disabled = false;
-            this.datos.estacionamiento_id = '';
+            this.datos.estacionamiento_id = this.parkingsFilter.length == 1 ? this.parkingsFilter[0].id : '';
             this.datos.user_id = '';
             this.datos.fecha = '';
             this.datos.hora_inicio = '';

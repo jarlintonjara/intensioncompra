@@ -123,17 +123,17 @@ class ProgramacionController extends Controller
         if ($register) {
             if( ($request->turno == "M" || $request->turno == "D" ) && $register->turno == "M"){
                 return response()->json([
-                    "message" => "El usuario ya tiene una programación en la mañana",
+                    "message" => "Estacionamiento ocupado",
                     "isSuccess" => false
                 ]);
             } else if( ($request->turno == "T" || $request->turno == "D" ) && $register->turno == "T"){
                 return response()->json([
-                    "message" => "El usuario ya tiene una programación en la tarde",
+                    "message" => "Estacionamiento ocupado",
                     "isSuccess" => false
                 ]);
             } else if ($register->turno == "D") {
                 return response()->json([
-                    "message" => "El usuario ya tiene una programación todo el día",
+                    "message" => "Estacionamiento ocupado",
                     "isSuccess" => false
                 ]);
             }
@@ -146,17 +146,17 @@ class ProgramacionController extends Controller
         if ($register2) {
             if (($request->turno == "M" || $request->turno == "D") && $register2->turno == "M") {
                 return response()->json([
-                    "message" => "El usuario ya tiene una programación en la mañana",
+                    "message" => "Estacionamiento ocupado",
                     "isSuccess" => false
                 ]);
             } else if (($request->turno == "T" || $request->turno == "D") && $register2->turno == "T") {
                 return response()->json([
-                    "message" => "El usuario ya tiene una programación en la tarde",
+                    "message" => "Estacionamiento ocupado",
                     "isSuccess" => false
                 ]);
             } else if ($register2->turno == "D") {
                 return response()->json([
-                    "message" => "El usuario ya tiene una programación todo el día",
+                    "message" => "Estacionamiento ocupado",
                     "isSuccess" => false
                 ]);
             }
@@ -205,16 +205,16 @@ class ProgramacionController extends Controller
         if ($register) {
             switch ($register->turno) {
                 case "D":
-                    $message = "El usuario ya tiene una programación todo el día";
+                    $message = "Estacionamiento ocupado";
                     break;
                 case "M":
-                    $message = "El usuario ya tiene una programación en la mañana";
+                    $message = "Estacionamiento ocupado";
                     break;
                 case "T":
-                    $message = "El usuario ya tiene una programación en la tarde";
+                    $message = "Estacionamiento ocupado";
                     break;
                 default:
-                    $message = "El usuario ya tiene una programación";
+                    $message = "Estacionamiento ocupado";
             }
             return response()->json([
                 "message" => $message,
@@ -260,7 +260,6 @@ class ProgramacionController extends Controller
     {
         $estacionamiento = ProgramacionModel::findOrFail($id);
         $estacionamiento->delete();
-        $data = ProgramacionModel::all();
-        return response()->json($data);
+        return response()->json($estacionamiento);
     }
 }
