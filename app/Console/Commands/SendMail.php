@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
+use App\Models\SettingModel;
 use \Illuminate\Support\Facades\Mail;
 use App\Mail\SchedulesForTomorrow;
 use Illuminate\Console\Command;
@@ -30,6 +31,8 @@ class SendMail extends Command
      */
     public function handle()
     {
+        $correo = SettingModel::first();
+
         // $texto = "Hola";
         // Storage::append("archivo.txt",$texto);
         Storage::delete('schedule.xlsx');
@@ -37,11 +40,25 @@ class SendMail extends Command
         $s = new ScheduleExportController;
         $s->export();
 
-        $correo = new SchedulesForTomorrow;
-        print_r($correo);
-        Mail::to('alejarahi@gmail.com ')
-        ->cc('jurier.albino@derco.pe')
-        ->send($correo);
+        $email = new SchedulesForTomorrow;
+
+        $correos = [];
+        if ($correo->email1 != NULL OR $correo->email1 != '') {
+            array_push($correos,$correo->email1);
+        } 
+        if ($correo->email2 != NULL OR $correo->email2 != '') {
+            array_push($correos,$correo->email2);
+        } 
+        if ($correo->email3 != NULL OR $correo->email3 != '') {
+            array_push($correos,$correo->email3);
+        } 
+        if ($correo->email4 != NULL OR $correo->email4 != '') {
+            array_push($correos,$correo->email4);
+        }    
+        
+        Mail::to('alejarahi@gmail.com')
+        ->cc($correos)
+        ->send($email);
         return "Mensaje enviado";
     }
 }

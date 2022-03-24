@@ -8,6 +8,7 @@ use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ScheduleExportController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +44,7 @@ Route::resource('usuario', UserController::class);
 Route::match(['put', 'patch'], 'updateProfile/{usuario}', [UserController::class, 'updateProfile']);
 Route::resource('rol', RoleController::class);
 
-
+Route::resource('setting', SettingController::class);
 
 // Route::get('export', [UserExportController::class, 'export']);
 Route::get('export/', [ScheduleExportController::class, 'export']);
