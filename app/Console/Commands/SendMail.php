@@ -40,7 +40,7 @@ class SendMail extends Command
         $correo = new SchedulesForTomorrow;
         print_r($correo);
         Mail::to('alejarahi@gmail.com ')
-        // ->cc('jurier.albino@derco.pe')
+        ->cc('jurier.albino@derco.pe')
         ->send($correo);
         return "Mensaje enviado";
     }
