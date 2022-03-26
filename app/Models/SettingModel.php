@@ -16,6 +16,7 @@ class SettingModel extends Model
 
     protected $fillable = [
         'time',
+        'email',
         'email1',
         'email2',
         'email3',

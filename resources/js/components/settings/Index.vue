@@ -34,10 +34,18 @@
                                     <input class="form-control" id="time" type="time" name="time" v-model="datos.time">
                                 </div>
                             </div>
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Correo principal</span>
+                                    </div>
+                                    <input type="email" id="email" name="email" aria-label="Email" class="form-control" v-model="datos.email">
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Correos</span>
+                                    <span class="input-group-text">Correos de copia</span>
                                 </div>
                                 <input type="email" id="email1" name="email1" aria-label="Email1" class="form-control" v-model="datos.email1">
                                 <input type="email" id="email2" name="email2" aria-label="Email2" class="form-control" v-model="datos.email2">
@@ -65,7 +73,7 @@ export default {
     data(){
         return {
             items:[],
-            datos: {time:'', email1:'', email2:'', email3:'', email4:''},
+            datos: {time:'', email:'',email1:'', email2:'', email3:'', email4:''},
             titulo:'',
             btnEditar:true,
             id:''

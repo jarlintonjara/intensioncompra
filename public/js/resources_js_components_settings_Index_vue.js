@@ -87,6 +87,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Setting",
   components: {},
@@ -95,6 +103,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       items: [],
       datos: {
         time: '',
+        email: '',
         email1: '',
         email2: '',
         email3: '',
@@ -1052,9 +1061,42 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
+                _c("div", { staticClass: "col-4" }, [
                   _c("div", { staticClass: "input-group mb-3" }, [
                     _vm._m(3),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.email,
+                          expression: "datos.email",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        id: "email",
+                        name: "email",
+                        "aria-label": "Email",
+                      },
+                      domProps: { value: _vm.datos.email },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "email", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "input-group mb-3" }, [
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -1250,7 +1292,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Correos")]),
+      _c("span", { staticClass: "input-group-text" }, [
+        _vm._v("Correo principal"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _vm._v("Correos de copia"),
+      ]),
     ])
   },
 ]

@@ -18,6 +18,7 @@ return new class extends Migration
 
             // $table->id();
             $table->time('time')->default('00:00');
+            $table->string('email')->nullable();
             $table->string('email1')->nullable();
             $table->string('email2')->nullable();
             $table->string('email3')->nullable();
