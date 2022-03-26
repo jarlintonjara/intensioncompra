@@ -20,7 +20,8 @@ class Kernel extends ConsoleKernel
     {
         $time = SettingModel::first();
 
-        $schedule->command('send:mail')->everySixHours();
+        $schedule->command('send:mail')->dailyAt($time->time);
+        // ->everySixHours();
         // ->dailyAt($time->time);	
     }
 

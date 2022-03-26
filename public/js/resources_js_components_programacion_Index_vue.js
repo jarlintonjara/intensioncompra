@@ -2176,16 +2176,6 @@ var staticRenderFns = [
           "data-original-title": "Fullscreen",
         },
       }),
-      _vm._v(" "),
-      _c("button", {
-        staticClass: "btn btn-panel waves-effect waves-themed",
-        attrs: {
-          "data-action": "panel-close",
-          "data-toggle": "tooltip",
-          "data-offset": "0,10",
-          "data-original-title": "Close",
-        },
-      }),
     ])
   },
   function () {
