@@ -56,7 +56,7 @@ class SendMail extends Command
             array_push($correos,$correo->email4);
         }    
         
-        Mail::to('alejarahi@gmail.com')
+        Mail::to($correo->email)
         ->cc($correos)
         ->send($email);
         return "Mensaje enviado";
