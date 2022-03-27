@@ -303,6 +303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1687,9 +1688,13 @@ var render = function () {
                             return _c("tr", { key: pmd.numero + pmd.id }, [
                               _c("td", [_vm._v(_vm._s(pmd.numero))]),
                               _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(pmd.nombre + " " + pmd.apellido)),
-                              ]),
+                              pmd.nombre == null
+                                ? _c("td", [_vm._v("VISITA")])
+                                : _c("td", [
+                                    _vm._v(
+                                      _vm._s(pmd.nombre + " " + pmd.apellido)
+                                    ),
+                                  ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(pmd.sede))]),
                               _vm._v(" "),

@@ -164,7 +164,8 @@
                                 <tbody>
                                     <tr v-for="pmd in estacioneshoy" :key="pmd.numero+pmd.id">
                                         <td>{{ pmd.numero }}</td>
-                                        <td>{{ pmd.nombre + " " + pmd.apellido }}</td>
+                                        <td v-if="pmd.nombre == null">VISITA</td>
+                                        <td v-else>{{ pmd.nombre + " " + pmd.apellido }}</td>
                                         <td>{{ pmd.sede }}</td>
                                         <td>{{ pmd.ubicacion }}</td>
                                     </tr>
