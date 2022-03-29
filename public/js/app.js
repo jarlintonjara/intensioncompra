@@ -5378,19 +5378,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/api/athenticated').then(function () {
-      _this.$router.push({
-        name: "Dashboard"
-      });
-    })["catch"](function (error) {
-      console.log(error);
-
-      _this.$router.push({
-        name: "Login"
-      });
-    });
+    /* axios.get('/api/athenticated').then(()=>{
+        this.$router.push({ name: "Dashboard"})
+    }).catch((error) => {
+        console.log(error);
+        this.$router.push({ name: "Login"})
+    }) */
   }
 });
 
@@ -5549,20 +5542,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var Home = function Home() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
-};
-
-var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
-};
-
-var Register = function Register() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_Register_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Register.vue */ "./resources/js/components/Register.vue"));
-};
-
 var Dashboard = function Dashboard() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue"));
+};
+
+var Registro = function Registro() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_Registro_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Registro.vue */ "./resources/js/components/Registro.vue"));
 };
 
 var Layout = function Layout() {
@@ -5573,88 +5558,48 @@ var NotFound = function NotFound() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_NotFound_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/NotFound.vue */ "./resources/js/components/NotFound.vue"));
 };
 
-var Rol = function Rol() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_rol_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/rol/Index.vue */ "./resources/js/components/rol/Index.vue"));
-};
-
-var Settings = function Settings() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_settings_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/settings/Index.vue */ "./resources/js/components/settings/Index.vue"));
-};
-
-var Usuario = function Usuario() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_usuario_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/usuario/Index.vue */ "./resources/js/components/usuario/Index.vue"));
-};
-
-var Perfil = function Perfil() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_usuario_Perfil_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/usuario/Perfil.vue */ "./resources/js/components/usuario/Perfil.vue"));
-};
-
-var Estacionamiento = function Estacionamiento() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_estacionamiento_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/estacionamiento/Index.vue */ "./resources/js/components/estacionamiento/Index.vue"));
-};
-
-var Programacion = function Programacion() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_programacion_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/programacion/Index.vue */ "./resources/js/components/programacion/Index.vue"));
-};
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mode: 'history',
   routes: [{
     path: '*',
     component: NotFound
-  }, {
-    path: '/',
-    component: Home,
-    name: "Home"
-  }, {
-    path: '/register',
-    component: Register
-  }, {
-    path: '/login',
-    component: Login,
-    name: 'Login'
-  }, {
+  },
+  /* {
+      path: '/',
+      component: Home,
+      name: "Home"
+  }, */
+
+  /* {
+      path: '/register',
+      component: Register
+  },
+  {
+      path: '/login',
+      component: Login,
+      name: 'Login'
+  }, */
+  {
     path: '/layout',
     component: Layout,
     name: 'Layout',
-    beforeEnter: function beforeEnter(to, form, next) {
-      axios.get('/api/athenticated').then(function () {
-        next();
-      })["catch"](function (error) {
-        console.log(error);
-        return next({
-          name: 'Login'
-        });
-      });
-    },
+
+    /*  beforeEnter: (to, form, next) =>{
+         axios.get('/api/athenticated').then(()=>{
+             next()
+         }).catch((error) => {
+             console.log(error);
+             return next({ name: 'Login'})
+         })
+     }, */
     children: [{
       path: "/dashboard",
       name: "Dashboard",
       component: Dashboard
     }, {
-      path: '/usuarios',
-      component: Usuario,
-      name: 'usuario'
-    }, {
-      path: '/estacionamiento',
-      component: Estacionamiento,
-      name: 'estacionamiento'
-    }, {
-      path: '/programacion',
-      component: Programacion,
-      name: 'programacion'
-    }, {
-      path: '/rol',
-      component: Rol,
-      name: 'rol'
-    }, {
-      path: '/perfil',
-      component: Perfil,
-      name: 'perfil'
-    }, {
-      path: '/settings',
-      component: Settings,
-      name: 'settings'
+      path: "/registro",
+      name: "Rgistro",
+      component: Registro
     }]
   }]
 });
@@ -88201,7 +88146,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Dashboard_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_rol_Index_vue":1,"resources_js_components_settings_Index_vue":1,"resources_js_components_usuario_Index_vue":1,"resources_js_components_usuario_Perfil_vue":1,"resources_js_components_estacionamiento_Index_vue":1,"resources_js_components_programacion_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_Registro_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

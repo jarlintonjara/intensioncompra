@@ -13,12 +13,12 @@ export default {
         }
     },
     mounted(){
-        axios.get('/api/athenticated').then(()=>{
+        /* axios.get('/api/athenticated').then(()=>{
             this.$router.push({ name: "Dashboard"})
         }).catch((error) => {
             console.log(error);
             this.$router.push({ name: "Login"})
-        })
+        }) */
     }
 }
 </script>

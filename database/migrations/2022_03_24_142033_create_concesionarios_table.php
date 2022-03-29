@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estacionamiento', function (Blueprint $table) {
+        Schema::create('concesionarios', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
-            $table->string('sede')->nullable();
-            $table->string('ubicacion')->nullable();
-            $table->tinyInteger('status')->default('1');
-            $table->integer('id_usuario')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('direccion')->nullable();
+            $table->tinyInteger('estado')->default('1');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('concesionarios');
     }
 };
