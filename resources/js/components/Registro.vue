@@ -61,7 +61,7 @@
                                 </v-select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="Anio">AÑO DE VERSIÓN</label>
+                                <label for="Anio">AÑO DE MODELO</label>
                                 <input type="text" id="Anio" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio">
                             </div>
                             <div class="form-group col-md-4">

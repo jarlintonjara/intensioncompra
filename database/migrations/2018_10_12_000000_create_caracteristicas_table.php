@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('marca')->nullable();
             $table->string('modelo')->nullable();
             $table->string('version')->nullable();
-            $table->string('anio_version')->nullable();
+            $table->string('anio_modelo')->nullable();
             $table->string('anio_fabricacion')->nullable();
             $table->string('color')->nullable();
             $table->string('codigo_sap')->nullable();

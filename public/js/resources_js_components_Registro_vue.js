@@ -1436,7 +1436,7 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "form-group col-md-4" }, [
                 _c("label", { attrs: { for: "Anio" } }, [
-                  _vm._v("AÑO DE VERSIÓN"),
+                  _vm._v("AÑO DE MODELO"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
