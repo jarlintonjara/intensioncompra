@@ -3,50 +3,50 @@
 
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Registro</span>
+                <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>REGISTRO</span>
             </h1>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <form>
-                    <div class="modal-body">
+                    
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="Nombres">Nombre Completo</label>
-                                <input type="text" id="Nombres" class="form-control" placeholder="Nombres" required="" v-model="form.nombre_completo">
+                                <label for="Nombres">NOMBRE COMPLETO</label>
+                                <input type="text" id="Nombres" class="form-control form-control-lg" placeholder="" required="" v-model="form.nombre_completo">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="Documento">Documento</label>
-                                <input type="text" id="Documento" class="form-control" placeholder="Documento" required="" v-model="form.documento">
+                                <label for="Documento">DOCUMENTO</label>
+                                <input type="text" id="Documento" class="form-control form-control-lg" placeholder="" required="" v-model="form.documento">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="Telefono">Celular</label>
-                                <input type="text" id="Telefono" class="form-control" placeholder="Documento" v-model="form.celular">
+                                <label for="Telefono">CELULAR</label>
+                                <input type="text" id="Telefono" class="form-control form-control-lg" placeholder="" v-model="form.celular">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="Email">Correo</label>
-                                <input type="email" id="Email" class="form-control" placeholder="Correo" v-model="form.correo">
+                                <label for="Email">CORREO</label>
+                                <input type="email" id="Email" class="form-control form-control-lg" placeholder="" v-model="form.correo">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="selectMarca">Marca</label>
+                                <label for="selectMarca">MARCA</label>
                                 <v-select class="vue-select2" name="selectMarca"
                                     :options="marca" v-model="selectMarca" :reduce="label => label.code">
                                 </v-select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="selectModelo">Modelo</label>
+                                <label for="selectModelo">MODELO</label>
                                 <v-select class="vue-select2" name="selectModelo"
                                     :options="modelo" v-model="selectModelo" :reduce="label => label.code">
                                 </v-select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="selectVersion">Version</label>
+                                <label for="selectVersion">VERSIÓN</label>
                                 <v-select class="vue-select2" name="selectVersion"
                                     :options="version" v-model="selectVersion" :reduce="label => label.code">
                                 </v-select>
@@ -55,21 +55,25 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="selectColor">Color</label>
+                                <label for="selectColor">COLOR</label>
                                 <v-select class="vue-select2" name="selectColor"
                                     :options="color" v-model="form.color1" :reduce="label => label.code">
                                 </v-select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="Anio">Año</label>
-                                <input type="text" id="Anio" class="form-control" placeholder="" required="" v-model="form.anio">
+                                <label for="Anio">AÑO DE VERSIÓN</label>
+                                <input type="text" id="Anio" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Anio">AÑO DE FABRICACIÓN</label>
+                                <input type="text" id="Anio" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio">
                             </div>
                         </div>
 
-                    </div>
+                   
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" @click.prevent="limpiar">Limpiar</button>
-                        <button type="submit" class="btn btn-primary" @click.prevent="crear">Crear</button>
+                        <button type="submit" class="btn btn-danger" @click.prevent="limpiar">LIMPIAR</button>
+                        <button type="submit" class="btn btn-primary" @click.prevent="crear">CREAR</button>
                     </div>
                 </form>
             </div>

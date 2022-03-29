@@ -1,0 +1,10 @@
+.bg-brand-gradient, .nav-footer, .page-logo, .page-sidebar {
+    background-color: rgb(227, 0, 37) !important;
+    background-image: none !important;
+}
+.vs__selected-options > input{
+    height: 40px;
+}
+html body {
+font-family: Lato, sans-serif;
+}

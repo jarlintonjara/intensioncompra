@@ -15,7 +15,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-label" for="nombres">Nombres</label>
-                                <input type="text" v-model="form.nombre" id="nombres" class="form-control">
+                                <input type="text" v-model="form.nombre" id="nombres" class="form-control form-control-lg">
                             </div>
                         </div>
                         <div class="col-md-6">

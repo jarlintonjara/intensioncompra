@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('caracteristicas', function (Blueprint $table) {
             $table->id();
-            $table->string('vin')->nullable();
             $table->string('material')->nullable();
             $table->string('marca')->nullable();
             $table->string('modelo')->nullable();
             $table->string('version')->nullable();
-            $table->string('anio')->nullable();
+            $table->string('anio_version')->nullable();
+            $table->string('anio_fabricacion')->nullable();
             $table->string('color')->nullable();
             $table->string('codigo_sap')->nullable();
             $table->string('observacion')->nullable();

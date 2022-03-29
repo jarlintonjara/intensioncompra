@@ -117,6 +117,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1187,292 +1191,313 @@ var render = function () {
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c("form", [
-            _c("div", { staticClass: "modal-body" }, [
-              _c("div", { staticClass: "form-row" }, [
-                _c("div", { staticClass: "form-group col-md-6" }, [
-                  _c("label", { attrs: { for: "Nombres" } }, [
-                    _vm._v("Nombre Completo"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.nombre_completo,
-                        expression: "form.nombre_completo",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "Nombres",
-                      placeholder: "Nombres",
-                      required: "",
-                    },
-                    domProps: { value: _vm.form.nombre_completo },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "nombre_completo",
-                          $event.target.value
-                        )
-                      },
-                    },
-                  }),
+            _c("div", { staticClass: "form-row" }, [
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "Nombres" } }, [
+                  _vm._v("NOMBRE COMPLETO"),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group col-md-6" }, [
-                  _c("label", { attrs: { for: "Documento" } }, [
-                    _vm._v("Documento"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.documento,
-                        expression: "form.documento",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "Documento",
-                      placeholder: "Documento",
-                      required: "",
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.nombre_completo,
+                      expression: "form.nombre_completo",
                     },
-                    domProps: { value: _vm.form.documento },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "documento", $event.target.value)
-                      },
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: {
+                    type: "text",
+                    id: "Nombres",
+                    placeholder: "",
+                    required: "",
+                  },
+                  domProps: { value: _vm.form.nombre_completo },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "nombre_completo", $event.target.value)
                     },
-                  }),
-                ]),
+                  },
+                }),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-row" }, [
-                _c("div", { staticClass: "form-group col-md-4" }, [
-                  _c("label", { attrs: { for: "Telefono" } }, [
-                    _vm._v("Celular"),
+              _c("div", { staticClass: "form-group col-md-6" }, [
+                _c("label", { attrs: { for: "Documento" } }, [
+                  _vm._v("DOCUMENTO"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.documento,
+                      expression: "form.documento",
+                    },
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: {
+                    type: "text",
+                    id: "Documento",
+                    placeholder: "",
+                    required: "",
+                  },
+                  domProps: { value: _vm.form.documento },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "documento", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-row" }, [
+              _c("div", { staticClass: "form-group col-md-4" }, [
+                _c("label", { attrs: { for: "Telefono" } }, [
+                  _vm._v("CELULAR"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.celular,
+                      expression: "form.celular",
+                    },
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: { type: "text", id: "Telefono", placeholder: "" },
+                  domProps: { value: _vm.form.celular },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "celular", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-4" }, [
+                _c("label", { attrs: { for: "Email" } }, [_vm._v("CORREO")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.correo,
+                      expression: "form.correo",
+                    },
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: { type: "email", id: "Email", placeholder: "" },
+                  domProps: { value: _vm.form.correo },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "correo", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-row" }, [
+              _c(
+                "div",
+                { staticClass: "form-group col-md-4" },
+                [
+                  _c("label", { attrs: { for: "selectMarca" } }, [
+                    _vm._v("MARCA"),
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.celular,
-                        expression: "form.celular",
-                      },
-                    ],
-                    staticClass: "form-control",
+                  _c("v-select", {
+                    staticClass: "vue-select2",
                     attrs: {
-                      type: "text",
-                      id: "Telefono",
-                      placeholder: "Documento",
-                    },
-                    domProps: { value: _vm.form.celular },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "celular", $event.target.value)
+                      name: "selectMarca",
+                      options: _vm.marca,
+                      reduce: function (label) {
+                        return label.code
                       },
+                    },
+                    model: {
+                      value: _vm.selectMarca,
+                      callback: function ($$v) {
+                        _vm.selectMarca = $$v
+                      },
+                      expression: "selectMarca",
                     },
                   }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-md-4" },
+                [
+                  _c("label", { attrs: { for: "selectModelo" } }, [
+                    _vm._v("MODELO"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "vue-select2",
+                    attrs: {
+                      name: "selectModelo",
+                      options: _vm.modelo,
+                      reduce: function (label) {
+                        return label.code
+                      },
+                    },
+                    model: {
+                      value: _vm.selectModelo,
+                      callback: function ($$v) {
+                        _vm.selectModelo = $$v
+                      },
+                      expression: "selectModelo",
+                    },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-md-4" },
+                [
+                  _c("label", { attrs: { for: "selectVersion" } }, [
+                    _vm._v("VERSIÓN"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "vue-select2",
+                    attrs: {
+                      name: "selectVersion",
+                      options: _vm.version,
+                      reduce: function (label) {
+                        return label.code
+                      },
+                    },
+                    model: {
+                      value: _vm.selectVersion,
+                      callback: function ($$v) {
+                        _vm.selectVersion = $$v
+                      },
+                      expression: "selectVersion",
+                    },
+                  }),
+                ],
+                1
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-row" }, [
+              _c(
+                "div",
+                { staticClass: "form-group col-md-4" },
+                [
+                  _c("label", { attrs: { for: "selectColor" } }, [
+                    _vm._v("COLOR"),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "vue-select2",
+                    attrs: {
+                      name: "selectColor",
+                      options: _vm.color,
+                      reduce: function (label) {
+                        return label.code
+                      },
+                    },
+                    model: {
+                      value: _vm.form.color1,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.form, "color1", $$v)
+                      },
+                      expression: "form.color1",
+                    },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-md-4" }, [
+                _c("label", { attrs: { for: "Anio" } }, [
+                  _vm._v("AÑO DE VERSIÓN"),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group col-md-4" }, [
-                  _c("label", { attrs: { for: "Email" } }, [_vm._v("Correo")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.correo,
-                        expression: "form.correo",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "email",
-                      id: "Email",
-                      placeholder: "Correo",
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.anio,
+                      expression: "form.anio",
                     },
-                    domProps: { value: _vm.form.correo },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "correo", $event.target.value)
-                      },
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: {
+                    type: "text",
+                    id: "Anio",
+                    placeholder: "",
+                    required: "",
+                  },
+                  domProps: { value: _vm.form.anio },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "anio", $event.target.value)
                     },
-                  }),
-                ]),
+                  },
+                }),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-row" }, [
-                _c(
-                  "div",
-                  { staticClass: "form-group col-md-4" },
-                  [
-                    _c("label", { attrs: { for: "selectMarca" } }, [
-                      _vm._v("Marca"),
-                    ]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      staticClass: "vue-select2",
-                      attrs: {
-                        name: "selectMarca",
-                        options: _vm.marca,
-                        reduce: function (label) {
-                          return label.code
-                        },
-                      },
-                      model: {
-                        value: _vm.selectMarca,
-                        callback: function ($$v) {
-                          _vm.selectMarca = $$v
-                        },
-                        expression: "selectMarca",
-                      },
-                    }),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "form-group col-md-4" },
-                  [
-                    _c("label", { attrs: { for: "selectModelo" } }, [
-                      _vm._v("Modelo"),
-                    ]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      staticClass: "vue-select2",
-                      attrs: {
-                        name: "selectModelo",
-                        options: _vm.modelo,
-                        reduce: function (label) {
-                          return label.code
-                        },
-                      },
-                      model: {
-                        value: _vm.selectModelo,
-                        callback: function ($$v) {
-                          _vm.selectModelo = $$v
-                        },
-                        expression: "selectModelo",
-                      },
-                    }),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "form-group col-md-4" },
-                  [
-                    _c("label", { attrs: { for: "selectVersion" } }, [
-                      _vm._v("Version"),
-                    ]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      staticClass: "vue-select2",
-                      attrs: {
-                        name: "selectVersion",
-                        options: _vm.version,
-                        reduce: function (label) {
-                          return label.code
-                        },
-                      },
-                      model: {
-                        value: _vm.selectVersion,
-                        callback: function ($$v) {
-                          _vm.selectVersion = $$v
-                        },
-                        expression: "selectVersion",
-                      },
-                    }),
-                  ],
-                  1
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-row" }, [
-                _c(
-                  "div",
-                  { staticClass: "form-group col-md-4" },
-                  [
-                    _c("label", { attrs: { for: "selectColor" } }, [
-                      _vm._v("Color"),
-                    ]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      staticClass: "vue-select2",
-                      attrs: {
-                        name: "selectColor",
-                        options: _vm.color,
-                        reduce: function (label) {
-                          return label.code
-                        },
-                      },
-                      model: {
-                        value: _vm.form.color1,
-                        callback: function ($$v) {
-                          _vm.$set(_vm.form, "color1", $$v)
-                        },
-                        expression: "form.color1",
-                      },
-                    }),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-md-4" }, [
-                  _c("label", { attrs: { for: "Anio" } }, [_vm._v("Año")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.anio,
-                        expression: "form.anio",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "Anio",
-                      placeholder: "",
-                      required: "",
-                    },
-                    domProps: { value: _vm.form.anio },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "anio", $event.target.value)
-                      },
-                    },
-                  }),
+              _c("div", { staticClass: "form-group col-md-4" }, [
+                _c("label", { attrs: { for: "Anio" } }, [
+                  _vm._v("AÑO DE FABRICACIÓN"),
                 ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.anio,
+                      expression: "form.anio",
+                    },
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: {
+                    type: "text",
+                    id: "Anio",
+                    placeholder: "",
+                    required: "",
+                  },
+                  domProps: { value: _vm.form.anio },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "anio", $event.target.value)
+                    },
+                  },
+                }),
               ]),
             ]),
             _vm._v(" "),
@@ -1489,7 +1514,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Limpiar")]
+                [_vm._v("LIMPIAR")]
               ),
               _vm._v(" "),
               _c(
@@ -1504,7 +1529,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Crear")]
+                [_vm._v("CREAR")]
               ),
             ]),
           ]),
@@ -1520,9 +1545,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
-        _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
+        _c("i", { staticClass: "subheader-icon fal fa-pencil" }),
         _vm._v(" "),
-        _c("span", { staticClass: "fw-300" }, [_vm._v("Registro")]),
+        _c("span", { staticClass: "fw-300" }, [_vm._v("REGISTRO")]),
       ]),
     ])
   },

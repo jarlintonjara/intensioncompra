@@ -13,7 +13,6 @@ class CaracteristicaModel extends Model
 
     protected $fillable = [
         'id', 
-        'vin',
         'material',
         'marca',
         'modelo',
