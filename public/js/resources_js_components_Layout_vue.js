@@ -267,6 +267,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1745,26 +1748,36 @@ var render = function () {
                   {
                     attrs: {
                       tag: "li",
-                      to: "/dashboard",
+                      to: "/registro",
                       "active-class": "active",
                     },
                   },
-                  [_c("a", [_vm._v("Inicio")])]
+                  [_c("a", [_vm._v("Registro")])]
                 ),
                 _vm._v(" "),
-                _vm.user.role_id == 1
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/usuarios",
-                          "active-class": "active",
-                        },
-                      },
-                      [_c("a", [_vm._v("Usuarios")])]
-                    )
-                  : _vm._e(),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      tag: "li",
+                      to: "/usuarios",
+                      "active-class": "active",
+                    },
+                  },
+                  [_c("a", [_vm._v("Registro no asignado")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      tag: "li",
+                      to: "/usuarios",
+                      "active-class": "active",
+                    },
+                  },
+                  [_c("a", [_vm._v("Registro asignado")])]
+                ),
                 _vm._v(" "),
                 _vm.user.role_id == 1
                   ? _c(

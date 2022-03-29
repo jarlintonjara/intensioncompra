@@ -23,11 +23,14 @@
             <ul class="nav-menu" id="js-nav-menu">
                 <li class="active open">
                     <ul>
-                        <router-link tag="li" to="/dashboard" active-class="active">
-                            <a >Inicio</a>
+                        <router-link tag="li" to="/registro" active-class="active">
+                            <a >Registro</a>
                         </router-link>
-                        <router-link tag="li" v-if="user.role_id == 1" to="/usuarios" active-class="active">
-                            <a >Usuarios</a>
+                        <router-link tag="li" to="/usuarios" active-class="active">
+                            <a >Registro no asignado</a>
+                        </router-link>
+                        <router-link tag="li" to="/usuarios" active-class="active">
+                            <a >Registro asignado</a>
                         </router-link>
                         <router-link tag="li" v-if="user.role_id == 1" to="/estacionamiento" active-class="active">
                             <a>Estacionamiento</a>

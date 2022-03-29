@@ -16,7 +16,10 @@ class RegistroController extends Controller
     public function index()
     {
         $data = CaracteristicaModel::all();
-        return response()->json($data);
+        $registro = RegistroModel::all();
+        return response()->json(['caracteristicas'=>$data,'registros'=>$registro]);
+
+        
     }
 
     public function create()

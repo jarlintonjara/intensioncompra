@@ -24,6 +24,7 @@ class RegistroModel extends Model
         'modelo',	
         'version',	
         'anio_modelo',
+        'anio_fabricacion',
         'color1',
         'color2',
         'color3',

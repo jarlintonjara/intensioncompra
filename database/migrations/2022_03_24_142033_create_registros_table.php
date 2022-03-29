@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('concesionario_id')->nullable();
             $table->tinyInteger('user_id')->nullable();
+            $table->tinyInteger('caracteristica_id')->nullable();
             $table->string('nombre_completo')->nullable();
             $table->string('documento')->nullable();
             $table->string('celular')->nullable();
@@ -24,7 +25,8 @@ return new class extends Migration
             $table->string('marca')->nullable();
             $table->string('modelo')->nullable();
             $table->string('version')->nullable();
-            $table->string('anio')->nullable();
+            $table->string('anio_modelo')->nullable();
+            $table->string('anio_fabricacion')->nullable();
             $table->string('color1')->nullable();
             $table->string('color2')->nullable();
             $table->string('color3')->nullable();
