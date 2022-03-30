@@ -25,7 +25,7 @@ class User extends Authenticatable
         'telefono',
         'cargo',
         'role_id',
-        'concesionario_id',
+        'tienda_id',
         'area',
         'usuario',
         'estado',

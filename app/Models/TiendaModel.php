@@ -5,23 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IngresoModel extends Model
+class TiendaModel extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
-    protected $table = 'ingresos';
+    protected $table = 'tiendas';
 
     protected $fillable = [
         'id',
-        'vin',
-        'marca',
-        'modelo',
-        'version',
-        'anio',
-        'color',
-        'fecha_ingreso',
+        'concesionarios_id',
+        'nombre',
+        'direccion',
         'estado',
         'created_at',
         'updated_at'

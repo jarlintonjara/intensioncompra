@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('cargo')->nullable();
             $table->tinyInteger('role_id')->default('2');
-            $table->tinyInteger('parking_id')->nullable();
+            $table->tinyInteger('tienda_id')->nullable();
             $table->string('area')->nullable();
             $table->string('documento')->nullable();
             $table->string('telefono')->nullable();

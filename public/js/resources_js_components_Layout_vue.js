@@ -270,6 +270,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1739,7 +1743,7 @@ var render = function () {
         _vm._m(0),
         _vm._v(" "),
         _c("ul", { staticClass: "nav-menu", attrs: { id: "js-nav-menu" } }, [
-          _c("li", { staticClass: "active open" }, [
+          _c("li", { staticClass: "active" }, [
             _c(
               "ul",
               [
@@ -1752,7 +1756,23 @@ var render = function () {
                       "active-class": "active",
                     },
                   },
-                  [_c("a", [_vm._v("Registro")])]
+                  [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _c("i", {
+                        staticClass: "fa-solid fa-pencil fa-3x",
+                        staticStyle: { color: "white !important" },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "nav-link-text",
+                          attrs: { "data-i18n": "nav.application_intel" },
+                        },
+                        [_vm._v("Registro")]
+                      ),
+                    ]),
+                  ]
                 ),
                 _vm._v(" "),
                 _c(

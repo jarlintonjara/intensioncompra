@@ -21,10 +21,13 @@
             </div>
             
             <ul class="nav-menu" id="js-nav-menu">
-                <li class="active open">
+                <li class="active">
                     <ul>
                         <router-link tag="li" to="/registro" active-class="active">
-                            <a >Registro</a>
+                                <a href="#">
+                                    <i class="fa-solid fa-pencil fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Registro</span>
+                                </a>
                         </router-link>
                         <router-link tag="li" to="/usuarios" active-class="active">
                             <a >Registro no asignado</a>
@@ -47,6 +50,7 @@
                     </ul>
                 </li>
             </ul>
+
             
             <div class="filter-message js-filter-message bg-success-600"></div>
         </nav>

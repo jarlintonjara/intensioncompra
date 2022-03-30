@@ -191,6 +191,101 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -220,7 +315,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       anio: [],
       selectMarca: "",
       selectModelo: "",
-      selectVersion: ""
+      selectVersion: "",
+      showTable1: true,
+      showTable2: false
     };
   },
   mounted: function mounted() {
@@ -288,7 +385,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 2;
                 return _this.axios.get('/api/registro').then(function (response) {
                   _this.caracteristicas = response.data.caracteristicas;
-                  _this.registros = response.data.registros;
+                  _this.asignados = response.data.asignados;
+                  _this.noasignados = response.data.noasignados;
 
                   var result = _this.getUnique(_this.caracteristicas, 'marca').map(function (e) {
                     return _objectSpread({
@@ -303,6 +401,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
               case 2:
+                _this.$tablaGlobal('#tnoasignado');
+
+                _this.$tablaGlobal('#tasignado');
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -398,6 +501,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.selectMarca = "";
       this.selectModelo = "";
       this.selectVersion = "";
+    },
+    showT: function showT(id) {
+      if (id == 1) {
+        this.showTable = true;
+        this.showTable2 = false;
+      } else {
+        this.showTable = false;
+        this.showTable2 = true;
+      }
     }
   }
 });
@@ -1324,7 +1436,7 @@ var render = function () {
                           expression: "form.documento",
                         },
                       ],
-                      staticClass: "form-control form-control-lg",
+                      staticClass: "form-control form-control-lg Documento",
                       attrs: {
                         type: "text",
                         id: "Documento",
@@ -1360,7 +1472,12 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control form-control-lg",
-                      attrs: { type: "text", id: "Telefono", placeholder: "" },
+                      attrs: {
+                        type: "text",
+                        pattern: "[0-9]{10}",
+                        id: "Telefono",
+                        placeholder: "",
+                      },
                       domProps: { value: _vm.form.celular },
                       on: {
                         input: function ($event) {
@@ -1497,7 +1614,7 @@ var render = function () {
                     { staticClass: "form-group col-md-4" },
                     [
                       _c("label", { attrs: { for: "selectColor" } }, [
-                        _vm._v("COLOR"),
+                        _vm._v("COLOR 1"),
                       ]),
                       _vm._v(" "),
                       _c("v-select", {
@@ -1521,37 +1638,133 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-4" },
+                    [
+                      _c("label", { attrs: { for: "selectColor" } }, [
+                        _vm._v("COLOR 2"),
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "vue-select2",
+                        attrs: {
+                          name: "selectColor",
+                          options: _vm.color,
+                          reduce: function (label) {
+                            return label.code
+                          },
+                        },
+                        model: {
+                          value: _vm.form.color2,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "color2", $$v)
+                          },
+                          expression: "form.color2",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-4" },
+                    [
+                      _c("label", { attrs: { for: "selectColor" } }, [
+                        _vm._v("COLOR 3"),
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "vue-select2",
+                        attrs: {
+                          name: "selectColor",
+                          options: _vm.color,
+                          reduce: function (label) {
+                            return label.code
+                          },
+                        },
+                        model: {
+                          value: _vm.form.color3,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "color3", $$v)
+                          },
+                          expression: "form.color3",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-4" }, [
                     _c("label", { attrs: { for: "Anio" } }, [
                       _vm._v("AÑO DE MODELO"),
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.anio_modelo,
-                          expression: "form.anio_modelo",
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.anio_modelo,
+                            expression: "form.anio_modelo",
+                          },
+                        ],
+                        staticClass:
+                          "custom-select form-control form-control-lg",
+                        attrs: { id: "Anio_modelo" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "anio_modelo",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
-                      ],
-                      staticClass: "form-control form-control-lg",
-                      attrs: {
-                        type: "text",
-                        id: "Anio_modelo",
-                        placeholder: "",
-                        required: "",
                       },
-                      domProps: { value: _vm.form.anio_modelo },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "anio_modelo", $event.target.value)
-                        },
-                      },
-                    }),
+                      [
+                        _c("option", { attrs: { value: "2025" } }, [
+                          _vm._v("2025"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2024" } }, [
+                          _vm._v("2024"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2023" } }, [
+                          _vm._v("2023"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2022" } }, [
+                          _vm._v("2022"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2021" } }, [
+                          _vm._v("2021"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2020" } }, [
+                          _vm._v("2020"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2019" } }, [
+                          _vm._v("2019"),
+                        ]),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-4" }, [
@@ -1559,36 +1772,70 @@ var render = function () {
                       _vm._v("AÑO DE FABRICACIÓN"),
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.anio_fabricación,
-                          expression: "form.anio_fabricación",
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.anio_fabricacion,
+                            expression: "form.anio_fabricacion",
+                          },
+                        ],
+                        staticClass:
+                          "custom-select form-control form-control-lg",
+                        attrs: { id: "Anio_fabricacion" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "anio_fabricacion",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
-                      ],
-                      staticClass: "form-control form-control-lg",
-                      attrs: {
-                        type: "text",
-                        id: "Anio_fabricacion",
-                        placeholder: "",
-                        required: "",
                       },
-                      domProps: { value: _vm.form.anio_fabricación },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form,
-                            "anio_fabricación",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
+                      [
+                        _c("option", { attrs: { value: "2025" } }, [
+                          _vm._v("2025"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2024" } }, [
+                          _vm._v("2024"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2023" } }, [
+                          _vm._v("2023"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2022" } }, [
+                          _vm._v("2022"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2021" } }, [
+                          _vm._v("2021"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2020" } }, [
+                          _vm._v("2020"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2019" } }, [
+                          _vm._v("2019"),
+                        ]),
+                      ]
+                    ),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -1640,36 +1887,102 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tRegistronoasignado" },
+                  attrs: { id: "tasignado" },
                 },
                 [
                   _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.registros, function (registro) {
-                      return _c("tr", { key: registro.id }, [
-                        _c("td", [_vm._v(_vm._s(registro.created_at))]),
+                    _vm._l(_vm.asignados, function (asignado) {
+                      return _c("tr", { key: asignado.id }, [
+                        _c("td", [
+                          _vm._v(_vm._s(_vm.$dateFormat(asignado.created_at))),
+                        ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.nombre_completo))]),
+                        _c("td", [_vm._v(_vm._s(asignado.nombre_completo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.documento))]),
+                        _c("td", [_vm._v(_vm._s(asignado.documento))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.celular))]),
+                        _c("td", [_vm._v(_vm._s(asignado.celular))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.correo))]),
+                        _c("td", [_vm._v(_vm._s(asignado.correo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.marca))]),
+                        _c("td", [_vm._v(_vm._s(asignado.marca))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.modelo))]),
+                        _c("td", [_vm._v(_vm._s(asignado.modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.version))]),
+                        _c("td", [_vm._v(_vm._s(asignado.version))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.color1))]),
+                        _c("td", [_vm._v(_vm._s(asignado.color1))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(registro.anio_modelo))]),
+                        _c("td", [_vm._v(_vm._s(asignado.color2))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignado.color3))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignado.anio_modelo))]),
                         _vm._v(" "),
                         _vm._m(4, true),
+                      ])
+                    }),
+                    0
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-12" }, [
+        _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+          _vm._m(5),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-container show" }, [
+            _c("div", { staticClass: "panel-content" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table table-bordered table-hover table-striped w-100",
+                  attrs: { id: "tnoasignado" },
+                },
+                [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.noasignados, function (noasignado) {
+                      return _c("tr", { key: noasignado.id }, [
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.$dateFormat(noasignado.created_at))
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.nombre_completo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.documento))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.celular))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.correo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.marca))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.modelo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.version))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.color1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.color2))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.color3))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.anio_modelo))]),
+                        _vm._v(" "),
+                        _vm._m(7, true),
                       ])
                     }),
                     0
@@ -1743,6 +2056,94 @@ var staticRenderFns = [
         _c(
           "h2",
           { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+          [_c("b", [_vm._v("Registros asignados ")])]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-toolbar" }, [
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-collapse",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Collapse",
+          },
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "btn btn-panel waves-effect waves-themed",
+          attrs: {
+            "data-action": "panel-fullscreen",
+            "data-toggle": "tooltip",
+            "data-offset": "0,10",
+            "data-original-title": "Fullscreen",
+          },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "thead",
+      { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
+      [
+        _c("tr", [
+          _c("th", [_vm._v("Fecha Creación")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Nombre Completo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Documento")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("celular")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Correo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Marca")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Modelo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Versión")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("color 1")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("color 2")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("color 3")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Año Modelo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Acciones")]),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticStyle: { "text-align": "center" } }, [
+      _c("button", { staticClass: "btn btn-warning" }, [
+        _c("i", { staticClass: "far fa-edit" }),
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-danger" }, [
+        _c("i", { staticClass: "fa fa-trash" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-hdr" }, [
+      _c("h2", [
+        _c(
+          "h2",
+          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
           [_c("b", [_vm._v("Registros no asignados ")])]
         ),
       ]),
@@ -1774,31 +2175,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-warning-200" }, [
-      _c("tr", [
-        _c("th", [_vm._v("Fecha Creación")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Nombre Completo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Documento")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("celular")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Correo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Marca")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Modelo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Versión")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("color 1")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Año Modelo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Acciones")]),
-      ]),
-    ])
+    return _c(
+      "thead",
+      { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
+      [
+        _c("tr", [
+          _c("th", [_vm._v("Fecha Creación")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Nombre Completo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Documento")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("celular")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Correo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Marca")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Modelo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Versión")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("color 1")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("color 2")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("color 3")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Año Modelo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Acciones")]),
+        ]),
+      ]
+    )
   },
   function () {
     var _vm = this

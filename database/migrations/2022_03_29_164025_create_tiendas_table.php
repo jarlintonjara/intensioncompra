@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ingresos', function (Blueprint $table) {
+        Schema::create('tiendas', function (Blueprint $table) {
             $table->id();
-            $table->string('vin')->nullable();
-            $table->string('marca')->nullable();
-            $table->string('modelo')->nullable();
-            $table->string('version')->nullable();
-            $table->string('anio')->nullable();
-            $table->string('color')->nullable();
-            $table->date('fecha_ingreso');
+            $table->string('concesionario_id');
+            $table->string('nombre');
+            $table->string('direccion')->nullable();
             $table->tinyInteger('estado');
             $table->timestamps();
         });
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingresos');
+        Schema::dropIfExists('tiendas');
     }
 };

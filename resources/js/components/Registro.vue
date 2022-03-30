@@ -30,14 +30,14 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="Documento">DOCUMENTO</label>
-                                    <input type="text" id="Documento" class="form-control form-control-lg" placeholder="" required="" v-model="form.documento">
+                                    <input type="text" id="Documento" class="form-control form-control-lg Documento" placeholder="" required="" v-model="form.documento">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="Telefono">CELULAR</label>
-                                    <input type="text" id="Telefono" class="form-control form-control-lg" placeholder="" v-model="form.celular">
+                                    <input type="text" pattern="[0-9]{10}" id="Telefono" class="form-control form-control-lg" placeholder="" v-model="form.celular">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Email">CORREO</label>
@@ -68,18 +68,48 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="selectColor">COLOR</label>
+                                    <label for="selectColor">COLOR 1</label>
                                     <v-select class="vue-select2" name="selectColor"
                                         :options="color" v-model="form.color1" :reduce="label => label.code">
                                     </v-select>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label for="selectColor">COLOR 2</label>
+                                    <v-select class="vue-select2" name="selectColor"
+                                        :options="color" v-model="form.color2" :reduce="label => label.code">
+                                    </v-select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="selectColor">COLOR 3</label>
+                                    <v-select class="vue-select2" name="selectColor"
+                                        :options="color" v-model="form.color3" :reduce="label => label.code">
+                                    </v-select>
+                                </div>
+                                <div class="form-group col-md-4">
                                     <label for="Anio">AÑO DE MODELO</label>
-                                    <input type="text" id="Anio_modelo" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio_modelo">
+                                    <!-- <input type="text" id="Anio_modelo" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio_modelo"> -->
+                                <select id="Anio_modelo" class="custom-select form-control form-control-lg" v-model="form.anio_modelo">
+                                                        <option value="2025">2025</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2019">2019</option>
+                                                    </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Anio">AÑO DE FABRICACIÓN</label>
-                                    <input type="text" id="Anio_fabricacion" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio_fabricación">
+                                    <!-- <input type="text" id="Anio_fabricacion" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio_fabricación"> -->
+                                        <select id="Anio_fabricacion" class="custom-select form-control form-control-lg" v-model="form.anio_fabricacion">
+                                                        <option value="2025">2025</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2019">2019</option>
+                                                    </select>
                                 </div>
                             </div>
 
@@ -98,6 +128,67 @@
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b>Registros asignados </b></h2>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
+                    </div>
+
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <table id="tasignado" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
+                                <tr>
+                                    <th>Fecha Creación</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Documento</th>
+                                    <th>celular</th>
+                                    <th>Correo</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Versión</th>
+                                    <th>color 1</th>
+                                    <th>color 2</th>
+                                    <th>color 3</th>
+                                    <th>Año Modelo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="asignado in asignados" :key="asignado.id">
+                                    <td>{{$dateFormat(asignado.created_at)}}</td>
+                                    <td>{{asignado.nombre_completo}}</td>
+                                    <td>{{asignado.documento}}</td>
+                                    <td>{{asignado.celular}}</td>
+                                    <td>{{asignado.correo}}</td>
+                                    <td>{{asignado.marca}}</td>
+                                    <td>{{asignado.modelo}}</td>
+                                    <td>{{asignado.version}}</td>
+                                    <td>{{asignado.color1}}</td>
+                                    <td>{{asignado.color2}}</td>
+                                    <td>{{asignado.color3}}</td>
+                                    <td>{{asignado.anio_modelo}}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-warning"><i class="far fa-edit"></i></button>
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                        <!-- datatable end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div id="panel-4" class="panel">
+                <div class="panel-hdr">
+                    <h2>
                         <h2 style="text-align: center; font-size: 1.125rem;"><b>Registros no asignados </b></h2>
                     </h2>
                     <div class="panel-toolbar">
@@ -109,8 +200,8 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <table id="tRegistronoasignado" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="bg-warning-200">
+                        <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
                                     <th>Fecha Creación</th>
                                     <th>Nombre Completo</th>
@@ -121,22 +212,26 @@
                                     <th>Modelo</th>
                                     <th>Versión</th>
                                     <th>color 1</th>
+                                    <th>color 2</th>
+                                    <th>color 3</th>
                                     <th>Año Modelo</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="registro in registros" :key="registro.id">
-                                    <td>{{registro.created_at}}</td>
-                                    <td>{{registro.nombre_completo}}</td>
-                                    <td>{{registro.documento}}</td>
-                                    <td>{{registro.celular}}</td>
-                                    <td>{{registro.correo}}</td>
-                                    <td>{{registro.marca}}</td>
-                                    <td>{{registro.modelo}}</td>
-                                    <td>{{registro.version}}</td>
-                                    <td>{{registro.color1}}</td>
-                                    <td>{{registro.anio_modelo}}</td>
+                                <tr v-for="noasignado in noasignados" :key="noasignado.id">
+                                    <td>{{$dateFormat(noasignado.created_at)}}</td>
+                                    <td>{{noasignado.nombre_completo}}</td>
+                                    <td>{{noasignado.documento}}</td>
+                                    <td>{{noasignado.celular}}</td>
+                                    <td>{{noasignado.correo}}</td>
+                                    <td>{{noasignado.marca}}</td>
+                                    <td>{{noasignado.modelo}}</td>
+                                    <td>{{noasignado.version}}</td>
+                                    <td>{{noasignado.color1}}</td>
+                                    <td>{{noasignado.color2}}</td>
+                                    <td>{{noasignado.color3}}</td>
+                                    <td>{{noasignado.anio_modelo}}</td>
                                     <td style="text-align: center">
                                         <button class="btn btn-warning"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
@@ -185,7 +280,8 @@ export default {
             selectMarca : "",
             selectModelo : "",
             selectVersion : "",
-            
+            showTable1: true,
+            showTable2: false 
         }
     },
     mounted(){
@@ -225,13 +321,16 @@ export default {
              await this.axios.get('/api/registro')
                 .then(response=> {
                     this.caracteristicas = response.data.caracteristicas;
-                    this.registros = response.data.registros;
+                    this.asignados = response.data.asignados;
+                    this.noasignados = response.data.noasignados;
                     let result = this.getUnique(this.caracteristicas , 'marca').map(e => { return { code: e.marca, label: e.marca, ...e } } );
                     this.marca = [].concat(result);
                 })
                 .catch(error=>{
                     console.log(error);
                 })
+                this.$tablaGlobal('#tnoasignado');
+                this.$tablaGlobal('#tasignado');
         },
         getUnique(arr, comp) {
             const unique =  arr.map(e => e[comp])
@@ -295,7 +394,17 @@ export default {
             this.selectMarca = "";
             this.selectModelo = "";
             this.selectVersion = "";
+        },
+        showT(id){
+            if(id == 1){
+                this.showTable = true;
+                this.showTable2 = false;
+            }else{
+                this.showTable = false;
+                this.showTable2 = true;
+            }
         }
     }
 }
+
 </script>
