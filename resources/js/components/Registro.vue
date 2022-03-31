@@ -11,7 +11,7 @@
             <div id="panel-4" class="panel">
             <div class="panel-hdr">
                 <h2>
-                    <h2 style="text-align: center; font-size: 1.125rem;"><b> </b></h2>
+                    <h2 style="text-align: center; font-size: 1.125rem;"><b>NUEVO REGISTRO</b></h2>
                 </h2>
                 <div class="panel-toolbar">
                     <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -26,22 +26,22 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="Nombres">NOMBRE COMPLETO</label>
-                                    <input type="text" id="Nombres" class="form-control form-control-lg" placeholder="" required="" v-model="form.nombre_completo">
+                                    <input type="text" id="Nombres" class="form-control" placeholder="" required="" v-model="form.nombre_completo">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="Documento">DOCUMENTO</label>
-                                    <input type="text" id="Documento" class="form-control form-control-lg Documento" placeholder="" required="" v-model="form.documento">
+                                    <input type="text" id="Documento" class="form-control Documento" placeholder="" required="" v-model="form.documento">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="Telefono">CELULAR</label>
-                                    <input type="text" pattern="[0-9]{10}" id="Telefono" class="form-control form-control-lg" placeholder="" v-model="form.celular">
+                                    <input type="text" pattern="[0-9]{10}" id="Telefono" class="form-control" placeholder="" v-model="form.celular">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Email">CORREO</label>
-                                    <input type="email" id="Email" class="form-control form-control-lg" placeholder="" v-model="form.correo">
+                                    <input type="email" id="Email" class="form-control" placeholder="" v-model="form.correo">
                                 </div>
                             </div>
 
@@ -87,8 +87,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Anio">AÑO DE MODELO</label>
-                                    <!-- <input type="text" id="Anio_modelo" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio_modelo"> -->
-                                <select id="Anio_modelo" class="custom-select form-control form-control-lg" v-model="form.anio_modelo">
+                                    <!-- <input type="text" id="Anio_modelo" class="form-control" placeholder="" required="" v-model="form.anio_modelo"> -->
+                                <select id="Anio_modelo" class="custom-select form-control" v-model="form.anio_modelo">
                                                         <option value="2025">2025</option>
                                                         <option value="2024">2024</option>
                                                         <option value="2023">2023</option>
@@ -98,10 +98,9 @@
                                                         <option value="2019">2019</option>
                                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <!-- <div class="form-group col-md-4">
                                     <label for="Anio">AÑO DE FABRICACIÓN</label>
-                                    <!-- <input type="text" id="Anio_fabricacion" class="form-control form-control-lg" placeholder="" required="" v-model="form.anio_fabricación"> -->
-                                        <select id="Anio_fabricacion" class="custom-select form-control form-control-lg" v-model="form.anio_fabricacion">
+                                        <select id="Anio_fabricacion" class="custom-select form-control" v-model="form.anio_fabricacion">
                                                         <option value="2025">2025</option>
                                                         <option value="2024">2024</option>
                                                         <option value="2023">2023</option>
@@ -110,7 +109,7 @@
                                                         <option value="2020">2020</option>
                                                         <option value="2019">2019</option>
                                                     </select>
-                                </div>
+                                </div> -->
                             </div>
 
                     
@@ -154,6 +153,8 @@
                                     <th>color 2</th>
                                     <th>color 3</th>
                                     <th>Año Modelo</th>
+                                    <th>Fecha Distribución</th>
+                                    <th>VIN</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -171,6 +172,8 @@
                                     <td>{{asignado.color2}}</td>
                                     <td>{{asignado.color3}}</td>
                                     <td>{{asignado.anio_modelo}}</td>
+                                    <td>31-03-2022</td>
+                                    <td>25d55ad283aa400af464c76d713c07ad</td>
                                     <td style="text-align: center">
                                         <button class="btn btn-warning"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
@@ -361,7 +364,7 @@ export default {
                         '',
                         'success'
                     )
-                    this.registros.push(response.data);
+                    this.noasignados.push(response.data);
                     limpiar();
                 }).catch(function (error) {
                     console.log(error);
@@ -394,16 +397,16 @@ export default {
             this.selectMarca = "";
             this.selectModelo = "";
             this.selectVersion = "";
-        },
-        showT(id){
-            if(id == 1){
-                this.showTable = true;
-                this.showTable2 = false;
-            }else{
-                this.showTable = false;
-                this.showTable2 = true;
-            }
         }
+        // showT(id){
+        //     if(id == 1){
+        //         this.showTable = true;
+        //         this.showTable2 = false;
+        //     }else{
+        //         this.showTable = false;
+        //         this.showTable2 = true;
+        //     }
+        // }
     }
 }
 

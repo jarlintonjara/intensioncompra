@@ -286,6 +286,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -459,7 +462,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   axios.post('api/registro', _this2.form).then(function (response) {
                     _this2.$swal.fire('Registro creado!', '', 'success');
 
-                    _this2.registros.push(response.data);
+                    _this2.noasignados.push(response.data);
 
                     limpiar();
                   })["catch"](function (error) {
@@ -501,16 +504,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.selectMarca = "";
       this.selectModelo = "";
       this.selectVersion = "";
-    },
-    showT: function showT(id) {
-      if (id == 1) {
-        this.showTable = true;
-        this.showTable2 = false;
-      } else {
-        this.showTable = false;
-        this.showTable2 = true;
-      }
-    }
+    } // showT(id){
+    //     if(id == 1){
+    //         this.showTable = true;
+    //         this.showTable2 = false;
+    //     }else{
+    //         this.showTable = false;
+    //         this.showTable2 = true;
+    //     }
+    // }
+
   }
 });
 
@@ -1399,7 +1402,7 @@ var render = function () {
                           expression: "form.nombre_completo",
                         },
                       ],
-                      staticClass: "form-control form-control-lg",
+                      staticClass: "form-control",
                       attrs: {
                         type: "text",
                         id: "Nombres",
@@ -1436,7 +1439,7 @@ var render = function () {
                           expression: "form.documento",
                         },
                       ],
-                      staticClass: "form-control form-control-lg Documento",
+                      staticClass: "form-control Documento",
                       attrs: {
                         type: "text",
                         id: "Documento",
@@ -1471,7 +1474,7 @@ var render = function () {
                           expression: "form.celular",
                         },
                       ],
-                      staticClass: "form-control form-control-lg",
+                      staticClass: "form-control",
                       attrs: {
                         type: "text",
                         pattern: "[0-9]{10}",
@@ -1504,7 +1507,7 @@ var render = function () {
                           expression: "form.correo",
                         },
                       ],
-                      staticClass: "form-control form-control-lg",
+                      staticClass: "form-control",
                       attrs: { type: "email", id: "Email", placeholder: "" },
                       domProps: { value: _vm.form.correo },
                       on: {
@@ -1712,8 +1715,7 @@ var render = function () {
                             expression: "form.anio_modelo",
                           },
                         ],
-                        staticClass:
-                          "custom-select form-control form-control-lg",
+                        staticClass: "custom-select form-control",
                         attrs: { id: "Anio_modelo" },
                         on: {
                           change: function ($event) {
@@ -1728,77 +1730,6 @@ var render = function () {
                             _vm.$set(
                               _vm.form,
                               "anio_modelo",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { value: "2025" } }, [
-                          _vm._v("2025"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2024" } }, [
-                          _vm._v("2024"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2023" } }, [
-                          _vm._v("2023"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2022" } }, [
-                          _vm._v("2022"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2021" } }, [
-                          _vm._v("2021"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2020" } }, [
-                          _vm._v("2020"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2019" } }, [
-                          _vm._v("2019"),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c("label", { attrs: { for: "Anio" } }, [
-                      _vm._v("AÑO DE FABRICACIÓN"),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.anio_fabricacion,
-                            expression: "form.anio_fabricacion",
-                          },
-                        ],
-                        staticClass:
-                          "custom-select form-control form-control-lg",
-                        attrs: { id: "Anio_fabricacion" },
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "anio_fabricacion",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
@@ -1922,6 +1853,10 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignado.anio_modelo))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v("31-03-2022")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("25d55ad283aa400af464c76d713c07ad")]),
+                        _vm._v(" "),
                         _vm._m(4, true),
                       ])
                     }),
@@ -2020,7 +1955,7 @@ var staticRenderFns = [
         _c(
           "h2",
           { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-          [_c("b")]
+          [_c("b", [_vm._v("NUEVO REGISTRO")])]
         ),
       ]),
       _vm._v(" "),
@@ -2115,6 +2050,10 @@ var staticRenderFns = [
           _c("th", [_vm._v("color 3")]),
           _vm._v(" "),
           _c("th", [_vm._v("Año Modelo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Fecha Distribución")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("VIN")]),
           _vm._v(" "),
           _c("th", [_vm._v("Acciones")]),
         ]),

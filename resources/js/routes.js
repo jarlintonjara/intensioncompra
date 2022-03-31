@@ -6,6 +6,7 @@ const NotFound = () => import('./components/NotFound.vue');
 const Login = () => import('./components/Login.vue');
 const Register = () => import('./components/Register.vue');
 const Perfil = () => import('./components/Perfil.vue');
+const noasignado = () => import('./components/registro/noasignado.Vue');
 
 export default{
     mode: 'history',
