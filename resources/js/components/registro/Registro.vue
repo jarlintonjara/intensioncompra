@@ -121,7 +121,7 @@ export default {
             registros:[],
             form: {
                 concesionario_id : 1,	
-                user_id : 1,	
+                user_id : 0,	
                 caracteristica_id : 0,	
                 nombre_completo : "",
                 documento : "",
@@ -146,7 +146,8 @@ export default {
             selectModelo : "",
             selectVersion : "",
             showTable1: true,
-            showTable2: false 
+            showTable2: false,
+            user : null
         }
     },
     mounted(){
@@ -183,6 +184,11 @@ export default {
     },
     methods:{
         async init(){
+            const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+                this.form.user_id = this.user.id
+            })
              await this.axios.get('/api/registro')
                 .then(response=> {
                     this.caracteristicas = response.data.caracteristicas;
@@ -236,8 +242,8 @@ export default {
         limpiar(){
             this.form = {
                 concesionario_id : 1,	
-                user_id : 1,	
                 caracteristica_id : 0,	
+                user_id : this.user.id,
                 nombre_completo : "",
                 documento : "",
                 celular : "",
