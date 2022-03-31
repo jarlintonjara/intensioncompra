@@ -87,7 +87,6 @@ export default {
             const token = localStorage.getItem('access_token');
             await axios.get('api/getSession/'+ token).then((res)=>{
                 this.user = res.data;
-                console.log()
             })
              await this.axios.get('/api/registro')
                 .then(response=> {

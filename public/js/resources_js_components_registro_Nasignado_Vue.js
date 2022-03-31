@@ -126,7 +126,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 3;
                 return axios.get('api/getSession/' + token).then(function (res) {
                   _this.user = res.data;
-                  console.log();
                 });
 
               case 3:
