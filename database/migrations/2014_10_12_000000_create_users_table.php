@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellido');
+            $table->string('apellido')->nullable();
             $table->string('cargo')->nullable();
-            $table->tinyInteger('role_id')->default('2');
+            $table->tinyInteger('role_id');
+            $table->tinyInteger('concesionario_id')->nullable();
             $table->tinyInteger('tienda_id')->nullable();
             $table->string('area')->nullable();
             $table->string('documento')->nullable();

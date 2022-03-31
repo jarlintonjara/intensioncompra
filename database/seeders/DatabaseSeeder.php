@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     static  $roles = [
         'Admin',
-        'Usuario',
-        'Propietario'
+        'Usuario'
     ];
 
     public function run()

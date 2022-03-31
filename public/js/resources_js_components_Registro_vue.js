@@ -462,7 +462,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   axios.post('api/registro', _this2.form).then(function (response) {
                     _this2.$swal.fire('Registro creado!', '', 'success');
 
-                    _this2.noasignados.push(response.data);
+                    _this2.noasignados.push(response.data.NO);
 
                     limpiar();
                   })["catch"](function (error) {

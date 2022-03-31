@@ -364,7 +364,7 @@ export default {
                         '',
                         'success'
                     )
-                    this.noasignados.push(response.data);
+                    this.noasignados.push(response.data.NO);
                     limpiar();
                 }).catch(function (error) {
                     console.log(error);
