@@ -35,7 +35,7 @@
             <!-- app user menu -->
             <div>
                 <a href="#" data-toggle="dropdown" title="Usuario" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                    <i class="fas fa-user"></i> {{ session.nombre }}
+                    <i class="fas fa-user"></i> {{ user.nombre }}
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
@@ -52,7 +52,7 @@
 
                         
                     <div class="dropdown-divider m-0"></div>
-                    <router-link :to="{ name: 'perfil', query: { ps: session } }" class="dropdown-item fw-500 pt-3 pb-3">
+                    <router-link to="perfil" class="dropdown-item fw-500 pt-3 pb-3">
                        <span data-i18n="drpdwn.page-logout">Perfil</span> 
                     </router-link>
 
@@ -69,9 +69,22 @@
 export default {
     name: "Navbar",
     props:['session'],
+    data(){
+        return {
+            user: { nombre : ""}
+        }
+    },
+    watch:{
+        session(val){
+            this.user = val
+        }
+    },
     methods:{
-        logout(){
-            axios.post('/api/logout').then(()=>{
+        async logout(){
+            const token = localStorage.getItem('access_token');
+            const access_token = token ? token : "";
+            await axios.post('/api/logout', { access_token : access_token }).then(()=>{
+                localStorage.removeItem("access_token");
                 this.$router.push({ name: "Login"})
             })
         }

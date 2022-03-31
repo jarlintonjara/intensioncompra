@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::insert([
-            'nombre' => 'Fredy',
-            'apellido' => 'Cumpa',
+            'nombre' => 'Admin',
+            'apellido' => 'Admin',
             'cargo' => 'Gerente',
             'role_id' => 1,
             'email' => 'admin@gmail.com',
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         foreach (self::$roles as $role) {
             \App\Models\RoleModel::insert([
                 'nombre' => $role,
-                'description' => $role,
+                'descripcion' => $role,
                 'created_at' => date('Y-m-d H:i:s')
             ]);
         }

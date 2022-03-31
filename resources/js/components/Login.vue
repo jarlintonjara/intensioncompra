@@ -28,7 +28,7 @@
                             <label class="custom-control-label" for="rememberme"> Recordar contraseña(30 días)</label>
                         </div>
                     </div>
-                    <button @click.prevent="loginUser" class="btn btn-primary float-right">Login</button>
+                    <button @click.prevent="login" class="btn btn-primary float-right">Login</button>
                 </form>
             </div>
             <!-- <div class="blankpage-footer text-center">
@@ -36,10 +36,6 @@
                 <router-link to="/register"><strong>Registrar Cuenta</strong></router-link>
             </div> -->
         </div>
-        <!-- <video poster="/public/admin/img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
-            <source src="./public/admin/assets/media/video/cc.webm" type="video/webm">
-            <source src="/public/admin/assets/media/video/cc.mp4" type="video/mp4">
-        </video> -->
     </div>
     
 </template>
@@ -55,18 +51,20 @@ export default {
         }
     },
     methods:{
-         loginUser(){
-            axios.post('/api/login', this.form).then((response) =>{
-                localStorage.setItem('access_token', response.data.access_token);
-                this.$router.push({ name: "Dashboard"}); 
-            }).catch((error) =>{
-                this.errors = error.response.data.errors;
-                this.$swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Email o password incorrectos!',
+        async login(){
+            let self = this;
+            await axios.post('api/login', this.form)
+                .then(response => {
+                    localStorage.setItem('access_token', response.data.access_token);
+                    this.$router.push({ name: "dashboard"}); 
                 })
-            })
+                .catch(function (error) {
+                    self.$swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Email o password incorrectos!',
+                    })
+                });
          }
     }
 }

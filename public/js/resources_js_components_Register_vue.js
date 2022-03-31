@@ -1057,7 +1057,7 @@ var render = function () {
                           expression: "form.nombre",
                         },
                       ],
-                      staticClass: "form-control",
+                      staticClass: "form-control form-control-lg",
                       attrs: { type: "text", id: "nombres" },
                       domProps: { value: _vm.form.nombre },
                       on: {

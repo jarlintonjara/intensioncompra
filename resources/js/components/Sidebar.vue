@@ -35,18 +35,12 @@
                         <router-link tag="li" to="/usuarios" active-class="active">
                             <a >Registro asignado</a>
                         </router-link>
-                        <router-link tag="li" v-if="user.role_id == 1" to="/estacionamiento" active-class="active">
-                            <a>Estacionamiento</a>
-                        </router-link>
-                        <router-link tag="li" v-if="user.role_id == 1 || user.role_id == 3" :to="{ name: 'programacion', query: { ps: session } }" active-class="active">
-                            <a >Programación</a>
-                        </router-link>
-                        <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">
+                      <!--   <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">
                             <a >Rol</a>
                         </router-link>
                         <router-link tag="li" v-if="user.role_id == 1" to="/settings" active-class="active">
                             <a >Configuración</a>
-                        </router-link>
+                        </router-link> -->
                     </ul>
                 </li>
             </ul>
@@ -62,20 +56,19 @@
 <script>
 export default {
     name: "sidebar",
-    props:['session'],
-    mounted(){
-        this.init();
+    props:[
+        'session'
+    ],
+    watch:{
+        session(val){
+            this.user = val
+        }
     },
     data(){
         return {
-            user: []
-        }
-    },
-    methods:{
-        async init(){
-            /* await axios.get('/api/user').then((res)=>{
-                this.user = res.data;
-            }) */
+            user: {
+                role_id : 0
+            }
         }
     }
 }

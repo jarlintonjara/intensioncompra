@@ -33,7 +33,7 @@ export default {
     },
     data(){
         return {
-            user: []
+            user: null
         }
     },
     mounted(){
@@ -41,7 +41,8 @@ export default {
     },
     methods:{
         async init(){
-            await axios.get('/api/user').then((res)=>{
+            const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
                 this.user = res.data;
             })
         }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -38,7 +39,7 @@ class AuthController extends Controller
         $user = User::where("email", $request->email)->first();
 
         if (isset($user->id)) {
-            if(Hash::check($request->password, $user->password)){
+            if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken("auth_token")->plainTextToken;
 
                 return response()->json([
@@ -46,29 +47,37 @@ class AuthController extends Controller
                     'msg' => "!Usuario logueado existosamente",
                     "access_token" => $token
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => 0,
                     'msg' => "La password es incorrecta"
                 ], 404);
             }
-        }else{
+        } else {
             return response()->json([
                 'status' => 0,
                 'msg' => "El email no esta registrado"
             ], 404);
         }
     }
-    public function userProfile()
+    public function getSession($token)
     {
-        return response()->json([
-            'status' => 0,
-            'msg' => "El email no esta registrado",
-            'user' => auth()->user()
-        ]);
+        [$id, $user_token] = explode('|', $token, 2);
+        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+        if ($token_data) {
+            $user_id = $token_data->tokenable_id;
+            $data = User::find($user_id);
+            return response()->json($data, 200);
+        }
+        return response()->json("inautente", 401);
     }
-    public function logout()
+    public function logout(Request $request)
     {
+        if ($request->access_token) {
+            [$id, $user_token] = explode('|', $request->access_token, 2);
+            $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+            DB::table('personal_access_tokens')->where('tokenable_id', $token_data->tokenable_id)->delete();
+        }
         Auth::logout();
     }
 }

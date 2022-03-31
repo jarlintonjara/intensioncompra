@@ -1,5 +1,4 @@
 require('./bootstrap');
-require('../css/registro.css');
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'datatables.net-dt'
@@ -7,9 +6,9 @@ import datatable from 'datatables.net'
 import 'datatables.net-buttons/js/buttons.print.js'
 import 'datatables.net-buttons/js/buttons.colVis.js'
 import 'datatables.net-buttons/js/buttons.html5.js'
-
-//import print from 'datatables.net-buttons/js/buttons.print'
+import 'vue-select/dist/vue-select.css';
 import jszip from 'jszip/dist/jszip'
+import App from './components/App.vue';
 
 import Vue from 'vue';
 window.Vue = Vue;
@@ -18,18 +17,16 @@ import VueAxios from 'vue-axios';
 import axios from 'axios';
 
 import vSelect from 'vue-select'
+Vue.config.productionTip = false;
 
 Vue.component('v-select', vSelect)
-import 'vue-select/dist/vue-select.css';
+
 
 Vue.use(VueAxios, axios); 
-
 Vue.use(VueSweetalert2);
 window.JSZip = jszip
-import App from './components/App.vue';
 
 document.title = "Programación de estacionamiento";
-
 
 Vue.prototype.$dateFormat = function(date){
     let dt = new Date(date);

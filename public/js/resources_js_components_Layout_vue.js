@@ -65,7 +65,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      user: []
+      user: null
     };
   },
   mounted: function mounted() {
@@ -76,16 +76,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var token;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get('/api/user').then(function (res) {
+                token = localStorage.getItem('access_token');
+                _context.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
                   _this.user = res.data;
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -102,102 +104,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Navbar.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Navbar",
-  props: ['session'],
-  methods: {
-    logout: function logout() {
-      var _this = this;
-
-      axios.post('/api/logout').then(function () {
-        _this.$router.push({
-          name: "Login"
-        });
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Sidebar.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Sidebar.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -274,28 +180,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "sidebar",
+  name: "Navbar",
   props: ['session'],
-  mounted: function mounted() {
-    this.init();
-  },
   data: function data() {
     return {
-      user: []
+      user: {
+        nombre: ""
+      }
     };
   },
+  watch: {
+    session: function session(val) {
+      this.user = val;
+    }
+  },
   methods: {
-    init: function init() {
-      /* await axios.get('/api/user').then((res)=>{
-          this.user = res.data;
-      }) */
+    logout: function logout() {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var token, access_token;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                token = localStorage.getItem('access_token');
+                access_token = token ? token : "";
+                _context.next = 4;
+                return axios.post('/api/logout', {
+                  access_token: access_token
+                }).then(function () {
+                  localStorage.removeItem("access_token");
+
+                  _this.$router.push({
+                    name: "Login"
+                  });
+                });
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -303,6 +232,91 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Sidebar.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Sidebar.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "sidebar",
+  props: ['session'],
+  watch: {
+    session: function session(val) {
+      this.user = val;
+    }
+  },
+  data: function data() {
+    return {
+      user: {
+        role_id: 0
+      }
+    };
   }
 });
 
@@ -1385,7 +1399,7 @@ var render = function () {
             },
             [
               _c("i", { staticClass: "fas fa-user" }),
-              _vm._v(" " + _vm._s(_vm.session.nombre) + "\n\n            "),
+              _vm._v(" " + _vm._s(_vm.user.nombre) + "\n\n            "),
             ]
           ),
           _vm._v(" "),
@@ -1401,7 +1415,7 @@ var render = function () {
                 "router-link",
                 {
                   staticClass: "dropdown-item fw-500 pt-3 pb-3",
-                  attrs: { to: { name: "perfil", query: { ps: _vm.session } } },
+                  attrs: { to: "perfil" },
                 },
                 [
                   _c("span", { attrs: { "data-i18n": "drpdwn.page-logout" } }, [
@@ -1798,65 +1812,6 @@ var render = function () {
                   },
                   [_c("a", [_vm._v("Registro asignado")])]
                 ),
-                _vm._v(" "),
-                _vm.user.role_id == 1
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/estacionamiento",
-                          "active-class": "active",
-                        },
-                      },
-                      [_c("a", [_vm._v("Estacionamiento")])]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.user.role_id == 1 || _vm.user.role_id == 3
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: {
-                            name: "programacion",
-                            query: { ps: _vm.session },
-                          },
-                          "active-class": "active",
-                        },
-                      },
-                      [_c("a", [_vm._v("Programación")])]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.user.role_id == 1
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/rol",
-                          "active-class": "active",
-                        },
-                      },
-                      [_c("a", [_vm._v("Rol")])]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.user.role_id == 1
-                  ? _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/settings",
-                          "active-class": "active",
-                        },
-                      },
-                      [_c("a", [_vm._v("Configuración")])]
-                    )
-                  : _vm._e(),
               ],
               1
             ),
