@@ -1392,14 +1392,14 @@ var render = function () {
         _c("span", { staticStyle: { color: "red", display: "block" } }, [
           _vm._v("Concesionario : "),
           _c("span", { staticStyle: { color: "#425C79" } }, [
-            _vm._v(_vm._s(_vm.tienda.nombre)),
+            _vm._v(_vm._s(_vm.concesionario.nombre)),
           ]),
         ]),
         _vm._v(" "),
         _c("span", { staticStyle: { color: "red" } }, [
           _vm._v("Tienda : "),
           _c("span", { staticStyle: { color: "#425C79" } }, [
-            _vm._v(_vm._s(_vm.concesionario.nombre)),
+            _vm._v(_vm._s(_vm.tienda.nombre)),
           ]),
         ]),
       ]),

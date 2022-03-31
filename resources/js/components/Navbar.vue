@@ -24,8 +24,8 @@
             </a>
         </div>
         <div class="search">
-            <span style="color: red;display: block">Concesionario : <span style="color: #425C79">{{tienda.nombre}}</span></span>
-            <span style="color: red;">Tienda : <span style="color: #425C79">{{concesionario.nombre}}</span></span>
+            <span style="color: red;display: block">Concesionario : <span style="color: #425C79">{{concesionario.nombre}}</span></span>
+            <span style="color: red;">Tienda : <span style="color: #425C79">{{tienda.nombre}}</span></span>
         </div>
         <div class="ml-auto d-flex">
             <!-- app user menu -->
