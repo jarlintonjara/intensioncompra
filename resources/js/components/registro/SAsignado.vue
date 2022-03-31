@@ -79,7 +79,8 @@
 export default {
     data(){
         return{
-            asignados:[]
+            asignados:[],
+            user: null
         }
     },
     mounted(){
@@ -87,10 +88,15 @@ export default {
     },
     methods:{
         async init(){
+            const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+            })
              await this.axios.get('/api/registro')
                 .then(response=> {
                     //this.caracteristicas = response.data.caracteristicas;
-                    this.asignados = response.data.asignados;
+                    let asignados = response.data.asignados;
+                    this.asignados = asignados.filter(e => e.user_id == this.user.id);
                 })
                 .catch(error=>{
                     console.log(error);

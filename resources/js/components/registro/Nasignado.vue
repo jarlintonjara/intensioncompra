@@ -75,7 +75,8 @@
 export default {
     data(){
         return{
-            noasignados:[]
+            noasignados:[],
+            user: null
         }
     },
     mounted(){
@@ -83,9 +84,15 @@ export default {
     },
     methods:{
         async init(){
+            const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+                console.log()
+            })
              await this.axios.get('/api/registro')
                 .then(response=> {
-                    this.noasignados = response.data.noasignados;
+                    let noasignados = response.data.noasignados;
+                    this.noasignados = noasignados.filter(e => e.user_id == this.user.id);
                 })
                 .catch(error=>{
                     console.log(error);

@@ -326,7 +326,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                     _this2.noasignados.push(response.data.NO);
 
-                    limpiar();
+                    _this2.limpiar();
                   })["catch"](function (error) {
                     console.log(error);
                   });

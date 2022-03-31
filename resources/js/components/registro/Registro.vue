@@ -227,7 +227,7 @@ export default {
                         'success'
                     )
                     this.noasignados.push(response.data.NO);
-                    limpiar();
+                    this.limpiar();
                 }).catch(function (error) {
                     console.log(error);
                 });
