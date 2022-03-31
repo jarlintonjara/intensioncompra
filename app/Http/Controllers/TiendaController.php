@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tienda;
+use App\Models\TiendaModel;
 use Illuminate\Http\Request;
 
 class TiendaController extends Controller

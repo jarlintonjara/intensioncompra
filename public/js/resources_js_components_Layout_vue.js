@@ -180,13 +180,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
   props: ['session'],
@@ -194,12 +187,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       user: {
         nombre: ""
+      },
+      tienda: {
+        nombre: ""
+      },
+      concesionario: {
+        nombre: ""
       }
     };
   },
   watch: {
     session: function session(val) {
       this.user = val;
+      this.tienda = this.user.tienda;
+      this.concesionario = this.user.concesionario;
     }
   },
   methods: {
@@ -1387,14 +1388,24 @@ var render = function () {
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "search" }, [
+        _c("span", { staticStyle: { color: "red", display: "block" } }, [
+          _vm._v("Concesionario : "),
+          _c("span", { staticStyle: { color: "#425C79" } }, [
+            _vm._v(_vm._s(_vm.tienda.nombre)),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("span", { staticStyle: { color: "red" } }, [
+          _vm._v("Tienda : "),
+          _c("span", { staticStyle: { color: "#425C79" } }, [
+            _vm._v(_vm._s(_vm.concesionario.nombre)),
+          ]),
+        ]),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "ml-auto d-flex" }, [
         _c("div", [
-          _c("span", { staticStyle: { color: "red" } }, [
-            _vm._v("Concesionario / Tienda"),
-          ]),
-          _vm._v(" "),
           _c(
             "a",
             {
@@ -1413,7 +1424,7 @@ var render = function () {
             "div",
             { staticClass: "dropdown-menu dropdown-menu-animated dropdown-lg" },
             [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "dropdown-divider m-0" }),
               _vm._v(" "),
@@ -1533,49 +1544,6 @@ var staticRenderFns = [
           },
         },
         [_c("i", { staticClass: "ni ni-menu" })]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "search" }, [
-      _c(
-        "form",
-        {
-          staticClass: "app-forms hidden-xs-down",
-          attrs: {
-            role: "search",
-            action: "https://smartadmin.lodev09.com/page_search.php",
-            autocomplete: "off",
-          },
-        },
-        [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "search-field",
-              placeholder: "Buscar",
-              tabindex: "1",
-            },
-          }),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "btn-danger btn-search-close js-waves-off d-none",
-              attrs: {
-                href: "#",
-                onclick: "return false;",
-                "data-action": "toggle",
-                "data-class": "mobile-search-on",
-              },
-            },
-            [_c("i", { staticClass: "fal fa-times" })]
-          ),
-        ]
       ),
     ])
   },

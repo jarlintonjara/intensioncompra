@@ -24,18 +24,12 @@
             </a>
         </div>
         <div class="search">
-            <form class="app-forms hidden-xs-down" role="search" action="https://smartadmin.lodev09.com/page_search.php" autocomplete="off">
-                <input type="text" id="search-field" placeholder="Buscar" class="form-control" tabindex="1">
-                <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
-                    <i class="fal fa-times"></i>
-                </a>
-            </form>
+            <span style="color: red;display: block">Concesionario : <span style="color: #425C79">{{tienda.nombre}}</span></span>
+            <span style="color: red;">Tienda : <span style="color: #425C79">{{concesionario.nombre}}</span></span>
         </div>
         <div class="ml-auto d-flex">
             <!-- app user menu -->
-            
             <div>
-                <span style="color: red;">Concesionario / Tienda</span>
                 <a href="#" data-toggle="dropdown" title="Usuario" class="header-icon d-flex align-items-center justify-content-center ml-2" style="height: 31px;">
                     <i class="fas fa-user"></i> {{ user.nombre }}
                 </a>
@@ -50,11 +44,10 @@
                             </div>
                         </div>
                     </div>
-
                         
                     <div class="dropdown-divider m-0"></div>
                     <router-link to="perfil" class="dropdown-item fw-500 pt-3 pb-3">
-                       <span data-i18n="drpdwn.page-logout">Perfil</span> 
+                        <span data-i18n="drpdwn.page-logout">Perfil</span> 
                     </router-link>
 
                     <div class="dropdown-divider m-0"></div>
@@ -72,12 +65,16 @@ export default {
     props:['session'],
     data(){
         return {
-            user: { nombre : ""}
+            user: { nombre : ""},
+            tienda: { nombre : ""},
+            concesionario: { nombre : ""}
         }
     },
     watch:{
         session(val){
-            this.user = val
+            this.user = val;
+            this.tienda = this.user.tienda;
+            this.concesionario = this.user.concesionario;
         }
     },
     methods:{

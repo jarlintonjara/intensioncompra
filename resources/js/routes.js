@@ -1,12 +1,13 @@
 
 const Dashboard = () => import('./components/Dashboard.vue');
-const Registro = () => import('./components/Registro.vue');
+const Registro = () => import('./components/registro/Registro.vue');
 const Layout = () => import('./components/Layout.vue');
 const NotFound = () => import('./components/NotFound.vue');
 const Login = () => import('./components/Login.vue');
 const Register = () => import('./components/Register.vue');
 const Perfil = () => import('./components/Perfil.vue');
-const Noasignado = () => import('./components/registro/noasignado.Vue');
+const Nasignado = () => import('./components/registro/Nasignado.vue');
+const Sasignado = () => import('./components/registro/Sasignado.vue');
 
 export default{
     mode: 'history',
@@ -59,8 +60,13 @@ export default{
                 },
                 {
                     path: '/noasignado',
-                    component: Noasignado,
+                    component: Nasignado,
                     name: 'noasignado'
+                }, 
+                {
+                    path: '/asignado',
+                    component: Sasignado,
+                    name: 'asignado'
                 }, 
             ],
         },

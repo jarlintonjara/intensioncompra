@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EstacionamientoModel;
 use App\Models\RoleModel;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -40,10 +39,9 @@ class UserController extends Controller
             $user["role"] = $user->role;
         } 
         $roles = RoleModel::where('status', 1)->get();
-        $parkings = EstacionamientoModel::where('status', 1)->get();
+        //$parkings = EstacionamientoModel::where('status', 1)->get();
         return response()->json([
             "roles" => $roles,
-            "parkings" => $parkings,
             "users" => $users,
         ]);
     }

@@ -53,13 +53,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function concesionario()
+    {
+        return $this->hasOne(ConcesionarioModel::class, 'id', 'concesionario_id');
+    }
+
+    public function tienda()
+    {
+        return $this->hasOne(TiendaModel::class, 'id', 'tienda_id');
+    }
     public function role()
     {
         return $this->hasOne(RoleModel::class, 'id', 'role_id');
-    }
-
-    public function parking()
-    {
-        return $this->hasOne(EstacionamientoModel::class, 'id', 'parking_id');
     }
 }

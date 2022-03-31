@@ -802,6 +802,10 @@ function getContainingBlock(element) {
 
   var currentNode = (0,_getParentNode_js__WEBPACK_IMPORTED_MODULE_2__["default"])(element);
 
+  if ((0,_instanceOf_js__WEBPACK_IMPORTED_MODULE_0__.isShadowRoot)(currentNode)) {
+    currentNode = currentNode.host;
+  }
+
   while ((0,_instanceOf_js__WEBPACK_IMPORTED_MODULE_0__.isHTMLElement)(currentNode) && ['html', 'body'].indexOf((0,_getNodeName_js__WEBPACK_IMPORTED_MODULE_3__["default"])(currentNode)) < 0) {
     var css = (0,_getComputedStyle_js__WEBPACK_IMPORTED_MODULE_1__["default"])(currentNode); // This is non-exhaustive but covers the most common CSS properties that
     // create a containing block.
@@ -1632,7 +1636,7 @@ function mapToStyles(_ref2) {
 
     if (placement === _enums_js__WEBPACK_IMPORTED_MODULE_1__.top || (placement === _enums_js__WEBPACK_IMPORTED_MODULE_1__.left || placement === _enums_js__WEBPACK_IMPORTED_MODULE_1__.right) && variation === _enums_js__WEBPACK_IMPORTED_MODULE_1__.end) {
       sideY = _enums_js__WEBPACK_IMPORTED_MODULE_1__.bottom;
-      var offsetY = isFixed && win.visualViewport ? win.visualViewport.height : // $FlowFixMe[prop-missing]
+      var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : // $FlowFixMe[prop-missing]
       offsetParent[heightProp];
       y -= offsetY - popperRect.height;
       y *= gpuAcceleration ? 1 : -1;
@@ -1640,7 +1644,7 @@ function mapToStyles(_ref2) {
 
     if (placement === _enums_js__WEBPACK_IMPORTED_MODULE_1__.left || (placement === _enums_js__WEBPACK_IMPORTED_MODULE_1__.top || placement === _enums_js__WEBPACK_IMPORTED_MODULE_1__.bottom) && variation === _enums_js__WEBPACK_IMPORTED_MODULE_1__.end) {
       sideX = _enums_js__WEBPACK_IMPORTED_MODULE_1__.right;
-      var offsetX = isFixed && win.visualViewport ? win.visualViewport.width : // $FlowFixMe[prop-missing]
+      var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : // $FlowFixMe[prop-missing]
       offsetParent[widthProp];
       x -= offsetX - popperRect.width;
       x *= gpuAcceleration ? 1 : -1;
@@ -5547,7 +5551,7 @@ var Dashboard = function Dashboard() {
 };
 
 var Registro = function Registro() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_Registro_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Registro.vue */ "./resources/js/components/Registro.vue"));
+  return __webpack_require__.e(/*! import() */ "resources_js_components_registro_Registro_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/registro/Registro.vue */ "./resources/js/components/registro/Registro.vue"));
 };
 
 var Layout = function Layout() {
@@ -5570,8 +5574,12 @@ var Perfil = function Perfil() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Perfil_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Perfil.vue */ "./resources/js/components/Perfil.vue"));
 };
 
-var Noasignado = function Noasignado() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_registro_noasignado_Vue").then(__webpack_require__.t.bind(__webpack_require__, /*! ./components/registro/noasignado.Vue */ "./resources/js/components/registro/noasignado.Vue", 23));
+var Nasignado = function Nasignado() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_registro_Nasignado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/registro/Nasignado.vue */ "./resources/js/components/registro/Nasignado.vue"));
+};
+
+var Sasignado = function Sasignado() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_registro_Sasignado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/registro/Sasignado.vue */ "./resources/js/components/registro/Sasignado.vue"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5621,8 +5629,12 @@ var Noasignado = function Noasignado() {
       name: 'perfil'
     }, {
       path: '/noasignado',
-      component: Noasignado,
+      component: Nasignado,
       name: 'noasignado'
+    }, {
+      path: '/asignado',
+      component: Sasignado,
+      name: 'asignado'
     }]
   }]
 });
@@ -43343,7 +43355,7 @@ return jQuery;
 /* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
 /*!
 
-JSZip v3.7.1 - A JavaScript class for generating and reading zip files
+JSZip v3.8.0 - A JavaScript class for generating and reading zip files
 <http://stuartk.com/jszip>
 
 (c) 2009-2016 Stuart Knightley <stuart [at] stuartk.com>
@@ -44402,7 +44414,7 @@ JSZip.defaults = require('./defaults');
 
 // TODO find a better way to handle this version,
 // a require('package.json').version doesn't work with webpack, see #327
-JSZip.version = "3.7.1";
+JSZip.version = "3.8.0";
 
 JSZip.loadAsync = function (content, options) {
     return new JSZip().loadAsync(content, options);
@@ -44475,7 +44487,11 @@ module.exports = function (data, options) {
             var files = zipEntries.files;
             for (var i = 0; i < files.length; i++) {
                 var input = files[i];
-                zip.file(input.fileNameStr, input.decompressed, {
+
+                var unsafeName = input.fileNameStr;
+                var safeName = utils.resolve(input.fileNameStr);
+
+                zip.file(safeName, input.decompressed, {
                     binary: true,
                     optimizedBinaryString: true,
                     date: input.date,
@@ -44485,6 +44501,9 @@ module.exports = function (data, options) {
                     dosPermissions: input.dosPermissions,
                     createFolders: options.createFolders
                 });
+                if (!input.dir) {
+                    zip.file(safeName).unsafeOriginalName = unsafeName;
+                }
             }
             if (zipEntries.zipComment.length) {
                 zip.comment = zipEntries.zipComment;
@@ -46696,6 +46715,31 @@ exports.transformTo = function(outputType, input) {
 };
 
 /**
+ * Resolve all relative path components, "." and "..", in a path. If these relative components
+ * traverse above the root then the resulting path will only contain the final path component.
+ *
+ * All empty components, e.g. "//", are removed.
+ * @param {string} path A path with / or \ separators
+ * @returns {string} The path with all relative path components resolved.
+ */
+exports.resolve = function(path) {
+    var parts = path.split("/");
+    var result = [];
+    for (var index = 0; index < parts.length; index++) {
+        var part = parts[index];
+        // Allow the first and last component to be empty for trailing slashes.
+        if (part === "." || (part === "" && index !== 0 && index !== parts.length - 1)) {
+            continue;
+        } else if (part === "..") {
+            result.pop();
+        } else {
+            result.push(part);
+        }
+    }
+    return result.join("/");
+};
+
+/**
  * Return the type of the input.
  * The type will be in a format valid for JSZip.utils.transformTo : string, array, uint8array, arraybuffer.
  * @param {Object} input the input to identify.
@@ -46803,8 +46847,8 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
 
     // if inputData is already a promise, this flatten it.
     var promise = external.Promise.resolve(inputData).then(function(data) {
-        
-        
+
+
         var isBlob = support.blob && (data instanceof Blob || ['[object File]', '[object Blob]'].indexOf(Object.prototype.toString.call(data)) !== -1);
 
         if (isBlob && typeof FileReader !== "undefined") {
@@ -88139,36 +88183,6 @@ Vue.compile = compileToFunctions;
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/create fake namespace object */
-/******/ 	(() => {
-/******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
-/******/ 		var leafPrototypes;
-/******/ 		// create a fake namespace object
-/******/ 		// mode & 1: value is a module id, require it
-/******/ 		// mode & 2: merge all properties of value into the ns
-/******/ 		// mode & 4: return value when already ns object
-/******/ 		// mode & 16: return value when it's Promise-like
-/******/ 		// mode & 8|1: behave like require
-/******/ 		__webpack_require__.t = function(value, mode) {
-/******/ 			if(mode & 1) value = this(value);
-/******/ 			if(mode & 8) return value;
-/******/ 			if(typeof value === 'object' && value) {
-/******/ 				if((mode & 4) && value.__esModule) return value;
-/******/ 				if((mode & 16) && typeof value.then === 'function') return value;
-/******/ 			}
-/******/ 			var ns = Object.create(null);
-/******/ 			__webpack_require__.r(ns);
-/******/ 			var def = {};
-/******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
-/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
-/******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
-/******/ 			}
-/******/ 			def['default'] = () => (value);
-/******/ 			__webpack_require__.d(ns, def);
-/******/ 			return ns;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -88199,7 +88213,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_Registro_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Perfil_vue":1,"resources_js_components_registro_noasignado_Vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_registro_Registro_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Perfil_vue":1,"resources_js_components_registro_Nasignado_vue":1,"resources_js_components_registro_Sasignado_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

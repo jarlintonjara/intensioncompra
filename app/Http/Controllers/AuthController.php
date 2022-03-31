@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use function PHPUnit\Framework\isNull;
+
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -66,10 +68,23 @@ class AuthController extends Controller
         $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
         if ($token_data) {
             $user_id = $token_data->tokenable_id;
-            $data = User::find($user_id);
-            return response()->json($data, 200);
+            $user = User::find($user_id);
+            if($user){
+                $user["role"] = $user->role;
+                $user["concesionario"] = $user->concesionario;
+                if($user->tienda_id != 0 || $user->tienda_id != null){
+                    $user["tienda"] = $user->tienda;
+                }else{
+                    $user["tienda"] = [
+                        "nombre" => "",
+                        "descripcion" => ""
+                    ];
+                }
+                return response()->json($user, 200);
+            }
+            return response()->json("sesion acabada", 401);
         }
-        return response()->json("inautente", 401);
+        return response()->json("sesion acabada", 401);
     }
     public function logout(Request $request)
     {

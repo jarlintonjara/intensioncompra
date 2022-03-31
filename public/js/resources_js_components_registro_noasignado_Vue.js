@@ -6,7 +6,7 @@
   \*********************************************************/
 /***/ (() => {
 
-throw new Error("Module parse failed: Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n> <template>\n|     <main id=\"js-page-content\" role=\"main\" class=\"page-content\">\n| ");
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\intensioncompra\\resources\\js\\components\\registro\\noasignado.Vue'");
 
 /***/ })
 
