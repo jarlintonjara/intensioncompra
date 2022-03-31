@@ -29,10 +29,10 @@
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Registro</span>
                                 </a>
                         </router-link>
-                        <router-link tag="li" to="/usuarios" active-class="active">
+                        <router-link tag="li" to="/noasignado" active-class="active">
                             <a >Registro no asignado</a>
                         </router-link>
-                        <router-link tag="li" to="/usuarios" active-class="active">
+                        <router-link tag="li" to="/asignado" active-class="active">
                             <a >Registro asignado</a>
                         </router-link>
                       <!--   <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">

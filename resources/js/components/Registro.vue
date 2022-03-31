@@ -12,6 +12,7 @@
             <div class="panel-hdr">
                 <h2>
                     <h2 style="text-align: center; font-size: 1.125rem;"><b>NUEVO REGISTRO</b></h2>
+                    
                 </h2>
                 <div class="panel-toolbar">
                     <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>

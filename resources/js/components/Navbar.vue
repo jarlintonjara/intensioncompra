@@ -33,10 +33,11 @@
         </div>
         <div class="ml-auto d-flex">
             <!-- app user menu -->
+            
             <div>
-                <a href="#" data-toggle="dropdown" title="Usuario" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                <span style="color: red;">Concesionario / Tienda</span>
+                <a href="#" data-toggle="dropdown" title="Usuario" class="header-icon d-flex align-items-center justify-content-center ml-2" style="height: 31px;">
                     <i class="fas fa-user"></i> {{ user.nombre }}
-
                 </a>
                 <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                     <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">

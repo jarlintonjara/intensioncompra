@@ -5570,7 +5570,7 @@ var Perfil = function Perfil() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Perfil_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Perfil.vue */ "./resources/js/components/Perfil.vue"));
 };
 
-var noasignado = function noasignado() {
+var Noasignado = function Noasignado() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_registro_noasignado_Vue").then(__webpack_require__.t.bind(__webpack_require__, /*! ./components/registro/noasignado.Vue */ "./resources/js/components/registro/noasignado.Vue", 23));
 };
 
@@ -5619,6 +5619,10 @@ var noasignado = function noasignado() {
       path: '/perfil',
       component: Perfil,
       name: 'perfil'
+    }, {
+      path: '/noasignado',
+      component: Noasignado,
+      name: 'noasignado'
     }]
   }]
 });
