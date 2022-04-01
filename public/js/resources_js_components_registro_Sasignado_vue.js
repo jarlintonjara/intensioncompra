@@ -106,6 +106,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1041,6 +1043,8 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.asignados, function (asignado) {
                       return _c("tr", { key: asignado.id }, [
+                        _vm._m(3, true),
+                        _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(_vm.$dateFormat(asignado.created_at))),
                         ]),
@@ -1071,7 +1075,7 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v("25d55ad283aa400af464c76d713c07ad")]),
                         _vm._v(" "),
-                        _vm._m(3, true),
+                        _vm._m(4, true),
                       ])
                     }),
                     0
@@ -1143,6 +1147,8 @@ var staticRenderFns = [
       { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
       [
         _c("tr", [
+          _c("th", [_vm._v("Estado")]),
+          _vm._v(" "),
           _c("th", [_vm._v("Fecha Creación")]),
           _vm._v(" "),
           _c("th", [_vm._v("Nombre Completo")]),
@@ -1175,6 +1181,21 @@ var staticRenderFns = [
         ]),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-xs btn-success waves-effect waves-themed",
+          attrs: { type: "button" },
+        },
+        [_vm._v("Asignado")]
+      ),
+    ])
   },
   function () {
     var _vm = this

@@ -30,30 +30,29 @@
                                 </a>
                         </router-link>
                         <router-link tag="li" to="/noasignado" active-class="active">
-                            <a >Registro no asignado</a>
+                                <a href="#">
+                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">No Asignados</span>
+                                </a>
                         </router-link>
-                        <router-link tag="li"  to="/asignado" active-class="active">
-                            <a >Registro asignado</a>
+                        <router-link tag="li" to="/asignado" active-class="active">
+                                <a href="#">
+                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Asignados</span>
+                                </a>
                         </router-link>
-                        
+                        <router-link tag="li" to="/asignado" active-class="active">
+                                <a href="#">
+                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Reservados</span>
+                                </a>
+                        </router-link>
                         <router-link tag="li" to="/ingreso" active-class="active">
                                 <a href="#">
                                     <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
                                 </a>
                         </router-link>
-                        <router-link tag="li" to="/asignado" active-class="active">
-                                <a href="#">
-                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
-                                    <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
-                                </a>
-                        </router-link>
-                      <!--   <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">
-                            <a >Rol</a>
-                        </router-link>
-                        <router-link tag="li" v-if="user.role_id == 1" to="/settings" active-class="active">
-                            <a >Configuración</a>
-                        </router-link> -->
                     </ul>
                 </li>
             </ul>

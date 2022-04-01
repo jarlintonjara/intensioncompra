@@ -317,7 +317,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1797,7 +1796,23 @@ var render = function () {
                         "active-class": "active",
                       },
                     },
-                    [_c("a", [_vm._v("Registro no asignado")])]
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-list fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("No Asignados")]
+                        ),
+                      ]),
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -1806,18 +1821,6 @@ var render = function () {
                       attrs: {
                         tag: "li",
                         to: "/asignado",
-                        "active-class": "active",
-                      },
-                    },
-                    [_c("a", [_vm._v("Registro asignado")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/ingreso",
                         "active-class": "active",
                       },
                     },
@@ -1834,7 +1837,7 @@ var render = function () {
                             staticClass: "nav-link-text",
                             attrs: { "data-i18n": "nav.application_intel" },
                           },
-                          [_vm._v("Packing List")]
+                          [_vm._v("Asignados")]
                         ),
                       ]),
                     ]
@@ -1846,6 +1849,34 @@ var render = function () {
                       attrs: {
                         tag: "li",
                         to: "/asignado",
+                        "active-class": "active",
+                      },
+                    },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-list fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("Reservados")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "li",
+                        to: "/ingreso",
                         "active-class": "active",
                       },
                     },

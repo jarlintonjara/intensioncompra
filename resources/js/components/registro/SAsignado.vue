@@ -25,6 +25,7 @@
                         <table id="tasignado" class="table table-bordered table-hover table-striped w-100">
                             <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
+                                    <th>Estado</th>
                                     <th>Fecha Creación</th>
                                     <th>Nombre Completo</th>
                                     <th>Documento</th>
@@ -44,6 +45,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="asignado in asignados" :key="asignado.id">
+                                    <td><button type="button" class="btn btn-xs btn-success waves-effect waves-themed">Asignado</button></td>
                                     <td>{{$dateFormat(asignado.created_at)}}</td>
                                     <td>{{asignado.nombre_completo}}</td>
                                     <td>{{asignado.documento}}</td>
