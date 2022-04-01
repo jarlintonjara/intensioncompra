@@ -253,6 +253,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 3;
                 return axios.get('api/getSession/' + token).then(function (res) {
                   _this.user = res.data;
+                  console.log(res.data);
                   _this.form.user_id = _this.user.id;
                 });
 
