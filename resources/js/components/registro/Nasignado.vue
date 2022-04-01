@@ -37,7 +37,7 @@
                                     <th>color 2</th>
                                     <th>color 3</th>
                                     <th>Año Modelo</th>
-                                    <th>Acciones</th>
+                                    <!-- <th>Acciones</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,10 +54,10 @@
                                     <td>{{noasignado.color2}}</td>
                                     <td>{{noasignado.color3}}</td>
                                     <td>{{noasignado.anio_modelo}}</td>
-                                    <td style="text-align: center">
+                                    <!-- <td style="text-align: center">
                                         <button class="btn btn-warning"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             </tbody>
                             

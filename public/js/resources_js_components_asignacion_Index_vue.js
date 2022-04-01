@@ -1,4 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_registro_Nasignado_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_asignacion_Index_vue"],{
 
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
@@ -11,10 +11,10 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/registro/Nasignado.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/registro/Nasignado.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/asignacion/Index.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/asignacion/Index.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -102,10 +102,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      noasignados: [],
+      asignaciones: [],
       user: null
     };
   },
@@ -117,39 +123,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var token;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                token = localStorage.getItem('access_token');
-                _context.next = 3;
-                return axios.get('api/getSession/' + token).then(function (res) {
-                  _this.user = res.data;
-                });
-
-              case 3:
-                _context.next = 5;
-                return _this.axios.get('/api/registro').then(function (response) {
-                  var noasignados = response.data.noasignados;
-                  _this.noasignados = noasignados.filter(function (e) {
-                    return e.user_id == _this.user.id;
-                  });
+                _context.next = 2;
+                return _this.axios.get('/api/asignacion').then(function (response) {
+                  _this.asignaciones = response.data;
                 })["catch"](function (error) {
                   console.log(error);
+                  _this.asignaciones = [];
                 });
 
-              case 5:
-                _this.$tablaGlobal('#tnoasignado');
+              case 2:
+                _context.next = 4;
+                return _this.$tablaGlobal('#asignaciones');
 
-              case 6:
+              case 4:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
-    }
+    } // async ChangeBloquear(id, estadoBloqueado){
+    //     let estado = estadoBloqueado == 1 ? 0 : 1;
+    //     await axios.put('/api/ingreso/' + id, { bloqueado : estado }).then(response=>{
+    //         }).catch(function (error) {
+    //             console.log(error);
+    //         }); 
+    // }
+
   }
 });
 
@@ -919,10 +923,10 @@ try {
 
 /***/ }),
 
-/***/ "./resources/js/components/registro/Nasignado.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/components/registro/Nasignado.vue ***!
-  \********************************************************/
+/***/ "./resources/js/components/asignacion/Index.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/asignacion/Index.vue ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -930,8 +934,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Nasignado_vue_vue_type_template_id_3990274b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nasignado.vue?vue&type=template&id=3990274b& */ "./resources/js/components/registro/Nasignado.vue?vue&type=template&id=3990274b&");
-/* harmony import */ var _Nasignado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Nasignado.vue?vue&type=script&lang=js& */ "./resources/js/components/registro/Nasignado.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Index_vue_vue_type_template_id_07c4a676___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=07c4a676& */ "./resources/js/components/asignacion/Index.vue?vue&type=template&id=07c4a676&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/components/asignacion/Index.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -941,9 +945,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Nasignado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Nasignado_vue_vue_type_template_id_3990274b___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Nasignado_vue_vue_type_template_id_3990274b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_07c4a676___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Index_vue_vue_type_template_id_07c4a676___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -953,15 +957,15 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/registro/Nasignado.vue"
+component.options.__file = "resources/js/components/asignacion/Index.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/registro/Nasignado.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/registro/Nasignado.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/components/asignacion/Index.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/asignacion/Index.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -969,32 +973,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Nasignado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Nasignado.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/registro/Nasignado.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Nasignado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/asignacion/Index.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/registro/Nasignado.vue?vue&type=template&id=3990274b&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/registro/Nasignado.vue?vue&type=template&id=3990274b& ***!
-  \***************************************************************************************/
+/***/ "./resources/js/components/asignacion/Index.vue?vue&type=template&id=07c4a676&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/asignacion/Index.vue?vue&type=template&id=07c4a676& ***!
+  \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nasignado_vue_vue_type_template_id_3990274b___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nasignado_vue_vue_type_template_id_3990274b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_07c4a676___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_07c4a676___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nasignado_vue_vue_type_template_id_3990274b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Nasignado.vue?vue&type=template&id=3990274b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/registro/Nasignado.vue?vue&type=template&id=3990274b&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_07c4a676___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=template&id=07c4a676& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/asignacion/Index.vue?vue&type=template&id=07c4a676&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/registro/Nasignado.vue?vue&type=template&id=3990274b&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/registro/Nasignado.vue?vue&type=template&id=3990274b& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/asignacion/Index.vue?vue&type=template&id=07c4a676&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/asignacion/Index.vue?vue&type=template&id=07c4a676& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1027,42 +1031,56 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tnoasignado" },
+                  attrs: { id: "asignaciones" },
                 },
                 [
                   _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.noasignados, function (noasignado) {
-                      return _c("tr", { key: noasignado.id }, [
+                    _vm._l(_vm.asignaciones, function (asignacion) {
+                      return _c("tr", { key: asignacion.id }, [
                         _c("td", [
                           _vm._v(
-                            _vm._s(_vm.$dateFormat(noasignado.created_at))
+                            _vm._s(
+                              _vm.$dateFormat(asignacion.fecha_distribucion)
+                            )
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.nombre_completo))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.descripcion))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.documento))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.nombre))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.celular))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.documento))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.correo))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.vin))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.marca))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.marca))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.modelo))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.version))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.version))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.color1))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.color))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.color2))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.anio_modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.color3))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.codigo_sap))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.anio_modelo))]),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.$dateFormat(asignacion.fecha_ingreso))
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.codigo_reserva))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.monto_reserva))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.fecha_reserva))]),
+                        _vm._v(" "),
+                        _vm._m(3, true),
                       ])
                     }),
                     0
@@ -1083,9 +1101,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
-        _c("i", { staticClass: "subheader-icon fal fa-list" }),
+        _c("i", { staticClass: "subheader-icon fal fa-pencil" }),
         _vm._v(" "),
-        _c("span", { staticClass: "fw-300" }, [_vm._v("NO ASIGNADOS")]),
+        _c("span", { staticClass: "fw-300" }, [_vm._v("Asignados")]),
       ]),
     ])
   },
@@ -1098,7 +1116,7 @@ var staticRenderFns = [
         _c(
           "h2",
           { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-          [_c("b", [_vm._v("Registros no asignados ")])]
+          [_c("b", [_vm._v("Todos")])]
         ),
       ]),
       _vm._v(" "),
@@ -1134,32 +1152,54 @@ var staticRenderFns = [
       { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
       [
         _c("tr", [
-          _c("th", [_vm._v("Fecha Creación")]),
+          _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Nombre Completo")]),
+          _c("th", [_vm._v("CONCESIONARIO")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Documento")]),
+          _c("th", [_vm._v("ASESOR")]),
           _vm._v(" "),
-          _c("th", [_vm._v("celular")]),
+          _c("th", [_vm._v("DOCUMENTO")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Correo")]),
+          _c("th", [_vm._v("VIN")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Marca")]),
+          _c("th", [_vm._v("MARCA")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Modelo")]),
+          _c("th", [_vm._v("MODELO")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Versión")]),
+          _c("th", [_vm._v("VERSION")]),
           _vm._v(" "),
-          _c("th", [_vm._v("color 1")]),
+          _c("th", [_vm._v("COLOR")]),
           _vm._v(" "),
-          _c("th", [_vm._v("color 2")]),
+          _c("th", [_vm._v("AÑO MODELO")]),
           _vm._v(" "),
-          _c("th", [_vm._v("color 3")]),
+          _c("th", [_vm._v("CÓDIGO SAP")]),
           _vm._v(" "),
-          _c("th", [_vm._v("Año Modelo")]),
+          _c("th", [_vm._v("FECHA LLEGADA")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("CÓDIGO RESERVA")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("MONTO RESERVA")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("FECHA RESERVA")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("ACCIONES")]),
         ]),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticStyle: { "text-align": "center" } }, [
+      _c("button", { staticClass: "btn btn-warning" }, [
+        _c("i", { staticClass: "far fa-edit" }),
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-danger" }, [
+        _c("i", { staticClass: "fa fa-trash" }),
+      ]),
+    ])
   },
 ]
 render._withStripped = true

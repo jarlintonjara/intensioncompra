@@ -1820,7 +1820,7 @@ var render = function () {
                     {
                       attrs: {
                         tag: "li",
-                        to: "/asignado",
+                        to: "/asignacion",
                         "active-class": "active",
                       },
                     },

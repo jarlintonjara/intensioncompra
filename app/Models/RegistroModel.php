@@ -28,6 +28,7 @@ class RegistroModel extends Model
         'color1',
         'color2',
         'color3',
+        'situacion',
         'estado',
         'created_at',
         'updated_at'

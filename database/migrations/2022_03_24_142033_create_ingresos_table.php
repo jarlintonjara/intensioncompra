@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('user_id')->nullable();
             $table->string('vin')->nullable();
             $table->string('marca')->nullable();
             $table->string('modelo')->nullable();

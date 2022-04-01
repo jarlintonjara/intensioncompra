@@ -15,6 +15,7 @@ class IngresoModel extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'vin',
         'marca',
         'modelo',
