@@ -22,11 +22,12 @@ return new class extends Migration
             $table->string('anio_modelo')->nullable();
             $table->string('anio_fabricacion')->nullable();
             $table->string('color')->nullable();
-            $table->string('situacion');
-            $table->tinyInteger('bloqueado');
-            $table->string('codigo_sap');
-            $table->date('fecha_ingreso');
-            $table->tinyInteger('estado');
+            $table->string('situacion')->nullable();
+            $table->tinyInteger('bloqueado')->nullable();
+            $table->string('codigo_sap')->nullable();
+            $table->string('nave')->nullable();
+            $table->date('fecha_ingreso')->nullable();
+            $table->tinyInteger('estado')->nullable();
             $table->timestamps();
         });
     }

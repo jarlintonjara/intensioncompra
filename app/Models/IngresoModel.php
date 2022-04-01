@@ -25,6 +25,7 @@ class IngresoModel extends Model
         'fecha_ingreso',
         'estado',
         'situacion',
+        'nave',
         'bloqueado',
         'codigo_sap',
         'created_at',

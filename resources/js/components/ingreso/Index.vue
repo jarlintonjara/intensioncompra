@@ -34,6 +34,8 @@
                                     <th>COLOR</th>
                                     <th>CODIGO SAP</th>
                                     <th>SITUACIÓN</th>
+                                    <th>NAVE</th>
+                                    <th>FECHA INGRESO</th>
                                     <th>BLOQUEADO?</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -49,6 +51,8 @@
                                     <td>{{ingreso.color}}</td>
                                     <td>{{ingreso.codigo_sap}}</td>
                                     <td>{{ingreso.situacion}}</td>
+                                    <td>{{ingreso.nave}}</td>
+                                    <td>{{$dateFormat(ingreso.fecha_ingreso)}}</td>
                                     <td>{{ingreso.bloqueado}}</td>
                                     <td style="text-align: center">
                                         <button class="btn btn-warning"><i class="far fa-edit"></i></button>
