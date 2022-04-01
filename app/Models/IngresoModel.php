@@ -19,10 +19,14 @@ class IngresoModel extends Model
         'marca',
         'modelo',
         'version',
-        'anio',
+        'anio_modelo',
+        'anio_fabricacion',
         'color',
         'fecha_ingreso',
         'estado',
+        'situacion',
+        'bloqueado',
+        'codigo_sap',
         'created_at',
         'updated_at'
     ];

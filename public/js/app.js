@@ -5550,6 +5550,10 @@ var Registro = function Registro() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_registro_Registro_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/registro/Registro.vue */ "./resources/js/components/registro/Registro.vue"));
 };
 
+var Ingreso = function Ingreso() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_ingreso_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/ingreso/Index.vue */ "./resources/js/components/ingreso/Index.vue"));
+};
+
 var Layout = function Layout() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Layout_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Layout.vue */ "./resources/js/components/Layout.vue"));
 };
@@ -5619,6 +5623,10 @@ var Sasignado = function Sasignado() {
       path: "/registro",
       name: "Rgistro",
       component: Registro
+    }, {
+      path: "/ingreso",
+      name: "ingreso",
+      component: Ingreso
     }, {
       path: '/perfil',
       component: Perfil,
@@ -88177,7 +88185,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_registro_Registro_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Perfil_vue":1,"resources_js_components_registro_Nasignado_vue":1,"resources_js_components_registro_Sasignado_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_registro_Registro_vue":1,"resources_js_components_ingreso_Index_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Perfil_vue":1,"resources_js_components_registro_Nasignado_vue":1,"resources_js_components_registro_Sasignado_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

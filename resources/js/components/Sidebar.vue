@@ -1,5 +1,5 @@
 <template>
-    <aside class="page-sidebar">
+    <aside class="page-sidebar" style="background-image: none; background-color: #e30025;">
         <!-- <div class="page-logo">
             <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
                 <img src="admin/logo.jfif" alt="derco" aria-roledescription="logo" style="width: 20%">
@@ -34,6 +34,12 @@
                         </router-link>
                         <router-link tag="li" to="/asignado" active-class="active">
                             <a >Registro asignado</a>
+                        </router-link>
+                        <router-link tag="li" to="/ingreso" active-class="active">
+                                <a href="#">
+                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
+                                </a>
                         </router-link>
                       <!--   <router-link tag="li" v-if="user.role_id == 1" to="/rol" active-class="active">
                             <a >Rol</a>

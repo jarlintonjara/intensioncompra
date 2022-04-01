@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -26,3 +27,4 @@ Route::get('getSession/{token}', [AuthController::class, 'getSession']);
 
 Route::get('dashboard', [HomeController::class, 'index']);
 Route::resource('registro', RegistroController::class);
+Route::resource('ingreso', IngresoController::class);

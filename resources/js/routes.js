@@ -1,6 +1,7 @@
 
 const Dashboard = () => import('./components/Dashboard.vue');
 const Registro = () => import('./components/registro/Registro.vue');
+const Ingreso = () => import('./components/ingreso/Index.vue');
 const Layout = () => import('./components/Layout.vue');
 const NotFound = () => import('./components/NotFound.vue');
 const Login = () => import('./components/Login.vue');
@@ -52,6 +53,11 @@ export default{
                     path: "/registro",
                     name: "Rgistro",
                     component: Registro,
+                },
+                {
+                    path: "/ingreso",
+                    name: "ingreso",
+                    component: Ingreso,
                 },
                 {
                     path: '/perfil',
