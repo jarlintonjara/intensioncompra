@@ -317,6 +317,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1761,13 +1788,7 @@ var render = function () {
                 [
                   _c(
                     "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/registro",
-                        "active-class": "active",
-                      },
-                    },
+                    { attrs: { tag: "li", to: "", "active-class": "" } },
                     [
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", {
@@ -1781,7 +1802,35 @@ var render = function () {
                             staticClass: "nav-link-text",
                             attrs: { "data-i18n": "nav.application_intel" },
                           },
-                          [_vm._v("Registro")]
+                          [_vm._v("REGISTRO")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "li",
+                        to: "/registro",
+                        "active-class": "active",
+                      },
+                    },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa fa-minus fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("Nuevo Registro")]
                         ),
                       ]),
                     ]
@@ -1799,7 +1848,7 @@ var render = function () {
                     [
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", {
-                          staticClass: "fa-solid fa-list fa-3x",
+                          staticClass: "fa fa-minus fa-3x",
                           staticStyle: { color: "white !important" },
                         }),
                         _vm._v(" "),
@@ -1809,7 +1858,31 @@ var render = function () {
                             staticClass: "nav-link-text",
                             attrs: { "data-i18n": "nav.application_intel" },
                           },
-                          [_vm._v("No Asignados")]
+                          [_vm._v("Lista de registros")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "", "active-class": "" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-random fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("ASIGNACIONES")]
                         ),
                       ]),
                     ]
@@ -1827,7 +1900,7 @@ var render = function () {
                     [
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", {
-                          staticClass: "fa-solid fa-list fa-3x",
+                          staticClass: "fa fa-minus fa-3x",
                           staticStyle: { color: "white !important" },
                         }),
                         _vm._v(" "),
@@ -1837,7 +1910,31 @@ var render = function () {
                             staticClass: "nav-link-text",
                             attrs: { "data-i18n": "nav.application_intel" },
                           },
-                          [_vm._v("Asignados")]
+                          [_vm._v("Lista de asignaciones")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "", "active-class": "" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-registered fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("RESERVADOS")]
                         ),
                       ]),
                     ]
@@ -1855,7 +1952,7 @@ var render = function () {
                     [
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", {
-                          staticClass: "fa-solid fa-list fa-3x",
+                          staticClass: "fa fa-minus fa-3x",
                           staticStyle: { color: "white !important" },
                         }),
                         _vm._v(" "),
@@ -1866,6 +1963,30 @@ var render = function () {
                             attrs: { "data-i18n": "nav.application_intel" },
                           },
                           [_vm._v("Reservados")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "", "active-class": "" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-database fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("PACKING LIST")]
                         ),
                       ]),
                     ]
@@ -1883,7 +2004,7 @@ var render = function () {
                     [
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", {
-                          staticClass: "fa-solid fa-list fa-3x",
+                          staticClass: "fa fa-minus fa-3x",
                           staticStyle: { color: "white !important" },
                         }),
                         _vm._v(" "),

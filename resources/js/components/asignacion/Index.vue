@@ -25,7 +25,6 @@
                         <table id="asignaciones" class="table table-bordered table-hover table-striped w-100">
                             <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
-                                     <th>ACCIONES</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
@@ -34,6 +33,7 @@
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>VERSION</th>
+                                    <th>RESERVAR</th>
                                     <th>COLOR</th>
                                     <th>AÑO MODELO</th>
                                     <th>CÓDIGO SAP</th>
@@ -41,23 +41,24 @@
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
+                                    <th>ESTADO</th>
                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
-                                    <td style="text-align: center">
-                                        <button class="btn btn-warning" @click="abrirModalEditar(asignacion)"><i class="far fa-edit"></i></button>
-                                        <button class="btn btn-danger" ><i class="fa fa-trash"></i></button>
-                                    </td>
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
-                                    <td>{{asignacion.descripcion}}</td>
+                                    <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
                                     <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
                                     <td>{{asignacion.version}}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-check"></i></button>
+                                        <!-- <button class="btn btn-danger" ><i class="fa fa-trash"></i></button> -->
+                                    </td>
                                     <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
@@ -65,6 +66,7 @@
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>
+                                    <td>{{asignacion.situacion}}</td>
                                     
                                 </tr>
                             </tbody>
@@ -138,10 +140,14 @@ export default {
     },
     methods:{
         async init(){
+            const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+            })
             await this.axios.get('/api/asignacion')
                 .then(response=>{
-                    this.asignaciones = response.data
-                })
+                    let asignaciones = response.data;
+                    this.asignaciones = asignaciones.filter(e => e.situacion == 'ASIGNADO').filter(e => e.user_id == this.user.id);                })
                 .catch(error=>{
                     console.log(error);
                     this.asignaciones =[]

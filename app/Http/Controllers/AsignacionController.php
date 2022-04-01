@@ -21,7 +21,7 @@ class AsignacionController extends Controller
 
         $data = AsignacionModel::select(
             'asignaciones.fecha_distribucion',
-            'concesionarios.descripcion',
+            'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
             'ingresos.vin',
@@ -33,17 +33,22 @@ class AsignacionController extends Controller
             'ingresos.codigo_sap',
             'ingresos.fecha_ingreso',
             'asignaciones.id',
+            'users.id as user_id',
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.situacion'
             )
             ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
             ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
             ->Join('users', 'asignaciones.user_id', '=', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
-            ->where("asignaciones.situacion",0)
             ->get();
             // print_r($data);
+        
+
+
+
         return response()->json($data);
     }
 

@@ -23,33 +23,60 @@
             <ul class="nav-menu" id="js-nav-menu">
                 <li class="active">
                     <ul>
-                        <router-link tag="li" to="/registro" active-class="active">
+                        <router-link tag="li" to="" active-class="">
                                 <a href="#">
                                     <i class="fa-solid fa-pencil fa-3x" style="color: white !important;"></i>
-                                    <span class="nav-link-text" data-i18n="nav.application_intel">Registro</span>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">REGISTRO</span>
+                                </a>
+                        </router-link>
+                        <router-link tag="li" to="/registro" active-class="active">
+                                <a href="#">
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Nuevo Registro</span>
                                 </a>
                         </router-link>
                         <router-link tag="li" to="/noasignado" active-class="active">
                                 <a href="#">
-                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
-                                    <span class="nav-link-text" data-i18n="nav.application_intel">No Asignados</span>
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Lista de registros</span>
+                                </a>
+                        </router-link>
+                        <hr>
+                        <router-link tag="li" to="" active-class="">
+                                <a href="#">
+                                    <i class="fa-solid fa-random fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">ASIGNACIONES</span>
                                 </a>
                         </router-link>
                         <router-link tag="li" to="/asignacion" active-class="active">
                                 <a href="#">
-                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
-                                    <span class="nav-link-text" data-i18n="nav.application_intel">Asignados</span>
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Lista de asignaciones</span>
+                                </a>
+                        </router-link>
+                        <hr>
+                        <router-link tag="li" to="" active-class="">
+                                <a href="#">
+                                    <i class="fa-solid fa-registered fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">RESERVADOS</span>
                                 </a>
                         </router-link>
                         <router-link tag="li" to="/reservado" active-class="active">
                                 <a href="#">
-                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Reservados</span>
+                                </a>
+                        </router-link>
+                        <hr>
+                        <router-link tag="li" to="" active-class="">
+                                <a href="#">
+                                    <i class="fa-solid fa-database fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">PACKING LIST</span>
                                 </a>
                         </router-link>
                         <router-link tag="li" to="/ingreso" active-class="active">
                                 <a href="#">
-                                    <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
                                 </a>
                         </router-link>

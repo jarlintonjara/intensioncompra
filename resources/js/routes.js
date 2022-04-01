@@ -9,7 +9,7 @@ const Register = () => import('./components/Register.vue');
 const Perfil = () => import('./components/Perfil.vue');
 const Nasignado = () => import('./components/registro/Nasignado.vue');
 const Sasignado = () => import('./components/registro/Sasignado.vue');
-const Reservado = () => import('./components/registro/Reservado.vue');
+const Reservado = () => import('./components/asignacion/Reservado.vue');
 const Asignacion = () => import('./components/asignacion/Index.vue');
 export default{
     mode: 'history',
