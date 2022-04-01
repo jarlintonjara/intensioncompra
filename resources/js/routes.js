@@ -9,7 +9,7 @@ const Register = () => import('./components/Register.vue');
 const Perfil = () => import('./components/Perfil.vue');
 const Nasignado = () => import('./components/registro/Nasignado.vue');
 const Sasignado = () => import('./components/registro/Sasignado.vue');
-
+const Reservado = () => import('./components/registro/Reservado.vue');
 export default{
     mode: 'history',
     routes: [
@@ -73,6 +73,11 @@ export default{
                     path: '/asignado',
                     component: Sasignado,
                     name: 'asignado'
+                }, 
+                {
+                    path: '/reservado',
+                    component: Reservado,
+                    name: 'reservado'
                 }, 
             ],
         },

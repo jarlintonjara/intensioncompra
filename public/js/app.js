@@ -5582,6 +5582,10 @@ var Sasignado = function Sasignado() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_registro_Sasignado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/registro/Sasignado.vue */ "./resources/js/components/registro/Sasignado.vue"));
 };
 
+var Reservado = function Reservado() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_registro_Reservado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/registro/Reservado.vue */ "./resources/js/components/registro/Reservado.vue"));
+};
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mode: 'history',
   routes: [{
@@ -5639,6 +5643,10 @@ var Sasignado = function Sasignado() {
       path: '/asignado',
       component: Sasignado,
       name: 'asignado'
+    }, {
+      path: '/reservado',
+      component: Reservado,
+      name: 'reservado'
     }]
   }]
 });
@@ -88185,7 +88193,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_registro_Registro_vue":1,"resources_js_components_ingreso_Index_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Perfil_vue":1,"resources_js_components_registro_Nasignado_vue":1,"resources_js_components_registro_Sasignado_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Dashboard_vue":1,"resources_js_components_registro_Registro_vue":1,"resources_js_components_ingreso_Index_vue":1,"resources_js_components_Layout_vue":1,"resources_js_components_NotFound_vue":1,"resources_js_components_Login_vue":1,"resources_js_components_Register_vue":1,"resources_js_components_Perfil_vue":1,"resources_js_components_registro_Nasignado_vue":1,"resources_js_components_registro_Sasignado_vue":1,"resources_js_components_registro_Reservado_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

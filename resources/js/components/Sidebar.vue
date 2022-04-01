@@ -41,7 +41,7 @@
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Asignados</span>
                                 </a>
                         </router-link>
-                        <router-link tag="li" to="/asignado" active-class="active">
+                        <router-link tag="li" to="/reservado" active-class="active">
                                 <a href="#">
                                     <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Reservados</span>

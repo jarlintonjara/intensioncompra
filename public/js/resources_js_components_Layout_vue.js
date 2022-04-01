@@ -1848,7 +1848,7 @@ var render = function () {
                     {
                       attrs: {
                         tag: "li",
-                        to: "/asignado",
+                        to: "/reservado",
                         "active-class": "active",
                       },
                     },
