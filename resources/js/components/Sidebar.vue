@@ -35,6 +35,12 @@
                         <router-link tag="li" to="/asignado" active-class="active">
                             <a >Registro asignado</a>
                         </router-link>
+                                                <router-link tag="li" to="/noasignado" active-class="active">
+                            <a >Registro no asignado</a>
+                        </router-link>
+                        <router-link tag="li" to="/asignado" active-class="active">
+                            <a >Registro asignado</a>
+                        </router-link>
                         <router-link tag="li" to="/ingreso" active-class="active">
                                 <a href="#">
                                     <i class="fa-solid fa-list fa-3x" style="color: white !important;"></i>
