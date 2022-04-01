@@ -3,7 +3,7 @@
 
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>NO ASIGNADOS</span>
+                <i class='subheader-icon fal fa-list'></i> <span class='fw-300'>NO ASIGNADOS</span>
             </h1>
         </div>
 

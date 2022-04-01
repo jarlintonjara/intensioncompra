@@ -1085,7 +1085,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
-        _c("i", { staticClass: "subheader-icon fal fa-pencil" }),
+        _c("i", { staticClass: "subheader-icon fal fa-list" }),
         _vm._v(" "),
         _c("span", { staticClass: "fw-300" }, [_vm._v("NO ASIGNADOS")]),
       ]),
