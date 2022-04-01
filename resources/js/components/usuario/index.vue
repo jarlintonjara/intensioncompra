@@ -187,7 +187,6 @@ export default {
                     console.log(error);
                 });
             }
-
         },
         async editar(){
             let valid = await this.validarCampos();

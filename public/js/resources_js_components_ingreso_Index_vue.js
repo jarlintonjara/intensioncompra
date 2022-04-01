@@ -140,6 +140,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    ChangeBloquear: function ChangeBloquear(id, estadoBloqueado) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var estado;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                estado = estadoBloqueado == 1 ? 0 : 1;
+                _context2.next = 3;
+                return axios.put('/api/ingreso/' + id, {
+                  bloqueado: estado
+                }).then(function (response) {})["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
@@ -1027,6 +1050,39 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.ingresos, function (ingreso) {
                       return _c("tr", { key: ingreso.id }, [
+                        _c("td", { staticStyle: { "text-align": "center" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "custom-control custom-switch" },
+                            [
+                              _c("input", {
+                                staticClass: "custom-control-input",
+                                attrs: {
+                                  type: "checkbox",
+                                  id: "customSwitch2" + ingreso.id,
+                                },
+                                domProps: {
+                                  checked:
+                                    ingreso.bloqueado == 0 ? "checked" : "",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.ChangeBloquear(
+                                      ingreso.id,
+                                      ingreso.bloqueado
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _c("label", {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "customSwitch2" + ingreso.id },
+                              }),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.vin))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.marca))]),
@@ -1058,10 +1114,6 @@ var render = function () {
                             _vm._s(_vm.$dateFormat(ingreso.fecha_ingreso))
                           ),
                         ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.bloqueado))]),
-                        _vm._v(" "),
-                        _vm._m(3, true),
                       ])
                     }),
                     0
@@ -1133,6 +1185,8 @@ var staticRenderFns = [
       { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
       [
         _c("tr", [
+          _c("th", [_vm._v("BLOQUEADO")]),
+          _vm._v(" "),
           _c("th", [_vm._v("VIN")]),
           _vm._v(" "),
           _c("th", [_vm._v("MARCA")]),
@@ -1154,27 +1208,9 @@ var staticRenderFns = [
           _c("th", [_vm._v("NAVE")]),
           _vm._v(" "),
           _c("th", [_vm._v("FECHA INGRESO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("BLOQUEADO?")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Acciones")]),
         ]),
       ]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticStyle: { "text-align": "center" } }, [
-      _c("button", { staticClass: "btn btn-warning" }, [
-        _c("i", { staticClass: "far fa-edit" }),
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger" }, [
-        _c("i", { staticClass: "fa fa-trash" }),
-      ]),
-    ])
   },
 ]
 render._withStripped = true

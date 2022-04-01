@@ -25,6 +25,7 @@
                         <table id="ingreso" class="table table-bordered table-hover table-striped w-100">
                             <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
+                                    <th>BLOQUEADO</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -36,12 +37,16 @@
                                     <th>SITUACIÓN</th>
                                     <th>NAVE</th>
                                     <th>FECHA INGRESO</th>
-                                    <th>BLOQUEADO?</th>
-                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
+                                    <td style="text-align: center">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" :id="'customSwitch2'+ingreso.id" :checked="ingreso.bloqueado == 0 ?'checked':'' " @click="ChangeBloquear(ingreso.id, ingreso.bloqueado)">
+                                            <label class="custom-control-label" :for="'customSwitch2'+ingreso.id"></label> 
+                                        </div>
+                                    </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>
                                     <td>{{ingreso.modelo}}</td>
@@ -53,11 +58,6 @@
                                     <td>{{ingreso.situacion}}</td>
                                     <td>{{ingreso.nave}}</td>
                                     <td>{{$dateFormat(ingreso.fecha_ingreso)}}</td>
-                                    <td>{{ingreso.bloqueado}}</td>
-                                    <td style="text-align: center">
-                                        <button class="btn btn-warning"><i class="far fa-edit"></i></button>
-                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
                                 </tr>
                             </tbody>
                             
@@ -85,14 +85,21 @@ export default {
     methods:{
         async init(){
             await this.axios.get('/api/ingreso')
-                    .then(response=>{
-                        this.ingresos = response.data
-                    })
-                    .catch(error=>{
-                        console.log(error);
-                        this.ingresos =[]
-                    })
-                   await this.$tablaGlobal('#ingreso');
+                .then(response=>{
+                    this.ingresos = response.data
+                })
+                .catch(error=>{
+                    console.log(error);
+                    this.ingresos =[]
+                })
+                await this.$tablaGlobal('#ingreso');
+        },
+        async ChangeBloquear(id, estadoBloqueado){
+            let estado = estadoBloqueado == 1 ? 0 : 1;
+            await axios.put('/api/ingreso/' + id, { bloqueado : estado }).then(response=>{
+                }).catch(function (error) {
+                    console.log(error);
+                }); 
         }
     }
 }
