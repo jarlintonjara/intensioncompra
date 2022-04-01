@@ -157,7 +157,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       registros: [],
       form: {
         concesionario_id: 1,
-        user_id: 1,
+        user_id: 0,
         caracteristica_id: 0,
         nombre_completo: "",
         documento: "",
@@ -182,7 +182,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selectModelo: "",
       selectVersion: "",
       showTable1: true,
-      showTable2: false
+      showTable2: false,
+      user: null
     };
   },
   mounted: function mounted() {
@@ -243,11 +244,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var token;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                token = localStorage.getItem('access_token');
+                _context.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
+                  _this.user = res.data;
+                  _this.form.user_id = _this.user.id;
+                });
+
+              case 3:
+                _context.next = 5;
                 return _this.axios.get('/api/registro').then(function (response) {
                   _this.caracteristicas = response.data.caracteristicas;
                   _this.asignados = response.data.asignados;
@@ -265,12 +275,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   console.log(error);
                 });
 
-              case 2:
+              case 5:
                 _this.$tablaGlobal('#tnoasignado');
 
                 _this.$tablaGlobal('#tasignado');
 
-              case 4:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -343,8 +353,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     limpiar: function limpiar() {
       this.form = {
         concesionario_id: 1,
-        user_id: 1,
         caracteristica_id: 0,
+        user_id: this.user.id,
         nombre_completo: "",
         documento: "",
         celular: "",
