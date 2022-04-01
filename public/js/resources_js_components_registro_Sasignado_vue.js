@@ -109,7 +109,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      asignados: []
+      asignados: [],
+      user: null
     };
   },
   mounted: function mounted() {
@@ -120,22 +121,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var token;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                token = localStorage.getItem('access_token');
+                _context.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
+                  _this.user = res.data;
+                });
+
+              case 3:
+                _context.next = 5;
                 return _this.axios.get('/api/registro').then(function (response) {
                   //this.caracteristicas = response.data.caracteristicas;
-                  _this.asignados = response.data.asignados;
+                  var asignados = response.data.asignados;
+                  _this.asignados = asignados.filter(function (e) {
+                    return e.user_id == _this.user.id;
+                  });
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
-              case 2:
+              case 5:
                 _this.$tablaGlobal('#tasignado');
 
-              case 3:
+              case 6:
               case "end":
                 return _context.stop();
             }
