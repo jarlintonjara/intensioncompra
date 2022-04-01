@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AsignacionModel;
 use App\Http\Requests\StoreAsignacionRequest;
 use App\Http\Requests\UpdateAsignacionRequest;
+use Illuminate\Http\Request;
 
 class AsignacionController extends Controller
 {
@@ -31,6 +32,7 @@ class AsignacionController extends Controller
             'ingresos.anio_modelo',
             'ingresos.codigo_sap',
             'ingresos.fecha_ingreso',
+            'asignaciones.id',
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
@@ -77,27 +79,16 @@ class AsignacionController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Asignacion  $asignacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AsignacionModel $asignacion)
+    public function edit(Request $request, $id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAsignacionRequest  $request
-     * @param  \App\Models\Asignacion  $asignacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateAsignacionRequest $request, AsignacionModel $asignacion)
+    public function update(Request $request, $id)
     {
-        //
+        $asignacion = AsignacionModel::findOrFail($id);
+        $asignacion->update($request->all());
+        return response()->json($asignacion);
     }
 
     /**

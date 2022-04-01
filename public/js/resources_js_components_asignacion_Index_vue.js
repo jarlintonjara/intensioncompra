@@ -108,11 +108,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "Asignacion",
   data: function data() {
     return {
       asignaciones: [],
-      user: null
+      id: null,
+      form: {
+        codigo_reserva: "",
+        monto_reserva: 0,
+        fecha_reserva: "",
+        situacion: "RESERVADO"
+      }
     };
   },
   mounted: function mounted() {
@@ -146,14 +194,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    } // async ChangeBloquear(id, estadoBloqueado){
-    //     let estado = estadoBloqueado == 1 ? 0 : 1;
-    //     await axios.put('/api/ingreso/' + id, { bloqueado : estado }).then(response=>{
-    //         }).catch(function (error) {
-    //             console.log(error);
-    //         }); 
-    // }
+    },
+    abrirModalEditar: function abrirModalEditar(asignacion) {
+      this.titulo = 'Reservar';
+      this.id = asignacion.id;
+      this.form.codigo_reserva = asignacion.codigo_reserva;
+      this.form.monto_reserva = asignacion.monto_reserva;
+      this.form.fecha_reserva = asignacion.fecha_reserva;
+      $('#modalForm').modal('show');
+    },
+    editar: function editar() {
+      var _this2 = this;
 
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var valid;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.validarCampos();
+
+              case 2:
+                valid = _context2.sent;
+
+                if (!valid) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                _context2.next = 6;
+                return axios.put('/api/asignacion/' + _this2.id, _this2.form).then(function (response) {
+                  var index = _this2.asignaciones.map(function (e) {
+                    return e.id;
+                  }).indexOf(_this2.id);
+
+                  if (index !== -1) {
+                    _this2.asignaciones[index].codigo_reserva = response.data.codigo_reserva;
+                    _this2.asignaciones[index].monto_reserva = response.data.monto_reserva;
+                    _this2.asignaciones[index].fecha_reserva = response.data.fecha_reserva;
+                    _this2.asignaciones[index].situacion = response.data.situacion;
+                    _this2.asignaciones = [].concat(_this2.asignaciones);
+                  }
+
+                  _this2.id = null;
+                  $('#modalForm').modal('hide');
+
+                  _this2.$swal.fire('Reservado!', '', 'success');
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 6:
+                $('#asignaciones').DataTable().destroy();
+
+                _this2.$tablaGlobal('#asignaciones');
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    validarCampos: function validarCampos() {
+      if (!this.form.codigo_reserva || !this.form.monto_reserva || !this.form.fecha_reserva) {
+        this.$swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Completa los campos requeridos!'
+        });
+        return false;
+      }
+
+      return true;
+    },
+    cerrarModal: function cerrarModal() {
+      $('#modalForm').modal('hide');
+    }
   }
 });
 
@@ -1040,6 +1159,23 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.asignaciones, function (asignacion) {
                       return _c("tr", { key: asignacion.id }, [
+                        _c("td", { staticStyle: { "text-align": "center" } }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-warning",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.abrirModalEditar(asignacion)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "far fa-edit" })]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(3, true),
+                        ]),
+                        _vm._v(" "),
                         _c("td", [
                           _vm._v(
                             _vm._s(
@@ -1079,14 +1215,195 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(asignacion.monto_reserva))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.fecha_reserva))]),
-                        _vm._v(" "),
-                        _vm._m(3, true),
                       ])
                     }),
                     0
                   ),
                 ]
               ),
+            ]),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal fade", attrs: { id: "modalForm" } }, [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: {
+                    type: "button",
+                    "data-dismiss": "modal",
+                    "aria-label": "Close",
+                  },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.cerrarModal.apply(null, arguments)
+                    },
+                  },
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("×"),
+                  ]),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("form", [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-6" }, [
+                    _c("label", { attrs: { for: "Codigo" } }, [
+                      _vm._v("Código Reserva"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.codigo_reserva,
+                          expression: "form.codigo_reserva",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "Codigo",
+                        placeholder: "Codigo",
+                        required: "",
+                      },
+                      domProps: { value: _vm.form.codigo_reserva },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "codigo_reserva",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-6" }, [
+                    _c("label", { attrs: { for: "MontoReserva" } }, [
+                      _vm._v("Monto Reserva"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.monto_reserva,
+                          expression: "form.monto_reserva",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "MontoReserva",
+                        placeholder: "Monto Reserva",
+                        required: "",
+                      },
+                      domProps: { value: _vm.form.monto_reserva },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "monto_reserva",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "Fecha" } }, [
+                      _vm._v("Fecha Reserva"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.fecha_reserva,
+                          expression: "form.fecha_reserva",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "date",
+                        id: "Fecha",
+                        placeholder: "Fecha",
+                      },
+                      domProps: { value: _vm.form.fecha_reserva },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "fecha_reserva",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.cerrarModal.apply(null, arguments)
+                      },
+                    },
+                  },
+                  [_vm._v("Cerrar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.editar.apply(null, arguments)
+                      },
+                    },
+                  },
+                  [_vm._v("Editar")]
+                ),
+              ]),
             ]),
           ]),
         ]),
@@ -1152,6 +1469,8 @@ var staticRenderFns = [
       { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
       [
         _c("tr", [
+          _c("th", [_vm._v("ACCIONES")]),
+          _vm._v(" "),
           _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
           _vm._v(" "),
           _c("th", [_vm._v("CONCESIONARIO")]),
@@ -1181,8 +1500,6 @@ var staticRenderFns = [
           _c("th", [_vm._v("MONTO RESERVA")]),
           _vm._v(" "),
           _c("th", [_vm._v("FECHA RESERVA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("ACCIONES")]),
         ]),
       ]
     )
@@ -1191,14 +1508,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticStyle: { "text-align": "center" } }, [
-      _c("button", { staticClass: "btn btn-warning" }, [
-        _c("i", { staticClass: "far fa-edit" }),
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger" }, [
-        _c("i", { staticClass: "fa fa-trash" }),
-      ]),
+    return _c("button", { staticClass: "btn btn-danger" }, [
+      _c("i", { staticClass: "fa fa-trash" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "modal-title" }, [
+      _c("i", { staticClass: "fa fa-user-plus" }),
+      _vm._v(" Reservar\n                    "),
     ])
   },
 ]

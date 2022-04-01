@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('codigo_reserva')->nullable();
             $table->double('monto_reserva', 8, 2)->nullable();
             $table->date('fecha_reserva')->nullable();
-            $table->tinyInteger('situacion')->nullable();	
+            $table->string('situacion', 20)->nullable();	
             $table->tinyInteger('estado')->nullable();
             $table->string('observacion')->nullable();
             $table->timestamps();
