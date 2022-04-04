@@ -26,6 +26,7 @@
                             <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
                                     <th>FECHA DISTRIBUCIÓN</th>
+                                    <th>RESERVAR</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
@@ -33,7 +34,6 @@
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>VERSION</th>
-                                    <th>RESERVAR</th>
                                     <th>COLOR</th>
                                     <th>AÑO MODELO</th>
                                     <th>CÓDIGO SAP</th>
@@ -48,6 +48,10 @@
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
+                                    <td style="text-align: center">
+                                        <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-check"></i></button>
+                                        <!-- <button class="btn btn-danger" ><i class="fa fa-trash"></i></button> -->
+                                    </td>
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
@@ -55,10 +59,6 @@
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
                                     <td>{{asignacion.version}}</td>
-                                    <td style="text-align: center">
-                                        <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-check"></i></button>
-                                        <!-- <button class="btn btn-danger" ><i class="fa fa-trash"></i></button> -->
-                                    </td>
                                     <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
