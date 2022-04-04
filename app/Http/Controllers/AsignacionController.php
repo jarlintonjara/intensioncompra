@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AsignacionModel;
+use App\Models\RegistroModel;
+use App\Models\IngresoModel;
 use App\Http\Requests\StoreAsignacionRequest;
 use App\Http\Requests\UpdateAsignacionRequest;
 use Illuminate\Http\Request;
@@ -46,9 +48,6 @@ class AsignacionController extends Controller
             ->get();
             // print_r($data);
         
-
-
-
         return response()->json($data);
     }
 
@@ -105,5 +104,24 @@ class AsignacionController extends Controller
     public function destroy(AsignacionModel $asignacion)
     {
         //
+    }
+
+    public function asignacion(){
+        
+        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1')->where('situacion', 'SINASIGNAR')->get();
+
+        
+        
+        foreach ($registros as $registro) {
+
+        $ingresos = IngresoModel::where('marca', $registro->marca)->where('modelo', $registro->modelo)->where('version', $registro->version)->where('anio_version', $registro->anio_modelo)->where('color', $registro->color1)->where('situacion', 'SINASIGNAR')->update('situación','ASIGNADO');
+
+        if($ingresos){
+
+        }
+            // echo $registro->id;
+        }
+
+        return response()->json($registros);
     }
 }
