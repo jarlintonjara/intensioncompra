@@ -11,6 +11,7 @@ const Nasignado = () => import('./components/registro/Nasignado.vue');
 const Sasignado = () => import('./components/registro/Sasignado.vue');
 const Reservado = () => import('./components/asignacion/Reservado.vue');
 const Asignacion = () => import('./components/asignacion/Index.vue');
+const Bloqueado = () => import('./components/ingreso/bloqueado.vue');
 
 export default{
     mode: 'history',
@@ -81,6 +82,11 @@ export default{
                     component: Reservado,
                     name: 'reservado'
                 }, 
+                {
+                    path: '/bloqueado',
+                    component: Bloqueado,
+                    name: 'bloqueado'
+                },
             ],
         },
     ]

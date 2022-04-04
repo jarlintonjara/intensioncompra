@@ -15,7 +15,7 @@ class IngresoModel extends Model
 
     protected $fillable = [
         'id',
-        'user_id',
+        'user_bloqueo',
         'vin',
         'marca',
         'modelo',
@@ -24,6 +24,7 @@ class IngresoModel extends Model
         'anio_fabricacion',
         'color',
         'fecha_ingreso',
+        'fecha_bloqueo',
         'estado',
         'situacion',
         'nave',

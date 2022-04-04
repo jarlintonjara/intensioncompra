@@ -344,6 +344,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -2015,6 +2021,34 @@ var render = function () {
                             attrs: { "data-i18n": "nav.application_intel" },
                           },
                           [_vm._v("Packing List")]
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "li",
+                        to: "/bloqueado",
+                        "active-class": "active",
+                      },
+                    },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa fa-minus fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("Bloqueados")]
                         ),
                       ]),
                     ]

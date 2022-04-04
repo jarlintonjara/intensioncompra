@@ -12,7 +12,24 @@ class IngresoController extends Controller
     public function index()
     {
         $data = IngresoModel::all();
-        return response()->json($data);
+        $bloqueados = IngresoModel::select(
+            'ingresos.id',
+            'users.nombre',
+            'ingresos.fecha_bloqueo',
+            'ingresos.vin',
+            'ingresos.marca',
+            'ingresos.modelo',
+            'ingresos.version',
+            'ingresos.color',
+            'ingresos.anio_modelo',
+            'ingresos.codigo_sap',
+            'ingresos.fecha_ingreso',
+        )
+        ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
+        ->where('bloqueado',1)
+        ->get();
+
+        return response()->json(['data'=>$data,'bloqueados'=>$bloqueados]);
     }
 
     public function create()
@@ -38,7 +55,7 @@ class IngresoController extends Controller
     public function update(Request $request, $id)
     {
         $ingreso = IngresoModel::findOrFail($id);
-        $ingreso->update(["bloqueado" => $request->bloqueado ]);
+        $ingreso->update(["bloqueado" => $request->bloqueado, "user_bloqueo" => $request->user_bloqueo, "fecha_bloqueo" => now()]);
         return response()->json($ingreso);
     }
 

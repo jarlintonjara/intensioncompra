@@ -11,7 +11,7 @@
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        <h2 style="text-align: center; font-size: 1.125rem;"><b>Todos</b></h2>
+                        <h2 style="text-align: center; font-size: 1.125rem;"><b>Bloqueados</b></h2>
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -22,15 +22,16 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <table id="ingreso" class="table table-bordered table-hover table-striped w-100">
+                        <table id="bloqueados" class="table table-bordered table-hover table-striped w-100">
                             <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
-                                    <th>BLOQUEADO</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>VERSION</th>
                                     <th>AÑO MODELO</th>
+                                    <th>USUARIO_BLOQUEO</th>
+                                    <th>FECHA BLOQUEO</th>
                                     <th>AÑO FABRICACIÓN</th>
                                     <th>COLOR</th>
                                     <th>CODIGO SAP</th>
@@ -41,17 +42,13 @@
                             </thead>
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
-                                    <td style="text-align: center">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" :id="'customSwitch2'+ingreso.id" :checked="ingreso.bloqueado == 0 ?'checked':'' " @click="ChangeBloquear(ingreso.id, ingreso.bloqueado)">
-                                            <label class="custom-control-label" :for="'customSwitch2'+ingreso.id"></label> 
-                                        </div>
-                                    </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>
                                     <td>{{ingreso.modelo}}</td>
                                     <td>{{ingreso.version}}</td>
                                     <td>{{$dateFormat(ingreso.anio_modelo)}}</td>
+                                    <td>{{ingreso.nombre}}</td>
+                                    <td>{{$dateFormat(ingreso.fecha_bloqueo)}}</td>
                                     <td>{{$dateFormat(ingreso.anio_fabricacion)}}</td>
                                     <td>{{ingreso.color}}</td>
                                     <td>{{ingreso.codigo_sap}}</td>
@@ -85,26 +82,14 @@ export default {
         async init(){
             await this.axios.get('/api/ingreso')
                 .then(response=>{
-                    this.ingresos = response.data.data
+                    this.ingresos = response.data.bloqueados
                 })
                 .catch(error=>{
                     console.log(error);
                     this.ingresos =[]
                 })
-                await this.$tablaGlobal('#ingreso');
+                await this.$tablaGlobal('#bloqueados');
         },
-        async ChangeBloquear(id, estadoBloqueado){
-            const token = localStorage.getItem('access_token');
-            await axios.get('api/getSession/'+ token).then((res)=>{
-                this.user = res.data.id;
-            })
-            
-            let estado = estadoBloqueado == 1 ? 0 : 1;
-            await axios.put('/api/ingreso/' + id, { bloqueado : estado, user_bloqueo : this.user }).then(response=>{
-                }).catch(function (error) {
-                    console.log(error);
-                }); 
-        }
     }
 }
 

@@ -1,4 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_ingreso_Index_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_ingreso_bloqueado_vue"],{
 
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
@@ -11,10 +11,10 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/Index.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/Index.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/bloqueado.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/bloqueado.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -30,9 +30,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -122,7 +119,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.get('/api/ingreso').then(function (response) {
-                  _this.ingresos = response.data.data;
+                  _this.ingresos = response.data.bloqueados;
                 })["catch"](function (error) {
                   console.log(error);
                   _this.ingresos = [];
@@ -130,7 +127,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _context.next = 4;
-                return _this.$tablaGlobal('#ingreso');
+                return _this.$tablaGlobal('#bloqueados');
 
               case 4:
               case "end":
@@ -138,39 +135,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
-      }))();
-    },
-    ChangeBloquear: function ChangeBloquear(id, estadoBloqueado) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var token, estado;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                token = localStorage.getItem('access_token');
-                _context2.next = 3;
-                return axios.get('api/getSession/' + token).then(function (res) {
-                  _this2.user = res.data.id;
-                });
-
-              case 3:
-                estado = estadoBloqueado == 1 ? 0 : 1;
-                _context2.next = 6;
-                return axios.put('/api/ingreso/' + id, {
-                  bloqueado: estado,
-                  user_bloqueo: _this2.user
-                }).then(function (response) {})["catch"](function (error) {
-                  console.log(error);
-                });
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
       }))();
     }
   }
@@ -942,10 +906,10 @@ try {
 
 /***/ }),
 
-/***/ "./resources/js/components/ingreso/Index.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/ingreso/Index.vue ***!
-  \***************************************************/
+/***/ "./resources/js/components/ingreso/bloqueado.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ingreso/bloqueado.vue ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -953,8 +917,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Index_vue_vue_type_template_id_02bf7999___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=02bf7999& */ "./resources/js/components/ingreso/Index.vue?vue&type=template&id=02bf7999&");
-/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/components/ingreso/Index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _bloqueado_vue_vue_type_template_id_72c60e57___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bloqueado.vue?vue&type=template&id=72c60e57& */ "./resources/js/components/ingreso/bloqueado.vue?vue&type=template&id=72c60e57&");
+/* harmony import */ var _bloqueado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bloqueado.vue?vue&type=script&lang=js& */ "./resources/js/components/ingreso/bloqueado.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -964,9 +928,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Index_vue_vue_type_template_id_02bf7999___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Index_vue_vue_type_template_id_02bf7999___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _bloqueado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _bloqueado_vue_vue_type_template_id_72c60e57___WEBPACK_IMPORTED_MODULE_0__.render,
+  _bloqueado_vue_vue_type_template_id_72c60e57___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -976,15 +940,15 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ingreso/Index.vue"
+component.options.__file = "resources/js/components/ingreso/bloqueado.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ingreso/Index.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/ingreso/Index.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
+/***/ "./resources/js/components/ingreso/bloqueado.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/ingreso/bloqueado.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -992,32 +956,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/Index.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bloqueado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./bloqueado.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/bloqueado.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_bloqueado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ingreso/Index.vue?vue&type=template&id=02bf7999&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/ingreso/Index.vue?vue&type=template&id=02bf7999& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/ingreso/bloqueado.vue?vue&type=template&id=72c60e57&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/ingreso/bloqueado.vue?vue&type=template&id=72c60e57& ***!
+  \**************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_02bf7999___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_02bf7999___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bloqueado_vue_vue_type_template_id_72c60e57___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bloqueado_vue_vue_type_template_id_72c60e57___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_02bf7999___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=template&id=02bf7999& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/Index.vue?vue&type=template&id=02bf7999&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_bloqueado_vue_vue_type_template_id_72c60e57___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./bloqueado.vue?vue&type=template&id=72c60e57& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/bloqueado.vue?vue&type=template&id=72c60e57&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/Index.vue?vue&type=template&id=02bf7999&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/Index.vue?vue&type=template&id=02bf7999& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/bloqueado.vue?vue&type=template&id=72c60e57&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ingreso/bloqueado.vue?vue&type=template&id=72c60e57& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1050,7 +1014,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "ingreso" },
+                  attrs: { id: "bloqueados" },
                 },
                 [
                   _vm._m(2),
@@ -1059,39 +1023,6 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.ingresos, function (ingreso) {
                       return _c("tr", { key: ingreso.id }, [
-                        _c("td", { staticStyle: { "text-align": "center" } }, [
-                          _c(
-                            "div",
-                            { staticClass: "custom-control custom-switch" },
-                            [
-                              _c("input", {
-                                staticClass: "custom-control-input",
-                                attrs: {
-                                  type: "checkbox",
-                                  id: "customSwitch2" + ingreso.id,
-                                },
-                                domProps: {
-                                  checked:
-                                    ingreso.bloqueado == 0 ? "checked" : "",
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.ChangeBloquear(
-                                      ingreso.id,
-                                      ingreso.bloqueado
-                                    )
-                                  },
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", {
-                                staticClass: "custom-control-label",
-                                attrs: { for: "customSwitch2" + ingreso.id },
-                              }),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.vin))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.marca))]),
@@ -1102,6 +1033,14 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(_vm.$dateFormat(ingreso.anio_modelo))),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(ingreso.nombre))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.$dateFormat(ingreso.fecha_bloqueo))
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("td", [
@@ -1158,7 +1097,7 @@ var staticRenderFns = [
         _c(
           "h2",
           { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-          [_c("b", [_vm._v("Todos")])]
+          [_c("b", [_vm._v("Bloqueados")])]
         ),
       ]),
       _vm._v(" "),
@@ -1194,8 +1133,6 @@ var staticRenderFns = [
       { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
       [
         _c("tr", [
-          _c("th", [_vm._v("BLOQUEADO")]),
-          _vm._v(" "),
           _c("th", [_vm._v("VIN")]),
           _vm._v(" "),
           _c("th", [_vm._v("MARCA")]),
@@ -1205,6 +1142,10 @@ var staticRenderFns = [
           _c("th", [_vm._v("VERSION")]),
           _vm._v(" "),
           _c("th", [_vm._v("AÑO MODELO")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("USUARIO_BLOQUEO")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("FECHA BLOQUEO")]),
           _vm._v(" "),
           _c("th", [_vm._v("AÑO FABRICACIÓN")]),
           _vm._v(" "),

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('user_id')->nullable();
+            $table->tinyInteger('user_bloqueo')->nullable();
             $table->string('vin')->nullable();
             $table->string('marca')->nullable();
             $table->string('modelo')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('codigo_sap')->nullable();
             $table->string('nave')->nullable();
             $table->date('fecha_ingreso')->nullable();
+            $table->date('fecha_bloqueo')->nullable();
             $table->tinyInteger('estado')->nullable();
             $table->timestamps();
         });

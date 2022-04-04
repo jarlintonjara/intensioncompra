@@ -80,6 +80,12 @@
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
                                 </a>
                         </router-link>
+                        <router-link tag="li" to="/bloqueado" active-class="active">
+                                <a href="#">
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Bloqueados</span>
+                                </a>
+                        </router-link>
                     </ul>
                 </li>
             </ul>
