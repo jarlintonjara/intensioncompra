@@ -67,6 +67,12 @@
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Reservados</span>
                                 </a>
                         </router-link>
+                        <router-link tag="li" to="/facturado" active-class="active">
+                                <a href="#">
+                                    <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Facturados</span>
+                                </a>
+                        </router-link>
                         <hr>
                         <router-link tag="li" to="" active-class="">
                                 <a href="#">

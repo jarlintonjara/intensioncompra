@@ -48,6 +48,22 @@ class AsignacionController extends Controller
             ->get();
             // print_r($data);
         
+            $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')->where('situacion', 'SINASIGNAR')->get();
+
+            foreach ($registros as $registro) {
+    
+            $ingresos = IngresoModel::where('marca', $registro->marca)->where('modelo', $registro->modelo)->where('version', $registro->version)->where('anio_modelo', $registro->anio_modelo)->where('color', $registro->color1)->where('situacion', 'LIBRE')->where('bloqueado', 0)->first();
+    
+            if($ingresos){
+                $ingresos->situacion = 'ASIGNADO';
+                $ingresos->save();
+
+                $registro->situacion = 'ASIGNADO';
+                $registro->save();
+            }
+            }
+
+
         return response()->json($data);
     }
 
@@ -108,18 +124,19 @@ class AsignacionController extends Controller
 
     public function asignacion(){
         
-        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1')->where('situacion', 'SINASIGNAR')->get();
+        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1')->where('situacion', 'SINASIGNAR')->orderBy('created_at', 'asc')->get();
 
         
         
         foreach ($registros as $registro) {
 
-        $ingresos = IngresoModel::where('marca', $registro->marca)->where('modelo', $registro->modelo)->where('version', $registro->version)->where('anio_version', $registro->anio_modelo)->where('color', $registro->color1)->where('situacion', 'SINASIGNAR')->update('situación','ASIGNADO');
+        $ingresos = IngresoModel::where('marca', $registros[0]->marca)->where('modelo', $registros[0]->modelo)->where('version', $registros[0]->version)->where('anio_modelo', $registros[0]->anio_modelo)->where('color', $registros[0]->color1)->where('situacion', 'LIBRE')->first();
+        $ingresos = IngresoModel::where('marca', 'RENAULT')->where('modelo', 'Master Furgon')->where('version', 'MASTER FURGON 2.3 TDI')->where('anio_modelo', '2022')->where('color', 'BLANCO GLACIAR')->where('situacion', 'LIBRE')->first();
 
         if($ingresos){
-
+            $ingresos->situacion = 'ASIGNADO';
+            $ingresos->save();
         }
-            // echo $registro->id;
         }
 
         return response()->json($registros);
