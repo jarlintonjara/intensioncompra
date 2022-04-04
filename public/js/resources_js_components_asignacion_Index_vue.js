@@ -1193,7 +1193,7 @@ var render = function () {
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "fa fa-check" })]
+                            [_c("i", { staticClass: "fa fa-lock" })]
                           ),
                         ]),
                         _vm._v(" "),

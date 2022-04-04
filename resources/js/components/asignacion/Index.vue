@@ -49,7 +49,7 @@
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
                                     <td style="text-align: center">
-                                        <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-lock"></i></button>
                                         <!-- <button class="btn btn-danger" ><i class="fa fa-trash"></i></button> -->
                                     </td>
                                     <td>{{asignacion.concesionario}}</td>
