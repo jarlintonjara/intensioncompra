@@ -55,7 +55,7 @@
                                 </a>
                         </router-link>
                         <hr>
-                        <router-link tag="li" to="" active-class="">
+                        <router-link tag="li" to="#" active-class="">
                                 <a href="#">
                                     <i class="fa-solid fa-registered fa-3x" style="color: white !important;"></i>
                                     <span class="nav-link-text" data-i18n="nav.application_intel">RESERVADOS</span>

@@ -1934,7 +1934,7 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "router-link",
-                    { attrs: { tag: "li", to: "", "active-class": "" } },
+                    { attrs: { tag: "li", to: "#", "active-class": "" } },
                     [
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", {
