@@ -50,13 +50,13 @@ class Asignacion extends Command
         ->where('situacion', 'SINASIGNAR')
         ->get();
         
-        foreach ($registros2 as $registro) {
+        foreach ($registros2 as $registro2) {
 
-            $ingresos2 = IngresoModel::where('marca', $registro->marca)
-            ->where('modelo', $registro->modelo)
-            ->where('version', $registro->version)
-            ->where('anio_modelo', $registro->anio_modelo)
-            ->where('color', $registro->color2)
+            $ingresos2 = IngresoModel::where('marca', $registro2->marca)
+            ->where('modelo', $registro2->modelo)
+            ->where('version', $registro2->version)
+            ->where('anio_modelo', $registro2->anio_modelo)
+            ->where('color', $registro2->color2)
             ->where('situacion', 'LIBRE')
             ->where('bloqueado', 0)
             ->first();
@@ -65,10 +65,10 @@ class Asignacion extends Command
                 $ingresos2->situacion = 'ASIGNADO';
                 $ingresos2->save();
 
-                $registro->situacion = 'ASIGNADO';
-                $registro->save();
+                $registro2->situacion = 'ASIGNADO';
+                $registro2->save();
 
-                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
+                AsignacionModel::create(['registro_id' => $registro2->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
             } 
         }
         
@@ -77,13 +77,13 @@ class Asignacion extends Command
         ->where('situacion', 'SINASIGNAR')
         ->get();
 
-        foreach ($registros3 as $registro) {
+        foreach ($registros3 as $registro3) {
 
-            $ingresos3 = IngresoModel::where('marca', $registro->marca)
-            ->where('modelo', $registro->modelo)
-            ->where('version', $registro->version)
-            ->where('anio_modelo', $registro->anio_modelo)
-            ->where('color', $registro->color3)
+            $ingresos3 = IngresoModel::where('marca', $registro3->marca)
+            ->where('modelo', $registro3->modelo)
+            ->where('version', $registro3->version)
+            ->where('anio_modelo', $registro3->anio_modelo)
+            ->where('color', $registro3->color3)
             ->where('situacion', 'LIBRE')
             ->where('bloqueado', 0)
             ->first();
@@ -92,10 +92,10 @@ class Asignacion extends Command
                 $ingresos3->situacion = 'ASIGNADO';
                 $ingresos3->save();
 
-                $registro->situacion = 'ASIGNADO';
-                $registro->save();
+                $registro3->situacion = 'ASIGNADO';
+                $registro3->save();
 
-                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
+                AsignacionModel::create(['registro_id' => $registro3->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
             } 
         }
     }
