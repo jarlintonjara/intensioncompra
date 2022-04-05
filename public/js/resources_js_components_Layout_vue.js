@@ -1798,7 +1798,10 @@ var render = function () {
               _c(
                 "ul",
                 [
-                  _vm.user.role_id == 2
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
                     ? _c(
                         "router-link",
                         { attrs: { tag: "li", to: "", "active-class": "" } },
@@ -1822,273 +1825,323 @@ var render = function () {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/registro",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/registro",
+                            "active-class": "active",
                           },
-                          [_vm._v("Nuevo Registro")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Nuevo Registro")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/noasignado",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/noasignado",
+                            "active-class": "active",
                           },
-                          [_vm._v("Lista de registros")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Lista de registros")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { tag: "li", to: "", "active-class": "" } },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa-solid fa-random fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
-                          },
-                          [_vm._v("ASIGNACIONES")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        { attrs: { tag: "li", to: "", "active-class": "" } },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-random fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("ASIGNACIONES")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/asignacion",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/asignacion",
+                            "active-class": "active",
                           },
-                          [_vm._v("Lista de asignaciones")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Lista de asignaciones")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { tag: "li", to: "#", "active-class": "" } },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa-solid fa-registered fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
-                          },
-                          [_vm._v("RESERVADOS")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        { attrs: { tag: "li", to: "#", "active-class": "" } },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-registered fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("RESERVADOS")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/reservado",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/reservado",
+                            "active-class": "active",
                           },
-                          [_vm._v("Reservados")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Reservados")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/facturado",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/facturado",
+                            "active-class": "active",
                           },
-                          [_vm._v("Facturados")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Facturados")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { tag: "li", to: "", "active-class": "" } },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa-solid fa-database fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
-                          },
-                          [_vm._v("PACKING LIST")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        { attrs: { tag: "li", to: "", "active-class": "" } },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-database fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("PACKING LIST")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/ingreso",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/ingreso",
+                            "active-class": "active",
                           },
-                          [_vm._v("Packing List")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Packing List")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "li",
-                        to: "/bloqueado",
-                        "active-class": "active",
-                      },
-                    },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa fa-minus fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 7
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/bloqueado",
+                            "active-class": "active",
                           },
-                          [_vm._v("Bloqueados")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                        },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("Bloqueados")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                 ],
                 1
               ),
