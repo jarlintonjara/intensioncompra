@@ -17,6 +17,8 @@ class AsignacionModel extends Model
         'user_id',	
         'ingreso_id',	
         'fecha_distribucion',
+        'fecha_reservacion',
+        'fecha_facturacion',
         'codigo_reserva',
         'monto_reserva',
         'fecha_reserva',

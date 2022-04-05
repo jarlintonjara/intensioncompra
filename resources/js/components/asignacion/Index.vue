@@ -147,7 +147,7 @@ export default {
             await this.axios.get('/api/asignacion')
                 .then(response=>{
                     let asignaciones = response.data;
-                    this.asignaciones = asignaciones.filter(e => e.user_id == this.user.id);                
+                    this.asignaciones = asignaciones.filter(e => e.situacion == 'ASIGNADO').filter(e => e.user_id == this.user.id);                
                     })
                 .catch(error=>{
                     console.log(error);

@@ -1683,7 +1683,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "subheader-icon fal fa-pencil" }),
         _vm._v(" "),
         _c("span", { staticClass: "fw-300" }, [
-          _vm._v("REGISTRO INTENSION DE COMPRA"),
+          _vm._v("REGISTRO INTENCIÓN DE COMPRA"),
         ]),
       ]),
     ])

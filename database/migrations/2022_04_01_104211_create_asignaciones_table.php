@@ -19,6 +19,8 @@ return new class extends Migration
             $table->tinyInteger('user_id')->nullable();
             $table->tinyInteger('ingreso_id')->nullable();
             $table->date('fecha_distribucion')->nullable();
+            $table->date('fecha_reservacion')->nullable();
+            $table->date('fecha_facturacion')->nullable();
             $table->string('codigo_reserva')->nullable();
             $table->double('monto_reserva', 8, 2)->nullable();
             $table->date('fecha_reserva')->nullable();

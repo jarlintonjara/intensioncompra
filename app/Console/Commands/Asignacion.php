@@ -39,7 +39,7 @@ class Asignacion extends Command
                 $registro->situacion = 'ASIGNADO';
                 $registro->save();
 
-                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id]);
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
             } 
         }
         // dd($ingresos);
@@ -68,7 +68,7 @@ class Asignacion extends Command
                 $registro->situacion = 'ASIGNADO';
                 $registro->save();
 
-                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos2->id]);
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
             } 
         }
         
@@ -95,7 +95,7 @@ class Asignacion extends Command
                 $registro->situacion = 'ASIGNADO';
                 $registro->save();
 
-                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id]);
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
             } 
         }
     }

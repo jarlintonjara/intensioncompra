@@ -3,7 +3,7 @@
 
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>REGISTRO INTENSION DE COMPRA</span>
+                <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>REGISTRO INTENCIÓN DE COMPRA</span>
             </h1>
         </div>
 

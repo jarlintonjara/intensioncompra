@@ -41,20 +41,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="ingreso in ingresos" :key="ingreso.id">
-                                    <td>{{ingreso.vin}}</td>
-                                    <td>{{ingreso.marca}}</td>
-                                    <td>{{ingreso.modelo}}</td>
-                                    <td>{{ingreso.version}}</td>
-                                    <td>{{$dateFormat(ingreso.anio_modelo)}}</td>
-                                    <td>{{ingreso.nombre}}</td>
-                                    <td>{{$dateFormat(ingreso.fecha_bloqueo)}}</td>
-                                    <td>{{$dateFormat(ingreso.anio_fabricacion)}}</td>
-                                    <td>{{ingreso.color}}</td>
-                                    <td>{{ingreso.codigo_sap}}</td>
-                                    <td>{{ingreso.situacion}}</td>
-                                    <td>{{ingreso.nave}}</td>
-                                    <td>{{$dateFormat(ingreso.fecha_ingreso)}}</td>
+                                <tr v-for="bloqueado in bloqueados" :key="bloqueado.id">
+                                    <td>{{bloqueado.vin}}</td>
+                                    <td>{{bloqueado.marca}}</td>
+                                    <td>{{bloqueado.modelo}}</td>
+                                    <td>{{bloqueado.version}}</td>
+                                    <td>{{$dateFormat(bloqueado.anio_modelo)}}</td>
+                                    <td>{{bloqueado.nombre}}</td>
+                                    <td>{{$dateFormat(bloqueado.fecha_bloqueo)}}</td>
+                                    <td>{{$dateFormat(bloqueado.anio_fabricacion)}}</td>
+                                    <td>{{bloqueado.color}}</td>
+                                    <td>{{bloqueado.codigo_sap}}</td>
+                                    <td>{{bloqueado.situacion}}</td>
+                                    <td>{{bloqueado.nave}}</td>
+                                    <td>{{$dateFormat(bloqueado.fecha_ingreso)}}</td>
                                 </tr>
                             </tbody>
                             
@@ -72,7 +72,7 @@
 export default {
     data(){
         return{
-            ingresos:[],
+            bloqueados:[],
         }
     },
     mounted(){
@@ -82,11 +82,11 @@ export default {
         async init(){
             await this.axios.get('/api/ingreso')
                 .then(response=>{
-                    this.ingresos = response.data.bloqueados
+                    this.bloqueados = response.data.bloqueados
                 })
                 .catch(error=>{
                     console.log(error);
-                    this.ingresos =[]
+                    this.bloqueados =[]
                 })
                 await this.$tablaGlobal('#bloqueados');
         },
