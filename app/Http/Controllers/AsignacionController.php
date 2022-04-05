@@ -43,27 +43,11 @@ class AsignacionController extends Controller
             )
             ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
             ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
-            ->Join('users', 'asignaciones.user_id', '=', 'users.id')
+            ->Join('users', 'registros.user_id', '=', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
             ->get();
             // print_r($data);
         
-            $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')->where('situacion', 'SINASIGNAR')->get();
-
-            foreach ($registros as $registro) {
-    
-            $ingresos = IngresoModel::where('marca', $registro->marca)->where('modelo', $registro->modelo)->where('version', $registro->version)->where('anio_modelo', $registro->anio_modelo)->where('color', $registro->color1)->where('situacion', 'LIBRE')->where('bloqueado', 0)->first();
-    
-            if($ingresos){
-                $ingresos->situacion = 'ASIGNADO';
-                $ingresos->save();
-
-                $registro->situacion = 'ASIGNADO';
-                $registro->save();
-            }
-            }
-
-
         return response()->json($data);
     }
 
@@ -123,22 +107,87 @@ class AsignacionController extends Controller
     }
 
     public function asignacion(){
-        
-        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1')->where('situacion', 'SINASIGNAR')->orderBy('created_at', 'asc')->get();
+        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
+        ->where('situacion', 'SINASIGNAR')
+        ->get();
 
-        
-        
         foreach ($registros as $registro) {
 
-        $ingresos = IngresoModel::where('marca', $registros[0]->marca)->where('modelo', $registros[0]->modelo)->where('version', $registros[0]->version)->where('anio_modelo', $registros[0]->anio_modelo)->where('color', $registros[0]->color1)->where('situacion', 'LIBRE')->first();
-        $ingresos = IngresoModel::where('marca', 'RENAULT')->where('modelo', 'Master Furgon')->where('version', 'MASTER FURGON 2.3 TDI')->where('anio_modelo', '2022')->where('color', 'BLANCO GLACIAR')->where('situacion', 'LIBRE')->first();
+            $ingresos = IngresoModel::where('marca', $registro->marca)
+            ->where('modelo', $registro->modelo)
+            ->where('version', $registro->version)
+            ->where('anio_modelo', $registro->anio_modelo)
+            ->where('color', $registro->color1)
+            ->where('situacion', 'LIBRE')
+            ->where('bloqueado', 0)
+            ->first();
+    
+            if($ingresos){
+                $ingresos->situacion = 'ASIGNADO';
+                $ingresos->save();
 
-        if($ingresos){
-            $ingresos->situacion = 'ASIGNADO';
-            $ingresos->save();
-        }
-        }
+                $registro->situacion = 'ASIGNADO';
+                $registro->save();
 
-        return response()->json($registros);
-    }
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id]);
+            } 
+        }
+        // dd($ingresos);
+
+
+    //segundo
+    $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')
+        ->where('situacion', 'SINASIGNAR')
+        ->get();
+        
+        foreach ($registros2 as $registro) {
+
+            $ingresos2 = IngresoModel::where('marca', $registro->marca)
+            ->where('modelo', $registro->modelo)
+            ->where('version', $registro->version)
+            ->where('anio_modelo', $registro->anio_modelo)
+            ->where('color', $registro->color2)
+            ->where('situacion', 'LIBRE')
+            ->where('bloqueado', 0)
+            ->first();
+    
+            if($ingresos2){
+                $ingresos2->situacion = 'ASIGNADO';
+                $ingresos2->save();
+
+                $registro->situacion = 'ASIGNADO';
+                $registro->save();
+
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos2->id]);
+            } 
+        }
+        
+        //tercero
+        $registros3 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color3','situacion')
+        ->where('situacion', 'SINASIGNAR')
+        ->get();
+
+        foreach ($registros3 as $registro) {
+
+            $ingresos3 = IngresoModel::where('marca', $registro->marca)
+            ->where('modelo', $registro->modelo)
+            ->where('version', $registro->version)
+            ->where('anio_modelo', $registro->anio_modelo)
+            ->where('color', $registro->color3)
+            ->where('situacion', 'LIBRE')
+            ->where('bloqueado', 0)
+            ->first();
+    
+            if($ingresos3){
+                $ingresos3->situacion = 'ASIGNADO';
+                $ingresos3->save();
+
+                $registro->situacion = 'ASIGNADO';
+                $registro->save();
+
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id]);
+            } 
+        }
+        
+    } 
 }

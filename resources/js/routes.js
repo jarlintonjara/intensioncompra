@@ -12,7 +12,7 @@ const Sasignado = () => import('./components/registro/Sasignado.vue');
 const Reservado = () => import('./components/asignacion/Reservado.vue');
 const Asignacion = () => import('./components/asignacion/Index.vue');
 const Bloqueado = () => import('./components/ingreso/Index.vue');
-const Facturado = () => import('./components/ingreso/Index.vue');
+const Facturado = () => import('./components/asignacion/Facturado.vue');
 
 
 

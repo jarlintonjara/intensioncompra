@@ -1798,27 +1798,29 @@ var render = function () {
               _c(
                 "ul",
                 [
-                  _c(
-                    "router-link",
-                    { attrs: { tag: "li", to: "", "active-class": "" } },
-                    [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", {
-                          staticClass: "fa-solid fa-pencil fa-3x",
-                          staticStyle: { color: "white !important" },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
-                          },
-                          [_vm._v("REGISTRO")]
-                        ),
-                      ]),
-                    ]
-                  ),
+                  _vm.user.role_id == 2
+                    ? _c(
+                        "router-link",
+                        { attrs: { tag: "li", to: "", "active-class": "" } },
+                        [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-pencil fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "nav-link-text",
+                                attrs: { "data-i18n": "nav.application_intel" },
+                              },
+                              [_vm._v("REGISTRO")]
+                            ),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "router-link",

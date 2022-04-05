@@ -1,25 +1,23 @@
 <?php
 
-use App\Mail\SchedulesForTomorrow;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use \Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\UserExportController;
+namespace App\Console\Commands;
 use App\Models\RegistroModel;
 use App\Models\IngresoModel;
 use App\Models\AsignacionModel;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-Route::get('/test', function () {
-    $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
+
+use Illuminate\Console\Command;
+
+class Asignacion extends Command
+{
+    protected $signature = 'send:asignacion';
+
+    protected $description = 'Asigna registros';
+
+    public function handle()
+    {
+        // AsignacionModel::create(['registro_id' => 1, 'ingreso_id' => 1]);
+
+        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
         ->where('situacion', 'SINASIGNAR')
         ->get();
 
@@ -100,25 +98,5 @@ Route::get('/test', function () {
                 AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id]);
             } 
         }
-});
-
-
-Route::get('/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
-
-
-  
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
- 
+    }
+}

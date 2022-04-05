@@ -23,7 +23,7 @@
             <ul class="nav-menu" id="js-nav-menu">
                 <li class="active">
                     <ul>
-                        <router-link tag="li" to="" active-class="">
+                        <router-link tag="li" to="" v-if="user.role_id == 2" active-class="">
                                 <a href="#">
                                     <i class="fa-solid fa-pencil fa-3x" style="color: white !important;"></i>
                                     <span class="nav-link-text" data-i18n="nav.application_intel">REGISTRO</span>
