@@ -111,7 +111,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" @click.prevent="editar">Editar</button>
+                            <button type="submit" class="btn btn-primary" @click.prevent="reservar">Reservar</button>
                         </div>
                     </form>
                 </div>
@@ -163,7 +163,7 @@ export default {
             this.form.fecha_reserva = asignacion.fecha_reserva;
             $('#modalForm').modal('show')
         },
-        async editar(){
+        async reservar(){
             let valid = await this.validarCampos();
             if(valid){
                 await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{

@@ -24,30 +24,9 @@ class HomeController extends Controller
     }
 
     function sendEmail(){
-        /* $validator = \Validator::make(
-            $request->all(),
-            [
-                'name' => 'required|max:255',
-                'email' => 'required|email|max:255',
-                'subject' => 'required',
-                'bodymessage' => 'required'
-            ]
-        );
-
-        if ($validator->fails()) {
-            return redirect('contact')->withInput()->withErrors($validator);
-        } */
-
-
-        /*   $name = $request->name;
-        $email = $request->email;
-        $title = $request->subject;
-        $content = $request->bodymessage; */
-
-        //Mail::to("fredy.acp25@gmail.com")->send(new SchedulesForTomorrow);
 
         Mail::send('mail.schedulesTomorrow', [], function ($message) {
-            $message->to('fredy.acp25@gmail.com')->subject('Prueba !');
+            $message->to('admin@gmail.com')->subject('Prueba !');
         }); 
         return response()->json(["message" => "exitoso"]);
     }

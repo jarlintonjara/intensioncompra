@@ -8,6 +8,7 @@ use App\Models\IngresoModel;
 use App\Http\Requests\StoreAsignacionRequest;
 use App\Http\Requests\UpdateAsignacionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AsignacionController extends Controller
 {
@@ -46,8 +47,11 @@ class AsignacionController extends Controller
             ->Join('users', 'registros.user_id', '=', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
             ->get();
-            // print_r($data);
-        
+
+        foreach($data as $e){
+            $vin = Hash::make($e["vin"]);
+            $e["vin"]= substr($vin, 0, 15);
+        }
         return response()->json($data);
     }
 

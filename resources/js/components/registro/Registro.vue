@@ -183,14 +183,16 @@ export default {
         }
     },
     methods:{
-        async init(){
+        async init(){ 
             const token = localStorage.getItem('access_token');
             await axios.get('api/getSession/'+ token).then((res)=>{
                 this.user = res.data;
-                console.log(res.data);
                 this.form.user_id = this.user.id
-            })
-             await this.axios.get('/api/registro')
+            });
+             await axios.get('/api/registro', {
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                })
                 .then(response=> {
                     this.caracteristicas = response.data.caracteristicas;
                     this.asignados = response.data.asignados;

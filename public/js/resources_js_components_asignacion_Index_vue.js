@@ -218,7 +218,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.form.fecha_reserva = asignacion.fecha_reserva;
       $('#modalForm').modal('show');
     },
-    editar: function editar() {
+    reservar: function reservar() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -1412,11 +1412,11 @@ var render = function () {
                     on: {
                       click: function ($event) {
                         $event.preventDefault()
-                        return _vm.editar.apply(null, arguments)
+                        return _vm.reservar.apply(null, arguments)
                       },
                     },
                   },
-                  [_vm._v("Editar")]
+                  [_vm._v("Reservar")]
                 ),
               ]),
             ]),

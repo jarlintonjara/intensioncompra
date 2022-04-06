@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\RegistroModel;
 use Illuminate\Http\Request;
 use App\Models\CaracteristicaModel;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class RegistroController extends Controller
 {
@@ -12,13 +14,40 @@ class RegistroController extends Controller
     {
         //$this->middleware('auth');
     }
+    function getUser($token){
+        [$id, $user_token] = explode('|', $token, 2);
+        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+        if ($token_data) {
+            $user_id = $token_data->tokenable_id;
+            $user = User::find($user_id);
+            if ($user) {
+                return $user;
+            }
+            return response()->json("Unauthenticated", 401);
+        }
+    }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = CaracteristicaModel::where('situacion', 'SINASIGNAR')->get();
+        $user = self::getUser($request->bearerToken());
+        $data = CaracteristicaModel::all();
         $asignado = RegistroModel::where('situacion', 'ASIGNADO')->get();
-        $noasignado = RegistroModel::where('estado', 0)->get();
-        return response()->json(['caracteristicas'=>$data,'asignados'=>$asignado,'noasignados'=>$noasignado]);
+        switch ($user->role_id){
+            case 1:
+                $noasignado = RegistroModel::where('situacion', 'SINASIGNAR')->where('user_id', $user->id)->get();
+                break;
+            case 2:
+                $noasignado = RegistroModel::where('situacion', 'SINASIGNAR')->where('tienda_id', $user->tienda_id)->get();
+                break;
+            case 3:
+                $noasignado = RegistroModel::where('situacion', 'SINASIGNAR')->where('concesionario_id', $user->concesionario_id)->get();
+                break;
+            case 6:
+                $noasignado = RegistroModel::where('situacion', 'SINASIGNAR')->get();
+                break;
+        }
+        //$noasignado =RegistroModel::where('situacion', 'SINASIGNAR')->where('tienda_id')->get();
+        return response()->json(['caracteristicas'=>$data,'asignados'=>$asignado,'noasignados'=>$noasignado, 'user' => $user]);
     }
 
     public function create()

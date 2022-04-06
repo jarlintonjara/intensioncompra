@@ -88,7 +88,10 @@ export default {
             await axios.get('api/getSession/'+ token).then((res)=>{
                 this.user = res.data;
             })
-             await this.axios.get('/api/registro')
+             await this.axios.get('/api/registro', {
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                })
                 .then(response=> {
                     let noasignados = response.data.noasignados;
                     this.noasignados = noasignados.filter(e => e.user_id == this.user.id);

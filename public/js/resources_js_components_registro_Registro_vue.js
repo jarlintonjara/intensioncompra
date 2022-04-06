@@ -253,13 +253,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 3;
                 return axios.get('api/getSession/' + token).then(function (res) {
                   _this.user = res.data;
-                  console.log(res.data);
                   _this.form.user_id = _this.user.id;
                 });
 
               case 3:
                 _context.next = 5;
-                return _this.axios.get('/api/registro').then(function (response) {
+                return axios.get('/api/registro', {
+                  withCredentials: true,
+                  headers: {
+                    Authorization: "Bearer ".concat(token)
+                  }
+                }).then(function (response) {
                   _this.caracteristicas = response.data.caracteristicas;
                   _this.asignados = response.data.asignados;
                   _this.noasignados = response.data.noasignados;

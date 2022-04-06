@@ -16,16 +16,16 @@ window.Vue = Vue;
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 
-import vSelect from 'vue-select'
+import vSelect from 'vue-select';
 Vue.config.productionTip = false;
 
 Vue.component('v-select', vSelect)
-
-
 Vue.use(VueAxios, axios); 
-Vue.use(VueSweetalert2);
-window.JSZip = jszip
 
+
+   
+Vue.use(VueSweetalert2);
+window.JSZip = jszip;
 document.title = "Programación de estacionamiento";
 
 Vue.prototype.$dateFormat = function(date){
@@ -75,7 +75,6 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 
 Vue.use(VueRouter);
-
 const app = new Vue({
     el: '#app',
     components: {App},

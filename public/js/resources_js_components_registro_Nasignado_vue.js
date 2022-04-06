@@ -130,7 +130,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 _context.next = 5;
-                return _this.axios.get('/api/registro').then(function (response) {
+                return _this.axios.get('/api/registro', {
+                  withCredentials: true,
+                  headers: {
+                    Authorization: "Bearer ".concat(token)
+                  }
+                }).then(function (response) {
                   var noasignados = response.data.noasignados;
                   _this.noasignados = noasignados.filter(function (e) {
                     return e.user_id == _this.user.id;

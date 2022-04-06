@@ -14,8 +14,6 @@ const Asignacion = () => import('./components/asignacion/Index.vue');
 const Bloqueado = () => import('./components/ingreso/Bloqueado.vue');
 const Facturado = () => import('./components/asignacion/Facturado.vue');
 
-
-
 export default{
     mode: 'history',
     routes: [
@@ -47,7 +45,6 @@ export default{
                 } else { 
                     return next({ name: 'Login'})
                 }
-               
             },
             children: [
                {
