@@ -15,7 +15,6 @@ class Asignacion extends Command
 
     public function handle()
     {
-        // AsignacionModel::create(['registro_id' => 1, 'ingreso_id' => 1]);
 
         $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
         ->where('situacion', 'SINASIGNAR')
@@ -38,7 +37,7 @@ class Asignacion extends Command
 
                 $registro->situacion = 'ASIGNADO';
                 $registro->save();
-
+                
                 AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
             } 
         }

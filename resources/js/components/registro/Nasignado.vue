@@ -37,6 +37,7 @@
                                     <th>color 2</th>
                                     <th>color 3</th>
                                     <th>Año Modelo</th>
+                                    <th>SITUACIÓN</th>
                                     <!-- <th>Acciones</th> -->
                                 </tr>
                             </thead>
@@ -54,6 +55,7 @@
                                     <td>{{noasignado.color2}}</td>
                                     <td>{{noasignado.color3}}</td>
                                     <td>{{noasignado.anio_modelo}}</td>
+                                    <td>{{noasignado.situacion}}</td>
                                     <!-- <td style="text-align: center">
                                         <button class="btn btn-warning"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger"><i class="fa fa-trash"></i></button>

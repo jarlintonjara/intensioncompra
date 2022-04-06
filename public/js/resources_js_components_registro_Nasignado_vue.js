@@ -102,6 +102,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1066,6 +1068,8 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(noasignado.color3))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.anio_modelo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.situacion))]),
                       ])
                     }),
                     0
@@ -1160,6 +1164,8 @@ var staticRenderFns = [
           _c("th", [_vm._v("color 3")]),
           _vm._v(" "),
           _c("th", [_vm._v("Año Modelo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("SITUACIÓN")]),
         ]),
       ]
     )
