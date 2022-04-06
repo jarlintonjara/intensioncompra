@@ -1798,37 +1798,29 @@ var render = function () {
               _c(
                 "ul",
                 [
-                  _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
-                    ? _c(
-                        "router-link",
-                        { attrs: { tag: "li", to: "", "active-class": "" } },
-                        [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _c("i", {
-                              staticClass: "fa-solid fa-pencil fa-3x",
-                              staticStyle: { color: "white !important" },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "nav-link-text",
-                                attrs: { "data-i18n": "nav.application_intel" },
-                              },
-                              [_vm._v("REGISTRO")]
-                            ),
-                          ]),
-                        ]
-                      )
-                    : _vm._e(),
+                  _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "", "active-class": "" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-pencil fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("REGISTRO")]
+                        ),
+                      ]),
+                    ]
+                  ),
                   _vm._v(" "),
-                  _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 1 || _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {
@@ -1859,9 +1851,9 @@ var render = function () {
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 2 ||
+                  _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {
@@ -1893,37 +1885,32 @@ var render = function () {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
-                    ? _c(
-                        "router-link",
-                        { attrs: { tag: "li", to: "", "active-class": "" } },
-                        [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _c("i", {
-                              staticClass: "fa-solid fa-random fa-3x",
-                              staticStyle: { color: "white !important" },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "nav-link-text",
-                                attrs: { "data-i18n": "nav.application_intel" },
-                              },
-                              [_vm._v("ASIGNACIONES")]
-                            ),
-                          ]),
-                        ]
-                      )
-                    : _vm._e(),
+                  _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "", "active-class": "" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-random fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("ASIGNACIONES")]
+                        ),
+                      ]),
+                    ]
+                  ),
                   _vm._v(" "),
                   _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 2 ||
+                  _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {
@@ -1955,37 +1942,32 @@ var render = function () {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
-                    ? _c(
-                        "router-link",
-                        { attrs: { tag: "li", to: "#", "active-class": "" } },
-                        [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _c("i", {
-                              staticClass: "fa-solid fa-registered fa-3x",
-                              staticStyle: { color: "white !important" },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "nav-link-text",
-                                attrs: { "data-i18n": "nav.application_intel" },
-                              },
-                              [_vm._v("RESERVADOS")]
-                            ),
-                          ]),
-                        ]
-                      )
-                    : _vm._e(),
+                  _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "#", "active-class": "" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", {
+                          staticClass: "fa-solid fa-registered fa-3x",
+                          staticStyle: { color: "white !important" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("RESERVADOS")]
+                        ),
+                      ]),
+                    ]
+                  ),
                   _vm._v(" "),
                   _vm.user.role_id == 1 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 2 ||
+                  _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {
@@ -2015,10 +1997,10 @@ var render = function () {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.user.role_id == 4 ||
-                  _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 2 ||
+                  _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {
@@ -2079,8 +2061,7 @@ var render = function () {
                   _vm._v(" "),
                   _vm.user.role_id == 4 ||
                   _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {
@@ -2112,8 +2093,7 @@ var render = function () {
                   _vm._v(" "),
                   _vm.user.role_id == 4 ||
                   _vm.user.role_id == 5 ||
-                  _vm.user.role_id == 6 ||
-                  _vm.user.role_id == 7
+                  _vm.user.role_id == 6
                     ? _c(
                         "router-link",
                         {

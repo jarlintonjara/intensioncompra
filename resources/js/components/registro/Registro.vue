@@ -120,7 +120,8 @@ export default {
         return{
             registros:[],
             form: {
-                concesionario_id : 1,	
+                concesionario_id : 0,	
+                tienda_id: 0,		
                 user_id : 0,	
                 caracteristica_id : 0,	
                 nombre_completo : "",
@@ -188,6 +189,8 @@ export default {
             await axios.get('api/getSession/'+ token).then((res)=>{
                 this.user = res.data;
                 this.form.user_id = this.user.id
+                this.form.concesionario_id = this.user.concesionario_id
+                this.form.tienda_id = this.user.tienda_id
             });
              await axios.get('/api/registro', {
                    withCredentials: true,
@@ -244,7 +247,8 @@ export default {
         },
         limpiar(){
             this.form = {
-                concesionario_id : 1,	
+                concesionario_id : this.user.concesionario_id,	
+                tienda_id: this.user.tienda_id,	
                 caracteristica_id : 0,	
                 user_id : this.user.id,
                 nombre_completo : "",

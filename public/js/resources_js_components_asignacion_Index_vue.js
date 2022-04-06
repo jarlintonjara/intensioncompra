@@ -190,8 +190,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var asignaciones = response.data;
                   _this.asignaciones = asignaciones.filter(function (e) {
                     return e.situacion == 'ASIGNADO';
-                  }).filter(function (e) {
-                    return e.user_id == _this.user.id;
                   });
                 })["catch"](function (error) {
                   console.log(error);

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('concesionario_id')->nullable();
+            $table->tinyInteger('tienda_id')->nullable();
             $table->tinyInteger('user_id')->nullable();
             $table->tinyInteger('caracteristica_id')->nullable();
             $table->string('nombre_completo')->nullable();

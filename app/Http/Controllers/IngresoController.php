@@ -11,7 +11,7 @@ class IngresoController extends Controller
 {
     public function index()
     {
-        $data = IngresoModel::all();
+        $data = IngresoModel::where('bloqueado',0);
         
         $bloqueados = IngresoModel::select(
             'ingresos.id',

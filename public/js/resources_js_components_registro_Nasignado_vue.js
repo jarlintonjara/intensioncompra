@@ -137,9 +137,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function (response) {
                   var noasignados = response.data.noasignados;
-                  _this.noasignados = noasignados.filter(function (e) {
-                    return e.user_id == _this.user.id;
-                  });
+                  _this.noasignados = noasignados;
                 })["catch"](function (error) {
                   console.log(error);
                 });

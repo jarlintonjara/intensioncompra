@@ -111,9 +111,7 @@ class AsignacionController extends Controller
     }
 
     public function asignacion(){
-        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
-        ->where('situacion', 'SINASIGNAR')
-        ->get();
+        $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')->where('situacion', 'SINASIGNAR')->get();
 
         foreach ($registros as $registro) {
 

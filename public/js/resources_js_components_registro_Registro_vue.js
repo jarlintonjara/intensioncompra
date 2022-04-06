@@ -156,7 +156,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       registros: [],
       form: {
-        concesionario_id: 1,
+        concesionario_id: 0,
+        tienda_id: 0,
         user_id: 0,
         caracteristica_id: 0,
         nombre_completo: "",
@@ -254,6 +255,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios.get('api/getSession/' + token).then(function (res) {
                   _this.user = res.data;
                   _this.form.user_id = _this.user.id;
+                  _this.form.concesionario_id = _this.user.concesionario_id;
+                  _this.form.tienda_id = _this.user.tienda_id;
                 });
 
               case 3:
@@ -357,7 +360,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     limpiar: function limpiar() {
       this.form = {
-        concesionario_id: 1,
+        concesionario_id: this.user.concesionario_id,
+        tienda_id: this.user.tienda_id,
         caracteristica_id: 0,
         user_id: this.user.id,
         nombre_completo: "",

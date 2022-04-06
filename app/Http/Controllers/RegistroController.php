@@ -31,7 +31,8 @@ class RegistroController extends Controller
     {
         $user = self::getUser($request->bearerToken());
         $data = CaracteristicaModel::all();
-        $asignado = RegistroModel::where('situacion', 'ASIGNADO')->get();
+        $noasignado = [];
+       
         switch ($user->role_id){
             case 1:
                 $noasignado = RegistroModel::where('situacion', 'SINASIGNAR')->where('user_id', $user->id)->get();
@@ -46,6 +47,23 @@ class RegistroController extends Controller
                 $noasignado = RegistroModel::where('situacion', 'SINASIGNAR')->get();
                 break;
         }
+        // $asignado = RegistroModel::where('situacion', 'ASIGNADO')->get();
+        $asignado = [];
+        switch ($user->role_id){
+            case 1:
+                $asignado = RegistroModel::where('situacion', 'ASIGNADO')->where('user_id', $user->id)->get();
+                break;
+            case 2:
+                $asignado = RegistroModel::where('situacion', 'ASIGNADO')->where('tienda_id', $user->tienda_id)->get();
+                break;
+            case 3:
+                $asignado = RegistroModel::where('situacion', 'ASIGNADO')->where('concesionario_id', $user->concesionario_id)->get();
+                break;
+            case 6:
+                $asignado = RegistroModel::where('situacion', 'ASIGNADO')->get();
+                break;
+        }
+
         //$noasignado =RegistroModel::where('situacion', 'SINASIGNAR')->where('tienda_id')->get();
         return response()->json(['caracteristicas'=>$data,'asignados'=>$asignado,'noasignados'=>$noasignado, 'user' => $user]);
     }

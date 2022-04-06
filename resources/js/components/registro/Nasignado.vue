@@ -94,7 +94,7 @@ export default {
                 })
                 .then(response=> {
                     let noasignados = response.data.noasignados;
-                    this.noasignados = noasignados.filter(e => e.user_id == this.user.id);
+                    this.noasignados = noasignados;
                 })
                 .catch(error=>{
                     console.log(error);

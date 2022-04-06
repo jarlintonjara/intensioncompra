@@ -14,6 +14,7 @@ class RegistroModel extends Model
     protected $fillable = [
         'id',	
         'concesionario_id',	
+        'tienda_id',	
         'user_id',	
         'caracteristica_id',	
         'nombre_completo',
