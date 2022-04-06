@@ -7,47 +7,145 @@ use App\Models\RegistroModel;
 use App\Models\IngresoModel;
 use App\Http\Requests\StoreAsignacionRequest;
 use App\Http\Requests\UpdateAsignacionRequest;
+use App\Models\CaracteristicaModel;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AsignacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    function getUser($token)
     {
-        // $data = AsignacionModel::all();
-        // return response()->json($data);
-
-        $data = AsignacionModel::select(
-            'asignaciones.fecha_distribucion',
-            'concesionarios.nombre as concesionario',
-            'users.nombre',
-            'registros.documento',
-            'ingresos.vin',
-            'ingresos.marca',
-            'ingresos.modelo',
-            'ingresos.version',
-            'ingresos.color',
-            'ingresos.anio_modelo',
-            'ingresos.codigo_sap',
-            'ingresos.fecha_ingreso',
-            'asignaciones.id',
-            'users.id as user_id',
-            'asignaciones.codigo_reserva',
-            'asignaciones.monto_reserva',
-            'asignaciones.fecha_reserva',
-            'asignaciones.situacion'
-            )
-            ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
-            ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
-            ->Join('users', 'registros.user_id', '=', 'users.id')
-            ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
-            ->get();
-
+        [$id, $user_token] = explode('|', $token, 2);
+        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+        if ($token_data) {
+            $user_id = $token_data->tokenable_id;
+            $user = User::find($user_id);
+            if ($user) {
+                return $user;
+            }
+            return response()->json("Unauthenticated", 401);
+        }
+    }
+    public function index(Request $request)
+    {
+        $user = self::getUser($request->bearerToken());
+        $data = [];
+        switch ($user->role_id) {
+            case 1:
+                $data = AsignacionModel::select(
+                    'asignaciones.fecha_distribucion',
+                    'concesionarios.nombre as concesionario',
+                    'users.nombre',
+                    'registros.documento',
+                    'ingresos.vin',
+                    'ingresos.marca',
+                    'ingresos.modelo',
+                    'ingresos.version',
+                    'ingresos.color',
+                    'ingresos.anio_modelo',
+                    'ingresos.codigo_sap',
+                    'ingresos.fecha_ingreso',
+                    'asignaciones.id',
+                    'users.id as user_id',
+                    'asignaciones.codigo_reserva',
+                    'asignaciones.monto_reserva',
+                    'asignaciones.fecha_reserva',
+                    'asignaciones.situacion'
+                )
+                ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
+                ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
+                ->Join('users', 'registros.user_id', '=', 'users.id')
+                ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
+                ->where('registros.user_id', $user->id)
+                ->get();
+                break;
+            case 2:
+                $data = AsignacionModel::select(
+                    'asignaciones.fecha_distribucion',
+                    'concesionarios.nombre as concesionario',
+                    'users.nombre',
+                    'registros.documento',
+                    'ingresos.vin',
+                    'ingresos.marca',
+                    'ingresos.modelo',
+                    'ingresos.version',
+                    'ingresos.color',
+                    'ingresos.anio_modelo',
+                    'ingresos.codigo_sap',
+                    'ingresos.fecha_ingreso',
+                    'asignaciones.id',
+                    'users.id as user_id',
+                    'asignaciones.codigo_reserva',
+                    'asignaciones.monto_reserva',
+                    'asignaciones.fecha_reserva',
+                    'asignaciones.situacion'
+                )
+                ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
+                ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
+                ->Join('users', 'registros.user_id', '=', 'users.id')
+                ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
+                ->where('registros.tienda_id', $user->tienda_id)
+                ->get();
+                break;
+            case 3:
+                $data = AsignacionModel::select(
+                    'asignaciones.fecha_distribucion',
+                    'concesionarios.nombre as concesionario',
+                    'users.nombre',
+                    'registros.documento',
+                    'ingresos.vin',
+                    'ingresos.marca',
+                    'ingresos.modelo',
+                    'ingresos.version',
+                    'ingresos.color',
+                    'ingresos.anio_modelo',
+                    'ingresos.codigo_sap',
+                    'ingresos.fecha_ingreso',
+                    'asignaciones.id',
+                    'users.id as user_id',
+                    'asignaciones.codigo_reserva',
+                    'asignaciones.monto_reserva',
+                    'asignaciones.fecha_reserva',
+                    'asignaciones.situacion'
+                )
+                ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
+                ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
+                ->Join('users', 'registros.user_id', '=', 'users.id')
+                ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
+                ->where('registros.concesionario_id', $user->concesionario_id)
+                ->get();
+                break;
+            case 6:
+                $data = AsignacionModel::select(
+                    'asignaciones.fecha_distribucion',
+                    'concesionarios.nombre as concesionario',
+                    'users.nombre',
+                    'registros.documento',
+                    'ingresos.vin',
+                    'ingresos.marca',
+                    'ingresos.modelo',
+                    'ingresos.version',
+                    'ingresos.color',
+                    'ingresos.anio_modelo',
+                    'ingresos.codigo_sap',
+                    'ingresos.fecha_ingreso',
+                    'asignaciones.id',
+                    'users.id as user_id',
+                    'asignaciones.codigo_reserva',
+                    'asignaciones.monto_reserva',
+                    'asignaciones.fecha_reserva',
+                    'asignaciones.situacion'
+                )
+                ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
+                ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
+                ->Join('users', 'registros.user_id', '=', 'users.id')
+                ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')
+                ->get();
+                break;
+        }
+        
         foreach($data as $e){
             $vin = Hash::make($e["vin"]);
             $e["vin"]= substr($vin, 0, 15);

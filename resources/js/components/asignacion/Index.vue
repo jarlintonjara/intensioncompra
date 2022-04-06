@@ -141,10 +141,10 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
-            await axios.get('api/getSession/'+ token).then((res)=>{
-                this.user = res.data;
-            })
-            await this.axios.get('/api/asignacion')
+            await this.axios.get('/api/asignacion',{
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                })
                 .then(response=>{
                     let asignaciones = response.data;
                     this.asignaciones = asignaciones.filter(e => e.situacion == 'ASIGNADO');                

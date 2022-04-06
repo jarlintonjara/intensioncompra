@@ -180,13 +180,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context.next = 3;
-                return axios.get('api/getSession/' + token).then(function (res) {
-                  _this.user = res.data;
-                });
-
-              case 3:
-                _context.next = 5;
-                return _this.axios.get('/api/asignacion').then(function (response) {
+                return _this.axios.get('/api/asignacion', {
+                  withCredentials: true,
+                  headers: {
+                    Authorization: "Bearer ".concat(token)
+                  }
+                }).then(function (response) {
                   var asignaciones = response.data;
                   _this.asignaciones = asignaciones.filter(function (e) {
                     return e.situacion == 'ASIGNADO';
@@ -196,11 +195,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.asignaciones = [];
                 });
 
-              case 5:
-                _context.next = 7;
+              case 3:
+                _context.next = 5;
                 return _this.$tablaGlobal('#asignaciones');
 
-              case 7:
+              case 5:
               case "end":
                 return _context.stop();
             }

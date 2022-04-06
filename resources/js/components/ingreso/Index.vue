@@ -83,7 +83,11 @@ export default {
     },
     methods:{
         async init(){
-            await this.axios.get('/api/ingreso')
+            const token = localStorage.getItem('access_token');
+            await this.axios.get('/api/ingreso',{
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                })
                 .then(response=>{
                     this.ingresos = response.data.data
                 })

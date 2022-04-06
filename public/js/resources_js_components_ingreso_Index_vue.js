@@ -116,23 +116,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var token;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this.axios.get('/api/ingreso').then(function (response) {
+                token = localStorage.getItem('access_token');
+                _context.next = 3;
+                return _this.axios.get('/api/ingreso', {
+                  withCredentials: true,
+                  headers: {
+                    Authorization: "Bearer ".concat(token)
+                  }
+                }).then(function (response) {
                   _this.ingresos = response.data.data;
                 })["catch"](function (error) {
                   console.log(error);
                   _this.ingresos = [];
                 });
 
-              case 2:
-                _context.next = 4;
+              case 3:
+                _context.next = 5;
                 return _this.$tablaGlobal('#ingreso');
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
