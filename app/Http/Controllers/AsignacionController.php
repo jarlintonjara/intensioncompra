@@ -115,9 +115,7 @@ class AsignacionController extends Controller
 
         foreach ($registros as $registro) {
 
-            $ingresos = IngresoModel::where('marca', $registro->marca)
-            ->where('modelo', $registro->modelo)
-            ->where('version', $registro->version)
+            $ingresos = IngresoModel::where('marca', $registro->marca)->where('modelo', $registro->modelo)->where('version', $registro->version)
             ->where('anio_modelo', $registro->anio_modelo)
             ->where('color', $registro->color1)
             ->where('situacion', 'LIBRE')
