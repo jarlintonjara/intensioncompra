@@ -19,7 +19,10 @@ export default{
     routes: [
         {
             path: '*',
-            component: NotFound
+            component: NotFound,
+            beforeEnter: (to, form, next) => {
+                return next({ name: 'Login'})
+            },
         },
         {
             path: '/register',

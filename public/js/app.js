@@ -5606,7 +5606,12 @@ var Facturado = function Facturado() {
   mode: 'history',
   routes: [{
     path: '*',
-    component: NotFound
+    component: NotFound,
+    beforeEnter: function beforeEnter(to, form, next) {
+      return next({
+        name: 'Login'
+      });
+    }
   }, {
     path: '/register',
     component: Register

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsignacionModel;
-use App\Models\RegistroModel;
-use App\Models\IngresoModel;
-use App\Http\Requests\StoreAsignacionRequest;
-use App\Http\Requests\UpdateAsignacionRequest;
-use App\Models\CaracteristicaModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Models\AsignacionModel;
+use App\Models\RegistroModel;
+use App\Models\IngresoModel;
+use App\Http\Requests\StoreAsignacionRequest;
 
 class AsignacionController extends Controller
 {
