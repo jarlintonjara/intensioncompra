@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div class="blankpage-form-field">
-            <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+            <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4" style="background-color: #e30025;">
                 <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
                     <span class="page-logo-text mr-1">Login</span>
                 </a>
@@ -22,13 +22,7 @@
                             Your password
                         </span> -->
                     </div>
-                    <div class="form-group text-left">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="rememberme">
-                            <label class="custom-control-label" for="rememberme"> Recordar contraseña(30 días)</label>
-                        </div>
-                    </div>
-                    <button @click.prevent="login" class="btn btn-primary float-right">Login</button>
+                    <button @click.prevent="login" class="btn btn-danger float-right">Login</button>
                 </form>
             </div>
             <!-- <div class="blankpage-footer text-center">
@@ -36,7 +30,10 @@
                 <router-link to="/register"><strong>Registrar Cuenta</strong></router-link>
             </div> -->
         </div>
+
     </div>
+
+    
     
 </template>
 <script>

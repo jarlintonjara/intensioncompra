@@ -43,7 +43,6 @@ class Asignacion extends Command
         }
         // dd($ingresos);
 
-
     //segundo
     $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')
         ->where('situacion', 'SINASIGNAR')

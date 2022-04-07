@@ -68,9 +68,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1054,12 +1051,10 @@ var render = function () {
               }),
             ]),
             _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
             _c(
               "button",
               {
-                staticClass: "btn btn-primary float-right",
+                staticClass: "btn btn-danger float-right",
                 on: {
                   click: function ($event) {
                     $event.preventDefault()
@@ -1085,6 +1080,7 @@ var staticRenderFns = [
       {
         staticClass:
           "page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4",
+        staticStyle: { "background-color": "#e30025" },
       },
       [
         _c(
@@ -1102,25 +1098,6 @@ var staticRenderFns = [
         ),
       ]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-left" }, [
-      _c("div", { staticClass: "custom-control custom-checkbox" }, [
-        _c("input", {
-          staticClass: "custom-control-input",
-          attrs: { type: "checkbox", id: "rememberme" },
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "custom-control-label", attrs: { for: "rememberme" } },
-          [_vm._v(" Recordar contraseña(30 días)")]
-        ),
-      ]),
-    ])
   },
 ]
 render._withStripped = true
