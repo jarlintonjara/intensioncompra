@@ -9,7 +9,7 @@ import 'datatables.net-buttons/js/buttons.html5.js'
 import 'vue-select/dist/vue-select.css';
 import jszip from 'jszip/dist/jszip'
 import App from './components/App.vue';
-
+import { Vuelidate } from 'vuelidate';
 import Vue from 'vue';
 window.Vue = Vue;
 
@@ -75,6 +75,7 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 const app = new Vue({
     el: '#app',
     components: {App},

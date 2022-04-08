@@ -37,6 +37,9 @@
                                     <th>color 2</th>
                                     <th>color 3</th>
                                     <th>Año Modelo</th>
+                                    <th>Ejecutivo</th>
+                                    <th>Tienda</th>
+                                    <th>Concesionario</th>
                                     <th>SITUACIÓN</th>
                                     <!-- <th>Acciones</th> -->
                                 </tr>
@@ -55,6 +58,9 @@
                                     <td>{{noasignado.color2}}</td>
                                     <td>{{noasignado.color3}}</td>
                                     <td>{{noasignado.anio_modelo}}</td>
+                                    <td>{{noasignado.nombre}}</td>
+                                    <td>{{noasignado.tienda}}</td>
+                                    <td>{{noasignado.concesionario}}</td>
                                     <td>{{noasignado.situacion}}</td>
                                     <!-- <td style="text-align: center">
                                         <button class="btn btn-warning"><i class="far fa-edit"></i></button>

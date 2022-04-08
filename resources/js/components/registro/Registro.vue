@@ -28,10 +28,16 @@
                                 <div class="form-group col-md-6">
                                     <label for="Nombres">NOMBRE COMPLETO</label>
                                     <input type="text" id="Nombres" class="form-control" placeholder="" required="" v-model="form.nombre_completo">
+                                    <div style="color:red;" v-if="submited && !$v.form.nombre_completo.required">El campo es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.nombre_completo.minLength">El campo debe tener 2 caracteres como mínimo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.nombre_completo.alpha">Este campo solo admite texto</div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="Documento">DOCUMENTO</label>
                                     <input type="text" id="Documento" class="form-control Documento" placeholder="" required="" v-model="form.documento">
+                                    <div style="color:red;" v-if="submited && !$v.form.documento.required">El campo es obligatorio</div>
+                                     <div style="color:red;" v-if="submited && !$v.form.documento.minLength">El campo debe tener 7 caracteres como mínimo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.documento.numeric">Este campo solo admite números</div>
                                 </div>
                             </div>
 
@@ -39,10 +45,16 @@
                                 <div class="form-group col-md-4">
                                     <label for="Telefono">CELULAR</label>
                                     <input type="text" pattern="[0-9]{10}" id="Telefono" class="form-control" placeholder="" v-model="form.celular">
+                                    <div style="color:red;" v-if="submited && !$v.form.celular.required">El campo es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.celular.minLength">El campo debe tener 9 caracteres como mínimo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.celular.numeric">Este campo solo admite números</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Email">CORREO</label>
                                     <input type="email" id="Email" class="form-control" placeholder="" v-model="form.correo">
+                                    <div style="color:red;" v-if="submited && !$v.form.correo.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.correo.minLength">El campo debe tener 2 caracteres como mínimo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.correo.email">Debe tener formato de email</div>
                                 </div>
                             </div>
 
@@ -52,18 +64,21 @@
                                     <v-select class="vue-select2" name="selectMarca"
                                         :options="marca" v-model="selectMarca" :reduce="label => label.code">
                                     </v-select>
+                                    <div style="color:red;" v-if="submited && !$v.selectMarca.required">El campo nombre es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectModelo">MODELO</label>
                                     <v-select class="vue-select2" name="selectModelo"
                                         :options="modelo" v-model="selectModelo" :reduce="label => label.code">
                                     </v-select>
+                                    <div style="color:red;" v-if="submited && !$v.selectModelo.required">El campo nombre es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectVersion">VERSIÓN</label>
                                     <v-select class="vue-select2" name="selectVersion"
                                         :options="version" v-model="selectVersion" :reduce="label => label.code">
                                     </v-select>
+                                    <div style="color:red;" v-if="submited && !$v.selectVersion.required">El campo nombre es obligatorio</div>
                                 </div>
                             </div>
 
@@ -73,6 +88,7 @@
                                     <v-select class="vue-select2" name="selectColor"
                                         :options="color" v-model="form.color1" :reduce="label => label.code">
                                     </v-select>
+                                    <div style="color:red;" v-if="submited && !$v.form.color1.required">El campo nombre es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectColor">COLOR 2</label>
@@ -89,15 +105,16 @@
                                 <div class="form-group col-md-4">
                                     <label for="Anio">AÑO DE MODELO</label>
                                     <!-- <input type="text" id="Anio_modelo" class="form-control" placeholder="" required="" v-model="form.anio_modelo"> -->
-                                <select id="Anio_modelo" class="custom-select form-control" v-model="form.anio_modelo">
-                                    <option value="2025">2025</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                </select>
+                                    <select id="Anio_modelo" class="custom-select form-control" v-model="form.anio_modelo">
+                                        <option value="2025">2025</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
+                                    </select>
+                                    <div style="color:red;" v-if="submited && !$v.form.anio_modelo.required">El campo nombre es obligatorio</div>
                                 </div>
                             </div>
                     
@@ -114,6 +131,8 @@
     </main>
 </template>
 <script>
+import {required, minLength, email,numeric,helpers} from 'vuelidate/lib/validators';
+const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
 
 export default {
     data(){
@@ -135,8 +154,9 @@ export default {
                 anio_fabricacion : "",
                 color1 : "",
                 color2 : "",
-                color3 : ""
+                color3 : "",
             },
+            submited: false,
             caracteristicas : [],
             marca : [],
             modelo : [],
@@ -151,6 +171,20 @@ export default {
             user : null
         }
     },
+        validations:{
+            submited: true,
+            form: {
+                nombre_completo: {required,minLength: minLength(2),alpha},
+                documento : {required,minLength: minLength(7),numeric},
+                celular : {required,minLength: minLength(9),numeric},
+                correo : {required,minLength: minLength(2),email},	
+                anio_modelo : {required},	
+                color1 : {required}
+            },
+            selectMarca : {required},
+            selectModelo : {required},
+            selectVersion : {required}
+        },
     mounted(){
         this.init();
     },
@@ -227,11 +261,15 @@ export default {
             return true;
         },
         async crear(){
-            let valid = await this.validarCampos();
+            this.submited=true;
+            if(this.$v.$invalid){
+                return false;
+            }
+
             this.form.marca = this.selectMarca;
             this.form.modelo = this.selectModelo;
             this.form.version = this.selectVersion;
-            if(valid){
+            
                 axios.post('api/registro', this.form).then(response=>{
                     this.$swal.fire(
                         'Registro creado!',
@@ -243,7 +281,7 @@ export default {
                 }).catch(function (error) {
                     console.log(error);
                 });
-            }
+            
         },
         limpiar(){
             this.form = {

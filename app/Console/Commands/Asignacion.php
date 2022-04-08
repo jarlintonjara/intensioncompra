@@ -93,7 +93,7 @@ class Asignacion extends Command
                 $registro3->situacion = 'ASIGNADO';
                 $registro3->save();
 
-                AsignacionModel::create(['registro_id' => $registro3->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
+                AsignacionModel::create(['registro_id' => $registro3->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
             } 
         }
     }

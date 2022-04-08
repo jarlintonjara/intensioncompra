@@ -191,7 +191,12 @@ class AsignacionController extends Controller
     public function update(Request $request, $id)
     {
         $asignacion = AsignacionModel::findOrFail($id);
-        $asignacion->update($request->all());
+        $asignacion->codigo_reserva = $request->codigo_reserva;
+        $asignacion->monto_reserva = $request->monto_reserva;
+        $asignacion->fecha_reserva = date('Y-m-d');
+        $asignacion->save();
+        
+        // $asignacion->update($request->all());
         return response()->json($asignacion);
     }
 

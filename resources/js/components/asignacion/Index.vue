@@ -26,7 +26,7 @@
                             <thead class="" style="background-color: rgb(227, 0, 37) !important;">
                                 <tr>
                                     <th>FECHA DISTRIBUCIÓN</th>
-                                    <th>RESERVAR</th>
+                                    <th v-if="user.role_id == 1">RESERVAR</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
@@ -48,7 +48,7 @@
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
-                                    <td style="text-align: center">
+                                    <td style="text-align: center" v-if="user.role_id == 1">
                                         <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-lock"></i></button>
                                         <!-- <button class="btn btn-danger" ><i class="fa fa-trash"></i></button> -->
                                     </td>
@@ -95,19 +95,24 @@
                                 <div class="form-group col-md-6">
                                     <label for="Codigo">Código Reserva</label>
                                     <input type="text" id="Codigo" class="form-control" placeholder="Codigo" required="" v-model="form.codigo_reserva">
+                                    <div style="color:red;" v-if="submited && !$v.form.codigo_reserva.required">El campo es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.codigo_reserva.minLength">Tiene que ingresar mas de 1 caracteres</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="MontoReserva">Monto Reserva</label>
+                                    <label for="MontoReserva">Monto Reserva en USD</label>
                                     <input type="text" id="MontoReserva" class="form-control" placeholder="Monto Reserva" required="" v-model="form.monto_reserva">
+                                    <div style="color:red;" v-if="submited && !$v.form.monto_reserva.required">El campo es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">Tiene que ingresar mas de 3 caracteres</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">El monto mínimo es 1000 Dólares</div>
                                 </div>
                             </div>
 
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="Fecha">Fecha Reserva</label>
                                     <input type="date" id="Fecha" class="form-control" placeholder="Fecha" v-model="form.fecha_reserva">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
@@ -121,8 +126,14 @@
 </template>
 <script>
 
+import {required, minLength,helpers,numeric, minValue} from 'vuelidate/lib/validators';
+const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
+
 export default {
     name: "Asignacion",
+     props:[
+        'session'
+    ],
     data(){
         return{
             asignaciones:[],
@@ -130,11 +141,22 @@ export default {
             form: {
                 codigo_reserva: "",
                 monto_reserva: 0,
-                fecha_reserva: "",
+                // fecha_reserva: "",
                 situacion: "RESERVADO"
+            },
+            submited: false,
+            user: {
+                role_id : 0
             }
         }
     },
+        validations:{
+            submited: true,
+            form: {
+                codigo_reserva: {required,minLength: minLength(2)},
+                monto_reserva : {required,minLength: minLength(4),numeric,minValue: minValue(1000)},
+            }
+        },
     mounted(){
         this.init();
     },
@@ -160,12 +182,18 @@ export default {
             this.id = asignacion.id;
             this.form.codigo_reserva = asignacion.codigo_reserva;
             this.form.monto_reserva = asignacion.monto_reserva;
-            this.form.fecha_reserva = asignacion.fecha_reserva;
+            // this.form.fecha_reserva = Date.now();
             $('#modalForm').modal('show')
         },
         async reservar(){
-            let valid = await this.validarCampos();
-            if(valid){
+            this.submited=true;
+            if(this.$v.$invalid){
+                return false;
+            }
+
+
+            // let valid = await this.validarCampos();
+            // if(valid){
                 await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
                     let index =  this.asignaciones.map(function(e) {
                         return e.id;
@@ -189,7 +217,7 @@ export default {
                 });
                 $('#asignaciones').DataTable().destroy();
                 this.$tablaGlobal('#asignaciones');
-            }
+            // }
         },
         validarCampos(){
             if(!this.form.codigo_reserva || !this.form.monto_reserva || !this.form.fecha_reserva ){
@@ -205,7 +233,12 @@ export default {
         cerrarModal(){
             $('#modalForm').modal('hide');
         }
-    }
+    },
+    watch:{
+        session(val){
+            this.user = val
+        }
+    },
 }
 
 </script>
