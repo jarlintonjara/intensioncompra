@@ -1,4 +1,5 @@
 require('./bootstrap');
+import './../css/app.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'datatables.net-dt'
@@ -8,7 +9,7 @@ import 'datatables.net-buttons/js/buttons.colVis.js'
 import 'datatables.net-buttons/js/buttons.html5.js'
 import 'vue-select/dist/vue-select.css';
 import jszip from 'jszip/dist/jszip'
-import App from './components/App.vue';
+import App from './pages/App.vue';
 import { Vuelidate } from 'vuelidate';
 import Vue from 'vue';
 window.Vue = Vue;
@@ -21,8 +22,6 @@ Vue.config.productionTip = false;
 
 Vue.component('v-select', vSelect)
 Vue.use(VueAxios, axios); 
-
-
    
 Vue.use(VueSweetalert2);
 window.JSZip = jszip;

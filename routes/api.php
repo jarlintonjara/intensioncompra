@@ -27,6 +27,7 @@ Route::post('logout', [AuthController::class, 'logout']);
 Route::get('getSession/{token}', [AuthController::class, 'getSession']);
 
 Route::get('dashboard', [HomeController::class, 'index']);
+Route::resource('usuario', UserController::class);
 Route::resource('registro', RegistroController::class);
 Route::resource('ingreso', IngresoController::class);
 Route::resource('asignacion', AsignacionController::class);

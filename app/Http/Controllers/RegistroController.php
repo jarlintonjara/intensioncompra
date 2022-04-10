@@ -14,22 +14,11 @@ class RegistroController extends Controller
     {
         //$this->middleware('auth');
     }
-    function getUser($token){
-        [$id, $user_token] = explode('|', $token, 2);
-        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
-        if ($token_data) {
-            $user_id = $token_data->tokenable_id;
-            $user = User::find($user_id);
-            if ($user) {
-                return $user;
-            }
-            return response()->json("Unauthenticated", 401);
-        }
-    }
 
     public function index(Request $request)
     {
-        $user = self::getUser($request->bearerToken());
+        $auth = new AuthController();
+        $user = $auth->getUser($request->bearerToken());
         $data = CaracteristicaModel::all();
         $noasignado = [];
        

@@ -10,23 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class IngresoController extends Controller
 {
-    function getUser($token)
-    {
-        [$id, $user_token] = explode('|', $token, 2);
-        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
-        if ($token_data) {
-            $user_id = $token_data->tokenable_id;
-            $user = User::find($user_id);
-            if ($user) {
-                return $user;
-            }
-            return response()->json("Unauthenticated", 401);
-        }
-    }
     public function index(Request $request)
     {
+        $auth = new AuthController();
+        $user = $auth->getUser($request->bearerToken());
         $data = IngresoModel::where('bloqueado',0)->get();
-        $user = self::getUser($request->bearerToken());
         switch ($user->role_id) {
             case 1:
                 $bloqueados = IngresoModel::select(

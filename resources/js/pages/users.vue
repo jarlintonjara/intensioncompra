@@ -1,12 +1,8 @@
 <template>
-    
     <main id="js-page-content" role="main" class="page-content">
-        
         <div class="subheader">
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-chart-area'></i> Usuarios 
-                <small>
-                </small>
             </h1>
         </div>
         <br>
@@ -21,11 +17,9 @@
                         <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
+                                    <th>Nombre Completo</th>
                                     <th>Rol</th>
                                     <th>Documento</th>
-                                    <th>Estacionamiento</th>
                                     <th>Email</th>
                                     <th>Fecha</th>
                                     <th>Acciones</th>
@@ -33,11 +27,9 @@
                             </thead>
                             <tbody>
                                 <tr v-for="user in users" :key="user.id">
-                                    <td>{{ user.nombre }}</td>
-                                    <td>{{ user.apellido }}</td>
-                                    <td>{{ user.role.description }}</td>
+                                    <td>{{ user.nombre + " "+ user.apellido }}</td>
+                                    <td>{{ user.role.descripcion }}</td>
                                     <td>{{ user.documento }}</td>
-                                    <td>{{ user.parking.numero + " - "+ user.parking.sede}}</td>
                                     <td>{{ user.email }}</td>
                                     <td>{{ $dateFormat(user.created_at) }}</td>
                                     <td>
@@ -110,20 +102,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div v-if="datos.role_id=='3'" class="form-group col-md-4">
-                                <label for="Parking">Estacionamiento</label>
-                                <select id="Parking" class="browser-default custom-select" v-model="datos.parking_id">
-                                    <option>Seleccione un estacionamiento</option>
-                                    <option v-for="parking in parkingsFilter" :key="parking.numero+parking.id" :value="parking.id">{{ parking.numero + " - "+parking.sede }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="password">Contraseña</label>
-                                <input type="password" id="password" class="form-control" placeholder="password" v-model="datos.password">
-                            </div>
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
@@ -146,9 +124,7 @@ export default {
         return {
             users:[],
             roles:[],
-            parkings:[],
-            parkingsFilter:[],
-            datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', role_id: '', parking_id: '', telefono:''},
+            datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', role_id: '', telefono:''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -156,10 +132,24 @@ export default {
         }
     },
     mounted(){
-        this.mostrarusers()
-
+        this.init()
     },
     methods:{
+        async init(){
+            const token = localStorage.getItem('access_token');
+            await this.axios.get('/api/usuario',{
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then(response=>{
+                    this.users = response.data.users;
+                    this.roles = response.data.roles;
+                })
+                .catch(error=>{
+                    console.log(error);
+                }) 
+            await this.$tablaGlobal('#tableUser');
+        },
         validarCampos(){
             if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id ){
                 this.$swal.fire({
@@ -176,8 +166,7 @@ export default {
             if(valid){
                 axios.post('api/usuario', this.datos).then(response=>{
                     this.users.push(response.data);
-                    //this.getUser()
-                    $('#modalForm').modal('hide');
+                    $('#modalForm').modal('hide'); 
                     this.$swal.fire(
                         'Usuario creado correctamente!',
                         '',
@@ -194,7 +183,6 @@ export default {
                 axios.put('/api/usuario/'+this.id, this.datos).then(response=>{
                     this.users = [].concat(response.data);          
                     this.id='';
-                    //this.getUser()
                     $('#modalForm').modal('hide');
                     this.$swal.fire(
                         'Usuario editado correctamente!',
@@ -214,53 +202,27 @@ export default {
                     console.log(error)
                 })
             }
-
         },
         abrirModalCrear(){
-            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', parking_id:'', cargo: '', area: '', password: ''};
-            this.parkingsFilter = [];
-            this.parkings.map(i => {
-                if(!this.users.find(e => e.parking_id == i.id)){
-                    this.parkingsFilter.push(i)
-                }
-            })
+            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', cargo: '', area: ''};
             this.titulo='Crear usuario'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.parkingsFilter = [];
-            this.datos= {nombre: datos.nombre, apellido: datos.apellido, documento: datos.documento, email: datos.email, 
-                        role_id: datos.role_id, parking_id: datos.parking_id, password: datos.password };
-            this.parkings.map(i => {
-                if(!this.users.find(e => e.parking_id == i.id)){
-                    this.parkingsFilter.push(i)
-                }
-                if(i.id == this.datos.parking_id){
-                    this.parkingsFilter.push(i)
-                }
-            })
+            this.datos= {
+                nombre: datos.nombre, 
+                apellido: datos.apellido,
+                documento: datos.documento, 
+                email: datos.email, 
+                role_id: datos.role_id            
+            };
             this.titulo=' Editar usuario'
             this.btnCrear=false
             this.btnEditar=true
             this.id=datos.id
             $('#modalForm').modal('show')
-        },
-        async mostrarusers(){
-            await this.axios.get('/api/usuario')
-                    .then(response=>{
-                        this.users = response.data.users;
-                        this.roles = response.data.roles;
-                        this.parkings = response.data.parkings;
-                         
-                    })
-                    .catch(error=>{
-                        console.log(error);
-                        //this.users =[]
-                    }) 
-            
-            await $('#tableUser').DataTable();      
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

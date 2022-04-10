@@ -9,74 +9,49 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //$this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::where('status', 1)->orderBy('apellido', 'ASC')->get();
+        $auth = new AuthController();
+        $session = $auth->getUser($request->bearerToken());
+        $users = [];
+        switch ($session->role_id) {
+            case 2:
+                $users = User::where('status', 1)->where('tienda_id', $session->tienda_id)->where('id', '!=',$session->id)->orderBy('apellido', 'ASC')->get();
+                break;
+            case 3:
+                $users = User::where('status', 1)->where('concesionario_id', $session->concesionario_id)->where('id', '!=', $session->id)->orderBy('apellido', 'ASC')->get();
+                break;
+            case 6:
+                $users = User::where('status', 1)->where('id', '!=', $session->id)->orderBy('apellido', 'ASC')->get();
+                break;  
+        }
         foreach ($users as $user) {
-            if($user->parking_id){
-                $user["parking"] = $user->parking;
-            }else{
-                $user["parking"] = [
-                    "numero" => "",
-                    "sede" => ""
-                ];
-            }
             $user["role"] = $user->role;
         } 
-        $roles = RoleModel::where('status', 1)->get();
-        //$parkings = EstacionamientoModel::where('status', 1)->get();
+        $roles = RoleModel::where('estado', 1)->get();
         return response()->json([
             "roles" => $roles,
             "users" => $users,
+            "session" => $session
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = $request->post();
-        $data['password'] = Hash::make($request->password);
-        
+        $data['password'] = Hash::make('12345678');
         $user = User::create($data);
-        if ($user->parking_id) {
-            $user["parking"] = $user->parking;
-        } else {
-            $user["parking"] = [
-                "numero" => "",
-                "sede" => ""
-            ];
-            $user["role"] = $user->role;
-        } 
+        $user["role"] = $user->role;
         return response()->json($user);
     }
 
@@ -117,12 +92,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $User
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $user = User::findOrFail($id);

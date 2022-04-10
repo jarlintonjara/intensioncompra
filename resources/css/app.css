@@ -1,0 +1,10 @@
+
+div.dataTables_wrapper div.dataTables_length select {
+    padding-right: 20px;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em !important;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+    line-height: 40px;
+}

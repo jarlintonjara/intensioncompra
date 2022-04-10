@@ -62,6 +62,21 @@ class AuthController extends Controller
             ], 404);
         }
     }
+    
+    function getUser($token)
+    {
+        [$id, $user_token] = explode('|', $token, 2);
+        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+        if ($token_data) {
+            $user_id = $token_data->tokenable_id;
+            $user = User::find($user_id);
+            if ($user) {
+                return $user;
+            }
+            return response()->json("Unauthenticated", 401);
+        }
+    }
+
     public function getSession($token)
     {
         [$id, $user_token] = explode('|', $token, 2);
@@ -86,6 +101,7 @@ class AuthController extends Controller
         }
         return response()->json("sesion acabada", 401);
     }
+
     public function logout(Request $request)
     {
         if ($request->access_token) {
