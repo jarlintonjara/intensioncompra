@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 Route::get('/test', function () {
-    dd(Hash::make('pakatnamu$'));
+    dd(Hash::make('supervisor2022'));
 });
 
 

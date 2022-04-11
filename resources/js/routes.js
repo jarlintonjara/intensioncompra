@@ -4,8 +4,8 @@ const Dashboard = () => import('./pages/dashboard.vue');
 const usuarios = () => import('./pages/users.vue');
 
 const Registro = () => import('./pages/registro/formulario.vue');
-const Nasignado = () => import('./pages/registro/no-asignado.vue');
-const Sasignado = () => import('./pages/registro/asignado.vue');
+const Nasignado = () => import('./pages/registro/nasignado.vue');
+const Sasignado = () => import('./pages/registro/sasignado.vue');
 
 const Ingreso = () => import('./pages/ingreso/index.vue');
 const Bloqueado = () => import('./pages/ingreso/bloqueado.vue');
