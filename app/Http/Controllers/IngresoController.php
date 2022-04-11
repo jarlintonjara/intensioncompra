@@ -100,7 +100,7 @@ class IngresoController extends Controller
                     'packing_list.codigo_sap',
                     'packing_list.fecha_ingreso',
                 )
-                ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
+                ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                 ->where('bloqueado', 1)->get();
                 break;
         }
