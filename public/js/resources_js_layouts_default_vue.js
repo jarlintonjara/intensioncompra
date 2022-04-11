@@ -261,6 +261,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1732,7 +1738,9 @@ var render = function () {
               _c(
                 "ul",
                 [
-                  _vm.user.role_id == 6
+                  _vm.user.role_id == 6 ||
+                  _vm.user.role_id == 2 ||
+                  _vm.user.role_id == 3
                     ? _c(
                         "router-link",
                         {
@@ -1915,6 +1923,34 @@ var render = function () {
                             _vm._v(" "),
                             _c("span", { staticClass: "nav-link-text" }, [
                               _vm._v("Reservados"),
+                            ]),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.user.role_id == 1 ||
+                  _vm.user.role_id == 2 ||
+                  _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 6
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/emplazado",
+                            "active-class": "active",
+                          },
+                        },
+                        [
+                          _c("a", { attrs: { href: "" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-minus fa-3x",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "nav-link-text" }, [
+                              _vm._v("Emplazados"),
                             ]),
                           ]),
                         ]

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('fecha_distribucion')->nullable();
             $table->date('fecha_reservacion')->nullable();
             $table->date('fecha_facturacion')->nullable();
+            $table->string('codigo_sap_cliente', 100)->nullable();	
             $table->string('codigo_reserva')->nullable();
             $table->double('monto_reserva', 8, 2)->nullable();
             $table->date('fecha_reserva')->nullable();

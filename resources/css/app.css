@@ -8,3 +8,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 div.dataTables_wrapper div.dataTables_filter label {
     line-height: 40px;
 }
+
+.table-bordered thead{
+    background-color: rgb(227, 0, 37) !important;
+    color: white;
+}

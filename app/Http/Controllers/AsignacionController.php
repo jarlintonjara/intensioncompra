@@ -35,30 +35,187 @@ class AsignacionController extends Controller
             'asignaciones.fecha_reserva',
             'asignaciones.situacion'
         )
-            ->Join('registros', 'asignaciones.registro_id', '=', 'registros.id')
-            ->Join('ingresos', 'asignaciones.ingreso_id', '=', 'ingresos.id')
-            ->Join('users', 'registros.user_id', '=', 'users.id')
-            ->Join('concesionarios', 'users.concesionario_id', '=', 'concesionarios.id')->get();
-        /* switch ($user->role_id) {
+            ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('users', 'registros.user_id', 'users.id')
+            ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
+            ->where('asignaciones.situacion', 'ASIGNADO');
+        switch ($user->role_id) {
             case 1:
-                $data->where('registros.user_id', $user->id)->get();
+                return $data->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $data->where('registros.tienda_id', $user->tienda_id)->get();
+                return $data->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 6:
-                $data->get();
+                return $data->get();
                 break;
             default:
-                $data->where('registros.concesionario_id', " ")->get();
-        } */
+                return $data->where('registros.concesionario_id', " ")->get();
+        }
         
         foreach($data as $e){
             $vin = Hash::make($e["vin"]);
             $e["vin"]= substr($vin, 0, 15);
+        }
+        return response()->json($data);
+    }
+    public function reservado(Request $request)
+    {
+        $auth = new AuthController();
+        $user = $auth->getUser($request->bearerToken());
+        $data = AsignacionModel::select(
+            'asignaciones.fecha_distribucion',
+            'concesionarios.nombre as concesionario',
+            'users.nombre',
+            'registros.documento',
+            'ingresos.vin',
+            'ingresos.marca',
+            'ingresos.modelo',
+            'ingresos.version',
+            'ingresos.color',
+            'ingresos.anio_modelo',
+            'ingresos.codigo_sap',
+            'ingresos.fecha_ingreso',
+            'asignaciones.id',
+            'users.id as user_id',
+            'asignaciones.codigo_reserva',
+            'asignaciones.monto_reserva',
+            'asignaciones.fecha_reserva',
+            'asignaciones.situacion'
+        )
+            ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('users', 'registros.user_id', 'users.id')
+            ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
+            ->where('asignaciones.situacion', 'RESERVADO');
+        switch ($user->role_id) {
+            case 1:
+                return $data->where('registros.user_id', $user->id)->get();
+                break;
+            case 2:
+                return $data->where('registros.tienda_id', $user->tienda_id)->get();
+                break;
+            case 3:
+                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                break;
+            case 6:
+                return $data->get();
+                break;
+            default:
+                return $data->where('registros.concesionario_id', " ")->get();
+        }
+
+        foreach ($data as $e) {
+            $vin = Hash::make($e["vin"]);
+            $e["vin"] = substr($vin, 0, 15);
+        }
+        return response()->json($data);
+    }
+    public function facturado(Request $request)
+    {
+        $auth = new AuthController();
+        $user = $auth->getUser($request->bearerToken());
+        $data = AsignacionModel::select(
+            'asignaciones.fecha_distribucion',
+            'concesionarios.nombre as concesionario',
+            'users.nombre',
+            'registros.documento',
+            'ingresos.vin',
+            'ingresos.marca',
+            'ingresos.modelo',
+            'ingresos.version',
+            'ingresos.color',
+            'ingresos.anio_modelo',
+            'ingresos.codigo_sap',
+            'ingresos.fecha_ingreso',
+            'asignaciones.id',
+            'users.id as user_id',
+            'asignaciones.codigo_reserva',
+            'asignaciones.monto_reserva',
+            'asignaciones.fecha_reserva',
+            'asignaciones.situacion'
+        )
+            ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('users', 'registros.user_id', 'users.id')
+            ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
+            ->where('asignaciones.situacion', 'FACTURADO');
+        switch ($user->role_id) {
+            case 1:
+                return $data->where('registros.user_id', $user->id)->get();
+                break;
+            case 2:
+                return $data->where('registros.tienda_id', $user->tienda_id)->get();
+                break;
+            case 3:
+                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                break;
+            case 6:
+                return $data->get();
+                break;
+            default:
+                return $data->where('registros.concesionario_id', " ")->get();
+        }
+
+        foreach ($data as $e) {
+            $vin = Hash::make($e["vin"]);
+            $e["vin"] = substr($vin, 0, 15);
+        }
+        return response()->json($data);
+    }
+    public function emplazado(Request $request)
+    {
+        $auth = new AuthController();
+        $user = $auth->getUser($request->bearerToken());
+        $data = AsignacionModel::select(
+            'asignaciones.fecha_distribucion',
+            'concesionarios.nombre as concesionario',
+            'users.nombre',
+            'registros.documento',
+            'ingresos.vin',
+            'ingresos.marca',
+            'ingresos.modelo',
+            'ingresos.version',
+            'ingresos.color',
+            'ingresos.anio_modelo',
+            'ingresos.codigo_sap',
+            'ingresos.fecha_ingreso',
+            'asignaciones.id',
+            'users.id as user_id',
+            'asignaciones.codigo_reserva',
+            'asignaciones.monto_reserva',
+            'asignaciones.fecha_reserva',
+            'asignaciones.situacion'
+        )
+            ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('users', 'registros.user_id', 'users.id')
+            ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
+            ->where('asignaciones.situacion', 'EMPLAZADO');
+        switch ($user->role_id) {
+            case 1:
+                return $data->where('registros.user_id', $user->id)->get();
+                break;
+            case 2:
+                return $data->where('registros.tienda_id', $user->tienda_id)->get();
+                break;
+            case 3:
+                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                break;
+            case 6:
+                return $data->get();
+                break;
+            default:
+                return $data->where('registros.concesionario_id', " ")->get();
+        }
+
+        foreach ($data as $e) {
+            $vin = Hash::make($e["vin"]);
+            $e["vin"] = substr($vin, 0, 15);
         }
         return response()->json($data);
     }

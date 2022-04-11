@@ -15,7 +15,6 @@ class Asignacion extends Command
 
     public function handle()
     {
-
         $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
         ->where('situacion', 'SINASIGNAR')
         ->get();

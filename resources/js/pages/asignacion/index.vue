@@ -10,9 +10,7 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                    <h2>
-                        <h2 style="text-align: center; font-size: 1.125rem;"><b>Todos</b></h2>
-                    </h2>
+                    <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
@@ -23,7 +21,7 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="asignaciones" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
+                            <thead>
                                 <tr>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th v-if="user.role_id == 1">RESERVAR</th>
@@ -106,13 +104,6 @@
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">El monto mínimo es 1000 Dólares</div>
                                 </div>
                             </div>
-
-                            <!-- <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="Fecha">Fecha Reserva</label>
-                                    <input type="date" id="Fecha" class="form-control" placeholder="Fecha" v-model="form.fecha_reserva">
-                                </div>
-                            </div> -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
@@ -150,13 +141,13 @@ export default {
             }
         }
     },
-        validations:{
-            submited: true,
-            form: {
-                codigo_reserva: {required,minLength: minLength(2)},
-                monto_reserva : {required,minLength: minLength(4),numeric,minValue: minValue(1000)},
-            }
-        },
+    validations:{
+        submited: true,
+        form: {
+            codigo_reserva: {required,minLength: minLength(2)},
+            monto_reserva : {required,minLength: minLength(4),numeric,minValue: minValue(1000)},
+        }
+    },
     mounted(){
         this.init();
     },
@@ -168,8 +159,7 @@ export default {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then(response=>{
-                    let asignaciones = response.data;
-                    this.asignaciones = asignaciones.filter(e => e.situacion == 'ASIGNADO');                
+                    this.asignaciones = response.data;                
                     })
                 .catch(error=>{
                     console.log(error);
@@ -190,45 +180,27 @@ export default {
             if(this.$v.$invalid){
                 return false;
             }
-
-
-            // let valid = await this.validarCampos();
-            // if(valid){
-                await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
-                    let index =  this.asignaciones.map(function(e) {
-                        return e.id;
-                    }).indexOf(this.id);
-                    if(index !== -1){
-                        this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
-                        this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
-                        this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
-                        this.asignaciones[index].situacion =  response.data.situacion;
-                        this.asignaciones = [].concat(this.asignaciones);
-                    }
-                    this.id = null;
-                    $('#modalForm').modal('hide');
-                    this.$swal.fire(
-                        'Reservado!',
-                        '',
-                        'success'
-                    )
-                }).catch(function (error) {
-                    console.log(error);
-                });
-                $('#asignaciones').DataTable().destroy();
-                this.$tablaGlobal('#asignaciones');
-            // }
-        },
-        validarCampos(){
-            if(!this.form.codigo_reserva || !this.form.monto_reserva || !this.form.fecha_reserva ){
-                this.$swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Completa los campos requeridos!',
-                });
-                return false;
-            }
-            return true;
+            await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
+                let index =  this.asignaciones.map(function(e) { return e.id }).indexOf(this.id);
+                if(index !== -1){
+                    this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
+                    this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
+                    this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
+                    this.asignaciones[index].situacion =  response.data.situacion;
+                    this.asignaciones = [].concat(this.asignaciones);
+                }
+                this.id = null;
+                $('#modalForm').modal('hide');
+                this.$swal.fire(
+                    'Reservado!',
+                    '',
+                    'success'
+                )
+            }).catch(function (error) {
+                console.log(error);
+            });
+            $('#asignaciones').DataTable().destroy();
+            this.$tablaGlobal('#asignaciones');
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

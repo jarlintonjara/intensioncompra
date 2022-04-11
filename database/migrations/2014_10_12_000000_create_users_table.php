@@ -21,9 +21,10 @@ return new class extends Migration
             $table->tinyInteger('role_id');
             $table->tinyInteger('concesionario_id')->nullable();
             $table->tinyInteger('tienda_id')->nullable();
-            $table->string('area')->nullable();
-            $table->string('documento')->nullable();
-            $table->string('telefono')->nullable();
+            $table->string('area', 60)->nullable();
+            $table->string('documento', 20)->nullable();
+            $table->string('telefono', 20)->nullable();
+            $table->string('usuario', 100);
             $table->string('email')->unique();
             $table->tinyInteger('status')->default('1');
             $table->timestamp('email_verified_at')->nullable();

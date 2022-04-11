@@ -1,4 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_asignacion_Facturado_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_asignacion_facturado_vue"],{
 
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
@@ -11,9 +11,9 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/Facturado.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/facturado.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/Facturado.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/facturado.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -104,13 +104,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      asignaciones: [],
-      user: null
+      asignaciones: []
     };
   },
   mounted: function mounted() {
@@ -128,16 +125,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context.next = 3;
-                return _this.axios.get('/api/asignacion', {
+                return _this.axios.get('/api/facturado', {
                   withCredentials: true,
                   headers: {
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  var asignaciones = response.data;
-                  _this.asignaciones = asignaciones.filter(function (e) {
-                    return e.situacion == 'FACTURADO';
-                  });
+                  _this.asignaciones = response.data;
                 })["catch"](function (error) {
                   console.log(error);
                   _this.asignaciones = [];
@@ -924,9 +918,9 @@ try {
 
 /***/ }),
 
-/***/ "./resources/js/pages/asignacion/Facturado.vue":
+/***/ "./resources/js/pages/asignacion/facturado.vue":
 /*!*****************************************************!*\
-  !*** ./resources/js/pages/asignacion/Facturado.vue ***!
+  !*** ./resources/js/pages/asignacion/facturado.vue ***!
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -935,8 +929,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Facturado_vue_vue_type_template_id_70d7b576___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Facturado.vue?vue&type=template&id=70d7b576& */ "./resources/js/pages/asignacion/Facturado.vue?vue&type=template&id=70d7b576&");
-/* harmony import */ var _Facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Facturado.vue?vue&type=script&lang=js& */ "./resources/js/pages/asignacion/Facturado.vue?vue&type=script&lang=js&");
+/* harmony import */ var _facturado_vue_vue_type_template_id_d0161536___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./facturado.vue?vue&type=template&id=d0161536& */ "./resources/js/pages/asignacion/facturado.vue?vue&type=template&id=d0161536&");
+/* harmony import */ var _facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./facturado.vue?vue&type=script&lang=js& */ "./resources/js/pages/asignacion/facturado.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -946,9 +940,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Facturado_vue_vue_type_template_id_70d7b576___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Facturado_vue_vue_type_template_id_70d7b576___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _facturado_vue_vue_type_template_id_d0161536___WEBPACK_IMPORTED_MODULE_0__.render,
+  _facturado_vue_vue_type_template_id_d0161536___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -958,14 +952,14 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/pages/asignacion/Facturado.vue"
+component.options.__file = "resources/js/pages/asignacion/facturado.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/pages/asignacion/Facturado.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/pages/asignacion/facturado.vue?vue&type=script&lang=js&":
 /*!******************************************************************************!*\
-  !*** ./resources/js/pages/asignacion/Facturado.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/pages/asignacion/facturado.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -974,31 +968,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Facturado.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/Facturado.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./facturado.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/facturado.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_facturado_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/pages/asignacion/Facturado.vue?vue&type=template&id=70d7b576&":
+/***/ "./resources/js/pages/asignacion/facturado.vue?vue&type=template&id=d0161536&":
 /*!************************************************************************************!*\
-  !*** ./resources/js/pages/asignacion/Facturado.vue?vue&type=template&id=70d7b576& ***!
+  !*** ./resources/js/pages/asignacion/facturado.vue?vue&type=template&id=d0161536& ***!
   \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Facturado_vue_vue_type_template_id_70d7b576___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Facturado_vue_vue_type_template_id_70d7b576___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_facturado_vue_vue_type_template_id_d0161536___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_facturado_vue_vue_type_template_id_d0161536___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Facturado_vue_vue_type_template_id_70d7b576___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Facturado.vue?vue&type=template&id=70d7b576& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/Facturado.vue?vue&type=template&id=70d7b576&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_facturado_vue_vue_type_template_id_d0161536___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./facturado.vue?vue&type=template&id=d0161536& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/facturado.vue?vue&type=template&id=d0161536&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/Facturado.vue?vue&type=template&id=70d7b576&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/facturado.vue?vue&type=template&id=d0161536&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/Facturado.vue?vue&type=template&id=70d7b576& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/asignacion/facturado.vue?vue&type=template&id=d0161536& ***!
   \***************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1113,13 +1107,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel-hdr" }, [
-      _c("h2", [
-        _c(
-          "h2",
-          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-          [_c("b")]
-        ),
-      ]),
+      _c(
+        "h2",
+        { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
+        [_c("b")]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "panel-toolbar" }, [
         _c("button", {
@@ -1148,45 +1140,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "thead",
-      { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
-      [
-        _c("tr", [
-          _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("CONCESIONARIO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("ASESOR")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("DOCUMENTO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("VIN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MARCA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MODELO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("VERSION")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("COLOR")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("AÑO MODELO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("CÓDIGO SAP")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("FECHA LLEGADA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("CÓDIGO RESERVA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MONTO RESERVA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("FECHA RESERVA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("ESTADO")]),
-        ]),
-      ]
-    )
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CONCESIONARIO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ASESOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("DOCUMENTO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VIN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MARCA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VERSION")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("COLOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CÓDIGO SAP")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA LLEGADA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CÓDIGO RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MONTO RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ESTADO")]),
+      ]),
+    ])
   },
 ]
 render._withStripped = true

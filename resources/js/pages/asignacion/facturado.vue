@@ -10,9 +10,7 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                    <h2>
-                        <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
-                    </h2>
+                    <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
@@ -23,7 +21,7 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="treservado" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
+                            <thead>
                                 <tr>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CONCESIONARIO</th>
@@ -78,10 +76,7 @@
 
 export default {
     data(){
-        return{
-            asignaciones:[],
-            user: null
-        }
+        return{ asignaciones:[] }
     },
     mounted(){
         this.init();
@@ -89,13 +84,12 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
-            await this.axios.get('/api/asignacion',{
+            await this.axios.get('/api/facturado', {
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then(response=>{
-                    let asignaciones = response.data;
-                    this.asignaciones = asignaciones.filter(e => e.situacion == 'FACTURADO');
+                    this.asignaciones = response.data;
                 })
                 .catch(error=>{
                     console.log(error);

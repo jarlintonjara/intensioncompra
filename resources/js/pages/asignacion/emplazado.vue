@@ -3,11 +3,13 @@
 
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>Reservados</span>
+                <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>Emplazados</span>
             </h1>
         </div>
-
-        <div class="col-lg-12">
+        <div class="loading" v-if="loading">
+            <span>...loading</span>
+        </div>
+        <div class="col-lg-12" v-if="!loading">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
@@ -16,7 +18,6 @@
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                         <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
                     </div>
-
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
@@ -77,6 +78,7 @@
 export default {
     data(){
         return{
+            loading: true,
             asignaciones:[]
         }
     },
@@ -86,7 +88,7 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
-            await this.axios.get('/api/reservado',{
+            await this.axios.get('/api/emplazado',{
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },
                 })
@@ -98,6 +100,7 @@ export default {
                     this.asignaciones =[]
                 })
                 await this.$tablaGlobal('#treservado');
+                this.loading = false;
         }
     }
 }

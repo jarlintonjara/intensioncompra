@@ -102,9 +102,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      loading: true,
       ingresos: []
     };
   },
@@ -121,8 +123,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this.loading = true;
                 token = localStorage.getItem('access_token');
-                _context.next = 3;
+                _context.next = 4;
                 return _this.axios.get('/api/ingreso', {
                   withCredentials: true,
                   headers: {
@@ -135,11 +138,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.ingresos = [];
                 });
 
-              case 3:
-                _context.next = 5;
+              case 4:
+                _context.next = 6;
                 return _this.$tablaGlobal('#ingreso');
 
-              case 5:
+              case 6:
+                setTimeout(function () {
+                  _this.loading = false;
+                }, 3000);
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -1046,100 +1054,122 @@ var render = function () {
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "col-lg-12" }, [
-        _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "panel-container show" }, [
-            _c("div", { staticClass: "panel-content" }, [
-              _c(
-                "table",
-                {
-                  staticClass:
-                    "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "ingreso" },
-                },
-                [
-                  _vm._m(2),
-                  _vm._v(" "),
+      _vm.loading
+        ? _c("div", { staticClass: "loading" }, [
+            _c("span", [_vm._v("...loading")]),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.loading
+        ? _c("div", { staticClass: "col-lg-12" }, [
+            _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "panel-container show" }, [
+                _c("div", { staticClass: "panel-content" }, [
                   _c(
-                    "tbody",
-                    _vm._l(_vm.ingresos, function (ingreso) {
-                      return _c("tr", { key: ingreso.id }, [
-                        _c("td", { staticStyle: { "text-align": "center" } }, [
-                          _c(
-                            "div",
-                            { staticClass: "custom-control custom-switch" },
-                            [
-                              _c("input", {
-                                staticClass: "custom-control-input",
-                                attrs: {
-                                  type: "checkbox",
-                                  id: "customSwitch2" + ingreso.id,
-                                },
-                                domProps: {
-                                  checked:
-                                    ingreso.bloqueado == 0 ? "checked" : "",
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.ChangeBloquear(
-                                      ingreso.id,
-                                      ingreso.bloqueado
-                                    )
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-hover table-striped w-100",
+                      attrs: { id: "ingreso" },
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.ingresos, function (ingreso) {
+                          return _c("tr", { key: ingreso.id }, [
+                            _c(
+                              "td",
+                              { staticStyle: { "text-align": "center" } },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "custom-control custom-switch",
                                   },
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", {
-                                staticClass: "custom-control-label",
-                                attrs: { for: "customSwitch2" + ingreso.id },
-                              }),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.vin))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.marca))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.modelo))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.version))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm.$dateFormat(ingreso.anio_modelo))),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(ingreso.anio_fabricacion))
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.color))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.codigo_sap))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.situacion))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.nave))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(ingreso.fecha_ingreso))
-                          ),
-                        ]),
-                      ])
-                    }),
-                    0
+                                  [
+                                    _c("input", {
+                                      staticClass: "custom-control-input",
+                                      attrs: {
+                                        type: "checkbox",
+                                        id: "customSwitch2" + ingreso.id,
+                                      },
+                                      domProps: {
+                                        checked:
+                                          ingreso.bloqueado == 0
+                                            ? "checked"
+                                            : "",
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.ChangeBloquear(
+                                            ingreso.id,
+                                            ingreso.bloqueado
+                                          )
+                                        },
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c("label", {
+                                      staticClass: "custom-control-label",
+                                      attrs: {
+                                        for: "customSwitch2" + ingreso.id,
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.vin))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.marca))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.modelo))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.version))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.$dateFormat(ingreso.anio_modelo))
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.$dateFormat(ingreso.anio_fabricacion)
+                                )
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.color))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.codigo_sap))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.situacion))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(ingreso.nave))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(_vm.$dateFormat(ingreso.fecha_ingreso))
+                              ),
+                            ]),
+                          ])
+                        }),
+                        0
+                      ),
+                    ]
                   ),
-                ]
-              ),
+                ]),
+              ]),
             ]),
-          ]),
-        ]),
-      ]),
+          ])
+        : _vm._e(),
     ]
   )
 }
@@ -1196,37 +1226,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "thead",
-      { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
-      [
-        _c("tr", [
-          _c("th", [_vm._v("BLOQUEADO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("VIN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MARCA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MODELO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("VERSION")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("AÑO MODELO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("AÑO FABRICACIÓN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("COLOR")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("CODIGO SAP")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("SITUACIÓN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("NAVE")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("FECHA INGRESO")]),
-        ]),
-      ]
-    )
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("BLOQUEADO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VIN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MARCA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VERSION")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO FABRICACIÓN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("COLOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CODIGO SAP")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("SITUACIÓN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("NAVE")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA INGRESO")]),
+      ]),
+    ])
   },
 ]
 render._withStripped = true

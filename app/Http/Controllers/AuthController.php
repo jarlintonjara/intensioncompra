@@ -29,16 +29,17 @@ class AuthController extends Controller
             'perfil' => $request->perfil,
             'documento' => $request->documento,
             'email' => $request->email,
+            'usuario' => $request->usuario,
             'password' => Hash::make($request->password)
         ]);
     }
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'usuario' => ['required'],
             'password' => ['required']
         ]);
-        $user = User::where("email", $request->email)->first();
+        $user = User::where("usuario", $request->usuario)->first();
 
         if (isset($user->id)) {
             if (Hash::check($request->password, $user->password)) {
@@ -46,7 +47,7 @@ class AuthController extends Controller
 
                 return response()->json([
                     'status' => 0,
-                    'msg' => "!Usuario logueado existosamente",
+                    'msg' => "!Usuario logueado",
                     "access_token" => $token
                 ]);
             } else {
@@ -58,7 +59,7 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 'status' => 0,
-                'msg' => "El email no esta registrado"
+                'msg' => "El usuario no esta registrado"
             ], 404);
         }
     }

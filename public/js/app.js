@@ -5583,16 +5583,20 @@ var Bloqueado = function Bloqueado() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_ingreso_bloqueado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/ingreso/bloqueado.vue */ "./resources/js/pages/ingreso/bloqueado.vue"));
 };
 
-var Reservado = function Reservado() {
-  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_Reservado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/Reservado.vue */ "./resources/js/pages/asignacion/Reservado.vue"));
+var asignacion = function asignacion() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/index.vue */ "./resources/js/pages/asignacion/index.vue"));
 };
 
-var Asignacion = function Asignacion() {
-  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/Index.vue */ "./resources/js/pages/asignacion/Index.vue"));
+var reservado = function reservado() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_reservado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/reservado.vue */ "./resources/js/pages/asignacion/reservado.vue"));
 };
 
-var Facturado = function Facturado() {
-  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_Facturado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/Facturado.vue */ "./resources/js/pages/asignacion/Facturado.vue"));
+var facturado = function facturado() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_facturado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/facturado.vue */ "./resources/js/pages/asignacion/facturado.vue"));
+};
+
+var emplazado = function emplazado() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_asignacion_emplazado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/asignacion/emplazado.vue */ "./resources/js/pages/asignacion/emplazado.vue"));
 };
 
 var NotFound = function NotFound() {
@@ -5675,20 +5679,24 @@ var Perfil = function Perfil() {
       name: 'noasignado'
     }, {
       path: '/asignacion',
-      component: Asignacion,
+      component: asignacion,
       name: 'asignacion'
     }, {
       path: '/reservado',
-      component: Reservado,
+      component: reservado,
       name: 'reservado'
+    }, {
+      path: '/emplazado',
+      component: emplazado,
+      name: 'emplazado'
+    }, {
+      path: '/facturado',
+      component: facturado,
+      name: 'facturado'
     }, {
       path: '/bloqueado',
       component: Bloqueado,
       name: 'bloqueado'
-    }, {
-      path: '/facturado',
-      component: Facturado,
-      name: 'facturado'
     }]
   }]
 });
@@ -54877,7 +54885,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\ndiv.dataTables_wrapper div.dataTables_length select {\r\n    padding-right: 20px;\r\n}\r\ndiv.dataTables_wrapper div.dataTables_filter input {\r\n    margin-left: 0.5em !important;\r\n}\r\ndiv.dataTables_wrapper div.dataTables_filter label {\r\n    line-height: 40px;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\ndiv.dataTables_wrapper div.dataTables_length select {\r\n    padding-right: 20px;\r\n}\r\ndiv.dataTables_wrapper div.dataTables_filter input {\r\n    margin-left: 0.5em !important;\r\n}\r\ndiv.dataTables_wrapper div.dataTables_filter label {\r\n    line-height: 40px;\r\n}\r\n\r\n.table-bordered thead{\r\n    background-color: rgb(227, 0, 37) !important;\r\n    color: white;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -89288,7 +89296,7 @@ function h(tag, key, args) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_no-asignado_vue":1,"resources_js_pages_registro_asignado_vue":1,"resources_js_pages_ingreso_index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_Reservado_vue":1,"resources_js_pages_asignacion_Index_vue":1,"resources_js_pages_asignacion_Facturado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_no-asignado_vue":1,"resources_js_pages_registro_asignado_vue":1,"resources_js_pages_ingreso_index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

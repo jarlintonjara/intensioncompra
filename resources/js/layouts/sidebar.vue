@@ -65,6 +65,12 @@
                                 <span class="nav-link-text">Reservados</span>
                             </a>
                         </router-link>
+                        <router-link tag="li" to="/emplazado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
+                            <a href="">
+                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
+                                <span class="nav-link-text">Emplazados</span>
+                            </a>
+                        </router-link>
                         <router-link tag="li" to="/facturado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <i class="fa fa-minus fa-3x" style="color: white !important;"></i>

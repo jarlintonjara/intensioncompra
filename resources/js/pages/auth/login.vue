@@ -9,10 +9,10 @@
             <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
                 <form >
                     <div class="form-group">
-                        <label class="form-label" for="username">Email</label>
-                        <input type="email" v-model="form.email" id="username" class="form-control" placeholder="your id or email" value="demo@derco.com">
+                        <label class="form-label" for="username">usuario</label>
+                        <input type="usuario" v-model="form.usuario" id="username" class="form-control" placeholder="your id or usuario" value="demo@derco.com">
                     <!--  <span class="help-block">
-                            Your email
+                            Your usuario
                         </span> -->
                     </div>
                     <div class="form-group">
@@ -41,7 +41,7 @@ export default {
     data(){
         return{
             form:{
-                email: '',
+                usuario: '',
                 password: ''
             },
             errors: []
@@ -59,7 +59,7 @@ export default {
                     self.$swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Email o password incorrectos!',
+                        text: 'usuario o password incorrectos!',
                     })
                 });
          }

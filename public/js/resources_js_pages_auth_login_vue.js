@@ -72,7 +72,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       form: {
-        email: '',
+        usuario: '',
         password: ''
       },
       errors: []
@@ -100,7 +100,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   self.$swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Email o password incorrectos!'
+                    text: 'usuario o password incorrectos!'
                   });
                 });
 
@@ -985,7 +985,7 @@ var render = function () {
               _c(
                 "label",
                 { staticClass: "form-label", attrs: { for: "username" } },
-                [_vm._v("Email")]
+                [_vm._v("usuario")]
               ),
               _vm._v(" "),
               _c("input", {
@@ -993,24 +993,24 @@ var render = function () {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.form.email,
-                    expression: "form.email",
+                    value: _vm.form.usuario,
+                    expression: "form.usuario",
                   },
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  type: "email",
+                  type: "usuario",
                   id: "username",
-                  placeholder: "your id or email",
+                  placeholder: "your id or usuario",
                   value: "demo@derco.com",
                 },
-                domProps: { value: _vm.form.email },
+                domProps: { value: _vm.form.usuario },
                 on: {
                   input: function ($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.form, "email", $event.target.value)
+                    _vm.$set(_vm.form, "usuario", $event.target.value)
                   },
                 },
               }),

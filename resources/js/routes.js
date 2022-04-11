@@ -10,9 +10,10 @@ const Sasignado = () => import('./pages/registro/asignado.vue');
 const Ingreso = () => import('./pages/ingreso/index.vue');
 const Bloqueado = () => import('./pages/ingreso/bloqueado.vue');
 
-const Reservado = () => import('./pages/asignacion/Reservado.vue');
-const Asignacion = () => import('./pages/asignacion/Index.vue');
-const Facturado = () => import('./pages/asignacion/Facturado.vue');
+const asignacion = () => import('./pages/asignacion/index.vue');
+const reservado = () => import('./pages/asignacion/reservado.vue');
+const facturado = () => import('./pages/asignacion/facturado.vue');
+const emplazado = () => import('./pages/asignacion/emplazado.vue');
 
 const NotFound = () => import('./pages/errors/404.vue');
 const Login = () => import('./pages/auth/login.vue');
@@ -49,10 +50,11 @@ export default{
                 { path: "/ingreso", component: Ingreso, name: "ingreso"},
                 { path: '/perfil', component: Perfil, name: 'perfil'},
                 { path: '/no-asignado', component: Nasignado, name: 'noasignado'}, 
-                { path: '/asignacion', component: Asignacion, name: 'asignacion'}, 
-                { path: '/reservado', component: Reservado, name: 'reservado'}, 
+                { path: '/asignacion', component: asignacion, name: 'asignacion'}, 
+                { path: '/reservado', component: reservado, name: 'reservado'}, 
+                { path: '/emplazado', component: emplazado, name: 'emplazado'}, 
+                { path: '/facturado', component: facturado, name: 'facturado' },
                 { path: '/bloqueado', component: Bloqueado, name: 'bloqueado'},
-                { path: '/facturado', component: Facturado, name: 'facturado'},
             ]
         },
     ]

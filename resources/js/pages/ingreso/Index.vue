@@ -6,8 +6,10 @@
                 <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>PACKING LIST</span>
             </h1>
         </div>
-
-        <div class="col-lg-12">
+        <div class="loading" v-if="loading">
+            <span>...loading</span>
+        </div>
+        <div class="col-lg-12" v-if="!loading">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2>
@@ -18,12 +20,11 @@
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                         <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
                     </div>
-
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="ingreso" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
+                            <thead>
                                 <tr>
                                     <th>BLOQUEADO</th>
                                     <th>VIN</th>
@@ -75,6 +76,7 @@
 export default {
     data(){
         return{
+            loading: true,
             ingresos:[],
         }
     },
@@ -83,6 +85,7 @@ export default {
     },
     methods:{
         async init(){
+            this.loading = true;
             const token = localStorage.getItem('access_token');
             await this.axios.get('/api/ingreso',{
                    withCredentials: true,
@@ -96,6 +99,10 @@ export default {
                     this.ingresos =[]
                 })
                 await this.$tablaGlobal('#ingreso');
+                setTimeout( () => {
+                    this.loading = false;
+                }, 3000)
+                
         },
         async ChangeBloquear(id, estadoBloqueado){
             const token = localStorage.getItem('access_token');
