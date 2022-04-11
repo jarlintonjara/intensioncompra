@@ -148,21 +148,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
   data: function data() {
     return {
       users: [],
       roles: [],
+      concesionarios: [],
+      tiendas: [],
       datos: {
         nombre: '',
         apellido: '',
+        concesionario_id: 0,
+        tienda: 0,
         documento: '',
         email: '',
         cargo: '',
         area: '',
         role_id: '',
-        telefono: ''
+        telefono: '',
+        usuario: ''
       },
       titulo: '',
       btnCrear: false,
@@ -193,6 +219,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).then(function (response) {
                   _this.users = response.data.users;
                   _this.roles = response.data.roles;
+                  _this.concesionarios = response.data.concesionarios;
+                  _this.tiendas = response.data.tiendas;
+                  _this.roles = response.data.roles;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -210,7 +239,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id) {
+      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.usuario) {
         this.$swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -323,7 +352,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         apellido: datos.apellido,
         documento: datos.documento,
         email: datos.email,
-        role_id: datos.role_id
+        role_id: datos.role_id,
+        tienda_id: datos.tienda_id,
+        concesionario_id: datos.concesionario_id,
+        usuario: datos.usuario
       };
       this.titulo = ' Editar usuario';
       this.btnCrear = false;
@@ -1200,8 +1232,6 @@ var render = function () {
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
           _c("div", { staticClass: "panel-container show" }, [
@@ -1233,7 +1263,13 @@ var render = function () {
                     _vm._l(_vm.users, function (user) {
                       return _c("tr", { key: user.id }, [
                         _c("td", [
-                          _vm._v(_vm._s(user.nombre + " " + user.apellido)),
+                          _vm._v(
+                            _vm._s(
+                              user.nombre +
+                                " " +
+                                (user.apellido != null ? user.apellido : "")
+                            )
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.role.descripcion))]),
@@ -1477,6 +1513,153 @@ var render = function () {
                             return
                           }
                           _vm.$set(_vm.datos, "email", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "Concesionario" } }, [
+                      _vm._v("Concesionario"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datos.concesionario_id,
+                            expression: "datos.concesionario_id",
+                          },
+                        ],
+                        staticClass: "browser-default custom-select",
+                        attrs: { id: "Concesionario" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "concesionario_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      [
+                        _c("option", [_vm._v("Seleccione una Concesionario")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.concesionarios, function (concesionario) {
+                          return _c(
+                            "option",
+                            {
+                              key: concesionario.nombre + concesionario.id,
+                              domProps: { value: concesionario.id },
+                            },
+                            [_vm._v(_vm._s(concesionario.nombre))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "Tienda" } }, [
+                      _vm._v("Tienda"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datos.tienda_id,
+                            expression: "datos.tienda_id",
+                          },
+                        ],
+                        staticClass: "browser-default custom-select",
+                        attrs: { id: "Tienda" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "tienda_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      [
+                        _c("option", [_vm._v("Seleccione una Tienda")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.tiendas, function (tienda) {
+                          return _c(
+                            "option",
+                            {
+                              key: tienda.nombre + tienda.id,
+                              domProps: { value: tienda.id },
+                            },
+                            [_vm._v(_vm._s(tienda.nombre))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "usuario" } }, [
+                      _vm._v("Usuario"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.usuario,
+                          expression: "datos.usuario",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "usuario",
+                        placeholder: "usuario",
+                        required: "",
+                      },
+                      domProps: { value: _vm.datos.usuario },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "usuario", $event.target.value)
                         },
                       },
                     }),

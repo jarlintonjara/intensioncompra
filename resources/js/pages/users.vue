@@ -5,7 +5,6 @@
                 <i class='subheader-icon fal fa-chart-area'></i> Usuarios 
             </h1>
         </div>
-        <br>
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 
@@ -27,7 +26,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="user in users" :key="user.id">
-                                    <td>{{ user.nombre + " "+ user.apellido }}</td>
+                                    <td>{{ user.nombre + " "+ (user.apellido != null? user.apellido: '') }}</td>
                                     <td>{{ user.role.descripcion }}</td>
                                     <td>{{ user.documento }}</td>
                                     <td>{{ user.email }}</td>
@@ -68,6 +67,7 @@
                                 <label for="Apellidos">Apellidos</label>
                                 <input type="text" id="Apellidos" class="form-control" placeholder="Apellidos" required="" v-model="datos.apellido">
                             </div>
+                           
                         </div>
 
                         <div class="form-row">
@@ -82,6 +82,27 @@
                             <div class="form-group col-md-4">
                                 <label for="Email">Email</label>
                                 <input type="email" id="Email" class="form-control" placeholder="Email" v-model="datos.email">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="Concesionario">Concesionario</label>
+                                <select id="Concesionario" class="browser-default custom-select" v-model="datos.concesionario_id">
+                                    <option>Seleccione una Concesionario</option>
+                                    <option v-for="concesionario in concesionarios" :key="concesionario.nombre + concesionario.id" :value="concesionario.id">{{ concesionario.nombre }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Tienda">Tienda</label>
+                                <select id="Tienda" class="browser-default custom-select" v-model="datos.tienda_id">
+                                    <option>Seleccione una Tienda</option>
+                                    <option v-for="tienda in tiendas" :key="tienda.nombre + tienda.id" :value="tienda.id">{{ tienda.nombre }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" id="usuario" class="form-control" placeholder="usuario" required="" v-model="datos.usuario">
                             </div>
                         </div>
 
@@ -124,7 +145,14 @@ export default {
         return {
             users:[],
             roles:[],
-            datos: {nombre:'', apellido:'', documento:'', email:'', cargo: '', area: '', role_id: '', telefono:''},
+            concesionarios:[],
+            tiendas:[],
+            datos: {
+                nombre:'', 
+                apellido:'', 
+                concesionario_id: 0,
+                tienda: 0,
+                documento:'', email:'', cargo: '', area: '', role_id: '', telefono:'', usuario:''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -144,6 +172,9 @@ export default {
                 .then(response=>{
                     this.users = response.data.users;
                     this.roles = response.data.roles;
+                    this.concesionarios = response.data.concesionarios;
+                    this.tiendas = response.data.tiendas;
+                    this.roles = response.data.roles;
                 })
                 .catch(error=>{
                     console.log(error);
@@ -151,7 +182,7 @@ export default {
             await this.$tablaGlobal('#tableUser');
         },
         validarCampos(){
-            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id ){
+            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.usuario ){
                 this.$swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -216,7 +247,10 @@ export default {
                 apellido: datos.apellido,
                 documento: datos.documento, 
                 email: datos.email, 
-                role_id: datos.role_id            
+                role_id: datos.role_id,          
+                tienda_id: datos.tienda_id,          
+                concesionario_id: datos.concesionario_id,          
+                usuario: datos.usuario         
             };
             this.titulo=' Editar usuario'
             this.btnCrear=false

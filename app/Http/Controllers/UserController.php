@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConcesionarioModel;
 use App\Models\RoleModel;
+use App\Models\TiendaModel;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -34,10 +36,13 @@ class UserController extends Controller
             $user["role"] = $user->role;
         } 
         $roles = RoleModel::where('estado', 1)->get();
+        $concesionarios = ConcesionarioModel::where('estado', 1)->get();
+        $tiendas = TiendaModel::where('estado', 1)->get();
         return response()->json([
             "roles" => $roles,
             "users" => $users,
-            "session" => $session
+            "concesionarios" => $concesionarios,
+            "tiendas" => $tiendas
         ]);
     }
 
