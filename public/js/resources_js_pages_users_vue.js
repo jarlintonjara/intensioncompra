@@ -1272,15 +1272,13 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(user.tienda.nombre))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.role.descripcion))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.documento))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.email))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm.$dateFormat(user.created_at))),
-                        ]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1856,13 +1854,13 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre Completo")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Tienda")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Rol")]),
         _vm._v(" "),
         _c("th", [_vm._v("Documento")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),

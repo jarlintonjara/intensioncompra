@@ -22,8 +22,8 @@
     </div>
 </template>
 <script>
-import Sidebar from './Sidebar.vue';
-import Navbar from './Navbar.vue';
+import Sidebar from './sidebar.vue';
+import Navbar from './navbar.vue';
 
 export default {
     name: "Layout",

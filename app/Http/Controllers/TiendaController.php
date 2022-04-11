@@ -44,7 +44,7 @@ class TiendaController extends Controller
      * @param  \App\Models\Tienda  $tienda
      * @return \Illuminate\Http\Response
      */
-    public function show(Tienda $tienda)
+    public function show($id)
     {
         //
     }
@@ -55,7 +55,7 @@ class TiendaController extends Controller
      * @param  \App\Models\Tienda  $tienda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tienda $tienda)
+    public function edit()
     {
         //
     }
@@ -67,7 +67,7 @@ class TiendaController extends Controller
      * @param  \App\Models\Tienda  $tienda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tienda $tienda)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +78,7 @@ class TiendaController extends Controller
      * @param  \App\Models\Tienda  $tienda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tienda $tienda)
+    public function destroy($id)
     {
         //
     }

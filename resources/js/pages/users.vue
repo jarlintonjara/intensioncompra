@@ -17,20 +17,20 @@
                             <thead class="bg-warning-200">
                                 <tr>
                                     <th>Nombre Completo</th>
+                                    <th>Tienda</th>
                                     <th>Rol</th>
-                                    <th>Documento</th>
+                                    <th>Documento</th> 
                                     <th>Email</th>
-                                    <th>Fecha</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="user in users" :key="user.id">
                                     <td>{{ user.nombre + " "+ (user.apellido != null? user.apellido: '') }}</td>
+                                    <td>{{ user.tienda.nombre }}</td>
                                     <td>{{ user.role.descripcion }}</td>
-                                    <td>{{ user.documento }}</td>
+                                    <td>{{ user.documento }}</td> 
                                     <td>{{ user.email }}</td>
-                                    <td>{{ $dateFormat(user.created_at) }}</td>
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(user)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(user.id)"><i class="fa fa-trash"></i></button>

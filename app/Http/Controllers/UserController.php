@@ -34,6 +34,7 @@ class UserController extends Controller
         }
         foreach ($users as $user) {
             $user["role"] = $user->role;
+            $user["tienda"] = $user->tienda_id ? $user->tienda : "";
         } 
         $roles = RoleModel::where('estado', 1)->get();
         $concesionarios = ConcesionarioModel::where('estado', 1)->get();

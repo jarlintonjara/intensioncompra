@@ -50,6 +50,12 @@ class AsignacionController extends Controller
             case 3:
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
+            case 4:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
+            case 5:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
             case 6:
                 return $data->get();
                 break;
@@ -101,6 +107,12 @@ class AsignacionController extends Controller
                 break;
             case 3:
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                break;
+            case 4:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
+            case 5:
+                return $data->where('ingresos.marca', $user->marca)->get();
                 break;
             case 6:
                 return $data->get();
@@ -154,6 +166,12 @@ class AsignacionController extends Controller
             case 3:
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
+            case 4:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
+            case 5:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
             case 6:
                 return $data->get();
                 break;
@@ -206,6 +224,12 @@ class AsignacionController extends Controller
             case 3:
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
+            case 4:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
+            case 5:
+                return $data->where('ingresos.marca', $user->marca)->get();
+                break;
             case 6:
                 return $data->get();
                 break;
@@ -247,8 +271,6 @@ class AsignacionController extends Controller
         $asignacion->monto_reserva = $request->monto_reserva;
         $asignacion->fecha_reserva = date('Y-m-d');
         $asignacion->save();
-        
-        // $asignacion->update($request->all());
         return response()->json($asignacion);
     }
 
@@ -279,13 +301,9 @@ class AsignacionController extends Controller
                 AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id]);
             } 
         }
-        // dd($ingresos);
-
 
     //segundo
-    $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')
-        ->where('situacion', 'SINASIGNAR')
-        ->get();
+    $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')->where('situacion', 'SINASIGNAR')->get();
         
         foreach ($registros2 as $registro) {
 
@@ -310,9 +328,7 @@ class AsignacionController extends Controller
         }
         
         //tercero
-        $registros3 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color3','situacion')
-        ->where('situacion', 'SINASIGNAR')
-        ->get();
+        $registros3 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color3','situacion')->where('situacion', 'SINASIGNAR')->get();
 
         foreach ($registros3 as $registro) {
 

@@ -57,7 +57,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(ConcesionarioModel::class, 'id', 'concesionario_id');
     }
-
     public function tienda()
     {
         return $this->hasOne(TiendaModel::class, 'id', 'tienda_id');
