@@ -8,10 +8,7 @@ use App\Http\Controllers\UserExportController;
 use App\Models\RegistroModel;
 use App\Models\IngresoModel;
 use App\Models\AsignacionModel;
-use App\Models\ConcesionarioModel;
-use App\Models\TiendaModel;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 /*
@@ -25,16 +22,7 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 Route::get('/test', function () {
-    $data = IngresoModel::all();
-    foreach( $data as $row){
-        $con = DB::table('packing_list_copy1')->where('vin', $row->vin)->first();
-        if($con ){
-            $row->bloqueado = 1;
-            $row->user_bloqueo = $con->user_bloqueo;
-            $row->save();
-        }
-    }
-
+    dd(Hash::make('pakatnamu$'));
 });
 
 

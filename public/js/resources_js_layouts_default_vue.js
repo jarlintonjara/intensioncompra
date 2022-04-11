@@ -1870,6 +1870,8 @@ var render = function () {
                   _vm.user.role_id == 1 ||
                   _vm.user.role_id == 2 ||
                   _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
                   _vm.user.role_id == 6
                     ? _c(
                         "router-link",
@@ -1917,6 +1919,8 @@ var render = function () {
                   _vm.user.role_id == 1 ||
                   _vm.user.role_id == 2 ||
                   _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
                   _vm.user.role_id == 6
                     ? _c(
                         "router-link",
@@ -1964,6 +1968,8 @@ var render = function () {
                   _vm.user.role_id == 1 ||
                   _vm.user.role_id == 2 ||
                   _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
                   _vm.user.role_id == 6
                     ? _c(
                         "router-link",
@@ -1992,6 +1998,8 @@ var render = function () {
                   _vm.user.role_id == 1 ||
                   _vm.user.role_id == 2 ||
                   _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
                   _vm.user.role_id == 6
                     ? _c(
                         "router-link",
@@ -2020,6 +2028,8 @@ var render = function () {
                   _vm.user.role_id == 1 ||
                   _vm.user.role_id == 2 ||
                   _vm.user.role_id == 3 ||
+                  _vm.user.role_id == 4 ||
+                  _vm.user.role_id == 5 ||
                   _vm.user.role_id == 6
                     ? _c(
                         "router-link",

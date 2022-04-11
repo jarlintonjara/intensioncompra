@@ -33,7 +33,7 @@
                                 <span class="nav-link-text">Nuevo Registro</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/no-asignado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/no-asignado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Lista de registros</span>
@@ -46,7 +46,7 @@
                                 <span class="nav-link-text">ASIGNACIONES</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/asignacion" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/asignacion" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Lista de asignaciones</span>
@@ -59,19 +59,19 @@
                                 <span class="nav-link-text">RESERVADOS</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/reservado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/reservado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Reservados</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/emplazado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/emplazado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Emplazados</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/facturado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/facturado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Facturados</span>
