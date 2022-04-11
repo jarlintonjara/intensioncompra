@@ -1117,7 +1117,7 @@ var staticRenderFns = [
         _c(
           "h2",
           { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-          [_c("b", [_vm._v("Registros no asignados ")])]
+          [_c("b")]
         ),
       ]),
       _vm._v(" "),

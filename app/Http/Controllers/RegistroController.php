@@ -29,48 +29,80 @@ class RegistroController extends Controller
         ->where('registros.situacion', 'SINASIGNAR');
         switch ($user->role_id){
             case 1:
-                return $noasignado->where('registros.user_id', $user->id)->get();
+                $noasignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'SINASIGNAR')->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                return $noasignado->where('registros.tienda_id', $user->tienda_id)->get();
+                $noasignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'SINASIGNAR')->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                return $noasignado->where('registros.concesionario_id', $user->concesionario_id)->get();
+                $noasignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'SINASIGNAR')->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $noasignado->where('registros.marca', $user->marca)->get();
-                break;
             case 5:
-                return $noasignado->where('registros.marca', $user->marca)->get();
+                $noasignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'SINASIGNAR')->where('registros.marca', $user->marca)->get();
                 break;
             case 6:
-                return $noasignado->where('registros.situacion', 'SINASIGNAR')->get();
+                $noasignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'SINASIGNAR')->where('registros.situacion', 'SINASIGNAR')->get();
                 break;
         }
 
-        $asignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
-        ->join('users', 'users.id', '=', 'registros.user_id')
-        ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
-        ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
-        ->where('registros.situacion', 'ASIGNADO');
+        $asignado = [];
         switch ($user->role_id){
             case 1:
-                return $asignado->where('registros.user_id', $user->id)->get();
+                $asignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'ASIGNADO')->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                return $asignado->where('registros.tienda_id', $user->tienda_id)->get();
+                $asignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'ASIGNADO')->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                return $asignado->where('registros.concesionario_id', $user->concesionario_id)->get();
+                $asignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'ASIGNADO')->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $noasignado->where('registros.marca', $user->marca)->get();
-                break;
             case 5:
-                return $noasignado->where('registros.marca', $user->marca)->get();
+                $asignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'ASIGNADO')->where('registros.marca', $user->marca)->get();
                 break;
             case 6:
-                return $asignado->get();
+                $asignado = RegistroModel::select('registros.created_at', 'registros.nombre_completo', 'registros.documento', 'registros.celular', 'registros.correo', 'registros.marca', 'registros.modelo', 'registros.version', 'registros.color1', 'registros.color2', 'registros.color3', 'registros.anio_modelo', 'registros.situacion', 'registros.user_id', 'users.nombre', 'users.apellido', 'tiendas.nombre as tienda', 'concesionarios.nombre as concesionario', 'users.id', 'registros.tienda_id', 'registros.concesionario_id')
+                ->join('users', 'users.id', '=', 'registros.user_id')
+                ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
+                ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
+                ->where('registros.situacion', 'ASIGNADO')->where('registros.marca', $user->marca)->get();
                 break;
         }
 

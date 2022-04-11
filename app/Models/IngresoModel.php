@@ -11,7 +11,7 @@ class IngresoModel extends Model
 
     use HasFactory;
 
-    protected $table = 'ingresos';
+    protected $table = 'packing_list';
 
     protected $fillable = [
         'id',
