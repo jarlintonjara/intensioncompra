@@ -20,14 +20,14 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
-            'ingresos.vin',
-            'ingresos.marca',
-            'ingresos.modelo',
-            'ingresos.version',
-            'ingresos.color',
-            'ingresos.anio_modelo',
-            'ingresos.codigo_sap',
-            'ingresos.fecha_ingreso',
+            'packing_list.vin',
+            'packing_list.marca',
+            'packing_list.modelo',
+            'packing_list.version',
+            'packing_list.color',
+            'packing_list.anio_modelo',
+            'packing_list.codigo_sap',
+            'packing_list.fecha_ingreso',
             'asignaciones.id',
             'users.id as user_id',
             'asignaciones.codigo_reserva',
@@ -36,7 +36,7 @@ class AsignacionController extends Controller
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
-            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->where('asignaciones.situacion', 'ASIGNADO');
@@ -51,10 +51,10 @@ class AsignacionController extends Controller
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
                 return $data->get();
@@ -78,14 +78,14 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
-            'ingresos.vin',
-            'ingresos.marca',
-            'ingresos.modelo',
-            'ingresos.version',
-            'ingresos.color',
-            'ingresos.anio_modelo',
-            'ingresos.codigo_sap',
-            'ingresos.fecha_ingreso',
+            'packing_list.vin',
+            'packing_list.marca',
+            'packing_list.modelo',
+            'packing_list.version',
+            'packing_list.color',
+            'packing_list.anio_modelo',
+            'packing_list.codigo_sap',
+            'packing_list.fecha_ingreso',
             'asignaciones.id',
             'users.id as user_id',
             'asignaciones.codigo_reserva',
@@ -94,7 +94,7 @@ class AsignacionController extends Controller
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
-            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->where('asignaciones.situacion', 'RESERVADO');
@@ -109,10 +109,10 @@ class AsignacionController extends Controller
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
                 return $data->get();
@@ -136,14 +136,14 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
-            'ingresos.vin',
-            'ingresos.marca',
-            'ingresos.modelo',
-            'ingresos.version',
-            'ingresos.color',
-            'ingresos.anio_modelo',
-            'ingresos.codigo_sap',
-            'ingresos.fecha_ingreso',
+            'packing_list.vin',
+            'packing_list.marca',
+            'packing_list.modelo',
+            'packing_list.version',
+            'packing_list.color',
+            'packing_list.anio_modelo',
+            'packing_list.codigo_sap',
+            'packing_list.fecha_ingreso',
             'asignaciones.id',
             'users.id as user_id',
             'asignaciones.codigo_reserva',
@@ -152,7 +152,7 @@ class AsignacionController extends Controller
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
-            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->where('asignaciones.situacion', 'FACTURADO');
@@ -167,10 +167,10 @@ class AsignacionController extends Controller
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
                 return $data->get();
@@ -194,14 +194,14 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
-            'ingresos.vin',
-            'ingresos.marca',
-            'ingresos.modelo',
-            'ingresos.version',
-            'ingresos.color',
-            'ingresos.anio_modelo',
-            'ingresos.codigo_sap',
-            'ingresos.fecha_ingreso',
+            'packing_list.vin',
+            'packing_list.marca',
+            'packing_list.modelo',
+            'packing_list.version',
+            'packing_list.color',
+            'packing_list.anio_modelo',
+            'packing_list.codigo_sap',
+            'packing_list.fecha_ingreso',
             'asignaciones.id',
             'users.id as user_id',
             'asignaciones.codigo_reserva',
@@ -210,7 +210,7 @@ class AsignacionController extends Controller
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
-            ->Join('ingresos', 'asignaciones.ingreso_id', 'ingresos.id')
+            ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->where('asignaciones.situacion', 'EMPLAZADO');
@@ -225,10 +225,10 @@ class AsignacionController extends Controller
                 return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('ingresos.marca', $user->marca)->get();
+                return $data->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
                 return $data->get();

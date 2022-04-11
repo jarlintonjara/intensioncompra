@@ -19,86 +19,86 @@ class IngresoController extends Controller
         switch ($user->role_id) {
             case 1:
                 $bloqueados = IngresoModel::select(
-                    'ingresos.id',
+                    'packing_list.id',
                     'users.nombre',
-                    'ingresos.fecha_bloqueo',
-                    'ingresos.vin',
-                    'ingresos.marca',
-                    'ingresos.modelo',
-                    'ingresos.version',
-                    'ingresos.color',
-                    'ingresos.anio_modelo',
-                    'ingresos.codigo_sap',
-                    'ingresos.fecha_ingreso',
+                    'packing_list.fecha_bloqueo',
+                    'packing_list.vin',
+                    'packing_list.marca',
+                    'packing_list.modelo',
+                    'packing_list.version',
+                    'packing_list.color',
+                    'packing_list.anio_modelo',
+                    'packing_list.codigo_sap',
+                    'packing_list.fecha_ingreso',
                 )
-                    ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
+                    ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                     ->where('bloqueado', 1)->where('users.user_id', $user->id)->get();
                 break;
             case 2:
                 $bloqueados = IngresoModel::select(
-                    'ingresos.id',
+                    'packing_list.id',
                     'users.nombre',
-                    'ingresos.fecha_bloqueo',
-                    'ingresos.vin',
-                    'ingresos.marca',
-                    'ingresos.modelo',
-                    'ingresos.version',
-                    'ingresos.color',
-                    'ingresos.anio_modelo',
-                    'ingresos.codigo_sap',
-                    'ingresos.fecha_ingreso',
+                    'packing_list.fecha_bloqueo',
+                    'packing_list.vin',
+                    'packing_list.marca',
+                    'packing_list.modelo',
+                    'packing_list.version',
+                    'packing_list.color',
+                    'packing_list.anio_modelo',
+                    'packing_list.codigo_sap',
+                    'packing_list.fecha_ingreso',
                 )
-                ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
+                ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                 ->where('bloqueado', 1)->where('users.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
             case 4:
                 $bloqueados = IngresoModel::select(
-                    'ingresos.id',
+                    'packing_list.id',
                     'users.nombre',
-                    'ingresos.fecha_bloqueo',
-                    'ingresos.vin',
-                    'ingresos.marca',
-                    'ingresos.modelo',
-                    'ingresos.version',
-                    'ingresos.color',
-                    'ingresos.anio_modelo',
-                    'ingresos.codigo_sap',
-                    'ingresos.fecha_ingreso',
+                    'packing_list.fecha_bloqueo',
+                    'packing_list.vin',
+                    'packing_list.marca',
+                    'packing_list.modelo',
+                    'packing_list.version',
+                    'packing_list.color',
+                    'packing_list.anio_modelo',
+                    'packing_list.codigo_sap',
+                    'packing_list.fecha_ingreso',
                 )
-                ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
-                ->where('bloqueado', 1)->where('ingresos.marca', $user->marca)->get();
+                ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
+                ->where('bloqueado', 1)->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
                 $bloqueados = IngresoModel::select(
-                    'ingresos.id',
+                    'packing_list.id',
                     'users.nombre',
-                    'ingresos.fecha_bloqueo',
-                    'ingresos.vin',
-                    'ingresos.marca',
-                    'ingresos.modelo',
-                    'ingresos.version',
-                    'ingresos.color',
-                    'ingresos.anio_modelo',
-                    'ingresos.codigo_sap',
-                    'ingresos.fecha_ingreso',
+                    'packing_list.fecha_bloqueo',
+                    'packing_list.vin',
+                    'packing_list.marca',
+                    'packing_list.modelo',
+                    'packing_list.version',
+                    'packing_list.color',
+                    'packing_list.anio_modelo',
+                    'packing_list.codigo_sap',
+                    'packing_list.fecha_ingreso',
                 )
-                    ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
+                    ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                     ->where('bloqueado', 1)->where('users.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 6:
                 $bloqueados = IngresoModel::select(
-                    'ingresos.id',
+                    'packing_list.id',
                     'users.nombre',
-                    'ingresos.fecha_bloqueo',
-                    'ingresos.vin',
-                    'ingresos.marca',
-                    'ingresos.modelo',
-                    'ingresos.version',
-                    'ingresos.color',
-                    'ingresos.anio_modelo',
-                    'ingresos.codigo_sap',
-                    'ingresos.fecha_ingreso',
+                    'packing_list.fecha_bloqueo',
+                    'packing_list.vin',
+                    'packing_list.marca',
+                    'packing_list.modelo',
+                    'packing_list.version',
+                    'packing_list.color',
+                    'packing_list.anio_modelo',
+                    'packing_list.codigo_sap',
+                    'packing_list.fecha_ingreso',
                 )
                 ->Join('users', 'ingresos.user_bloqueo', '=', 'users.id')
                 ->where('bloqueado', 1)->get();
