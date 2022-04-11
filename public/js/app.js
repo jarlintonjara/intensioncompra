@@ -5576,7 +5576,7 @@ var Sasignado = function Sasignado() {
 };
 
 var Ingreso = function Ingreso() {
-  return __webpack_require__.e(/*! import() */ "resources_js_pages_ingreso_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/ingreso/index.vue */ "./resources/js/pages/ingreso/index.vue"));
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_ingreso_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/ingreso/Index.vue */ "./resources/js/pages/ingreso/Index.vue"));
 };
 
 var Bloqueado = function Bloqueado() {
@@ -89296,7 +89296,7 @@ function h(tag, key, args) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_registro_sasignado_vue":1,"resources_js_pages_ingreso_index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_registro_sasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
