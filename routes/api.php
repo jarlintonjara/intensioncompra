@@ -35,3 +35,5 @@ Route::resource('asignacion', AsignacionController::class);
 Route::get('reservado', [AsignacionController::class, 'reservado']);
 Route::get('facturado', [AsignacionController::class, 'facturado']);
 Route::get('emplazado', [AsignacionController::class, 'emplazado']);
+Route::get('executeEmplazado', [AsignacionController::class, 'jobEmplazar']);
+Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);

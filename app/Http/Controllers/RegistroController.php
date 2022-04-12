@@ -62,7 +62,7 @@ class RegistroController extends Controller
                 ->join('users', 'users.id', '=', 'registros.user_id')
                 ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
                 ->join('concesionarios', 'concesionarios.id', '=', 'registros.concesionario_id')
-                ->where('registros.situacion', 'SINASIGNAR')->where('registros.situacion', 'SINASIGNAR')->get();
+                ->where('registros.situacion', 'SINASIGNAR')->get();
                 break;
         }
 

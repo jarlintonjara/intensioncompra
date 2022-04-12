@@ -11,6 +11,7 @@
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
+                   
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
@@ -205,7 +206,8 @@ export default {
         },
         cerrarModal(){
             $('#modalForm').modal('hide');
-        }
+        },
+        
     },
     watch:{
         session(val){
