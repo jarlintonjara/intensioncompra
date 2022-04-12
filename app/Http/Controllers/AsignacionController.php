@@ -315,7 +315,7 @@ class AsignacionController extends Controller
             $row = FacturadoModel::where('vin', $registro->vin)->first();
             if ($row) {
                 $registro->situacion = 'FACTURADO';
-                $registro->fecha_facturacion = $row->fecha_facturacion;
+                
                 $registro->codigo_sap_cliente = $row->codigo_sap_cliente;
                 $registro->save();
                 $row->situacion = 'FACTURADO';
