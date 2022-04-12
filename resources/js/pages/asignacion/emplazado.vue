@@ -97,7 +97,7 @@ export default {
             await this.axios.get('/api/executeFacturado')
                 .then(response=>{
                      this.$swal.fire(
-                    'Emplazados!',
+                    'Facturados!',
                     '',
                     'success'
                 )              

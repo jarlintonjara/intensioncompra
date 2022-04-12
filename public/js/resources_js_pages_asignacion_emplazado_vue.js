@@ -153,7 +153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return _this2.axios.get('/api/executeFacturado').then(function (response) {
-                  _this2.$swal.fire('Emplazados!', '', 'success');
+                  _this2.$swal.fire('Facturados!', '', 'success');
                 })["catch"](function (error) {
                   console.log(error);
                 });

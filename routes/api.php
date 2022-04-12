@@ -29,6 +29,7 @@ Route::get('getSession/{token}', [AuthController::class, 'getSession']);
 Route::get('dashboard', [HomeController::class, 'index']);
 Route::resource('usuario', UserController::class);
 Route::resource('registro', RegistroController::class);
+Route::get('executeAsignar', [RegistroController::class, 'jobAsignar']);
 Route::resource('ingreso', IngresoController::class);
 
 Route::resource('asignacion', AsignacionController::class);
