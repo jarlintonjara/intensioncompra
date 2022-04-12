@@ -257,17 +257,8 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
                   }).indexOf(_this2.id);
 
                   if (index !== -1) {
-                    var asiganciones = _this2.asignaciones;
-                    asiganciones.splice(index, 1);
-                    /* this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
-                    this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
-                    this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
-                    this.asignaciones[index].situacion =  response.data.situacion; */
-
-                    /* this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
-                    this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
-                    this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
-                    this.asignaciones[index].situacion =  response.data.situacion; */
+                    var asignaciones = _this2.asignaciones;
+                    asignaciones.splice(index, 1);
                     _this2.asignaciones = [].concat(asignaciones);
                   }
 
@@ -281,10 +272,10 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
 
               case 5:
                 $('#asignaciones').DataTable().destroy();
+                _context2.next = 8;
+                return _this2.$tablaGlobal('#asignaciones');
 
-                _this2.$tablaGlobal('#asignaciones');
-
-              case 7:
+              case 8:
               case "end":
                 return _context2.stop();
             }

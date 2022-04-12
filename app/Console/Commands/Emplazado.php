@@ -39,6 +39,7 @@ class Emplazado extends Command
                 $nuevafecha = strtotime('+2 day', strtotime($fecha));
                 $nuevafecha = date('Y-m-j', $nuevafecha);
                 $registro->situacion = 'EMPLAZADO';
+                $registro->fecha_emplazado = $row->emplazamiento;
                 $registro->fecha_a_facturar = $nuevafecha;
                 $registro->save();
 
