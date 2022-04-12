@@ -257,11 +257,18 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
                   }).indexOf(_this2.id);
 
                   if (index !== -1) {
-                    _this2.asignaciones[index].codigo_reserva = response.data.codigo_reserva;
-                    _this2.asignaciones[index].monto_reserva = response.data.monto_reserva;
-                    _this2.asignaciones[index].fecha_reserva = response.data.fecha_reserva;
-                    _this2.asignaciones[index].situacion = response.data.situacion;
-                    _this2.asignaciones = [].concat(_this2.asignaciones);
+                    var asiganciones = _this2.asignaciones;
+                    asiganciones.splice(index, 1);
+                    /* this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
+                    this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
+                    this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
+                    this.asignaciones[index].situacion =  response.data.situacion; */
+
+                    /* this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
+                    this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
+                    this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
+                    this.asignaciones[index].situacion =  response.data.situacion; */
+                    _this2.asignaciones = [].concat(asignaciones);
                   }
 
                   _this2.id = null;

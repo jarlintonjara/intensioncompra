@@ -184,11 +184,13 @@ export default {
             await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
                 let index =  this.asignaciones.map(function(e) { return e.id }).indexOf(this.id);
                 if(index !== -1){
-                    this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
+                    let asiganciones = this.asignaciones;
+                    asiganciones.splice(index, 1);
+                    /* this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
                     this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
                     this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
-                    this.asignaciones[index].situacion =  response.data.situacion;
-                    this.asignaciones = [].concat(this.asignaciones);
+                    this.asignaciones[index].situacion =  response.data.situacion; */
+                    this.asignaciones = [].concat(asignaciones);
                 }
                 this.id = null;
                 $('#modalForm').modal('hide');
