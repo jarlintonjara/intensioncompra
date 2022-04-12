@@ -19,10 +19,11 @@ class Emplazado extends Command
             $row = EmplazadoModel::where('vin', $registro->vin)->where('situacion', '!=', 'EMPLAZADO')->first();
             if($row){
                 $row->situacion = 'EMPLAZADO';
-                $row->update();
+                $row->save();
 
                 $registro->situacion = 'EMPLAZADO';
-                $registro->update();
+                $registro->fecha_emplazado = $row->fecha_emplazamiento;
+                $registro->save();
             } 
         }
     }
