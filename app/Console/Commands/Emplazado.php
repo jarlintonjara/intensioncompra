@@ -48,6 +48,7 @@ class Emplazado extends Command
                 $registro->fecha_a_facturar = $nuevafecha;
                 $registro->save();
 
+                
                 $row->situacion = 'EMPLAZADO';
                 $row->save();
                 print_r($row);
