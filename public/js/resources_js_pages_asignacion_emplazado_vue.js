@@ -102,9 +102,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -144,9 +141,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$tablaGlobal('#treservado');
 
               case 5:
-                _this.loading = false;
-
-              case 6:
               case "end":
                 return _context.stop();
             }
@@ -1020,95 +1014,77 @@ var render = function () {
     [
       _vm._m(0),
       _vm._v(" "),
-      _vm.loading
-        ? _c("div", { staticClass: "loading" }, [
-            _c("span", [_vm._v("...loading")]),
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.loading
-        ? _c("div", { staticClass: "col-lg-12" }, [
-            _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "panel-container show" }, [
-                _c("div", { staticClass: "panel-content" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
+        _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-container show" }, [
+            _c("div", { staticClass: "panel-content" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table table-bordered table-hover table-striped w-100",
+                  attrs: { id: "treservado" },
+                },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
                   _c(
-                    "table",
-                    {
-                      staticClass:
-                        "table table-bordered table-hover table-striped w-100",
-                      attrs: { id: "treservado" },
-                    },
-                    [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.asignaciones, function (asignacion) {
-                          return _c("tr", { key: asignacion.id }, [
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.$dateFormat(asignacion.fecha_distribucion)
-                                )
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(asignacion.concesionario)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.nombre))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.documento))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.vin))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.marca))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.modelo))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.version))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.color))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.anio_modelo))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.codigo_sap))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.$dateFormat(asignacion.fecha_ingreso)
-                                )
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(asignacion.codigo_reserva)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(asignacion.monto_reserva)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(asignacion.fecha_reserva)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(asignacion.situacion))]),
-                          ])
-                        }),
-                        0
-                      ),
-                    ]
+                    "tbody",
+                    _vm._l(_vm.asignaciones, function (asignacion) {
+                      return _c("tr", { key: asignacion.id }, [
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.$dateFormat(asignacion.fecha_distribucion)
+                            )
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.concesionario))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.nombre))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.documento))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.vin))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.marca))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.modelo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.version))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.color))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.anio_modelo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.codigo_sap))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.$dateFormat(asignacion.fecha_ingreso))
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.codigo_reserva))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.monto_reserva))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.fecha_reserva))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.situacion))]),
+                      ])
+                    }),
+                    0
                   ),
-                ]),
-              ]),
+                ]
+              ),
             ]),
-          ])
-        : _vm._e(),
+          ]),
+        ]),
+      ]),
     ]
   )
 }

@@ -95,7 +95,6 @@ export default {
                 .catch(error=>{
                     console.log(error);
                 })
-                console.log( this.ingresos);
                 await this.$tablaGlobal('#tingresos');
         },
         async ChangeBloquear(id, estadoBloqueado){

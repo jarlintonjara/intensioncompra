@@ -6,10 +6,7 @@
                 <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>Emplazados</span>
             </h1>
         </div>
-        <div class="loading" v-if="loading">
-            <span>...loading</span>
-        </div>
-        <div class="col-lg-12" v-if="!loading">
+        <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
@@ -100,7 +97,6 @@ export default {
                     this.asignaciones =[]
                 })
                 await this.$tablaGlobal('#treservado');
-                this.loading = false;
         }
     }
 }

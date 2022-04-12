@@ -135,11 +135,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
-                console.log(_this.ingresos);
-                _context.next = 6;
+                _context.next = 5;
                 return _this.$tablaGlobal('#tingresos');
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }

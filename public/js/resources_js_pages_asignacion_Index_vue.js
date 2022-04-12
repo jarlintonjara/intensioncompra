@@ -1172,45 +1172,7 @@ var render = function () {
                   attrs: { id: "asignaciones" },
                 },
                 [
-                  _c("thead", [
-                    _c("tr", [
-                      _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
-                      _vm._v(" "),
-                      _vm.user.role_id == 6 || _vm.user.role_id == 1
-                        ? _c("th", [_vm._v("RESERVAR")])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CONCESIONARIO")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("ASESOR")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("DOCUMENTO")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("VIN")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("MARCA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("MODELO")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("VERSION")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("COLOR")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("AÑO MODELO")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CÓDIGO SAP")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("FECHA LLEGADA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CÓDIGO RESERVA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("MONTO RESERVA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("FECHA RESERVA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("ESTADO")]),
-                    ]),
-                  ]),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -1224,26 +1186,20 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm.user.role_id == 6 || _vm.user.role_id == 1
-                          ? _c(
-                              "td",
-                              { staticStyle: { "text-align": "center" } },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success",
-                                    on: {
-                                      click: function ($event) {
-                                        return _vm.abrirModalEditar(asignacion)
-                                      },
-                                    },
-                                  },
-                                  [_c("i", { staticClass: "fa fa-lock" })]
-                                ),
-                              ]
-                            )
-                          : _vm._e(),
+                        _c("td", { staticStyle: { "text-align": "center" } }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.abrirModalEditar(asignacion)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "fa fa-lock" })]
+                          ),
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.concesionario))]),
                         _vm._v(" "),
@@ -1293,7 +1249,7 @@ var render = function () {
         _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
             _c("div", { staticClass: "modal-header" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "button",
@@ -1510,6 +1466,48 @@ var staticRenderFns = [
             "data-original-title": "Fullscreen",
           },
         }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("RESERVAR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CONCESIONARIO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ASESOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("DOCUMENTO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VIN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MARCA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VERSION")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("COLOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CÓDIGO SAP")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA LLEGADA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CÓDIGO RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MONTO RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ESTADO")]),
       ]),
     ])
   },
