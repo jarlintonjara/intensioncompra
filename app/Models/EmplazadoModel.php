@@ -18,7 +18,7 @@ class EmplazadoModel extends Model
         'modelo',
         'version',
         'destino',
-        'situacion',
-        'fecha_emplazamiento'
+        'fecha_emplazamiento',
+        'situacion'
     ];
 }

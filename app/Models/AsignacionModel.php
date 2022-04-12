@@ -17,6 +17,7 @@ class AsignacionModel extends Model
         'user_id',	
         'ingreso_id',	
         'fecha_distribucion',
+        'fecha_emplazado',
         'fecha_reservacion',
         'fecha_facturacion',
         'codigo_reserva',
@@ -28,7 +29,6 @@ class AsignacionModel extends Model
         'created_at',
         'updated_at',
         'fecha_a_facturar',
-        'fecha_emplazado',
         'codigo_sap_cliente'
     ];
 }

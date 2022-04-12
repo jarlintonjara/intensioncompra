@@ -22,6 +22,7 @@ class CaracteristicaModel extends Model
         'color',
         'codigo_sap',
         'observacion',
+        'estado',
         'created_at',
         'updated_at'
     ];

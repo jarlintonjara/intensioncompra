@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido')->nullable();
-            $table->string('cargo')->nullable();
             $table->tinyInteger('role_id');
             $table->tinyInteger('concesionario_id')->nullable();
             $table->tinyInteger('tienda_id')->nullable();
-            $table->string('area', 60)->nullable();
             $table->string('documento', 20)->nullable();
             $table->string('telefono', 20)->nullable();
             $table->string('usuario', 100);
