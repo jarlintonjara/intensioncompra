@@ -27,6 +27,8 @@ class Emplazado extends Command
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_a_facturar',
+            'asignaciones.fecha_emplazado',
             'asignaciones.situacion'
         )
         ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
@@ -35,11 +37,14 @@ class Emplazado extends Command
         foreach ($registros as $registro) {
             $row = EmplazadoModel::where('vin', $registro->vin)->first();
             if ($row) {
+                $input = $row->fecha_emplazamiento;
+                $date = strtotime($input);
+
                 $fecha = date('Y-m-j');
                 $nuevafecha = strtotime('+2 day', strtotime($fecha));
-                $nuevafecha = date('Y-m-j', $nuevafecha);
+                $nuevafecha = date('Y-m-d', $nuevafecha);
                 $registro->situacion = 'EMPLAZADO';
-                $registro->fecha_emplazado = $row->emplazamiento;
+                $registro->fecha_emplazado = date('Y-m-d', $date);
                 $registro->fecha_a_facturar = $nuevafecha;
                 $registro->save();
 
