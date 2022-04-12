@@ -8,6 +8,8 @@ use App\Http\Controllers\UserExportController;
 use App\Models\RegistroModel;
 use App\Models\IngresoModel;
 use App\Models\AsignacionModel;
+use App\Models\EmplazadoModel;
+use App\Models\FacturadoModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +24,36 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 Route::get('/test', function () {
-    dd(Hash::make('supervisor2022'));
+    $registros = AsignacionModel::select(
+        'packing_list.vin',
+        'packing_list.marca',
+        'packing_list.modelo',
+        'packing_list.version',
+        'packing_list.color',
+        'packing_list.anio_modelo',
+        'packing_list.codigo_sap',
+        'packing_list.fecha_ingreso',
+        'asignaciones.id',
+        'asignaciones.fecha_distribucion',
+        'asignaciones.codigo_reserva',
+        'asignaciones.monto_reserva',
+        'asignaciones.fecha_reserva',
+        'asignaciones.situacion'
+    )
+        ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
+        ->where('asignaciones.situacion', 'EMPLAZADO')->get();
+
+    foreach ($registros as $registro) {
+        $row = FacturadoModel::where('vin', $registro->vin)->first();
+        if ($row) {
+            $registro->situacion = 'FACTURADO';
+            $registro->fecha_facturacion = $row->fecha_facturacion;
+            $registro->codigo_sap_cliente = $row->codigo_sap_cliente;
+            $registro->save();
+            $row->situacion = 'FACTURADO';
+            $row->save();
+        }
+    }
 });
 
 

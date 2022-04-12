@@ -13,7 +13,6 @@ class Emplazado extends Command
 
     public function handle()
     {
-        //$registros = AsignacionModel::where('situacion', 'RESERVADO')->get();
         $registros = AsignacionModel::select(
             'packing_list.vin',
             'packing_list.marca',
@@ -30,20 +29,23 @@ class Emplazado extends Command
             'asignaciones.fecha_reserva',
             'asignaciones.situacion'
         )
-            ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
-            ->where('situacion', 'RESERVADO')->get();
-        
-        dd($registros);
+        ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
+        ->where('asignaciones.situacion', 'RESERVADO')->get();
+
         foreach ($registros as $registro) {
-            $row = EmplazadoModel::where('vin', $registro->vin)->where('situacion', '!=', 'EMPLAZADO')->first();
-            if($row){
+            $row = EmplazadoModel::where('vin', $registro->vin)->first();
+            if ($row) {
+                $fecha = date('Y-m-j');
+                $nuevafecha = strtotime('+2 day', strtotime($fecha));
+                $nuevafecha = date('Y-m-j', $nuevafecha);
+                $registro->situacion = 'EMPLAZADO';
+                $registro->fecha_a_facturar = $nuevafecha;
+                $registro->save();
+
                 $row->situacion = 'EMPLAZADO';
                 $row->save();
-
-                $registro->situacion = 'EMPLAZADO';
-                $registro->fecha_emplazado = $row->fecha_emplazamiento;
-                $registro->save();
-            } 
+                print_r($row);
+            }
         }
     }
 }

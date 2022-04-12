@@ -15,7 +15,7 @@ class AsignacionController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = AsignacionModel::select(
+        $query = AsignacionModel::select(
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'users.nombre',
@@ -40,42 +40,42 @@ class AsignacionController extends Controller
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->where('asignaciones.situacion', 'ASIGNADO');
-            $data2 = [];
+            $data = [];
         switch ($user->role_id) {
             case 1:
-                $data2 = $data->where('registros.user_id', $user->id)->get();
+                $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $data2 = $data->where('registros.tienda_id', $user->tienda_id)->get();
+                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                $data2 =  $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                $data =  $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                $data2 = $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                $data2 = $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                $data2 = $data->get();
+                $data = $query->get();
                 break;
             default:
-                $data2 = $data->where('registros.concesionario_id', " ")->get();
+                $data = $query->where('registros.concesionario_id', " ")->get();
         }
         
-        foreach($data2 as $e){
+        foreach($data as $e){
             $vin = Hash::make($e["vin"]);
             $e["vin"]= substr($vin, 0, 15);
         }
-        return response()->json(['asignaciones' => $data2, 'user' => $user]);
+        return response()->json(['asignaciones' => $data, 'user' => $user]);
     }
     
     public function reservado(Request $request)
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = AsignacionModel::select(
+        $query = AsignacionModel::select(
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'users.nombre',
@@ -102,25 +102,25 @@ class AsignacionController extends Controller
             ->where('asignaciones.situacion', 'RESERVADO');
         switch ($user->role_id) {
             case 1:
-                return $data->where('registros.user_id', $user->id)->get();
+                $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                return $data->where('registros.tienda_id', $user->tienda_id)->get();
+                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                return $data->get();
+                $data = $query->get();
                 break;
             default:
-                return $data->where('registros.concesionario_id', " ")->get();
+                $data = $query->where('registros.concesionario_id', " ")->get();
         }
 
         foreach ($data as $e) {
@@ -133,7 +133,7 @@ class AsignacionController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = AsignacionModel::select(
+        $query = AsignacionModel::select(
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'users.nombre',
@@ -160,25 +160,25 @@ class AsignacionController extends Controller
             ->where('asignaciones.situacion', 'FACTURADO');
         switch ($user->role_id) {
             case 1:
-                return $data->where('registros.user_id', $user->id)->get();
+                $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                return $data->where('registros.tienda_id', $user->tienda_id)->get();
+                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                return $data->get();
+                $data = $query->get();
                 break;
             default:
-                return $data->where('registros.concesionario_id', " ")->get();
+                $data = $query->where('registros.concesionario_id', " ")->get();
         }
 
         foreach ($data as $e) {
@@ -191,7 +191,7 @@ class AsignacionController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = AsignacionModel::select(
+        $query = AsignacionModel::select(
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'users.nombre',
@@ -218,25 +218,25 @@ class AsignacionController extends Controller
             ->where('asignaciones.situacion', 'EMPLAZADO');
         switch ($user->role_id) {
             case 1:
-                return $data->where('registros.user_id', $user->id)->get();
+                $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                return $data->where('registros.tienda_id', $user->tienda_id)->get();
+                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                return $data->where('registros.concesionario_id', $user->concesionario_id)->get();
+                $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                return $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 5:
-                return $data->where('packing_list.marca', $user->marca)->get();
+                $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                return $data->get();
+                $data = $query->get();
                 break;
             default:
-                return $data->where('registros.concesionario_id', " ")->get();
+                $data = $query->where('registros.concesionario_id', " ")->get();
         }
 
         foreach ($data as $e) {

@@ -26,6 +26,9 @@ class AsignacionModel extends Model
         'estado',
         'observacion',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'fecha_a_facturar',
+        'fecha_emplazado',
+        'codigo_sap_cliente'
     ];
 }
