@@ -3,7 +3,7 @@
 
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-list'></i> <span class='fw-300'>NO ASIGNADOS</span>
+                <i class='subheader-icon fal fa-list'></i> <span class='fw-300'>No Asignados</span>
             </h1>
         </div>
 
@@ -23,7 +23,7 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
+                            <thead>
                                 <tr>
                                     <th>Fecha Creación</th>
                                     <th>Nombre Completo</th>
@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="noasignado in noasignados" :key="noasignado.id">
+                                <tr v-for="noasignado in noasignados" :key="noasignado.id + noasignado.nombre_completo">
                                     <td>{{$dateFormat(noasignado.created_at)}}</td>
                                     <td>{{noasignado.nombre_completo}}</td>
                                     <td>{{noasignado.documento}}</td>

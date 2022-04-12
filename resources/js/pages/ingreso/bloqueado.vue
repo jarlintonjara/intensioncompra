@@ -46,10 +46,10 @@
                                     <td>{{bloqueado.marca}}</td>
                                     <td>{{bloqueado.modelo}}</td>
                                     <td>{{bloqueado.version}}</td>
-                                    <td>{{$dateFormat(bloqueado.anio_modelo)}}</td>
+                                    <td>{{bloqueado.anio_modelo}}</td>
                                     <td>{{bloqueado.nombre}}</td>
                                     <td>{{$dateFormat(bloqueado.fecha_bloqueo)}}</td>
-                                    <td>{{$dateFormat(bloqueado.anio_fabricacion)}}</td>
+                                    <td>{{bloqueado.anio_fabricacion}}</td>
                                     <td>{{bloqueado.color}}</td>
                                     <td>{{bloqueado.codigo_sap}}</td>
                                     <td>{{bloqueado.situacion}}</td>

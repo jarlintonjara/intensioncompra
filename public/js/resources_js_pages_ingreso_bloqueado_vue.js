@@ -1038,11 +1038,7 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.version))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(bloqueado.anio_modelo))
-                          ),
-                        ]),
+                        _c("td", [_vm._v(_vm._s(bloqueado.anio_modelo))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.nombre))]),
                         _vm._v(" "),
@@ -1052,11 +1048,7 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(bloqueado.anio_fabricacion))
-                          ),
-                        ]),
+                        _c("td", [_vm._v(_vm._s(bloqueado.anio_fabricacion))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.color))]),
                         _vm._v(" "),

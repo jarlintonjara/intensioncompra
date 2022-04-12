@@ -5,7 +5,6 @@ const usuarios = () => import('./pages/users.vue');
 
 const Registro = () => import('./pages/registro/formulario.vue');
 const Nasignado = () => import('./pages/registro/nasignado.vue');
-const Sasignado = () => import('./pages/registro/sasignado.vue');
 
 const Ingreso = () => import('./pages/ingreso/Index.vue');
 const Bloqueado = () => import('./pages/ingreso/bloqueado.vue');

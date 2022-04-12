@@ -25,7 +25,6 @@ Vue.use(VueAxios, axios);
    
 Vue.use(VueSweetalert2);
 window.JSZip = jszip;
-document.title = "Programación de estacionamiento";
 
 Vue.prototype.$dateFormat = function(date){
     let dt = new Date(date);

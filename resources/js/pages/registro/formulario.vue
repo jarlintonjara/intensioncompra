@@ -174,9 +174,9 @@ export default {
         validations:{
             submited: true,
             form: {
-                nombre_completo: {required,minLength: minLength(2),alpha},
-                documento : {required,minLength: minLength(7),numeric},
-                celular : {required,minLength: minLength(9),numeric},
+               /*  nombre_completo: {required,minLength: minLength(2),alpha}, */
+                documento : {required,minLength: minLength(7),maxLength: maxLength(8),numeric},
+                celular : {required,minLength: minLength(9),maxLength: maxLength(9),numeric},
                 correo : {required,minLength: minLength(2),email},	
                 anio_modelo : {required},	
                 color1 : {required}

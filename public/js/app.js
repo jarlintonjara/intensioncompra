@@ -5452,7 +5452,6 @@ vue__WEBPACK_IMPORTED_MODULE_11__["default"].component('v-select', (vue_select__
 vue__WEBPACK_IMPORTED_MODULE_11__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_12__["default"], (axios__WEBPACK_IMPORTED_MODULE_13___default()));
 vue__WEBPACK_IMPORTED_MODULE_11__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_1___default()));
 window.JSZip = (jszip_dist_jszip__WEBPACK_IMPORTED_MODULE_9___default());
-document.title = "Programación de estacionamiento";
 
 vue__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.$dateFormat = function (date) {
   var dt = new Date(date);
@@ -5569,10 +5568,6 @@ var Registro = function Registro() {
 
 var Nasignado = function Nasignado() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_registro_nasignado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/registro/nasignado.vue */ "./resources/js/pages/registro/nasignado.vue"));
-};
-
-var Sasignado = function Sasignado() {
-  return __webpack_require__.e(/*! import() */ "resources_js_pages_registro_sasignado_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/registro/sasignado.vue */ "./resources/js/pages/registro/sasignado.vue"));
 };
 
 var Ingreso = function Ingreso() {
@@ -89296,7 +89291,7 @@ function h(tag, key, args) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_registro_sasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
