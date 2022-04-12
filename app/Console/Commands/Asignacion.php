@@ -27,6 +27,7 @@ class Asignacion extends Command
             ->where('anio_modelo', $registro->anio_modelo)
             ->where('color', $registro->color1)
             ->where('situacion', 'LIBRE')
+            ->where('bloqueado', 0)
             ->first();
     
             if($ingresos){
@@ -54,6 +55,7 @@ class Asignacion extends Command
             ->where('anio_modelo', $registro2->anio_modelo)
             ->where('color', $registro2->color2)
             ->where('situacion', 'LIBRE')
+            ->where('bloqueado', 0)
             ->first();
     
             if($ingresos2){
@@ -80,6 +82,7 @@ class Asignacion extends Command
             ->where('anio_modelo', $registro3->anio_modelo)
             ->where('color', $registro3->color3)
             ->where('situacion', 'LIBRE')
+            ->where('bloqueado', 0)
             ->first();
     
             if($ingresos3){
