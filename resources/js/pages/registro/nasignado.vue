@@ -10,15 +10,12 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                    <h2>
-                        <h2 style="text-align: center; font-size: 1.125rem;"><b> </b></h2>
-                    </h2>
-                    <div class="panel-toolbar">
-                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button style="text-align: center;" class="btn btn-success" @click="jobAsignados()">job Asignar</button>
+                        </div>
                     </div>
-
+                    
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
@@ -108,6 +105,20 @@ export default {
                     console.log(error);
                 })
                 this.$tablaGlobal('#tnoasignado');
+        },
+        async jobAsignados(){
+            await this.axios.get('/api/executeAsignar')
+                .then(response=>{
+                     this.$swal.fire(
+                    'Asignados!',
+                    '',
+                    'success'
+                )              
+                    })
+                .catch(error=>{
+                    console.log(error);
+                })
+            
         }
     }
 }

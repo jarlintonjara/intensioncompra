@@ -42,14 +42,17 @@ Route::get('/test', function () {
     )
         ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
         ->where('asignaciones.situacion', 'EMPLAZADO')->get();
-
+    
     foreach ($registros as $registro) {
+        print_r($registro);
         $row = FacturadoModel::where('vin', $registro->vin)->first();
         if ($row) {
+            print_r($row);
             $registro->situacion = 'FACTURADO';
-            $registro->fecha_facturacion = $row->fecha_facturacion;
+       
             $registro->codigo_sap_cliente = $row->codigo_sap_cliente;
             $registro->save();
+
             $row->situacion = 'FACTURADO';
             $row->save();
         }

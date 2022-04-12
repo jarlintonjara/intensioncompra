@@ -29,9 +29,12 @@ Route::get('getSession/{token}', [AuthController::class, 'getSession']);
 Route::get('dashboard', [HomeController::class, 'index']);
 Route::resource('usuario', UserController::class);
 Route::resource('registro', RegistroController::class);
+Route::get('executeAsignar', [RegistroController::class, 'jobAsignar']);
 Route::resource('ingreso', IngresoController::class);
 
 Route::resource('asignacion', AsignacionController::class);
 Route::get('reservado', [AsignacionController::class, 'reservado']);
 Route::get('facturado', [AsignacionController::class, 'facturado']);
 Route::get('emplazado', [AsignacionController::class, 'emplazado']);
+Route::get('executeEmplazado', [AsignacionController::class, 'jobEmplazar']);
+Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);

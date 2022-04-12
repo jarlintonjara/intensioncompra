@@ -9,12 +9,7 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                    <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
-                    <div class="panel-toolbar">
-                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
-                    </div>
+                    <button style="text-align: center;" class="btn btn-success" @click="jobFacturar()">job Facturar</button>
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
@@ -32,10 +27,11 @@
                                     <th>COLOR</th>
                                     <th>AÑO MODELO</th>
                                     <th>CÓDIGO SAP</th>
-                                    <th>FECHA LLEGADA</th>
+                                    <th>FECHA ESTIMADA DE LLEGADA</th>
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
+                                    <th>FECHA EMPLAZADO</th>
                                     <th>ESTADO</th>
                                    
                                 </tr>
@@ -53,10 +49,11 @@
                                     <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
-                                    <td>{{$dateFormat(asignacion.fecha_ingreso)}}</td>
+                                    <td>{{   }}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>
+                                    <td>{{ '2022-04-12'}}</td>
                                     <td>{{asignacion.situacion}}</td>
                                     
                                 </tr>
@@ -97,6 +94,20 @@ export default {
                     this.asignaciones =[]
                 })
                 await this.$tablaGlobal('#treservado');
+        },
+        async jobFacturar(){
+            await this.axios.get('/api/executeFacturado')
+                .then(response=>{
+                     this.$swal.fire(
+                    'Facturados!',
+                    '',
+                    'success'
+                )              
+                    })
+                .catch(error=>{
+                    console.log(error);
+                })
+            
         }
     }
 }

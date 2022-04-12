@@ -11,6 +11,7 @@
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
                     <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
+                   
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
@@ -184,11 +185,9 @@ export default {
             await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
                 let index =  this.asignaciones.map(function(e) { return e.id }).indexOf(this.id);
                 if(index !== -1){
-                    this.asignaciones[index].codigo_reserva =  response.data.codigo_reserva;
-                    this.asignaciones[index].monto_reserva =  response.data.monto_reserva;
-                    this.asignaciones[index].fecha_reserva =  response.data.fecha_reserva;
-                    this.asignaciones[index].situacion =  response.data.situacion;
-                    this.asignaciones = [].concat(this.asignaciones);
+                    let asignaciones = this.asignaciones;
+                    asignaciones.splice(index, 1);
+                    this.asignaciones = [].concat(asignaciones);
                 }
                 this.id = null;
                 $('#modalForm').modal('hide');
@@ -200,12 +199,15 @@ export default {
             }).catch(function (error) {
                 console.log(error);
             });
+            
             $('#asignaciones').DataTable().destroy();
-            this.$tablaGlobal('#asignaciones');
+            await this.$tablaGlobal('#asignaciones');
+            
         },
         cerrarModal(){
             $('#modalForm').modal('hide');
-        }
+        },
+        
     },
     watch:{
         session(val){

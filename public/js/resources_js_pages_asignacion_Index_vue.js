@@ -148,6 +148,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -257,11 +258,9 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
                   }).indexOf(_this2.id);
 
                   if (index !== -1) {
-                    _this2.asignaciones[index].codigo_reserva = response.data.codigo_reserva;
-                    _this2.asignaciones[index].monto_reserva = response.data.monto_reserva;
-                    _this2.asignaciones[index].fecha_reserva = response.data.fecha_reserva;
-                    _this2.asignaciones[index].situacion = response.data.situacion;
-                    _this2.asignaciones = [].concat(_this2.asignaciones);
+                    var asignaciones = _this2.asignaciones;
+                    asignaciones.splice(index, 1);
+                    _this2.asignaciones = [].concat(asignaciones);
                   }
 
                   _this2.id = null;
@@ -274,10 +273,10 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
 
               case 5:
                 $('#asignaciones').DataTable().destroy();
+                _context2.next = 8;
+                return _this2.$tablaGlobal('#asignaciones');
 
-                _this2.$tablaGlobal('#asignaciones');
-
-              case 7:
+              case 8:
               case "end":
                 return _context2.stop();
             }

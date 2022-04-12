@@ -99,9 +99,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -146,6 +143,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    jobFacturar: function jobFacturar() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.axios.get('/api/executeFacturado').then(function (response) {
+                  _this2.$swal.fire('Facturados!', '', 'success');
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -1016,7 +1036,21 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-          _vm._m(1),
+          _c("div", { staticClass: "panel-hdr" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                staticStyle: { "text-align": "center" },
+                on: {
+                  click: function ($event) {
+                    return _vm.jobFacturar()
+                  },
+                },
+              },
+              [_vm._v("job Facturar")]
+            ),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [
@@ -1028,7 +1062,7 @@ var render = function () {
                   attrs: { id: "treservado" },
                 },
                 [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -1062,17 +1096,15 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.codigo_sap))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(asignacion.fecha_ingreso))
-                          ),
-                        ]),
+                        _c("td", [_vm._v(_vm._s())]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.codigo_reserva))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.monto_reserva))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.fecha_reserva))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s("2022-04-12"))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.situacion))]),
                       ])
@@ -1105,40 +1137,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel-hdr" }, [
-      _c(
-        "h2",
-        { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-        [_c("b")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel-toolbar" }, [
-        _c("button", {
-          staticClass: "btn btn-panel waves-effect waves-themed",
-          attrs: {
-            "data-action": "panel-collapse",
-            "data-toggle": "tooltip",
-            "data-offset": "0,10",
-            "data-original-title": "Collapse",
-          },
-        }),
-        _vm._v(" "),
-        _c("button", {
-          staticClass: "btn btn-panel waves-effect waves-themed",
-          attrs: {
-            "data-action": "panel-fullscreen",
-            "data-toggle": "tooltip",
-            "data-offset": "0,10",
-            "data-original-title": "Fullscreen",
-          },
-        }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
@@ -1163,13 +1161,15 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("CÓDIGO SAP")]),
         _vm._v(" "),
-        _c("th", [_vm._v("FECHA LLEGADA")]),
+        _c("th", [_vm._v("FECHA ESTIMADA DE LLEGADA")]),
         _vm._v(" "),
         _c("th", [_vm._v("CÓDIGO RESERVA")]),
         _vm._v(" "),
         _c("th", [_vm._v("MONTO RESERVA")]),
         _vm._v(" "),
         _c("th", [_vm._v("FECHA RESERVA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA EMPLAZADO")]),
         _vm._v(" "),
         _c("th", [_vm._v("ESTADO")]),
       ]),
