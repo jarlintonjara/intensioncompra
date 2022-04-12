@@ -215,13 +215,13 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
       documento: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
         minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(7),
-        maxLength: maxLength(8),
+        maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(8),
         numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.numeric
       },
       celular: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
         minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(9),
-        maxLength: maxLength(9),
+        maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(9),
         numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.numeric
       },
       correo: {

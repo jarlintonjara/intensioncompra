@@ -131,7 +131,7 @@
     </main>
 </template>
 <script>
-import {required, minLength, email,numeric,helpers} from 'vuelidate/lib/validators';
+import {required, minLength, maxLength, email,numeric,helpers} from 'vuelidate/lib/validators';
 const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
 
 export default {
