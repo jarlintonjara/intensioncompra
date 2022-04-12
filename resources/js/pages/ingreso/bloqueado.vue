@@ -23,7 +23,7 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="bloqueados" class="table table-bordered table-hover table-striped w-100">
-                            <thead class="" style="background-color: rgb(227, 0, 37) !important;">
+                            <thead>
                                 <tr>
                                     <th>VIN</th>
                                     <th>MARCA</th>

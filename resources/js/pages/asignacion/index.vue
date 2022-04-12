@@ -24,7 +24,7 @@
                             <thead>
                                 <tr>
                                     <th>FECHA DISTRIBUCIÓN</th>
-                                    <th v-if="user.role_id == 1">RESERVAR</th>
+                                    <th v-if="user.role_id == 6 || user.role_id == 1">RESERVAR</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
@@ -46,7 +46,7 @@
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
-                                    <td style="text-align: center" v-if="user.role_id == 1">
+                                    <td style="text-align: center" v-if="user.role_id == 6 || user.role_id == 1">
                                         <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-lock"></i></button>
                                         <!-- <button class="btn btn-danger" ><i class="fa fa-trash"></i></button> -->
                                     </td>

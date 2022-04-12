@@ -1129,39 +1129,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "thead",
-      { staticStyle: { "background-color": "rgb(227, 0, 37) !important" } },
-      [
-        _c("tr", [
-          _c("th", [_vm._v("VIN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MARCA")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("MODELO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("VERSION")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("AÑO MODELO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("USUARIO_BLOQUEO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("FECHA BLOQUEO")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("AÑO FABRICACIÓN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("COLOR")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("CODIGO SAP")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("SITUACIÓN")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("NAVE")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("FECHA INGRESO")]),
-        ]),
-      ]
-    )
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("VIN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MARCA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VERSION")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO MODELO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("USUARIO_BLOQUEO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA BLOQUEO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO FABRICACIÓN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("COLOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CODIGO SAP")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("SITUACIÓN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("NAVE")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA INGRESO")]),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
