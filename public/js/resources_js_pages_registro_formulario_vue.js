@@ -222,7 +222,7 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       documento: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
         minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(7),
-        maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(12),
+        maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(11),
         numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.numeric
       },
       celular: {
@@ -1433,7 +1433,7 @@ var render = function () {
                     _vm.submited && !_vm.$v.form.documento.maxLength
                       ? _c("div", { staticStyle: { color: "red" } }, [
                           _vm._v(
-                            "El campo debe tener 12 caracteres como máximo"
+                            "El campo debe tener 11 caracteres como máximo"
                           ),
                         ])
                       : _vm._e(),

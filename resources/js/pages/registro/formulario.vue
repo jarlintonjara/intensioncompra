@@ -37,7 +37,7 @@
                                     <input type="text" id="Documento" class="form-control Documento" placeholder="" required="" v-model="form.documento">
                                     <div style="color:red;" v-if="submited && !$v.form.documento.required">El campo es obligatorio</div>
                                     <div style="color:red;" v-if="submited && !$v.form.documento.minLength">El campo debe tener 7 caracteres como mínimo</div>
-                                    <div style="color:red;" v-if="submited && !$v.form.documento.maxLength">El campo debe tener 12 caracteres como máximo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.documento.maxLength">El campo debe tener 11 caracteres como máximo</div>
                                     <div style="color:red;" v-if="submited && !$v.form.documento.numeric">Este campo solo admite números</div>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@ export default {
             submited: true,
             form: {
                 nombre_completo: {required,minLength: minLength(2),alpha},
-                documento : {required,minLength: minLength(7),maxLength: maxLength(12),numeric},
+                documento : {required,minLength: minLength(7),maxLength: maxLength(11),numeric},
                 celular : {required,start9,minLength: minLength(9),numeric},
                 correo : {required,minLength: minLength(2),email},	
                 anio_modelo : {required},	
