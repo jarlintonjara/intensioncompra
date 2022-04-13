@@ -33,7 +33,6 @@
                                     <th>COLOR</th>
                                     <th>AÑO MODELO</th>
                                     <th>CÓDIGO SAP</th>
-                                    <th>FECHA LLEGADA</th>
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
@@ -55,7 +54,6 @@
                                     <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
-                                    <td>{{$dateFormat(asignacion.fecha_ingreso)}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>

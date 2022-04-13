@@ -104,8 +104,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1063,12 +1061,6 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.codigo_sap))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(asignacion.fecha_ingreso))
-                          ),
-                        ]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.codigo_reserva))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.monto_reserva))]),
@@ -1165,8 +1157,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("AÑO MODELO")]),
         _vm._v(" "),
         _c("th", [_vm._v("CÓDIGO SAP")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("FECHA LLEGADA")]),
         _vm._v(" "),
         _c("th", [_vm._v("CÓDIGO RESERVA")]),
         _vm._v(" "),
