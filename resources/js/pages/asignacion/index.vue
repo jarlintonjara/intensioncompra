@@ -28,10 +28,6 @@
                                     <th v-if="user.role_id == 6 || user.role_id == 1">RESERVAR</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
-                                    <th>DOCUMENTO</th>
-                                    <th>NOMBRE</th>
-                                    <th>CELULAR</th>
-                                    <th>CORREO</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -44,7 +40,6 @@
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
                                     <th>ESTADO</th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,10 +51,6 @@
                                     </td>
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
-                                    <td>{{asignacion.documento}}</td>
-                                    <td>{{asignacion.nombre_completo}}</td>
-                                    <td>{{asignacion.celular}}</td>
-                                    <td>{{asignacion.correo}}</td>
                                     <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>

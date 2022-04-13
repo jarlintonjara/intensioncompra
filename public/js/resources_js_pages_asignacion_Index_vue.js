@@ -146,15 +146,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1190,14 +1181,6 @@ var render = function () {
                       _vm._v(" "),
                       _c("th", [_vm._v("ASESOR")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("DOCUMENTO")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("NOMBRE")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CELULAR")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CORREO")]),
-                      _vm._v(" "),
                       _c("th", [_vm._v("VIN")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("MARCA")]),
@@ -1260,14 +1243,6 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(asignacion.concesionario))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.nombre))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.documento))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.nombre_completo))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.celular))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.correo))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.vin))]),
                         _vm._v(" "),

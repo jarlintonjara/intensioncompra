@@ -26,7 +26,6 @@
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
-                                    <th>DOCUMENTO</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -49,7 +48,6 @@
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
-                                    <td>{{asignacion.documento}}</td>
                                     <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
