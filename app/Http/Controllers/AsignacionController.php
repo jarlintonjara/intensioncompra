@@ -18,10 +18,28 @@ class AsignacionController extends Controller
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
         $query = AsignacionModel::select(
+            'registros.created_at',
+            'registros.nombre_completo',
+            'registros.documento',
+            'registros.celular',
+            'registros.correo',
+            'registros.marca',
+            'registros.modelo',
+            'registros.version',
+            'registros.color1',
+            'registros.color2',
+            'registros.color3',
+            'registros.anio_modelo',
+            'registros.situacion',
+            'users.nombre',
+            'users.apellido',
+            'users.email',
+            'tiendas.nombre as tienda',
+            'concesionarios.nombre as concesionario',
+            'registros.tienda_id',
+            'registros.concesionario_id',
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
-            'users.nombre',
-            'registros.documento',
             'packing_list.vin',
             'packing_list.marca',
             'packing_list.modelo',
@@ -41,6 +59,7 @@ class AsignacionController extends Controller
             ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
+            ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
             ->where('asignaciones.situacion', 'ASIGNADO');
             $data = [];
         switch ($user->role_id) {

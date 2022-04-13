@@ -22,47 +22,49 @@
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
-                                    <th>Fecha Creación</th>
-                                    <th>Nombre Completo</th>
-                                    <th>Documento</th>
+                                    <th style="width:10% !important"></th>
+                                    <th style="width:25% !important">Nombre Completo</th>
+                                    <!-- <th>Documento</th> -->
                                     <th>celular</th>
                                     <th>Correo</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
-                                    <th>Versión</th>
-                                    <th>color 1</th>
-                                    <th>color 2</th>
-                                    <th>color 3</th>
-                                    <th>Año Modelo</th>
-                                    <th>Ejecutivo</th>
+                                   <!--  <th>Versión</th>
+                                    <th>color 1</th> -->
+                                    <!-- <th>color 2</th>
+                                    <th>color 3</th> -->
+                                    <!-- <th>Año Modelo</th>
+                                    <th>Ejecutivo</th> -->
                                     <th>Tienda</th>
-                                    <th>Concesionario</th>
+                                   <!--  <th>Concesionario</th> -->
                                     <th>SITUACIÓN</th>
-                                    <!-- <th>Acciones</th> -->
+                                    <th>Fecha Creación</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="noasignado in noasignados" :key="noasignado.id + noasignado.nombre_completo">
-                                    <td>{{$dateFormat(noasignado.created_at)}}</td>
+                                    <td style="text-align: center">
+                                         <button class="btn btn-warning" @click="detalle(noasignado)"><i class="fa fa-list"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button>
+                                    </td>
                                     <td>{{noasignado.nombre_completo}}</td>
-                                    <td>{{noasignado.documento}}</td>
+                                    <!-- <td>{{noasignado.documento}}</td> -->
                                     <td>{{noasignado.celular}}</td>
                                     <td>{{noasignado.correo}}</td>
                                     <td>{{noasignado.marca}}</td>
                                     <td>{{noasignado.modelo}}</td>
-                                    <td>{{noasignado.version}}</td>
-                                    <td>{{noasignado.color1}}</td>
-                                    <td>{{noasignado.color2}}</td>
-                                    <td>{{noasignado.color3}}</td>
-                                    <td>{{noasignado.anio_modelo}}</td>
-                                    <td>{{noasignado.nombre}}</td>
+                                   <!--  <td>{{noasignado.version}}</td>
+                                    <td>{{noasignado.color1}}</td> -->
+                                   <!--  <td>{{noasignado.color2}}</td>
+                                    <td>{{noasignado.color3}}</td> -->
+                                    <!-- <td>{{noasignado.anio_modelo}}</td>
+                                    <td>{{noasignado.nombre}}</td> -->
                                     <td>{{noasignado.tienda}}</td>
-                                    <td>{{noasignado.concesionario}}</td>
+                                    <!-- <td>{{noasignado.concesionario}}</td> -->
                                     <td>{{noasignado.situacion}}</td>
-                                    <!-- <td style="text-align: center">
-                                        <button class="btn btn-warning"><i class="far fa-edit"></i></button>
-                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td> -->
+                                    <td>{{noasignado.created_at ? $dateFormat(noasignado.created_at):""}}</td>
+                                    
                                 </tr>
                             </tbody>
                             
@@ -72,7 +74,100 @@
                 </div>
             </div>
         </div>
-
+        <!-- Modal Right -->
+        <div id="modalForm" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title h4">Detalle de registro</h5>
+                        <button type="button" class="close" @click="cerrarModal()" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card mb-5">
+                            <div class="card-body p-3">
+                                <h5 class="text-danger">
+                                    Cliente
+                                    <!-- <span class="badge badge-primary fw-n position-absolute pos-top pos-right mt-3 mr-3">A</span> -->
+                                </h5>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-3">Nombre Completo:</div>
+                                        <div class="col-md-3"><b>{{ registro.nombreCompleto }}</b></div>
+                                        <div class="col-md-3">Documento:</div>
+                                        <div class="col-md-3"><b>{{ registro.documento }}</b></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-3">Celular:</div>
+                                        <div class="col-md-3"><b>{{ registro.celular }}</b></div>
+                                        <div class="col-md-3">Email:</div>
+                                        <div class="col-md-3"><b>{{ registro.email }}</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-g">
+                            <div class="card-body p-3">
+                                <h5 class="text-danger">
+                                    Ejecutivo
+                                </h5>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-3">Nombre Completo:</div>
+                                        <div class="col-md-3"><b>{{ registro.usuarioNombre }}</b></div>
+                                        <div class="col-md-3">Tienda:</div>
+                                        <div class="col-md-3"><b>{{ registro.tienda }}</b></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-3">Email:</div>
+                                        <div class="col-md-3"><b>{{ registro.usuarioEmail }}</b></div>
+                                        <div class="col-md-3">Concesionario:</div>
+                                        <div class="col-md-3"><b>{{ registro.concesionario }}</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-g">
+                            <div class="card-body p-3">
+                                <h5 class="text-danger">
+                                    Detalle de la Unidad
+                                </h5>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-3">Marca:</div>
+                                        <div class="col-md-3"><b>{{ registro.marca }}</b></div>
+                                        <div class="col-md-3">Versión:</div>
+                                        <div class="col-md-3"><b>{{ registro.version }}</b></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-3">Modelo:</div>
+                                        <div class="col-md-3"><b>{{ registro.modelo }}</b></div>
+                                        <div class="col-md-3">Año Modelo:</div>
+                                        <div class="col-md-3"><b>{{ registro.anio_modelo }}</b></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-3">Año Fabricación:</div>
+                                        <div class="col-md-3"><b>{{ registro.anio_fabricacion }}</b></div>
+                                        <div class="col-md-3">Color 1:</div>
+                                        <div class="col-md-3"><b>{{ registro.color1 }}</b></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-3">Color 2:</div>
+                                        <div class="col-md-3"><b>{{ registro.color2 }}</b></div>
+                                        <div class="col-md-3">Color 3:</div>
+                                        <div class="col-md-3"><b>{{ registro.color3 }}</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="cerrarModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </template>
 <script>
@@ -81,7 +176,25 @@ export default {
     data(){
         return{
             noasignados:[],
-            user: null
+            user: null,
+            registro: {
+                nombreCompleto: "", 
+                documento: "", 
+                email: "", 
+                celular: "", 
+                usuarioNombre: "",         
+                usuarioEmail: "",          
+                tienda: "",          
+                concesionario: "",          
+                marca: "",          
+                modelo: "",          
+                version: "",          
+                anio_modelo: "",          
+                anio_fabricacion: "",          
+                color1: "",          
+                color2: "", 
+                color3: "" 
+            }
         }
     },
     mounted(){
@@ -98,13 +211,44 @@ export default {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then(response=> {
-                    let noasignados = response.data.noasignados;
-                    this.noasignados = noasignados;
+                    this.noasignados = response.data.noasignados;
                 })
                 .catch(error=>{
                     console.log(error);
                 })
                 this.$tablaGlobal('#tnoasignado');
+        },
+        detalle(datos){
+            this.registro.nombreCompleto = datos.nombre_completo
+            this.registro.documento = datos.documento; 
+            this.registro.email = datos.correo;
+            this.registro.celular = datos.celular; 
+            this.registro.usuarioNombre = datos.nombre + " " + (datos.apellido? datos.apellido : " ");        
+            this.registro.usuarioEmail = datos.email;        
+            this.registro.tienda = datos.tienda;          
+            this.registro.concesionario = datos.concesionario;         
+            this.registro.marca = datos.marca;          
+            this.registro.modelo = datos.modelo;          
+            this.registro.version = datos.version;        
+            this.registro.anio_modelo = datos.anio_modelo;          
+            this.registro.color1= datos.color1;        
+            this.registro.color2= datos.color2;
+            this.registro.color3= datos.color3;
+            $('#modalForm').modal('show')
+        },
+        borrar(id){
+            if(confirm("¿Seguro de eliminar?")){
+                this.axios.delete(`/api/registro/${id}`).then(response=>{
+                    let index =  this.noasignados.map(function(e) { return e.id }).indexOf(id);
+                    if(index !== -1){
+                        let noasignados = this.noasignados;
+                        noasignados.splice(index, 1);
+                        this.noasignados = [].concat(noasignados);
+                    }
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }
         },
         async jobAsignados(){
             await this.axios.get('/api/executeAsignar')
@@ -119,6 +263,9 @@ export default {
                     console.log(error);
                 })
             
+        },
+        cerrarModal(){
+            $('#modalForm').modal('hide');
         }
     }
 }

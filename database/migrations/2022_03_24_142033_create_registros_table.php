@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('color2')->nullable();
             $table->string('color3')->nullable();
             $table->string('situacion')->default('SINASIGNAR');
-            $table->tinyInteger('estado')->default(0);
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }
