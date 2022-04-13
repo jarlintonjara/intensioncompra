@@ -36,7 +36,8 @@
                                     <label for="Documento">DOCUMENTO</label>
                                     <input type="text" id="Documento" class="form-control Documento" placeholder="" required="" v-model="form.documento">
                                     <div style="color:red;" v-if="submited && !$v.form.documento.required">El campo es obligatorio</div>
-                                     <div style="color:red;" v-if="submited && !$v.form.documento.minLength">El campo debe tener 7 caracteres como mínimo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.documento.minLength">El campo debe tener 7 caracteres como mínimo</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.documento.maxLength">El campo debe tener 12 caracteres como máximo</div>
                                     <div style="color:red;" v-if="submited && !$v.form.documento.numeric">Este campo solo admite números</div>
                                 </div>
                             </div>
@@ -48,11 +49,12 @@
                                     <div style="color:red;" v-if="submited && !$v.form.celular.required">El campo es obligatorio</div>
                                     <div style="color:red;" v-if="submited && !$v.form.celular.minLength">El campo debe tener 9 caracteres como mínimo</div>
                                     <div style="color:red;" v-if="submited && !$v.form.celular.numeric">Este campo solo admite números</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.celular.start9">Tiene que empezar con el número 9 y tener 9 dígitos</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Email">CORREO</label>
                                     <input type="email" id="Email" class="form-control" placeholder="" v-model="form.correo">
-                                    <div style="color:red;" v-if="submited && !$v.form.correo.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.correo.required">El campo es obligatorio</div>
                                     <div style="color:red;" v-if="submited && !$v.form.correo.minLength">El campo debe tener 2 caracteres como mínimo</div>
                                     <div style="color:red;" v-if="submited && !$v.form.correo.email">Debe tener formato de email</div>
                                 </div>
@@ -64,21 +66,21 @@
                                     <v-select class="vue-select2" name="selectMarca"
                                         :options="marca" v-model="selectMarca" :reduce="label => label.code">
                                     </v-select>
-                                    <div style="color:red;" v-if="submited && !$v.selectMarca.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.selectMarca.required">El campo es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectModelo">MODELO</label>
                                     <v-select class="vue-select2" name="selectModelo"
                                         :options="modelo" v-model="selectModelo" :reduce="label => label.code">
                                     </v-select>
-                                    <div style="color:red;" v-if="submited && !$v.selectModelo.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.selectModelo.required">El campo es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectVersion">VERSIÓN</label>
                                     <v-select class="vue-select2" name="selectVersion"
                                         :options="version" v-model="selectVersion" :reduce="label => label.code">
                                     </v-select>
-                                    <div style="color:red;" v-if="submited && !$v.selectVersion.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.selectVersion.required">El campo es obligatorio</div>
                                 </div>
                             </div>
 
@@ -88,7 +90,7 @@
                                     <v-select class="vue-select2" name="selectColor"
                                         :options="color" v-model="form.color1" :reduce="label => label.code">
                                     </v-select>
-                                    <div style="color:red;" v-if="submited && !$v.form.color1.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.color1.required">El campo es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectColor">COLOR 2</label>
@@ -114,7 +116,7 @@
                                         <option value="2020">2020</option>
                                         <option value="2019">2019</option>
                                     </select>
-                                    <div style="color:red;" v-if="submited && !$v.form.anio_modelo.required">El campo nombre es obligatorio</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.anio_modelo.required">El campo es obligatorio</div>
                                 </div>
                             </div>
                     
@@ -131,8 +133,9 @@
     </main>
 </template>
 <script>
-import {required, minLength, email,numeric,helpers} from 'vuelidate/lib/validators';
+import {required, minLength,maxLength,email,numeric,helpers} from 'vuelidate/lib/validators';
 const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
+const start9 = helpers.regex("start9",/^(9)\d{8}$/);
 
 export default {
     data(){
@@ -175,8 +178,8 @@ export default {
             submited: true,
             form: {
                 nombre_completo: {required,minLength: minLength(2),alpha},
-                documento : {required,minLength: minLength(7),numeric},
-                celular : {required,minLength: minLength(9),numeric},
+                documento : {required,minLength: minLength(7),maxLength: maxLength(12),numeric},
+                celular : {required,start9,minLength: minLength(9),numeric},
                 correo : {required,minLength: minLength(2),email},	
                 anio_modelo : {required},	
                 color1 : {required}

@@ -169,8 +169,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
+var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("start9", /^(9)\d{8}$/);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -219,10 +222,12 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
       documento: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
         minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(7),
+        maxLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.maxLength)(12),
         numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.numeric
       },
       celular: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
+        start9: start9,
         minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(9),
         numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.numeric
       },
@@ -1425,6 +1430,14 @@ var render = function () {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
+                    _vm.submited && !_vm.$v.form.documento.maxLength
+                      ? _c("div", { staticStyle: { color: "red" } }, [
+                          _vm._v(
+                            "El campo debe tener 12 caracteres como máximo"
+                          ),
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _vm.submited && !_vm.$v.form.documento.numeric
                       ? _c("div", { staticStyle: { color: "red" } }, [
                           _vm._v("Este campo solo admite números"),
@@ -1485,6 +1498,14 @@ var render = function () {
                           _vm._v("Este campo solo admite números"),
                         ])
                       : _vm._e(),
+                    _vm._v(" "),
+                    _vm.submited && !_vm.$v.form.celular.start9
+                      ? _c("div", { staticStyle: { color: "red" } }, [
+                          _vm._v(
+                            "Tiene que empezar con el número 9 y tener 9 dígitos"
+                          ),
+                        ])
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-4" }, [
@@ -1516,7 +1537,7 @@ var render = function () {
                     _vm._v(" "),
                     _vm.submited && !_vm.$v.form.correo.required
                       ? _c("div", { staticStyle: { color: "red" } }, [
-                          _vm._v("El campo nombre es obligatorio"),
+                          _vm._v("El campo es obligatorio"),
                         ])
                       : _vm._e(),
                     _vm._v(" "),
@@ -1565,7 +1586,7 @@ var render = function () {
                       _vm._v(" "),
                       _vm.submited && !_vm.$v.selectMarca.required
                         ? _c("div", { staticStyle: { color: "red" } }, [
-                            _vm._v("El campo nombre es obligatorio"),
+                            _vm._v("El campo es obligatorio"),
                           ])
                         : _vm._e(),
                     ],
@@ -1600,7 +1621,7 @@ var render = function () {
                       _vm._v(" "),
                       _vm.submited && !_vm.$v.selectModelo.required
                         ? _c("div", { staticStyle: { color: "red" } }, [
-                            _vm._v("El campo nombre es obligatorio"),
+                            _vm._v("El campo es obligatorio"),
                           ])
                         : _vm._e(),
                     ],
@@ -1635,7 +1656,7 @@ var render = function () {
                       _vm._v(" "),
                       _vm.submited && !_vm.$v.selectVersion.required
                         ? _c("div", { staticStyle: { color: "red" } }, [
-                            _vm._v("El campo nombre es obligatorio"),
+                            _vm._v("El campo es obligatorio"),
                           ])
                         : _vm._e(),
                     ],
@@ -1672,7 +1693,7 @@ var render = function () {
                       _vm._v(" "),
                       _vm.submited && !_vm.$v.form.color1.required
                         ? _c("div", { staticStyle: { color: "red" } }, [
-                            _vm._v("El campo nombre es obligatorio"),
+                            _vm._v("El campo es obligatorio"),
                           ])
                         : _vm._e(),
                     ],
@@ -1808,7 +1829,7 @@ var render = function () {
                     _vm._v(" "),
                     _vm.submited && !_vm.$v.form.anio_modelo.required
                       ? _c("div", { staticStyle: { color: "red" } }, [
-                          _vm._v("El campo nombre es obligatorio"),
+                          _vm._v("El campo es obligatorio"),
                         ])
                       : _vm._e(),
                   ]),

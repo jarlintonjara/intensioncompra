@@ -52,7 +52,7 @@
                                     <td>{{bloqueado.anio_fabricacion}}</td>
                                     <td>{{bloqueado.color}}</td>
                                     <td>{{bloqueado.codigo_sap}}</td>
-                                    <td>{{bloqueado.situacion}}</td>
+                                    <td>{{bloqueado.bloqueado}}</td>
                                     <td>{{bloqueado.nave}}</td>
                                     <td>{{$dateFormat(bloqueado.fecha_ingreso)}}</td>
                                 </tr>

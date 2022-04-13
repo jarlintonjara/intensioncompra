@@ -29,6 +29,9 @@
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
+                                    <th>NOMBRE</th>
+                                    <th>CELULAR</th>
+                                    <th>CORREO</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -36,7 +39,7 @@
                                     <th>COLOR</th>
                                     <th>AÑO MODELO</th>
                                     <th>CÓDIGO SAP</th>
-                                    <th>FECHA LLEGADA</th>
+                                    <th>FECHA ESTIMADA LLEGADA</th>
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
@@ -54,6 +57,9 @@
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
+                                    <td>{{asignacion.nombre_completo}}</td>
+                                    <td>{{asignacion.celular}}</td>
+                                    <td>{{asignacion.correo}}</td>
                                     <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
