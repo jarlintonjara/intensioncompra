@@ -26,7 +26,6 @@
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
-                                    <th>DOCUMENTO</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -34,7 +33,6 @@
                                     <th>COLOR</th>
                                     <th>AÑO MODELO</th>
                                     <th>CÓDIGO SAP</th>
-                                    <th>FECHA LLEGADA</th>
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
@@ -49,7 +47,6 @@
                                     <td>{{$dateFormat(asignacion.fecha_distribucion)}}</td>
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
-                                    <td>{{asignacion.documento}}</td>
                                     <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
@@ -57,12 +54,11 @@
                                     <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
-                                    <td>{{$dateFormat(asignacion.fecha_ingreso)}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>
-                                    <td>{{'2020-04-12'}}</td>
-                                    <td>{{'2020-04-13'}}</td>
+                                    <td>{{asignacion.fecha_emplazado}}</td>
+                                    <td>{{asignacion.fecha_facturacion}}</td>
                                     <td>{{asignacion.situacion}}</td>
                                     
                                 </tr>

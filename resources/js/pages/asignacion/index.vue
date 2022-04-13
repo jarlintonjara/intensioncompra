@@ -39,10 +39,12 @@
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>FECHA LLEGADA</th>
                                     <!-- <th>CÓDIGO RESERVA</th>
+                                    <th>CÓDIGO SAP</th>
+                                    <th>FECHA ESTIMADA LLEGADA</th>
+                                    <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th> -->
                                     <th>ESTADO</th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>

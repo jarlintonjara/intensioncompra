@@ -1054,7 +1054,7 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.codigo_sap))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(bloqueado.situacion))]),
+                        _c("td", [_vm._v(_vm._s(bloqueado.bloqueado))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.nave))]),
                         _vm._v(" "),

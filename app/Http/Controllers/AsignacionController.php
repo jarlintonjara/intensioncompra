@@ -53,6 +53,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -101,6 +103,9 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
+            'registros.nombre_completo',
+            'registros.celular',
+            'registros.correo',
             'packing_list.vin',
             'packing_list.marca',
             'packing_list.modelo',
@@ -114,6 +119,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -159,6 +166,9 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
+            'registros.nombre_completo',
+            'registros.celular',
+            'registros.correo',
             'packing_list.vin',
             'packing_list.marca',
             'packing_list.modelo',
@@ -172,6 +182,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -217,6 +229,9 @@ class AsignacionController extends Controller
             'concesionarios.nombre as concesionario',
             'users.nombre',
             'registros.documento',
+            'registros.nombre_completo',
+            'registros.celular',
+            'registros.correo',
             'packing_list.vin',
             'packing_list.marca',
             'packing_list.modelo',
@@ -230,6 +245,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -283,6 +300,7 @@ class AsignacionController extends Controller
             'asignaciones.fecha_reserva',
             'asignaciones.fecha_a_facturar',
             'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
@@ -325,6 +343,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
