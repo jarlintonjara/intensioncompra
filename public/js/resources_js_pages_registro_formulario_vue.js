@@ -170,7 +170,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
 var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("start9", /^(9)\d{8}$/);
