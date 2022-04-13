@@ -28,7 +28,7 @@ class RegistroController extends Controller
         ->join('users', 'users.id', 'registros.user_id')
         ->join('tiendas', 'tiendas.id', 'registros.tienda_id')
         ->join('concesionarios', 'concesionarios.id', 'registros.concesionario_id')
-        ->where('registros.situacion', 'SINASIGNAR')->where('registros.estado' , 1);
+        ->where('registros.situacion', 'SINASIGNAR')->where('registros.estado', 1);
         switch ($user->role_id){
             case 1:
                 $noasignado = $query->where('registros.user_id', $user->id)->get();
