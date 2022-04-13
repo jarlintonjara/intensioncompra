@@ -35,7 +35,6 @@
                                     <th>AÑO FABRICACIÓN</th>
                                     <th>COLOR</th>
                                     <th>CODIGO SAP</th>
-                                    <th>SITUACIÓN</th>
                                     <th>NAVE</th>
                                     <th>FECHA INGRESO</th>
                                 </tr>
@@ -48,13 +47,12 @@
                                     <td>{{bloqueado.version}}</td>
                                     <td>{{bloqueado.anio_modelo}}</td>
                                     <td>{{bloqueado.nombre}}</td>
-                                    <td>{{$dateFormat(bloqueado.fecha_bloqueo)}}</td>
+                                    <td>{{bloqueado.fecha_bloqueo ? $dateFormat(bloqueado.fecha_bloqueo): ""}}</td>
                                     <td>{{bloqueado.anio_fabricacion}}</td>
                                     <td>{{bloqueado.color}}</td>
                                     <td>{{bloqueado.codigo_sap}}</td>
-                                    <td>{{bloqueado.bloqueado}}</td>
                                     <td>{{bloqueado.nave}}</td>
-                                    <td>{{$dateFormat(bloqueado.fecha_ingreso)}}</td>
+                                    <td>{{bloqueado.fecha_ingreso ? $dateFormat(bloqueado.fecha_ingreso) : ""}}</td>
                                 </tr>
                             </tbody>
                             
