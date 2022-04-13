@@ -38,6 +38,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -101,6 +103,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -162,6 +166,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -223,6 +229,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
@@ -276,6 +284,7 @@ class AsignacionController extends Controller
             'asignaciones.fecha_reserva',
             'asignaciones.fecha_a_facturar',
             'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
@@ -318,6 +327,8 @@ class AsignacionController extends Controller
             'asignaciones.codigo_reserva',
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
+            'asignaciones.fecha_emplazado',
+            'asignaciones.fecha_facturacion',
             'asignaciones.situacion'
         )
             ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')

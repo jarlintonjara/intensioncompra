@@ -1067,9 +1067,11 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.fecha_reserva))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s("2020-04-12"))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.fecha_emplazado))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s("2020-04-13"))]),
+                        _c("td", [
+                          _vm._v(_vm._s(asignacion.fecha_facturacion)),
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.situacion))]),
                       ])

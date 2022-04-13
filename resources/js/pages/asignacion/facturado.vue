@@ -57,8 +57,8 @@
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>
-                                    <td>{{'2020-04-12'}}</td>
-                                    <td>{{'2020-04-13'}}</td>
+                                    <td>{{asignacion.fecha_emplazado}}</td>
+                                    <td>{{asignacion.fecha_facturacion}}</td>
                                     <td>{{asignacion.situacion}}</td>
                                     
                                 </tr>
