@@ -9,9 +9,9 @@
 
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
-                <div class="panel-hdr">
+                <!-- <div class="panel-hdr">
                     <button style="text-align: center;" class="btn btn-success" @click="jobEmplazar()">job Emplazar</button>
-                </div>
+                </div> -->
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="treservado" class="table table-bordered table-hover table-striped w-100">

@@ -1204,22 +1204,6 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-          _c("div", { staticClass: "panel-hdr" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success",
-                staticStyle: { "text-align": "center" },
-                on: {
-                  click: function ($event) {
-                    return _vm.jobFacturar()
-                  },
-                },
-              },
-              [_vm._v("job Facturar")]
-            ),
-          ]),
-          _vm._v(" "),
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [
               _c(

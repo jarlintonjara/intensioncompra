@@ -292,6 +292,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("¿Seguro de eliminar?")) {
         this.axios["delete"]("/api/registro/".concat(id)).then(function (response) {
+          console.log(_this2.noasignados);
+          console.log(id);
+
           var index = _this2.noasignados.map(function (e) {
             return e.id;
           }).indexOf(id);
@@ -1236,19 +1239,6 @@ var render = function () {
                                   },
                                 },
                                 [_c("i", { staticClass: "fa fa-list" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.borrar(noasignado.id)
-                                    },
-                                  },
-                                },
-                                [_c("i", { staticClass: "fa fa-trash" })]
                               ),
                             ]
                           ),

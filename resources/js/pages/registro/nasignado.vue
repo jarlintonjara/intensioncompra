@@ -45,7 +45,7 @@
                                 <tr v-for="noasignado in noasignados" :key="noasignado.id + noasignado.nombre_completo">
                                     <td style="text-align: center">
                                          <button class="btn btn-warning" @click="detalle(noasignado)"><i class="fa fa-list"></i></button>
-                                        <button class="btn btn-danger" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button>
+                                        <!-- <button class="btn btn-danger" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button> -->
                                     </td>
                                     <td>{{noasignado.nombre_completo}}</td>
                                     <!-- <td>{{noasignado.documento}}</td> -->
@@ -238,6 +238,8 @@ export default {
         borrar(id){
             if(confirm("¿Seguro de eliminar?")){
                 this.axios.delete(`/api/registro/${id}`).then(response=>{
+                    console.log(this.noasignados);
+                    console.log(id);
                     let index =  this.noasignados.map(e => e.id).indexOf(id);
                     if(index !== -1){
                         let noasignados = this.noasignados;
