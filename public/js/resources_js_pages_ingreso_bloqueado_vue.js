@@ -97,8 +97,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1044,7 +1042,11 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            _vm._s(_vm.$dateFormat(bloqueado.fecha_bloqueo))
+                            _vm._s(
+                              bloqueado.fecha_bloqueo
+                                ? _vm.$dateFormat(bloqueado.fecha_bloqueo)
+                                : ""
+                            )
                           ),
                         ]),
                         _vm._v(" "),
@@ -1054,13 +1056,15 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.codigo_sap))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(bloqueado.bloqueado))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.nave))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            _vm._s(_vm.$dateFormat(bloqueado.fecha_ingreso))
+                            _vm._s(
+                              bloqueado.fecha_ingreso
+                                ? _vm.$dateFormat(bloqueado.fecha_ingreso)
+                                : ""
+                            )
                           ),
                         ]),
                       ])
@@ -1150,8 +1154,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("COLOR")]),
         _vm._v(" "),
         _c("th", [_vm._v("CODIGO SAP")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("SITUACIÓN")]),
         _vm._v(" "),
         _c("th", [_vm._v("NAVE")]),
         _vm._v(" "),

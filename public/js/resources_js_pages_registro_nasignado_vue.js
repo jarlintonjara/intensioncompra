@@ -201,7 +201,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1201,25 +1200,7 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-          _c("div", { staticClass: "panel-hdr" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    staticStyle: { "text-align": "center" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.jobAsignados()
-                      },
-                    },
-                  },
-                  [_vm._v("job Asignar")]
-                ),
-              ]),
-            ]),
-          ]),
+          _c("div", { staticClass: "panel-hdr" }),
           _vm._v(" "),
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [

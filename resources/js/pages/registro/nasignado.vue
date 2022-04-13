@@ -10,12 +10,11 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <button style="text-align: center;" class="btn btn-success" @click="jobAsignados()">job Asignar</button>
                         </div>
-                    </div>
-                    
+                    </div> -->
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
@@ -239,7 +238,7 @@ export default {
         borrar(id){
             if(confirm("¿Seguro de eliminar?")){
                 this.axios.delete(`/api/registro/${id}`).then(response=>{
-                    let index =  this.noasignados.map(function(e) { return e.id }).indexOf(id);
+                    let index =  this.noasignados.map(e => e.id).indexOf(id);
                     if(index !== -1){
                         let noasignados = this.noasignados;
                         noasignados.splice(index, 1);
