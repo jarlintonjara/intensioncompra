@@ -52,9 +52,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1371,41 +1368,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "page-wrapper" }, [
-      _c(
-        "div",
-        { staticClass: "page-inner" },
-        [
-          _c("Sidebar", { attrs: { session: _vm.user } }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "page-content-wrapper" },
-            [
-              _c("Navbar", { attrs: { session: _vm.user } }),
-              _vm._v(" "),
-              _c("router-view"),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "page-content-overlay",
-                attrs: {
-                  "data-action": "toggle",
-                  "data-class": "mobile-nav-on",
-                },
-              }),
-              _vm._v(" "),
-              _c("footer", {
-                staticClass: "page-footer",
-                attrs: { role: "contentinfo" },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-    ]),
+  return _c("div", { staticClass: "page-wrapper" }, [
+    _c(
+      "div",
+      { staticClass: "page-inner" },
+      [
+        _c("Sidebar", { attrs: { session: _vm.user } }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "page-content-wrapper" },
+          [
+            _c("Navbar", { attrs: { session: _vm.user } }),
+            _vm._v(" "),
+            _c("router-view"),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "page-content-overlay",
+              attrs: { "data-action": "toggle", "data-class": "mobile-nav-on" },
+            }),
+            _vm._v(" "),
+            _c("footer", {
+              staticClass: "page-footer",
+              attrs: { role: "contentinfo" },
+            }),
+          ],
+          1
+        ),
+      ],
+      1
+    ),
   ])
 }
 var staticRenderFns = []

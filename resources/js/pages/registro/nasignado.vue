@@ -23,44 +23,28 @@
                                 <tr>
                                     <th style="width:10% !important"></th>
                                     <th style="width:25% !important">Nombre Completo</th>
-                                    <!-- <th>Documento</th> -->
                                     <th>celular</th>
                                     <th>Correo</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
-                                   <!--  <th>Versión</th>
-                                    <th>color 1</th> -->
-                                    <!-- <th>color 2</th>
-                                    <th>color 3</th> -->
-                                    <!-- <th>Año Modelo</th>
-                                    <th>Ejecutivo</th> -->
                                     <th>Tienda</th>
-                                   <!--  <th>Concesionario</th> -->
                                     <th>SITUACIÓN</th>
                                     <th>Fecha Creación</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="noasignado in noasignados" :key="noasignado.id + noasignado.nombre_completo">
+                                <tr v-for="noasignado in noasignados" :key="noasignado.id">
                                     <td style="text-align: center">
-                                         <button class="btn btn-warning" @click="detalle(noasignado)"><i class="fa fa-list"></i></button>
-                                        <!-- <button class="btn btn-danger" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button> -->
+                                        <button class="btn btn-warning" @click="detalle(noasignado)"><i class="fa fa-list"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                     <td>{{noasignado.nombre_completo}}</td>
-                                    <!-- <td>{{noasignado.documento}}</td> -->
                                     <td>{{noasignado.celular}}</td>
                                     <td>{{noasignado.correo}}</td>
                                     <td>{{noasignado.marca}}</td>
                                     <td>{{noasignado.modelo}}</td>
-                                   <!--  <td>{{noasignado.version}}</td>
-                                    <td>{{noasignado.color1}}</td> -->
-                                   <!--  <td>{{noasignado.color2}}</td>
-                                    <td>{{noasignado.color3}}</td> -->
-                                    <!-- <td>{{noasignado.anio_modelo}}</td>
-                                    <td>{{noasignado.nombre}}</td> -->
                                     <td>{{noasignado.tienda}}</td>
-                                    <!-- <td>{{noasignado.concesionario}}</td> -->
                                     <td>{{noasignado.situacion}}</td>
                                     <td>{{noasignado.created_at ? $dateFormat(noasignado.created_at):""}}</td>
                                     
@@ -235,21 +219,33 @@ export default {
             this.registro.color3= datos.color3;
             $('#modalForm').modal('show')
         },
-        borrar(id){
-            if(confirm("¿Seguro de eliminar?")){
-                this.axios.delete(`/api/registro/${id}`).then(response=>{
-                    console.log(this.noasignados);
-                    console.log(id);
-                    let index =  this.noasignados.map(e => e.id).indexOf(id);
-                    if(index !== -1){
-                        let noasignados = this.noasignados;
-                        noasignados.splice(index, 1);
-                        this.noasignados = [].concat(noasignados);
-                    }
-                }).catch(error=>{
-                    console.log(error)
-                })
-            }
+        async borrar(id){
+            this.$swal({
+                title: "¿Seguro de eliminar?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then(async (willDelete) => {
+                if (willDelete) {
+                     await this.axios.delete(`/api/registro/${id}`).then(response=>{
+                        let index =  this.noasignados.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let noasignados = this.noasignados;
+                            noasignados.splice(index, 1);
+                            this.noasignados = [].concat(noasignados);
+                        }
+                        this.$swal.fire(
+                            'Registro eliminado',
+                            '',
+                            'success'
+                        ) 
+                    }).catch(error=>{
+                        console.log(error)
+                    });
+                } 
+            });
         },
         async jobAsignados(){
             await this.axios.get('/api/executeAsignar')

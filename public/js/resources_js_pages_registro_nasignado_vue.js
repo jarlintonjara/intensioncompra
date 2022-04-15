@@ -185,22 +185,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -290,34 +274,75 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this2 = this;
 
-      if (confirm("¿Seguro de eliminar?")) {
-        this.axios["delete"]("/api/registro/".concat(id)).then(function (response) {
-          console.log(_this2.noasignados);
-          console.log(id);
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this2.$swal({
+                  title: "¿Seguro de eliminar?",
+                  text: "",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true
+                }).then( /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(willDelete) {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            if (!willDelete) {
+                              _context2.next = 3;
+                              break;
+                            }
 
-          var index = _this2.noasignados.map(function (e) {
-            return e.id;
-          }).indexOf(id);
+                            _context2.next = 3;
+                            return _this2.axios["delete"]("/api/registro/".concat(id)).then(function (response) {
+                              var index = _this2.noasignados.map(function (e) {
+                                return e.id;
+                              }).indexOf(id);
 
-          if (index !== -1) {
-            var noasignados = _this2.noasignados;
-            noasignados.splice(index, 1);
-            _this2.noasignados = [].concat(noasignados);
+                              if (index !== -1) {
+                                var noasignados = _this2.noasignados;
+                                noasignados.splice(index, 1);
+                                _this2.noasignados = [].concat(noasignados);
+                              }
+
+                              _this2.$swal.fire('Registro eliminado', '', 'success');
+                            })["catch"](function (error) {
+                              console.log(error);
+                            });
+
+                          case 3:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2);
+                  }));
+
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
           }
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+        }, _callee3);
+      }))();
     },
     jobAsignados: function jobAsignados() {
       var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context2.next = 2;
+                _context4.next = 2;
                 return _this3.axios.get('/api/executeAsignar').then(function (response) {
                   _this3.$swal.fire('Asignados!', '', 'success');
                 })["catch"](function (error) {
@@ -326,10 +351,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2);
+        }, _callee4);
       }))();
     },
     cerrarModal: function cerrarModal() {
@@ -1220,56 +1245,59 @@ var render = function () {
                   _c(
                     "tbody",
                     _vm._l(_vm.noasignados, function (noasignado) {
-                      return _c(
-                        "tr",
-                        { key: noasignado.id + noasignado.nombre_completo },
-                        [
+                      return _c("tr", { key: noasignado.id }, [
+                        _c("td", { staticStyle: { "text-align": "center" } }, [
                           _c(
-                            "td",
-                            { staticStyle: { "text-align": "center" } },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-warning",
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.detalle(noasignado)
-                                    },
-                                  },
+                            "button",
+                            {
+                              staticClass: "btn btn-warning",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.detalle(noasignado)
                                 },
-                                [_c("i", { staticClass: "fa fa-list" })]
-                              ),
-                            ]
+                              },
+                            },
+                            [_c("i", { staticClass: "fa fa-list" })]
                           ),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(noasignado.nombre_completo)),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(noasignado.celular))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(noasignado.correo))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(noasignado.marca))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(noasignado.modelo))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(noasignado.tienda))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(noasignado.situacion))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                noasignado.created_at
-                                  ? _vm.$dateFormat(noasignado.created_at)
-                                  : ""
-                              )
-                            ),
-                          ]),
-                        ]
-                      )
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.borrar(noasignado.id)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "fa fa-trash" })]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.nombre_completo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.celular))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.correo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.marca))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.modelo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.tienda))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.situacion))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              noasignado.created_at
+                                ? _vm.$dateFormat(noasignado.created_at)
+                                : ""
+                            )
+                          ),
+                        ]),
+                      ])
                     }),
                     0
                   ),

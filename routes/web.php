@@ -11,6 +11,7 @@ use App\Models\AsignacionModel;
 use App\Models\EmplazadoModel;
 use App\Models\FacturadoModel;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 /*
@@ -24,8 +25,33 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 Route::get('/test', function () {
-    return "hola mundo";
     
+    $array = [
+        'dercocenter.2022',
+        'autobacs$',
+        'autoland$',
+        'pakatnamu$',
+        'cristoblanco$',
+        'motormass$',
+        'granprix$',
+        'bmotors$',
+        'cam$',
+        'sanpedro$',
+        'corsa$',
+        'erimassa$',
+        'gacsa$',
+        'klm$',
+        'maqgama$',
+        'motorgas$',
+        'motorshow$',
+        'peñaranda$',
+        'resersur$',
+        'pacifico$'
+    ];
+    //$data = RegistroModel::where('estado',1)->get();
+    foreach($array as $row){
+        echo Hash::make($row)."<br>";
+    } 
 });
 
 
