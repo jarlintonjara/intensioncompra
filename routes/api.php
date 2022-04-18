@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\AsignacionController;
+use App\Http\Controllers\ConcesinarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -40,3 +41,6 @@ Route::get('facturado', [AsignacionController::class, 'facturado']);
 Route::get('emplazado', [AsignacionController::class, 'emplazado']);
 Route::get('executeEmplazado', [AsignacionController::class, 'jobEmplazar']);
 Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);
+
+//Matenimientos
+Route::resource('concesionario', ConcesinarioController::class);

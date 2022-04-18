@@ -167,8 +167,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
   data: function data() {
@@ -177,6 +175,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       roles: [],
       concesionarios: [],
       tiendas: [],
+      tiendasFilter: [],
       datos: {
         nombre: '',
         apellido: '',
@@ -184,11 +183,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tienda: 0,
         documento: '',
         email: '',
-        cargo: '',
-        area: '',
         role_id: '',
         telefono: '',
-        usuario: ''
+        usuario: '',
+        password: '',
+        confirmar_password: ''
       },
       titulo: '',
       btnCrear: false,
@@ -198,6 +197,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.init();
+  },
+  watch: {
+    'datos.concesionario_id': function datosConcesionario_id(value) {
+      if (value) {
+        this.tiendasFilter = this.tiendas.filter(function (e) {
+          return e.concesionario_id == value;
+        });
+        this.datos.tienda_id = '';
+      }
+    }
   },
   methods: {
     init: function init() {
@@ -323,13 +332,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this4 = this;
 
-      if (confirm("¿Confirma eliminar el registro?")) {
-        this.axios["delete"]("/api/usuario/".concat(id)).then(function (response) {
-          _this4.users = [].concat(response.data);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+      this.$swal({
+        title: "¿Seguro de eliminar?",
+        text: "",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then( /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(willDelete) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  if (willDelete) {
+                    _this4.axios["delete"]("/api/usuario/".concat(id)).then(function (response) {
+                      var index = _this4.users.map(function (e) {
+                        return e.id;
+                      }).indexOf(id);
+
+                      if (index !== -1) {
+                        var users = _this4.users;
+                        users.splice(index, 1);
+                        _this4.users = [].concat(users);
+                      }
+
+                      _this4.$swal.fire('Usuario eliminado', '', 'success');
+                    })["catch"](function (error) {
+                      console.log(error);
+                    });
+                  }
+
+                case 1:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
     },
     abrirModalCrear: function abrirModalCrear() {
       this.datos = {
@@ -347,17 +391,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
-      this.datos = {
-        nombre: datos.nombre,
-        apellido: datos.apellido,
-        documento: datos.documento,
-        email: datos.email,
-        role_id: datos.role_id,
-        tienda_id: datos.tienda_id,
-        concesionario_id: datos.concesionario_id,
-        usuario: datos.usuario
-      };
       this.titulo = ' Editar usuario';
+      this.datos.nombre = datos.nombre;
+      this.datos.apellido = datos.apellido;
+      this.datos.documento = datos.documento;
+      this.datos.email = datos.email;
+      this.datos.role_id = datos.role_id;
+      this.datos.tienda_id = datos.tienda_id;
+      this.datos.concesionario_id = datos.concesionario_id;
+      this.datos.usuario = datos.usuario;
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
@@ -1369,12 +1411,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Nombres",
-                        placeholder: "Nombres",
-                        required: "",
-                      },
+                      attrs: { type: "text", id: "Nombres" },
                       domProps: { value: _vm.datos.nombre },
                       on: {
                         input: function ($event) {
@@ -1402,12 +1439,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Apellidos",
-                        placeholder: "Apellidos",
-                        required: "",
-                      },
+                      attrs: { type: "text", id: "Apellidos" },
                       domProps: { value: _vm.datos.apellido },
                       on: {
                         input: function ($event) {
@@ -1437,11 +1469,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Documento",
-                        placeholder: "Documento",
-                      },
+                      attrs: { type: "text", id: "Documento" },
                       domProps: { value: _vm.datos.documento },
                       on: {
                         input: function ($event) {
@@ -1469,11 +1497,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Telefono",
-                        placeholder: "Documento",
-                      },
+                      attrs: { type: "text", id: "Telefono" },
                       domProps: { value: _vm.datos.telefono },
                       on: {
                         input: function ($event) {
@@ -1499,11 +1523,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "email",
-                        id: "Email",
-                        placeholder: "Email",
-                      },
+                      attrs: { type: "email", id: "Email" },
                       domProps: { value: _vm.datos.email },
                       on: {
                         input: function ($event) {
@@ -1615,7 +1635,7 @@ var render = function () {
                       [
                         _c("option", [_vm._v("Seleccione una Tienda")]),
                         _vm._v(" "),
-                        _vm._l(_vm.tiendas, function (tienda) {
+                        _vm._l(_vm.tiendasFilter, function (tienda) {
                           return _c(
                             "option",
                             {
@@ -1628,97 +1648,6 @@ var render = function () {
                       ],
                       2
                     ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c("label", { attrs: { for: "usuario" } }, [
-                      _vm._v("Usuario"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.usuario,
-                          expression: "datos.usuario",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "usuario",
-                        placeholder: "usuario",
-                        required: "",
-                      },
-                      domProps: { value: _vm.datos.usuario },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "usuario", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c("label", { attrs: { for: "Cargo" } }, [_vm._v("Cargo")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.cargo,
-                          expression: "datos.cargo",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Cargo",
-                        placeholder: "Cargo",
-                      },
-                      domProps: { value: _vm.datos.cargo },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "cargo", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c("label", { attrs: { for: "Area" } }, [_vm._v("Area")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.area,
-                          expression: "datos.area",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", id: "Area", placeholder: "Area" },
-                      domProps: { value: _vm.datos.area },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "area", $event.target.value)
-                        },
-                      },
-                    }),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-4" }, [
@@ -1773,6 +1702,96 @@ var render = function () {
                       ],
                       2
                     ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "usuario" } }, [
+                      _vm._v("Usuario"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.usuario,
+                          expression: "datos.usuario",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "usuario" },
+                      domProps: { value: _vm.datos.usuario },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "usuario", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "password" } }, [
+                      _vm._v("Contraseña"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.password,
+                          expression: "datos.password",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "password", id: "password" },
+                      domProps: { value: _vm.datos.password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "password", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-4" }, [
+                    _c("label", { attrs: { for: "confirmar_password" } }, [
+                      _vm._v("Confirmar contraseña"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.confirmar_password,
+                          expression: "datos.confirmar_password",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "password", id: "confirmar_password" },
+                      domProps: { value: _vm.datos.confirmar_password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.datos,
+                            "confirmar_password",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
                   ]),
                 ]),
               ]),

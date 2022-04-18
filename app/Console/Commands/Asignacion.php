@@ -16,7 +16,7 @@ class Asignacion extends Command
     public function handle()
     {
         $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
-        ->where('situacion', 'SINASIGNAR')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')
         ->get();
 
         foreach ($registros as $registro) {
@@ -44,7 +44,7 @@ class Asignacion extends Command
 
     //segundo
     $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')
-        ->where('situacion', 'SINASIGNAR')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')
         ->get();
         
         foreach ($registros2 as $registro2) {
@@ -71,7 +71,7 @@ class Asignacion extends Command
         
         //tercero
         $registros3 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color3','situacion')
-        ->where('situacion', 'SINASIGNAR')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')
         ->get();
 
         foreach ($registros3 as $registro3) {
