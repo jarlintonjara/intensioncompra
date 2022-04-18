@@ -37,7 +37,7 @@
         "vue-select": "^3.18.3",
         "vue-select2": "^0.2.6",
         "vue-sweetalert2": "^5.0.2",
-        "vuejs-datatable": "^2.0.0-alpha.7",
+        "vue-tables-2": "^2.3.5",
         "vuelidate": "^0.7.7"
     }
 }

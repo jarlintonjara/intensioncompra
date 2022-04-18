@@ -11,6 +11,7 @@ import 'vue-select/dist/vue-select.css';
 import jszip from 'jszip/dist/jszip'
 import App from './pages/App.vue';
 import { Vuelidate } from 'vuelidate';
+import { ClientTable } from 'vue-tables-2';
 import Vue from 'vue';
 window.Vue = Vue;
 
@@ -22,6 +23,7 @@ Vue.config.productionTip = false;
 
 Vue.component('v-select', vSelect)
 Vue.use(VueAxios, axios); 
+Vue.use(ClientTable);
    
 Vue.use(VueSweetalert2);
 window.JSZip = jszip;
