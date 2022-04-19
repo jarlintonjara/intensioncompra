@@ -30,7 +30,6 @@
                                     <th>Tienda</th>
                                     <th>SITUACIÓN</th>
                                     <th>Fecha Creación</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
