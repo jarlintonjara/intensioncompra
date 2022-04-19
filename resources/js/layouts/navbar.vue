@@ -46,12 +46,17 @@
                     </div>
                         
                     <div class="dropdown-divider m-0"></div>
-                    <router-link to="perfil" class="dropdown-item fw-500 pt-3 pb-3">
+                    <router-link to="perfil" class="dropdown-item fw-500 pt-2 pb-2">
                         <span data-i18n="drpdwn.page-logout">Perfil</span> 
                     </router-link>
 
+                    <!-- <div class="dropdown-divider m-0"></div>
+                    <router-link to="configuracion" class="dropdown-item fw-500 pt-2 pb-2">
+                        <span data-i18n="drpdwn.page-logout">Configuración</span> 
+                    </router-link>
+ -->
                     <div class="dropdown-divider m-0"></div>
-                    <a class="dropdown-item fw-500 pt-3 pb-3" href="" @click.prevent="logout">
+                    <a class="dropdown-item fw-500 pt-2 pb-2" href="" @click.prevent="logout">
                         <span data-i18n="drpdwn.page-logout">Logout</span>
                     </a>
                 </div>

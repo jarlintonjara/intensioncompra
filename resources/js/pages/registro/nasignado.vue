@@ -24,9 +24,9 @@
                                     <th style="width:10% !important"></th>
                                     <th style="width:25% !important">Nombre Completo</th>
                                     <th>celular</th>
-                                    <th>Correo</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
+                                    <th>Versión</th>
                                     <th>Tienda</th>
                                     <th>SITUACIÓN</th>
                                     <th>Fecha Creación</th>
@@ -41,9 +41,9 @@
                                     </td>
                                     <td>{{noasignado.nombre_completo}}</td>
                                     <td>{{noasignado.celular}}</td>
-                                    <td>{{noasignado.correo}}</td>
                                     <td>{{noasignado.marca}}</td>
                                     <td>{{noasignado.modelo}}</td>
+                                    <td>{{noasignado.version}}</td>
                                     <td>{{noasignado.tienda}}</td>
                                     <td>{{noasignado.situacion}}</td>
                                     <td>{{noasignado.created_at ? $dateFormat(noasignado.created_at):""}}</td>

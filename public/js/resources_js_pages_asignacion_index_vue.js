@@ -1381,7 +1381,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               asignacion.fecha_distribucion
-                                ? _vm.$dateFormat(asignacion.fecha_distribucion)
+                                ? asignacion.fecha_distribucion
                                 : ""
                             )
                           ),
@@ -1391,7 +1391,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               asignacion.fecha_ingreso
-                                ? _vm.$dateFormat(asignacion.fecha_ingreso)
+                                ? asignacion.fecha_ingreso
                                 : ""
                             )
                           ),

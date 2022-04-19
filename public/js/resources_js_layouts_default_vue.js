@@ -177,6 +177,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
   props: ['session'],
@@ -1459,7 +1464,7 @@ var render = function () {
             },
             [
               _c("i", { staticClass: "fas fa-user" }),
-              _vm._v(" " + _vm._s(_vm.user.nombre) + "\n            "),
+              _vm._v(" " + _vm._s(_vm.user.nombre) + "\n               "),
             ]
           ),
           _vm._v(" "),
@@ -1474,7 +1479,7 @@ var render = function () {
               _c(
                 "router-link",
                 {
-                  staticClass: "dropdown-item fw-500 pt-3 pb-3",
+                  staticClass: "dropdown-item fw-500 pt-2 pb-2",
                   attrs: { to: "perfil" },
                 },
                 [
@@ -1489,7 +1494,7 @@ var render = function () {
               _c(
                 "a",
                 {
-                  staticClass: "dropdown-item fw-500 pt-3 pb-3",
+                  staticClass: "dropdown-item fw-500 pt-2 pb-2",
                   attrs: { href: "" },
                   on: {
                     click: function ($event) {
