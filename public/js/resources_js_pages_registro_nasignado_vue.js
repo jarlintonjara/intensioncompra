@@ -1573,7 +1573,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticStyle: { width: "10% !important" } }),
+        _c("th", { staticStyle: { width: "12% !important" } }),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "25% !important" } }, [
           _vm._v("Nombre Completo"),
@@ -1589,7 +1589,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Tienda")]),
         _vm._v(" "),
-        _c("th", [_vm._v("SITUACIÓN")]),
+        _c("th", [_vm._v("Situación")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fecha Creación")]),
       ]),

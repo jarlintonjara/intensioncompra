@@ -16,20 +16,20 @@
                         </div>
                     </div> -->
                 </div>
-                
+
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
-                                    <th style="width:10% !important"></th>
+                                    <th style="width:12% !important"></th>
                                     <th style="width:25% !important">Nombre Completo</th>
                                     <th>celular</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
                                     <th>Versión</th>
                                     <th>Tienda</th>
-                                    <th>SITUACIÓN</th>
+                                    <th>Situación</th>
                                     <th>Fecha Creación</th>
                                 </tr>
                             </thead>
