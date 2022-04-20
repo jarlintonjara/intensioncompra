@@ -1,13 +1,19 @@
 <?php
 
+use App\Exports\ScheduleExport;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\AsignacionController;
+use App\Http\Controllers\CaracteristicaController;
+use App\Http\Controllers\CarateristicaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TiendaController;
+use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +44,9 @@ Route::get('facturado', [AsignacionController::class, 'facturado']);
 Route::get('emplazado', [AsignacionController::class, 'emplazado']);
 Route::get('executeEmplazado', [AsignacionController::class, 'jobEmplazar']);
 Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);
+Route::get('exportarExcel',[ScheduleExport::class, 'jobExportar']);
+
+
+//Mantenimiento
+Route::resource('tienda', TiendaController::class);
+Route::resource('caracteristica', CaracteristicaController::class);

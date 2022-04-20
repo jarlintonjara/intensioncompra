@@ -12,6 +12,10 @@ use App\Models\EmplazadoModel;
 use App\Models\FacturadoModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\pruebaController;
+use App\Http\Controllers\prueba2Controller;
+use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------

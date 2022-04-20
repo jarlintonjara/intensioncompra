@@ -5610,6 +5610,18 @@ var Perfil = function Perfil() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_settings_perfil_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/settings/perfil.vue */ "./resources/js/pages/settings/perfil.vue"));
 };
 
+var concesionarios = function concesionarios() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_concesionario_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/concesionario.vue */ "./resources/js/pages/concesionario.vue"));
+};
+
+var tiendas = function tiendas() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_tienda_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/tienda.vue */ "./resources/js/pages/tienda.vue"));
+};
+
+var caracteristicas = function caracteristicas() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_caracteristica_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/caracteristica.vue */ "./resources/js/pages/caracteristica.vue"));
+};
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mode: 'history',
   routes: [{
@@ -5692,6 +5704,18 @@ var Perfil = function Perfil() {
       path: '/bloqueado',
       component: Bloqueado,
       name: 'bloqueado'
+    }, {
+      path: '/concesionarios',
+      component: concesionarios,
+      name: 'concesionarios'
+    }, {
+      path: '/tiendas',
+      component: tiendas,
+      name: 'tiendas'
+    }, {
+      path: '/caracteristicas',
+      component: caracteristicas,
+      name: 'caracteristicas'
     }]
   }]
 });
@@ -89291,7 +89315,7 @@ function h(tag, key, args) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1,"resources_js_pages_concesionario_vue":1,"resources_js_pages_tienda_vue":1,"resources_js_pages_caracteristica_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

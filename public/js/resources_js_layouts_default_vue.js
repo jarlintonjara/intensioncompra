@@ -356,6 +356,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1819,6 +1837,81 @@ var render = function () {
                             _vm._v(" "),
                             _c("span", { staticClass: "nav-link-text" }, [
                               _vm._v("Usuarios"),
+                            ]),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.user.role_id == 6
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/tiendas",
+                            "active-class": "",
+                          },
+                        },
+                        [
+                          _c("a", { attrs: { href: "" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-users",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "nav-link-text" }, [
+                              _vm._v("Tiendas"),
+                            ]),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.user.role_id == 6
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/caracteristicas",
+                            "active-class": "",
+                          },
+                        },
+                        [
+                          _c("a", { attrs: { href: "" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-users",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "nav-link-text" }, [
+                              _vm._v("Caracteristicas"),
+                            ]),
+                          ]),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.user.role_id == 6
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            tag: "li",
+                            to: "/concesionario",
+                            "active-class": "",
+                          },
+                        },
+                        [
+                          _c("a", { attrs: { href: "" } }, [
+                            _c("i", {
+                              staticClass: "fa-solid fa-users",
+                              staticStyle: { color: "white !important" },
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "nav-link-text" }, [
+                              _vm._v("Concesionario"),
                             ]),
                           ]),
                         ]

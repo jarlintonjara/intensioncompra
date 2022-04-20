@@ -19,6 +19,11 @@ const Login = () => import('./pages/auth/login.vue');
 const Register = () => import('./pages/auth/register.vue');
 const Perfil = () => import('./pages/settings/perfil.vue');
 
+
+const concesionarios = () => import('./pages/concesionario.vue');
+const tiendas = () => import('./pages/tienda.vue');
+const caracteristicas = () => import('./pages/caracteristica.vue');
+
 export default{
     mode: 'history',
     routes: [
@@ -54,6 +59,10 @@ export default{
                 { path: '/emplazado', component: emplazado, name: 'emplazado'}, 
                 { path: '/facturado', component: facturado, name: 'facturado' },
                 { path: '/bloqueado', component: Bloqueado, name: 'bloqueado'},
+                { path: '/concesionarios', component: concesionarios, name: 'concesionarios'},
+                { path: '/tiendas', component: tiendas, name: 'tiendas'},
+                { path: '/caracteristicas', component: caracteristicas, name: 'caracteristicas'},
+                
             ]
         },
     ]

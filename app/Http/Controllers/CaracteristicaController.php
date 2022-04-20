@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TiendaModel;
+use App\Models\CaracteristicaModel;
 use Illuminate\Http\Request;
 
-class TiendaController extends Controller
+class CaracteristicaController extends Controller
 {
     
     public function index()
     {
-        $data = TiendaModel::where('estado',1)->get();
+        $data = CaracteristicaModel::where('estado',1)->get();
         return response()->json($data);
     }
 
@@ -24,11 +24,14 @@ class TiendaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'concesionario_id' => ['required'],
-            'nombre' => ['required'],
-            'direccion' => ['required'],
+            'marca' => ['required'],
+            'modelo' => ['required'],
+            'version' => ['required'],
+            'color1' => ['required'],
+            'color2' => ['required'],
+            'color3' => ['required'],
         ]);
-        $register = TiendaModel::create($request->post());
+        $register = CaracteristicaModel::create($request->post());
         return response()->json($register);
     }
 
@@ -44,7 +47,7 @@ class TiendaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $register = TiendaModel::findOrFail($id);
+        $register = CaracteristicaModel::findOrFail($id);
         $request->validate([
             'concesionario_id' => ['required'],
             'nombre' => ['required'],
@@ -56,7 +59,7 @@ class TiendaController extends Controller
 
     public function destroy($id)
     {
-        $register = TiendaModel::findOrFail($id);
+        $register = CaracteristicaModel::findOrFail($id);
         $register->update(['estado' => 0]);
         return response()->json($register);
     }

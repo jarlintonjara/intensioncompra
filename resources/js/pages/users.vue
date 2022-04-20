@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Telefono">Telefono</label>
-                                <input type="text" id="Telefono" class="form-control" placeholder="Documento" v-model="datos.telefono">
+                                <input type="text" id="Telefono" class="form-control" placeholder="Telefono" v-model="datos.telefono">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Email">Email</label>
@@ -93,6 +93,15 @@
                                     <option v-for="concesionario in concesionarios" :key="concesionario.nombre + concesionario.id" :value="concesionario.id">{{ concesionario.nombre }}</option>
                                 </select>
                             </div>
+
+                            <!-- <div class="form-group col-md-4">
+                                    <label for="selectConcesionario">Concesionario</label>
+                                    <v-select class="vue-select2" name="selectConcesionario"
+                                        :options="marca" v-model="selectConcesionario" :reduce="label => label.code" :v-for="concesionario in concesionarios">
+                                    </v-select>
+                                    <div style="color:red;" v-if="submited && !$v.selectConcesionario.required">El campo nombre es obligatorio</div>
+                            </div> -->
+                            
                             <div class="form-group col-md-4">
                                 <label for="Tienda">Tienda</label>
                                 <select id="Tienda" class="browser-default custom-select" v-model="datos.tienda_id">
@@ -100,21 +109,14 @@
                                     <option v-for="tienda in tiendas" :key="tienda.nombre + tienda.id" :value="tienda.id">{{ tienda.nombre }}</option>
                                 </select>
                             </div>
+
                             <div class="form-group col-md-4">
                                 <label for="usuario">Usuario</label>
                                 <input type="text" id="usuario" class="form-control" placeholder="usuario" required="" v-model="datos.usuario">
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="Cargo">Cargo</label>
-                                <input type="text" id="Cargo" class="form-control" placeholder="Cargo" v-model="datos.cargo">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="Area">Area</label>
-                                <input type="text" id="Area" class="form-control" placeholder="Area" v-model="datos.area">
-                            </div>
+                        <div class="form-row"> 
                             <div class="form-group col-md-4">
                                 <label for="Role">Rol</label>
                                 <select id="Perfil" class="browser-default custom-select" v-model="datos.role_id">
@@ -152,15 +154,40 @@ export default {
                 apellido:'', 
                 concesionario_id: 0,
                 tienda: 0,
-                documento:'', email:'', cargo: '', area: '', role_id: '', telefono:'', usuario:''},
+                documento:'',
+                email:'', cargo: '',
+                area: '', role_id: '',
+                telefono:'',
+                usuario:''},
             titulo:'',
             btnCrear:false,
             btnEditar:false,
+            selectConcesionario :"",
+            selectTienda :"",
             id:''
         }
     },
     mounted(){
         this.init()
+
+    },
+        watch: {
+            selectConcesionario : function(val) {
+            this.concesionario = [];
+            this.selectTienda = "";
+            let dataFilter = this.caracteristicas.filter(e => e.concesionario == val ).map(e => { return { code : e.concesionario, label: e.concesionario, ...e } })
+            let result = this.getUnique(dataFilter, 'concesionario');
+            this.tienda = [].concat(result);
+            },
+
+            selectTienda : function(val){
+            this.tiendas = [];
+            let dataFilter = this.caracteristicas.filter(e => e.tienda == val ).map(e => { return { code : e.tienda, label: e.tienda, ...e } })
+            let result = this.getUnique(dataFilter, 'tienda');
+            // this.modelo = [].concat(result);
+
+            }
+
     },
     methods:{
         async init(){
@@ -174,8 +201,9 @@ export default {
                     this.roles = response.data.roles;
                     this.concesionarios = response.data.concesionarios;
                     this.tiendas = response.data.tiendas;
-                    this.roles = response.data.roles;
-                })
+    
+            
+            })
                 .catch(error=>{
                     console.log(error);
                 }) 

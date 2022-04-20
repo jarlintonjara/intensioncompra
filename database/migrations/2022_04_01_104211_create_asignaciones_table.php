@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('asignaciones', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('registro_id')->nullable();
-            $table->tinyInteger('user_id')->nullable();
-            $table->tinyInteger('ingreso_id')->nullable();
+            $table->integer('registro_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('ingreso_id')->nullable();
             $table->date('fecha_distribucion')->nullable();
             $table->date('fecha_emplazada')->nullable();
             $table->date('fecha_reservacion')->nullable();

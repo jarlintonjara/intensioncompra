@@ -53,7 +53,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
         $data = $request->post();
         $data['password'] = Hash::make('12345678');
         $user = User::create($data);
@@ -104,5 +104,5 @@ class UserController extends Controller
         $user->delete();
         $data = User::all();
         return response()->json($data);
-    }
+    }   
 }
