@@ -38,7 +38,7 @@
                                     <td>{{asignacion.modelo}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : ""}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
-                                    <td>{{asignacion.fecha_ingreso ? $asignacion.fecha_ingreso : ""}}</td>
+                                    <td>{{asignacion.fecha_ingreso ? asignacion.fecha_ingreso : ""}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>

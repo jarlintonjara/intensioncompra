@@ -1245,7 +1245,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               asignacion.fecha_ingreso
-                                ? _vm.$asignacion.fecha_ingreso
+                                ? asignacion.fecha_ingreso
                                 : ""
                             )
                           ),
