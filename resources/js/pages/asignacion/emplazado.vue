@@ -41,10 +41,8 @@
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{ asignacion.fecha_reserva ? asignacion.fecha_reserva : "-" }}</td>
                                     <td>{{ asignacion.fecha_emplazado ? asignacion.fecha_emplazado : "-" }}</td>
-                                    
                                 </tr>
                             </tbody>
-                            
                         </table>
                         <!-- datatable end -->
                     </div>
