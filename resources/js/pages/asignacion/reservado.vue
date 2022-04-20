@@ -42,7 +42,6 @@
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>
-                                    
                                 </tr>
                             </tbody>
                             
