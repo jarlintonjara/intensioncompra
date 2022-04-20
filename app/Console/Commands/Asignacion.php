@@ -33,7 +33,6 @@ class Asignacion extends Command
             if($ingresos){
                 $ingresos->situacion = 'ASIGNADO';
                 $ingresos->save();
-
                 $registro->situacion = 'ASIGNADO';
                 $registro->save();
                 
