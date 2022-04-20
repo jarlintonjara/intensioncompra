@@ -36,11 +36,11 @@
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
-                                    <td>{{ asignacion.fecha_distribucion ? $date(asignacion.fecha_distribucion) : "-"}}</td>
+                                    <td>{{ asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
-                                    <td>{{ asignacion.fecha_reserva ? $date(asignacion.fecha_reserva) : "-" }}</td>
-                                    <td>{{ asignacion.fecha_emplazado ? $dateFormat(asignacion.fecha_emplazado) : "-" }}</td>
+                                    <td>{{ asignacion.fecha_reserva ? asignacion.fecha_reserva : "-" }}</td>
+                                    <td>{{ asignacion.fecha_emplazado ? asignacion.fecha_emplazado : "-" }}</td>
                                     
                                 </tr>
                             </tbody>
