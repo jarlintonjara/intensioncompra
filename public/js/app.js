@@ -5453,6 +5453,14 @@ vue__WEBPACK_IMPORTED_MODULE_11__["default"].use(vue_axios__WEBPACK_IMPORTED_MOD
 vue__WEBPACK_IMPORTED_MODULE_11__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_1___default()));
 window.JSZip = (jszip_dist_jszip__WEBPACK_IMPORTED_MODULE_9___default());
 
+vue__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.$date = function (Fecha) {
+  var Dia = Fecha.toString().substr(6, 2);
+  var Mes = Fecha.toString().substr(3, 2);
+  var Anio = Fecha.toString().substr(0, 4);
+  var Fecha_Registro = Dia + '-' + Mes + '-' + Anio;
+  return Fecha_Registro;
+};
+
 vue__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.$dateFormat = function (date) {
   var dt = new Date(date);
   var year = dt.getFullYear();

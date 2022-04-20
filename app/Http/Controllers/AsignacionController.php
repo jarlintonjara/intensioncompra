@@ -90,7 +90,7 @@ class AsignacionController extends Controller
         
         foreach($data as $e){
             $vin = Hash::make($e["vin"]);
-            $e["vin"]= substr($vin, 0, 15);
+            $e["vin"]= substr($vin, 0, 30);
         }
         return response()->json(['asignaciones' => $data, 'user' => $user]);
     }

@@ -29,22 +29,10 @@
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
-                                    <!-- <th>VIN</th> -->
                                     <th>MARCA</th>
                                     <th>MODELO</th>
-                                    <!-- <th>VERSION</th>
-                                    <th>COLOR</th>
-                                    <th>AÑO MODELO</th>
-                                    <th>CÓDIGO SAP</th> -->
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>FECHA LLEGADA</th>
-                                    <!-- <th>CÓDIGO RESERVA</th>
-                                    <th>CÓDIGO SAP</th>
-                                    <th>FECHA ESTIMADA LLEGADA</th>
-                                    <th>CÓDIGO RESERVA</th>
-                                    <th>MONTO RESERVA</th>
-                                    <th>FECHA RESERVA</th> -->
-                                    <th>ESTADO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,19 +44,10 @@
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
-                                    <!-- <td>{{asignacion.vin}}</td> -->
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
-                                    <!-- <td>{{asignacion.version}}</td>
-                                    <td>{{asignacion.color}}</td>
-                                    <td>{{asignacion.anio_modelo}}</td>
-                                    <td>{{asignacion.codigo_sap}}</td> -->
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : ""}}</td>
                                     <td>{{asignacion.fecha_ingreso ? asignacion.fecha_ingreso : ""}}</td>
-                                    <!-- <td>{{asignacion.codigo_reserva}}</td>
-                                    <td>{{asignacion.monto_reserva}}</td>
-                                    <td>{{asignacion.fecha_reserva}}</td> -->
-                                    <td>{{asignacion.situacion}}</td>
                                 </tr>
                             </tbody>
                             
@@ -146,6 +125,11 @@
                                         <div class="col-md-3"><b>{{ registro.celular }}</b></div>
                                         <div class="col-md-3">Email:</div>
                                         <div class="col-md-3"><b>{{ registro.email }}</b></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-3">VIN:</div>
+                                        <div class="col-md-9"><b>{{ registro.vin }}</b></div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -308,6 +292,7 @@ export default {
             this.registro.color1= datos.color1;        
             this.registro.color2= datos.color2;
             this.registro.color3= datos.color3;
+            this.registro.vin= datos.vin;
             $('#modalDetalle').modal('show')
         },
         async reservar(){

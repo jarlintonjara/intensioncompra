@@ -26,6 +26,13 @@ Vue.use(VueAxios, axios);
 Vue.use(VueSweetalert2);
 window.JSZip = jszip;
 
+Vue.prototype.$date = function(Fecha){
+    let Dia = Fecha.toString().substr(6, 2);
+    let Mes = Fecha.toString().substr(3, 2);
+    let Anio = Fecha.toString().substr(0, 4);
+    let Fecha_Registro = Dia + '-' + Mes + '-' + Anio ;
+    return Fecha_Registro;
+}
 Vue.prototype.$dateFormat = function(date){
     let dt = new Date(date);
     let year  = dt.getFullYear();

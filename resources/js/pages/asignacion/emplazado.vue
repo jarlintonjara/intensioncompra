@@ -24,7 +24,6 @@
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
-
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
@@ -34,17 +33,13 @@
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
-                                    
-                                    <!-- <td>{{asignacion.concesionario}}</td> -->
                                     <td>{{asignacion.nombre}}</td>
-                                    <!-- <td>{{asignacion.vin}}</td> -->
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
-                                    <td>{{ asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
-                                    
+                                    <td>{{ asignacion.fecha_distribucion ? $date(asignacion.fecha_distribucion) : "-"}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
-                                    <td>{{ asignacion.fecha_reserva ? asignacion.fecha_reserva : "-" }}</td>
+                                    <td>{{ asignacion.fecha_reserva ? $date(asignacion.fecha_reserva) : "-" }}</td>
                                     <td>{{ asignacion.fecha_emplazado ? $dateFormat(asignacion.fecha_emplazado) : "-" }}</td>
                                     
                                 </tr>

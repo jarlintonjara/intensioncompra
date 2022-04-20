@@ -230,22 +230,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -364,6 +348,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
       this.registro.color1 = datos.color1;
       this.registro.color2 = datos.color2;
       this.registro.color3 = datos.color3;
+      this.registro.vin = datos.vin;
       $('#modalDetalle').modal('show');
     },
     reservar: function reservar() {
@@ -1322,8 +1307,6 @@ var render = function () {
                       _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("FECHA LLEGADA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("ESTADO")]),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -1396,8 +1379,6 @@ var render = function () {
                             )
                           ),
                         ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.situacion))]),
                       ])
                     }),
                     0
@@ -1667,6 +1648,16 @@ var render = function () {
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-3" }, [
                           _c("b", [_vm._v(_vm._s(_vm.registro.email))]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mt-2" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("VIN:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-9" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.vin))]),
                         ]),
                       ]),
                     ]),
