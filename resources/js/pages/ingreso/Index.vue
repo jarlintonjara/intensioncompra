@@ -56,7 +56,6 @@
                                     <td>{{ingreso.codigo_sap}}</td>
                                     <td>{{ingreso.situacion}}</td>
                                     <td>{{ingreso.nave}}</td>
-                                    
                                     <td>{{$dateFormat(ingreso.fecha_ingreso)}}</td>
                                 </tr>
                             </tbody>
