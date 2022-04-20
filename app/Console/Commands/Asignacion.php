@@ -16,7 +16,7 @@ class Asignacion extends Command
     public function handle()
     {
         $registros = RegistroModel::select('id','marca','modelo','version','anio_modelo','color1','situacion')
-        ->where('situacion', 'SINASIGNAR')->where('estado', '1')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')->orderBy('fecha', 'asc')
         ->get();
 
         foreach ($registros as $registro) {
@@ -37,14 +37,14 @@ class Asignacion extends Command
                 $registro->situacion = 'ASIGNADO';
                 $registro->save();
                 
-                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
+                AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
             } 
         }
         // dd($ingresos);
 
     //segundo
     $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')
-        ->where('situacion', 'SINASIGNAR')->where('estado', '1')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')->orderBy('fecha', 'asc')
         ->get();
         
         foreach ($registros2 as $registro2) {
@@ -65,13 +65,13 @@ class Asignacion extends Command
                 $registro2->situacion = 'ASIGNADO';
                 $registro2->save();
 
-                AsignacionModel::create(['registro_id' => $registro2->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => now()]);
+                AsignacionModel::create(['registro_id' => $registro2->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
             } 
         }
         
         //tercero
         $registros3 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color3','situacion')
-        ->where('situacion', 'SINASIGNAR')->where('estado', '1')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')->orderBy('fecha', 'asc')
         ->get();
 
         foreach ($registros3 as $registro3) {

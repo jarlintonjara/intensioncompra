@@ -31,6 +31,7 @@ class RegistroModel extends Model
         'color3',
         'situacion',
         'estado',
+        'fecha',
         'created_at',
         'updated_at'
     ];

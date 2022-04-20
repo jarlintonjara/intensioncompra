@@ -46,7 +46,7 @@
                                     <td>{{noasignado.version}}</td>
                                     <td>{{noasignado.tienda}}</td>
                                     <td>{{noasignado.situacion}}</td>
-                                    <td>{{noasignado.created_at ? $dateFormat(noasignado.created_at):""}}</td>
+                                    <td>{{noasignado.fecha ? $dateFormat(noasignado.fecha):""}}</td>
                                     
                                 </tr>
                             </tbody>

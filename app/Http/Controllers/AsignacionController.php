@@ -19,6 +19,7 @@ class AsignacionController extends Controller
         $user = $auth->getUser($request->bearerToken());
         $query = AsignacionModel::select(
             'registros.created_at',
+            'registros.fecha',
             'registros.nombre_completo',
             'registros.documento',
             'registros.celular',

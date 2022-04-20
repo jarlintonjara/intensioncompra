@@ -26,6 +26,7 @@ class RegistroController extends Controller
 
         $query = RegistroModel::select(
             'registros.created_at', 
+            'registros.fecha', 
             'registros.nombre_completo',
             'users.email', 
             'registros.documento',

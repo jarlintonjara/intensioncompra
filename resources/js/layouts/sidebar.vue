@@ -21,7 +21,7 @@
                                 <span class="nav-link-text">Usuarios</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="">
+                        <!-- <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="">
                             <a href="">
                                 <i class="fa-solid fa-users" style="color: white !important;"></i>
                                 <span class="nav-link-text">Tiendas</span>
@@ -38,7 +38,7 @@
                                 <i class="fa-solid fa-users" style="color: white !important;"></i>
                                 <span class="nav-link-text">Concesionario</span>
                             </a>
-                        </router-link>
+                        </router-link> -->
                         <router-link tag="li" to=""  active-class="">
                             <a href="">
                                 <i class="fa-solid fa-pencil fa-3x" style="color: white !important;"></i>
