@@ -24,10 +24,7 @@
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
-                                    <!-- <th>VERSION</th> -->
-                                    <!-- <th>COLOR</th>
-                                    <th>AÑO MODELO</th>
-                                    <th>CÓDIGO SAP</th> -->
+
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
@@ -43,14 +40,11 @@
                                     <!-- <td>{{asignacion.vin}}</td> -->
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
-                                    <td>{{ asignacion.fecha_distribucion ? $dateFormat(asignacion.fecha_distribucion) : "-"}}</td>
-                                    <!-- <td>{{asignacion.version}}</td> -->
-                                    <!-- <td>{{asignacion.color}}</td>
-                                    <td>{{asignacion.anio_modelo}}</td>
-                                    <td>{{asignacion.codigo_sap}}</td> -->
+                                    <td>{{ asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
+                                    
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
-                                    <td>{{ asignacion.fecha_reserva ? $dateFormat(asignacion.fecha_reserva) : "-" }}</td>
+                                    <td>{{ asignacion.fecha_reserva ? asignacion.fecha_reserva : "-" }}</td>
                                     <td>{{ asignacion.fecha_emplazado ? $dateFormat(asignacion.fecha_emplazado) : "-" }}</td>
                                     
                                 </tr>

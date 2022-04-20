@@ -208,12 +208,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1245,7 +1239,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               asignacion.fecha_distribucion
-                                ? _vm.$dateFormat(asignacion.fecha_distribucion)
+                                ? asignacion.fecha_distribucion
                                 : "-"
                             )
                           ),
@@ -1259,7 +1253,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               asignacion.fecha_reserva
-                                ? _vm.$dateFormat(asignacion.fecha_reserva)
+                                ? asignacion.fecha_reserva
                                 : "-"
                             )
                           ),
