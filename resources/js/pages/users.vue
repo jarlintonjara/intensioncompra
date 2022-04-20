@@ -39,7 +39,6 @@
                             </tbody>
                             
                         </table>
-                        <!-- datatable end -->
                     </div>
                 </div>
             </div>
@@ -61,11 +60,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="Nombres">Nombres</label>
-                                <input type="text" id="Nombres" class="form-control" placeholder="Nombres" required="" v-model="datos.nombre">
+                                <input type="text" id="Nombres" class="form-control" v-model="datos.nombre">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Apellidos">Apellidos</label>
-                                <input type="text" id="Apellidos" class="form-control" placeholder="Apellidos" required="" v-model="datos.apellido">
+                                <input type="text" id="Apellidos" class="form-control" v-model="datos.apellido">
                             </div>
                            
                         </div>
@@ -73,15 +72,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="Documento">Documento</label>
-                                <input type="text" id="Documento" class="form-control" placeholder="Documento" v-model="datos.documento">
+                                <input type="text" id="Documento" class="form-control"  v-model="datos.documento">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Telefono">Telefono</label>
-                                <input type="text" id="Telefono" class="form-control" placeholder="Telefono" v-model="datos.telefono">
+                                <input type="text" id="Telefono" class="form-control" v-model="datos.telefono">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Email">Email</label>
-                                <input type="email" id="Email" class="form-control" placeholder="Email" v-model="datos.email">
+                                <input type="email" id="Email" class="form-control"  v-model="datos.email">
                             </div>
                         </div>
 
@@ -106,23 +105,30 @@
                                 <label for="Tienda">Tienda</label>
                                 <select id="Tienda" class="browser-default custom-select" v-model="datos.tienda_id">
                                     <option>Seleccione una Tienda</option>
-                                    <option v-for="tienda in tiendas" :key="tienda.nombre + tienda.id" :value="tienda.id">{{ tienda.nombre }}</option>
+                                    <option v-for="tienda in tiendasFilter" :key="tienda.nombre + tienda.id" :value="tienda.id">{{ tienda.nombre }}</option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <label for="usuario">Usuario</label>
-                                <input type="text" id="usuario" class="form-control" placeholder="usuario" required="" v-model="datos.usuario">
-                            </div>
-                        </div>
-
-                        <div class="form-row"> 
                             <div class="form-group col-md-4">
                                 <label for="Role">Rol</label>
                                 <select id="Perfil" class="browser-default custom-select" v-model="datos.role_id">
                                     <option>Seleccione un rol</option>
                                     <option v-for="role in roles" :key="role.nombre+role.id" :value="role.id">{{ role.nombre }}</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" id="usuario" class="form-control" v-model="datos.usuario">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" class="form-control" v-model="datos.password">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="confirmar_password">Confirmar contraseña</label>
+                                <input type="password" id="confirmar_password" class="form-control" v-model="datos.confirmar_password">
                             </div>
                         </div>
                     </div>
@@ -149,16 +155,20 @@ export default {
             roles:[],
             concesionarios:[],
             tiendas:[],
+            tiendasFilter:[],
             datos: {
                 nombre:'', 
                 apellido:'', 
                 concesionario_id: 0,
                 tienda: 0,
-                documento:'',
-                email:'', cargo: '',
-                area: '', role_id: '',
-                telefono:'',
-                usuario:''},
+                documento:'', 
+                email:'', 
+                role_id: '',
+                telefono:'', 
+                usuario:'',
+                password: '',
+                confirmar_password: ''
+            },
             titulo:'',
             btnCrear:false,
             btnEditar:false,
@@ -188,6 +198,14 @@ export default {
 
             }
 
+    },
+    watch: {
+        'datos.concesionario_id': function(value) {
+            if(value){
+                this.tiendasFilter = this.tiendas.filter(e => e.concesionario_id == value);
+                this.datos.tienda_id = '';
+            }
+        }
     },
     methods:{
         async init(){
@@ -254,13 +272,32 @@ export default {
             }
         },
         borrar(id){
-            if(confirm("¿Confirma eliminar el registro?")){
-                this.axios.delete(`/api/usuario/${id}`).then(response=>{
-                    this.users = [].concat(response.data);
-                }).catch(error=>{
-                    console.log(error)
-                })
-            }
+            this.$swal({
+                title: "¿Seguro de eliminar?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then(async (willDelete) => {
+                if (willDelete) {
+                     this.axios.delete(`/api/usuario/${id}`).then(response=>{
+                        let index =  this.users.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let users = this.users;
+                            users.splice(index, 1);
+                            this.users = [].concat(users);
+                        }
+                        this.$swal.fire(
+                            'Usuario eliminado',
+                            '',
+                            'success'
+                        ) 
+                    }).catch(error=>{
+                        console.log(error)
+                    });
+                } 
+            });
         },
         abrirModalCrear(){
             this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', cargo: '', area: ''};
@@ -270,17 +307,15 @@ export default {
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.datos= {
-                nombre: datos.nombre, 
-                apellido: datos.apellido,
-                documento: datos.documento, 
-                email: datos.email, 
-                role_id: datos.role_id,          
-                tienda_id: datos.tienda_id,          
-                concesionario_id: datos.concesionario_id,          
-                usuario: datos.usuario         
-            };
             this.titulo=' Editar usuario'
+            this.datos.nombre = datos.nombre; 
+            this.datos.apellido = datos.apellido;
+            this.datos.documento = datos.documento; 
+            this.datos.email = datos.email; 
+            this.datos.role_id = datos.role_id;          
+            this.datos.tienda_id = datos.tienda_id;          
+            this.datos.concesionario_id = datos.concesionario_id;          
+            this.datos.usuario = datos.usuario;
             this.btnCrear=false
             this.btnEditar=true
             this.id=datos.id

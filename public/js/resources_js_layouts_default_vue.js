@@ -52,9 +52,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -119,6 +116,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1389,41 +1391,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "page-wrapper" }, [
-      _c(
-        "div",
-        { staticClass: "page-inner" },
-        [
-          _c("Sidebar", { attrs: { session: _vm.user } }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "page-content-wrapper" },
-            [
-              _c("Navbar", { attrs: { session: _vm.user } }),
-              _vm._v(" "),
-              _c("router-view"),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "page-content-overlay",
-                attrs: {
-                  "data-action": "toggle",
-                  "data-class": "mobile-nav-on",
-                },
-              }),
-              _vm._v(" "),
-              _c("footer", {
-                staticClass: "page-footer",
-                attrs: { role: "contentinfo" },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-    ]),
+  return _c("div", { staticClass: "page-wrapper" }, [
+    _c(
+      "div",
+      { staticClass: "page-inner" },
+      [
+        _c("Sidebar", { attrs: { session: _vm.user } }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "page-content-wrapper" },
+          [
+            _c("Navbar", { attrs: { session: _vm.user } }),
+            _vm._v(" "),
+            _c("router-view"),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "page-content-overlay",
+              attrs: { "data-action": "toggle", "data-class": "mobile-nav-on" },
+            }),
+            _vm._v(" "),
+            _c("footer", {
+              staticClass: "page-footer",
+              attrs: { role: "contentinfo" },
+            }),
+          ],
+          1
+        ),
+      ],
+      1
+    ),
   ])
 }
 var staticRenderFns = []
@@ -1485,7 +1482,7 @@ var render = function () {
             },
             [
               _c("i", { staticClass: "fas fa-user" }),
-              _vm._v(" " + _vm._s(_vm.user.nombre) + "\n            "),
+              _vm._v(" " + _vm._s(_vm.user.nombre) + "\n               "),
             ]
           ),
           _vm._v(" "),
@@ -1500,7 +1497,7 @@ var render = function () {
               _c(
                 "router-link",
                 {
-                  staticClass: "dropdown-item fw-500 pt-3 pb-3",
+                  staticClass: "dropdown-item fw-500 pt-2 pb-2",
                   attrs: { to: "perfil" },
                 },
                 [
@@ -1515,7 +1512,7 @@ var render = function () {
               _c(
                 "a",
                 {
-                  staticClass: "dropdown-item fw-500 pt-3 pb-3",
+                  staticClass: "dropdown-item fw-500 pt-2 pb-2",
                   attrs: { href: "" },
                   on: {
                     click: function ($event) {

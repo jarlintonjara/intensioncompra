@@ -149,6 +149,103 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -163,6 +260,24 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
         monto_reserva: 0,
         // fecha_reserva: "",
         situacion: "RESERVADO"
+      },
+      registro: {
+        nombreCompleto: "",
+        documento: "",
+        email: "",
+        celular: "",
+        usuarioNombre: "",
+        usuarioEmail: "",
+        tienda: "",
+        concesionario: "",
+        marca: "",
+        modelo: "",
+        version: "",
+        anio_modelo: "",
+        anio_fabricacion: "",
+        color1: "",
+        color2: "",
+        color3: ""
       },
       submited: false,
       user: {
@@ -233,6 +348,24 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
 
       $('#modalForm').modal('show');
     },
+    detalle: function detalle(datos) {
+      this.registro.nombreCompleto = datos.nombre_completo;
+      this.registro.documento = datos.documento;
+      this.registro.email = datos.correo;
+      this.registro.celular = datos.celular;
+      this.registro.usuarioNombre = datos.nombre + " " + (datos.apellido ? datos.apellido : " ");
+      this.registro.usuarioEmail = datos.email;
+      this.registro.tienda = datos.tienda;
+      this.registro.concesionario = datos.concesionario;
+      this.registro.marca = datos.marca;
+      this.registro.modelo = datos.modelo;
+      this.registro.version = datos.version;
+      this.registro.anio_modelo = datos.anio_modelo;
+      this.registro.color1 = datos.color1;
+      this.registro.color2 = datos.color2;
+      this.registro.color3 = datos.color3;
+      $('#modalDetalle').modal('show');
+    },
     reservar: function reservar() {
       var _this2 = this;
 
@@ -266,17 +399,12 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
                   _this2.id = null;
                   $('#modalForm').modal('hide');
 
-                  _this2.$swal.fire('Reservado!', '', 'success');
+                  _this2.$swal.fire('Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
               case 5:
-                $('#asignaciones').DataTable().destroy();
-                _context2.next = 8;
-                return _this2.$tablaGlobal('#asignaciones');
-
-              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -286,6 +414,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
+      $('#modalDetalle').modal('hide');
     }
   },
   watch: {
@@ -1174,7 +1303,7 @@ var render = function () {
                 [
                   _c("thead", [
                     _c("tr", [
-                      _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
+                      _c("th"),
                       _vm._v(" "),
                       _vm.user.role_id == 6 || _vm.user.role_id == 1
                         ? _c("th", [_vm._v("RESERVAR")])
@@ -1186,27 +1315,13 @@ var render = function () {
                       _vm._v(" "),
                       _c("th", [_vm._v("DOCUMENTO")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("VIN")]),
-                      _vm._v(" "),
                       _c("th", [_vm._v("MARCA")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("MODELO")]),
                       _vm._v(" "),
-                      _c("th", [_vm._v("VERSION")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("COLOR")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("AÑO MODELO")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CÓDIGO SAP")]),
+                      _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("FECHA LLEGADA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("CÓDIGO RESERVA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("MONTO RESERVA")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("FECHA RESERVA")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("ESTADO")]),
                     ]),
@@ -1216,11 +1331,18 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.asignaciones, function (asignacion) {
                       return _c("tr", { key: asignacion.id }, [
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              _vm.$dateFormat(asignacion.fecha_distribucion)
-                            )
+                        _c("td", { attrs: { tyle: "text-align: center" } }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-warning",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.detalle(asignacion)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "fa fa-list" })]
                           ),
                         ]),
                         _vm._v(" "),
@@ -1251,31 +1373,29 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.documento))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.vin))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.marca))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.version))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.color))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.anio_modelo))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.codigo_sap))]),
-                        _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            _vm._s(_vm.$dateFormat(asignacion.fecha_ingreso))
+                            _vm._s(
+                              asignacion.fecha_distribucion
+                                ? asignacion.fecha_distribucion
+                                : ""
+                            )
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.codigo_reserva))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.monto_reserva))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.fecha_reserva))]),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              asignacion.fecha_ingreso
+                                ? asignacion.fecha_ingreso
+                                : ""
+                            )
+                          ),
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.situacion))]),
                       ])
@@ -1463,6 +1583,250 @@ var render = function () {
           ]),
         ]),
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "modalDetalle",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-hidden": "true",
+          },
+        },
+        [
+          _c("div", { staticClass: "modal-dialog modal-lg" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title h4" }, [
+                  _vm._v("Detalle de registro"),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarModal()
+                      },
+                    },
+                  },
+                  [_vm._m(3)]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "card mb-5" }, [
+                  _c("div", { staticClass: "card-body p-3" }, [
+                    _c("h5", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                Cliente\n                                "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Nombre Completo:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.registro.nombreCompleto)),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Documento:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.documento))]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mt-2" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Celular:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.celular))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Email:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.email))]),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card mb-g" }, [
+                  _c("div", { staticClass: "card-body p-3" }, [
+                    _c("h5", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                Ejecutivo\n                            "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Nombre Completo:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.usuarioNombre))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Tienda:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.tienda))]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mt-2" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Email:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.usuarioEmail))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Concesionario:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.concesionario))]),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card mb-g" }, [
+                  _c("div", { staticClass: "card-body p-3" }, [
+                    _c("h5", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                Detalle de la Unidad\n                            "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Marca:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.marca))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Versión:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.version))]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mt-2" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Modelo:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.modelo))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Año Modelo:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.anio_modelo))]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mt-2" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Año Fabricación:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.registro.anio_fabricacion)),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Color 1:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.color1))]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mt-2" }, [
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Color 2:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.color2))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _vm._v("Color 3:"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c("b", [_vm._v(_vm._s(_vm.registro.color3))]),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarModal()
+                      },
+                    },
+                  },
+                  [_vm._v("Close")]
+                ),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
     ]
   )
 }
@@ -1520,6 +1884,14 @@ var staticRenderFns = [
     return _c("h5", { staticClass: "modal-title" }, [
       _c("i", { staticClass: "fa fa-user-plus" }),
       _vm._v(" Reservar\n                    "),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fal fa-times" }),
     ])
   },
 ]

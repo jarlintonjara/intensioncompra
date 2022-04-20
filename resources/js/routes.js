@@ -18,6 +18,7 @@ const NotFound = () => import('./pages/errors/404.vue');
 const Login = () => import('./pages/auth/login.vue');
 const Register = () => import('./pages/auth/register.vue');
 const Perfil = () => import('./pages/settings/perfil.vue');
+const Configuracion = () => import('./pages/settings/configuracion.vue');
 
 
 const concesionarios = () => import('./pages/concesionario.vue');
@@ -38,7 +39,7 @@ export default{
             beforeEnter: (to, form, next) => {
                 const token = localStorage.getItem('access_token');
                 if (token) {
-                    axios.get('api/getSession/'+ token).then((res)=>{
+                    axios.get('api/getSession/' + token).then((res) => {
                         next()
                     }).catch((error) => {
                         return next({ name: 'Login'})
@@ -53,6 +54,7 @@ export default{
                 { path: "/registro", component: Registro,  name: "Rgistro"},
                 { path: "/ingreso", component: Ingreso, name: "ingreso"},
                 { path: '/perfil', component: Perfil, name: 'perfil'},
+                { path: '/configuracion', component: Configuracion, name: 'configuracion'},
                 { path: '/no-asignado', component: Nasignado, name: 'noasignado'}, 
                 { path: '/asignacion', component: asignacion, name: 'asignacion'}, 
                 { path: '/reservado', component: reservado, name: 'reservado'}, 

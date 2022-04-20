@@ -7,7 +7,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\CaracteristicaController;
-use App\Http\Controllers\CarateristicaController;
+use App\Http\Controllers\ConcesinarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -34,7 +34,9 @@ Route::get('getSession/{token}', [AuthController::class, 'getSession']);
 
 Route::get('dashboard', [HomeController::class, 'index']);
 Route::resource('usuario', UserController::class);
+
 Route::resource('registro', RegistroController::class);
+Route::get('asignados', [RegistroController::class, 'asignados']);
 Route::get('executeAsignar', [RegistroController::class, 'jobAsignar']);
 Route::resource('ingreso', IngresoController::class);
 
@@ -44,9 +46,10 @@ Route::get('facturado', [AsignacionController::class, 'facturado']);
 Route::get('emplazado', [AsignacionController::class, 'emplazado']);
 Route::get('executeEmplazado', [AsignacionController::class, 'jobEmplazar']);
 Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);
-Route::get('exportarExcel',[ScheduleExport::class, 'jobExportar']);
+// Route::get('exportarExcel',[ScheduleExport::class, 'jobExportar']);
 
 
 //Mantenimiento
 Route::resource('tienda', TiendaController::class);
 Route::resource('caracteristica', CaracteristicaController::class);
+Route::resource('concesionario', ConcesinarioController::class);

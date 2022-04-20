@@ -39,7 +39,7 @@ class AuthController extends Controller
             'usuario' => ['required'],
             'password' => ['required']
         ]);
-        $user = User::where("usuario", $request->usuario)->first();
+        $user = User::where("usuario", $request->usuario)->where('status', 1)->first();
 
         if (isset($user->id)) {
             if (Hash::check($request->password, $user->password)) {

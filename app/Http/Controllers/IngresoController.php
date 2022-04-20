@@ -30,6 +30,7 @@ class IngresoController extends Controller
                     'packing_list.anio_modelo',
                     'packing_list.codigo_sap',
                     'packing_list.fecha_ingreso',
+                    'packing_list.nave',
                 )
                     ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                     ->where('bloqueado', 1)->where('users.user_id', $user->id)->get();
@@ -47,6 +48,7 @@ class IngresoController extends Controller
                     'packing_list.anio_modelo',
                     'packing_list.codigo_sap',
                     'packing_list.fecha_ingreso',
+                    'packing_list.nave',
                 )
                 ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                 ->where('bloqueado', 1)->where('users.tienda_id', $user->tienda_id)->get();
@@ -65,6 +67,7 @@ class IngresoController extends Controller
                     'packing_list.anio_modelo',
                     'packing_list.codigo_sap',
                     'packing_list.fecha_ingreso',
+                    'packing_list.nave',
                 )
                 ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                 ->where('bloqueado', 1)->where('packing_list.marca', $user->marca)->get();
@@ -82,6 +85,7 @@ class IngresoController extends Controller
                     'packing_list.anio_modelo',
                     'packing_list.codigo_sap',
                     'packing_list.fecha_ingreso',
+                    'packing_list.nave',
                 )
                     ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                     ->where('bloqueado', 1)->where('users.concesionario_id', $user->concesionario_id)->get();
@@ -99,6 +103,7 @@ class IngresoController extends Controller
                     'packing_list.anio_modelo',
                     'packing_list.codigo_sap',
                     'packing_list.fecha_ingreso',
+                    'packing_list.nave',
                 )
                 ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
                 ->where('bloqueado', 1)->get();
