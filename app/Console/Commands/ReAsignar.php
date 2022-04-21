@@ -15,14 +15,15 @@ class ReAsignar extends Command
 
     public function handle()
     {
-        $asignaciones = AsignacionModel::where('registros.situacion', 'ASIGNADO')->get();
+        $asignaciones = AsignacionModel::where('situacion', 'ASIGNADO')->get();
 
         foreach ($asignaciones as $asignacion) {
 
             $registro = RegistroModel::where('id', $asignacion->registro_id)
-                        ->where('estado', 1)
+                        ->where('situacion', 'ASIGNADO')
                         ->first();
     
+                        
             if($registro){
                 $registro->situacion = 'SINASIGNAR';
                 $registro->fecha = date('Y-m-d');
