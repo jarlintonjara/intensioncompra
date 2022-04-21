@@ -13,104 +13,104 @@
             </div>
             
             <ul class="nav-menu" id="js-nav-menu">
-                <li class="active">
+                <router-link tag="li" to="/dashboard" active-class="active" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
+                    <a href="#" >
+                        <i class="fal fa-info-circle"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_intel">Dashboard</span>
+                        <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
+                    </a>
+                </router-link>
+                <li class="" @click.prevent="selectLi(1)" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
+                    <a href="#" title="Registros" data-filter-tags="Registros">
+                        <i class="fal fa-cog"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_intel">Mantenimientos</span>
+                        <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
+                    </a>
                     <ul>
                         <router-link tag="li" to="/usuarios" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3" active-class="">
                             <a href="">
-                                <i class="fa-solid fa-users" style="color: white !important;"></i>
                                 <span class="nav-link-text">Usuarios</span>
                             </a>
                         </router-link>
-                        <!-- <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="">
+                        <router-link tag="li" to="/concesionarios" v-if="user.role_id == 6 " active-class="">
                             <a href="">
-                                <i class="fa-solid fa-users" style="color: white !important;"></i>
+                                <span class="nav-link-text">Concesionarios</span>
+                            </a>
+                        </router-link>
+                        <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="">
+                            <a href="">
                                 <span class="nav-link-text">Tiendas</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/caracteristicas" v-if="user.role_id == 6 " active-class="">
                             <a href="">
-                                <i class="fa-solid fa-users" style="color: white !important;"></i>
                                 <span class="nav-link-text">Caracteristicas</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/concesionario" v-if="user.role_id == 6 " active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-users" style="color: white !important;"></i>
-                                <span class="nav-link-text">Concesionario</span>
-                            </a>
-                        </router-link> -->
-                        <router-link tag="li" to=""  active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-pencil fa-3x" style="color: white !important;"></i>
-                                <span class="nav-link-text">REGISTRO</span>
-                            </a>
-                        </router-link>
+                    </ul>
+                </li>
+                <li class="" @click.prevent="selectLi(2)">
+                    <a href="#" title="Registros" data-filter-tags="registros">
+                        <i class="fal fa-th-list"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_intel">Registros</span>
+                        <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
+                    </a>
+                    <ul>
                         <router-link tag="li" to="/registro" v-if="user.role_id == 1 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Nuevo Registro</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/no-asignado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Lista de registros</span>
                             </a>
                         </router-link>
-                        <hr>
-                        <router-link tag="li" to="" active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-random fa-3x" style="color: white !important;"></i>
-                                <span class="nav-link-text">ASIGNACIONES</span>
-                            </a>
-                        </router-link>
+                    </ul>
+                </li>
+                <li class="" @click.prevent="selectLi(3)">
+                    <a href="#" title="Registros" data-filter-tags="registros">
+                        <i class="fal fa-edit"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_intel">Asignaciones</span>
+                        <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
+                    </a>
+                    <ul>
                         <router-link tag="li" to="/asignacion" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Lista de asignaciones</span>
-                            </a>
-                        </router-link>
-                        <hr>
-                        <router-link tag="li" to="#" active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-registered fa-3x" style="color: white !important;"></i>
-                                <span class="nav-link-text">RESERVADOS</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/reservado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Reservados</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/emplazado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Emplazados</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/facturado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Facturados</span>
                             </a>
                         </router-link>
-                        <hr>
-                        <router-link tag="li" to="" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 7" active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-database fa-3x" style="color: white !important;"></i>
-                                <span class="nav-link-text">PACKING LIST</span>
-                            </a>
-                        </router-link>
+                    </ul>
+                </li>
+                <li class="" @click.prevent="selectLi(4)">
+                    <a href="#" title="Registros" data-filter-tags="registros">
+                        <i class="fal fa-globe"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
+                        <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
+                    </a>
+                    <ul>
                         <router-link tag="li" to="/ingreso" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
-                                <span class="nav-link-text">Packing List</span>
+                                <span class="nav-link-text">Lista de packing list</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/bloqueado" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <i class="fa fa-minus fa-3x" style="color: white !important;"></i>
                                 <span class="nav-link-text">Bloqueados</span>
                             </a>
                         </router-link>
@@ -138,6 +138,12 @@ export default {
             user: {
                 role_id : 0
             }
+        }
+    },
+    methods: {
+        selectLi(i){
+            $("#js-nav-menu > li").removeClass("active");
+            $("#js-nav-menu > li").eq(i).addClass("active");
         }
     }
 }
