@@ -5466,7 +5466,7 @@ vue__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.$dateFormat = function (d
   var year = dt.getFullYear();
   var month = (dt.getMonth() + 1).toString().padStart(2, "0");
   var day = dt.getDate().toString().padStart(2, "0");
-  return day + "-" + month + "-" + year;
+  return year + "-" + month + "-" + day;
 };
 
 vue__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.$tablaGlobal = function (nombreTabla) {
