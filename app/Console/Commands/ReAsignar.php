@@ -23,7 +23,6 @@ class ReAsignar extends Command
                         ->where('situacion', 'ASIGNADO')
                         ->first();
     
-                        
             if($registro){
                 $registro->situacion = 'SINASIGNAR';
                 $registro->fecha = date('Y-m-d');
