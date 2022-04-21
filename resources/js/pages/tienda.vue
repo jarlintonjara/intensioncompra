@@ -95,7 +95,7 @@ export default {
             tiendas:[],
             datos: { 
                 nombre:'', 
-                tienda: 0,
+                tienda: '',
                 direccion: '',
                 },
             btnCrear:false,

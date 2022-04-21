@@ -120,15 +120,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "Concesionario",
   data: function data() {
     return {
-      concesioanrio: [],
+      concesionarios: [],
       datos: {
         nombre: '',
-        descripcion: 0,
+        descripcion: '',
         direccion: ''
       },
       btnCrear: false,
       btnEditar: false,
-      id: ''
+      id: '',
+      titulo: ''
     };
   },
   mounted: function mounted() {
@@ -152,7 +153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  _this.concesioanrio = response.data;
+                  _this.concesionarios = response.data;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -198,7 +199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('/api/concesionario', _this2.datos).then(function (response) {
-                    _this2.tienda.push(response.data);
+                    _this2.concesionario.push(response.data);
 
                     $('#modalForm').modal('hide');
 
@@ -233,7 +234,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/concesionario/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.tienda = [].concat(response.data);
+                    _this3.concesionario = [].concat(response.data);
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
@@ -256,7 +257,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("¿Confirma eliminar el registro?")) {
         this.axios["delete"]("/api/concesionario/".concat(id)).then(function (response) {
-          _this4.tienda = [].concat(response.data);
+          _this4.concesionario = [].concat(response.data);
         })["catch"](function (error) {
           console.log(error);
         });
@@ -265,14 +266,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     abrirModalCrear: function abrirModalCrear() {
       this.datos = {
         nombre: '',
-        apellido: '',
-        documento: '',
-        email: '',
-        role_id: '',
-        cargo: '',
-        area: ''
+        descripcion: '',
+        direccion: ''
       };
-      this.titulo = 'Crear usuario';
+      this.titulo = 'Crear concesionario';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
@@ -280,15 +277,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     abrirModalEditar: function abrirModalEditar(datos) {
       this.datos = {
         nombre: datos.nombre,
-        apellido: datos.apellido,
-        documento: datos.documento,
-        email: datos.email,
-        role_id: datos.role_id,
-        tienda_id: datos.tienda_id,
-        concesionario_id: datos.concesionario_id,
-        usuario: datos.usuario
+        descripcion: datos.descripcion,
+        direccion: datos.direccion
       };
-      this.titulo = ' Editar usuario';
+      this.titulo = ' Editar concesionario';
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
@@ -1191,13 +1183,13 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.users, function (concesionario) {
+                    _vm._l(_vm.concesionarios, function (concesionario) {
                       return _c("tr", { key: concesionario.id }, [
                         _c("td", [_vm._v(_vm._s(concesionario.nombre))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(concesionario.descripcion))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(_vm.concesioanrio.direccion))]),
+                        _c("td", [_vm._v(_vm._s(concesionario.direccion))]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1448,7 +1440,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
         _c("i", { attrs: { cwlass: "subheader-icon fal fa-chart-area" } }),
-        _vm._v(" Concesionario\n        "),
+        _vm._v("Concesionarios\n        "),
       ]),
     ])
   },

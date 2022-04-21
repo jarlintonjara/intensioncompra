@@ -1896,7 +1896,7 @@ var render = function () {
                         {
                           attrs: {
                             tag: "li",
-                            to: "/concesionario",
+                            to: "/concesionarios",
                             "active-class": "",
                           },
                         },
@@ -1908,7 +1908,7 @@ var render = function () {
                             }),
                             _vm._v(" "),
                             _c("span", { staticClass: "nav-link-text" }, [
-                              _vm._v("Concesionario"),
+                              _vm._v("Concesionarios"),
                             ]),
                           ]),
                         ]

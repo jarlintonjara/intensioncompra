@@ -125,7 +125,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tiendas: [],
       datos: {
         nombre: '',
-        tienda: 0,
+        tienda: '',
         direccion: ''
       },
       btnCrear: false,

@@ -2,7 +2,7 @@
     <main id="js-page-content" role="main" class="page-content">
         <div class="subheader">
             <h1 class="subheader-title">
-                <i cwlass='subheader-icon fal fa-chart-area'></i> Concesionario
+                <i cwlass='subheader-icon fal fa-chart-area'></i>Concesionarios
             </h1>
         </div>
         <div class="col-lg-12">
@@ -23,10 +23,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="concesionario in users" :key="concesionario.id">
-                                    <td>{{ concesionario.nombre }}</td>
+                                <tr v-for="concesionario in concesionarios" :key="concesionario.id">
+                                    <td>{{concesionario.nombre }}</td>
                                     <td>{{concesionario.descripcion}}</td>
-                                    <td>{{ concesioanrio.direccion }}</td>                               
+                                    <td>{{concesionario.direccion }}</td>                               
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(concesionario)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(concesionario.id)"><i class="fa fa-trash"></i></button>
@@ -90,15 +90,16 @@ export default {
     name: "Concesionario",
     data(){
         return {
-            concesioanrio:[],
+            concesionarios:[],
             datos: {
                 nombre:'', 
-                descripcion: 0,
+                descripcion:'',
                 direccion: '',
                 },
             btnCrear:false,
             btnEditar:false,
-            id:''
+            id:'',
+            titulo:''
         }
     },
     mounted(){
@@ -114,8 +115,8 @@ export default {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then(response=>{
-                    this.concesioanrio = response.data;
-    
+                    this.concesionarios = response.data;
+
             
             })
                 .catch(error=>{
@@ -138,7 +139,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.post('/api/concesionario', this.datos).then(response=>{
-                    this.tienda.push(response.data);
+                    this.concesionario.push(response.data);
                     $('#modalForm').modal('hide'); 
                     this.$swal.fire(
                         'Concesionario creado correctamente!',
@@ -154,7 +155,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.put('/api/concesionario/'+this.id, this.datos).then(response=>{
-                    this.tienda = [].concat(response.data);          
+                    this.concesionario = [].concat(response.data);          
                     this.id='';
                     $('#modalForm').modal('hide');
                     this.$swal.fire(
@@ -170,15 +171,15 @@ export default {
         borrar(id){
             if(confirm("¿Confirma eliminar el registro?")){
                 this.axios.delete(`/api/concesionario/${id}`).then(response=>{
-                    this.tienda = [].concat(response.data);
+                    this.concesionario = [].concat(response.data);
                 }).catch(error=>{
                     console.log(error)  
                 })
             }
         },
         abrirModalCrear(){
-            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', cargo: '', area: ''};
-            this.titulo='Crear usuario'
+            this.datos = {nombre:'', descripcion:'', direccion: ''};
+            this.titulo='Crear concesionario'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
@@ -186,15 +187,10 @@ export default {
         abrirModalEditar(datos){
             this.datos= {
                 nombre: datos.nombre, 
-                apellido: datos.apellido,
-                documento: datos.documento, 
-                email: datos.email, 
-                role_id: datos.role_id,          
-                tienda_id: datos.tienda_id,          
-                concesionario_id: datos.concesionario_id,          
-                usuario: datos.usuario         
+                descripcion: datos.descripcion,
+                direccion: datos.direccion       
             };
-            this.titulo=' Editar usuario'
+            this.titulo=' Editar concesionario'
             this.btnCrear=false
             this.btnEditar=true
             this.id=datos.id
