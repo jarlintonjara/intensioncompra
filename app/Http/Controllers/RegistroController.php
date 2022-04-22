@@ -227,7 +227,9 @@ class RegistroController extends Controller
 
     public function store(Request $request)
     {
-        $registro = RegistroModel::create($request->post());
+        $data = $request->post();
+        $data['fecha'] = date('Y-m-d');
+        $registro = RegistroModel::create($data);
         return response()->json($registro);
     }
 
