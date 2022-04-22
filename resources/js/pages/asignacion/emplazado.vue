@@ -27,7 +27,7 @@
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
-                                    <th>FECHA EMPLAZADO</th>
+                                    <th>FECHA SAP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,8 +91,8 @@
                                         <div class="col-md-3"><b>{{ registro.color3 }}</b></div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-3">Fecha Emplazado:</div>
-                                        <div class="col-md-3"><b>{{ registro.fecha_emplazado ? $dateFormat(registro.fecha_emplazado) : "-"}}</b></div>
+                                        <div class="col-md-3">Fecha SAP:</div>
+                                        <div class="col-md-3"><b>{{ registro.fecha_emplazado ? registro.fecha_emplazado : "-"}}</b></div>
                                         <div class="col-md-3">Código Reserva:</div>
                                         <div class="col-md-3"><b>{{ registro.codigo_reserva }}</b></div>
                                     </div>
