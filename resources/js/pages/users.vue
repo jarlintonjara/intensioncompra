@@ -20,7 +20,6 @@
                                     <th>Tienda</th>
                                     <th>Rol</th>
                                     <th>Documento</th> 
-                                    <th>Email</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -30,7 +29,6 @@
                                     <td>{{ user.tienda.nombre }}</td>
                                     <td>{{ user.role.descripcion }}</td>
                                     <td>{{ user.documento }}</td> 
-                                    <td>{{ user.email }}</td>
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(user)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(user.id)"><i class="fa fa-trash"></i></button>
@@ -55,7 +53,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
-                    <form>
+                    <form autocomplete="off">
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -66,7 +64,6 @@
                                 <label for="Apellidos">Apellidos</label>
                                 <input type="text" id="Apellidos" class="form-control" v-model="datos.apellido">
                             </div>
-                           
                         </div>
 
                         <div class="form-row">
@@ -85,50 +82,44 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="Concesionario">Concesionario</label>
-                                <select id="Concesionario" class="browser-default custom-select" v-model="datos.concesionario_id">
+                                <select id="Concesionario" class="browser-default custom-select" v-model="datos.concesionario_id" :disabled="btnEditar">
                                     <option>Seleccione una Concesionario</option>
-                                    <option v-for="concesionario in concesionarios" :key="concesionario.nombre + concesionario.id" :value="concesionario.id">{{ concesionario.nombre }}</option>
+                                    <option v-for="concesionario in concesionarios" :key="concesionario.id + 11" :value="concesionario.id">{{ concesionario.nombre }}</option>
                                 </select>
                             </div>
-
-                            <!-- <div class="form-group col-md-4">
-                                    <label for="selectConcesionario">Concesionario</label>
-                                    <v-select class="vue-select2" name="selectConcesionario"
-                                        :options="marca" v-model="selectConcesionario" :reduce="label => label.code" :v-for="concesionario in concesionarios">
-                                    </v-select>
-                                    <div style="color:red;" v-if="submited && !$v.selectConcesionario.required">El campo nombre es obligatorio</div>
-                            </div> -->
                             
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="Tienda">Tienda</label>
-                                <select id="Tienda" class="browser-default custom-select" v-model="datos.tienda_id">
+                                <select id="Tienda" class="browser-default custom-select" v-model="datos.tienda_id" :disabled="btnEditar">
                                     <option>Seleccione una Tienda</option>
-                                    <option v-for="tienda in tiendasFilter" :key="tienda.nombre + tienda.id" :value="tienda.id">{{ tienda.nombre }}</option>
+                                    <option v-for="tienda in tiendasFilter" :key="tienda.id + 22" :value="tienda.id">{{ tienda.nombre }}</option>
                                 </select>
                             </div>
-
-                            <div class="form-group col-md-4">
+                            
+                        </div>∂
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
                                 <label for="Role">Rol</label>
-                                <select id="Perfil" class="browser-default custom-select" v-model="datos.role_id">
+                                <select id="Perfil" class="browser-default custom-select" v-model="datos.role_id" :disabled="btnEditar">
                                     <option>Seleccione un rol</option>
-                                    <option v-for="role in roles" :key="role.nombre+role.id" :value="role.id">{{ role.nombre }}</option>
+                                    <option v-for="role in roles" :key="role.id + 33" :value="role.id">{{ role.nombre }}</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" id="usuario" class="form-control" v-model="datos.usuario" :disabled="btnEditar">
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="usuario">Usuario</label>
-                                <input type="text" id="usuario" class="form-control" v-model="datos.usuario">
+                        <div class="form-row" v-if="!btnEditar">
+                            <div class="form-group col-md-6">
+                                <label for="password">Contraseña </label>
+                                <input type="password" id="password" class="form-control" placeholder="ejem: ventas.." autocomplete="new-password" v-model="datos.password">
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="password">Contraseña</label>
-                                <input type="password" id="password" class="form-control" v-model="datos.password">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="confirmar_password">Confirmar contraseña</label>
-                                <input type="password" id="confirmar_password" class="form-control" v-model="datos.confirmar_password">
+                            <div class="form-group col-md-6">
+                                <label for="confirmar_password" >Confirmar contraseña</label>
+                                <input type="password" id="confirmar_password" class="form-control" autocomplete="new-password2" v-model="datos.confirmar_password">
                             </div>
                         </div>
                     </div>
@@ -160,7 +151,7 @@ export default {
                 nombre:'', 
                 apellido:'', 
                 concesionario_id: 0,
-                tienda: 0,
+                tienda_id: 0,
                 documento:'', 
                 email:'', 
                 role_id: '',
@@ -172,8 +163,6 @@ export default {
             titulo:'',
             btnCrear:false,
             btnEditar:false,
-            selectConcesionario :"",
-            selectTienda :"",
             id:''
         }
     },
@@ -181,29 +170,17 @@ export default {
         this.init()
 
     },
-        watch: {
-            selectConcesionario : function(val) {
-            this.concesionario = [];
-            this.selectTienda = "";
-            let dataFilter = this.caracteristicas.filter(e => e.concesionario == val ).map(e => { return { code : e.concesionario, label: e.concesionario, ...e } })
-            let result = this.getUnique(dataFilter, 'concesionario');
-            this.tienda = [].concat(result);
-            },
-
-            selectTienda : function(val){
-            this.tiendas = [];
-            let dataFilter = this.caracteristicas.filter(e => e.tienda == val ).map(e => { return { code : e.tienda, label: e.tienda, ...e } })
-            let result = this.getUnique(dataFilter, 'tienda');
-            // this.modelo = [].concat(result);
-
-            }
-
-    },
     watch: {
         'datos.concesionario_id': function(value) {
             if(value){
-                this.tiendasFilter = this.tiendas.filter(e => e.concesionario_id == value);
-                this.datos.tienda_id = '';
+                let tiendasFilter = this.tiendas.filter(e => e.concesionario_id == value);
+                this.tiendasFilter = [].concat(tiendasFilter);
+                this.datos.tienda_id = this.datos.tienda_id ? this.datos.tienda_id :'';
+            }
+        },
+        'datos.tienda_id': function(value) {
+            if(value){
+                this.datos.tienda_id = value;
             }
         }
     },
@@ -213,18 +190,16 @@ export default {
             await this.axios.get('/api/usuario',{
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },
-                })
-                .then(response=>{
-                    this.users = response.data.users;
-                    this.roles = response.data.roles;
-                    this.concesionarios = response.data.concesionarios;
-                    this.tiendas = response.data.tiendas;
-    
-            
             })
-                .catch(error=>{
-                    console.log(error);
-                }) 
+            .then(response=>{
+                this.users = response.data.users;
+                this.roles = response.data.roles;
+                this.concesionarios = response.data.concesionarios;
+                this.tiendas = response.data.tiendas;
+            })
+            .catch(error=>{
+                console.log(error);
+            }) 
             await this.$tablaGlobal('#tableUser');
         },
         validarCampos(){
@@ -300,13 +275,27 @@ export default {
             });
         },
         abrirModalCrear(){
-            this.datos = {nombre:'', apellido:'', documento:'', email:'', role_id: '', cargo: '', area: ''};
+            this.datos = {
+                nombre:'', 
+                apellido:'', 
+                concesionario_id: 0,
+                tienda_id: 0,
+                documento:'', 
+                email:'', 
+                role_id: '',
+                telefono:'', 
+                usuario:'',
+                password: '',
+                confirmar_password: ''
+            };
             this.titulo='Crear usuario'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
+            console.log(datos);
+            this.tiendasFilter = [].concat(this.tiendas);
             this.titulo=' Editar usuario'
             this.datos.nombre = datos.nombre; 
             this.datos.apellido = datos.apellido;

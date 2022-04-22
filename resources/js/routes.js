@@ -20,7 +20,6 @@ const Register = () => import('./pages/auth/register.vue');
 const Perfil = () => import('./pages/settings/perfil.vue');
 const Configuracion = () => import('./pages/settings/configuracion.vue');
 
-
 const concesionarios = () => import('./pages/concesionario.vue');
 const tiendas = () => import('./pages/tienda.vue');
 const caracteristicas = () => import('./pages/caracteristica.vue');

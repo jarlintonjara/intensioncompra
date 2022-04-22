@@ -126,6 +126,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Caracteristica",
   data: function data() {
@@ -1199,17 +1215,17 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.caracteristicas, function (caracteristicas) {
-                      return _c("tr", { key: caracteristicas.id }, [
-                        _c("td", [_vm._v(_vm._s(caracteristicas.marca))]),
+                    _vm._l(_vm.caracteristicas, function (caracteristica) {
+                      return _c("tr", { key: caracteristica.id }, [
+                        _c("td", [_vm._v(_vm._s(caracteristica.marca))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristicas.modelo))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristicas.color1))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.color1))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristicas.color2))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.color2))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristicas.color3))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.color3))]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1218,7 +1234,7 @@ var render = function () {
                               staticClass: "btn btn-warning",
                               on: {
                                 click: function ($event) {
-                                  return _vm.abrirModalEditar(caracteristicas)
+                                  return _vm.abrirModalEditar(caracteristica)
                                 },
                               },
                             },
@@ -1231,7 +1247,7 @@ var render = function () {
                               staticClass: "btn btn-danger",
                               on: {
                                 click: function ($event) {
-                                  return _vm.borrar(caracteristicas.id)
+                                  return _vm.borrar(caracteristica.id)
                                 },
                               },
                             },
@@ -1255,7 +1271,7 @@ var render = function () {
             _c("div", { staticClass: "modal-header" }, [
               _c("h5", { staticClass: "modal-title" }, [
                 _c("i", { staticClass: "fa fa-user-plus" }),
-                _vm._v(" " + _vm._s(_vm.titulo) + "\n                "),
+                _vm._v(" " + _vm._s(_vm.titulo) + "\n                    "),
               ]),
               _vm._v(" "),
               _c(
@@ -1286,8 +1302,8 @@ var render = function () {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-row" }, [
                   _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "Marcas" } }, [
-                      _vm._v("Marca"),
+                    _c("label", { attrs: { for: "marca" } }, [
+                      _vm._v("Marca:"),
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -1300,12 +1316,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Marcas",
-                        placeholder: "Marcas",
-                        required: "",
-                      },
+                      attrs: { type: "text", id: "marca" },
                       domProps: { value: _vm.datos.marca },
                       on: {
                         input: function ($event) {
@@ -1319,8 +1330,8 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "Modelos" } }, [
-                      _vm._v("Modelo"),
+                    _c("label", { attrs: { for: "modelo" } }, [
+                      _vm._v("Modelo:"),
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -1333,12 +1344,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Modelos",
-                        placeholder: "Modelos",
-                        required: "",
-                      },
+                      attrs: { type: "text", id: "modelo" },
                       domProps: { value: _vm.datos.modelo },
                       on: {
                         input: function ($event) {
@@ -1350,10 +1356,12 @@ var render = function () {
                       },
                     }),
                   ]),
-                  _vm._v(" "),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
                   _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "Color" } }, [
-                      _vm._v("Color 1"),
+                    _c("label", { attrs: { for: "version" } }, [
+                      _vm._v("Versión:"),
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -1361,93 +1369,150 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.datos.color1,
-                          expression: "datos.color1",
+                          value: _vm.datos.version,
+                          expression: "datos.version",
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Color",
-                        placeholder: "Color",
-                        required: "",
-                      },
-                      domProps: { value: _vm.datos.color1 },
+                      attrs: { type: "text", id: "version" },
+                      domProps: { value: _vm.datos.version },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.datos, "color1", $event.target.value)
+                          _vm.$set(_vm.datos, "version", $event.target.value)
                         },
                       },
                     }),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "Color" } }, [
-                      _vm._v("Color 2"),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("label", { attrs: { for: "anioModelo" } }, [
+                      _vm._v("Año del modelo"),
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.color2,
-                          expression: "datos.color2",
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datos.anio_modelo,
+                            expression: "datos.anio_modelo",
+                          },
+                        ],
+                        staticClass: "browser-default custom-select",
+                        attrs: { id: "anioModelo", disabled: _vm.btnEditar },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "anio_modelo",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Color",
-                        placeholder: "Color",
-                        required: "",
                       },
-                      domProps: { value: _vm.datos.color2 },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "color2", $event.target.value)
-                        },
-                      },
-                    }),
+                      [
+                        _c("option", [_vm._v("Seleccione año modelo")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2025" } }, [
+                          _vm._v("2025"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2024" } }, [
+                          _vm._v("2024"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2023" } }, [
+                          _vm._v("2023"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2022" } }, [
+                          _vm._v("2022"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2021" } }, [
+                          _vm._v("2021"),
+                        ]),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "Color" } }, [
-                      _vm._v("Color 3"),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("label", { attrs: { for: "anioModelo" } }, [
+                      _vm._v("Año de fabricación"),
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.color3,
-                          expression: "datos.color3",
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datos.anio_fabricacion,
+                            expression: "datos.anio_fabricacion",
+                          },
+                        ],
+                        staticClass: "browser-default custom-select",
+                        attrs: { id: "anioModelo", disabled: _vm.btnEditar },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "anio_fabricacion",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Color",
-                        placeholder: "Color",
-                        required: "",
                       },
-                      domProps: { value: _vm.datos.color3 },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "color3", $event.target.value)
-                        },
-                      },
-                    }),
+                      [
+                        _c("option", [_vm._v("Seleccione año fabricación")]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2025" } }, [
+                          _vm._v("2025"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2024" } }, [
+                          _vm._v("2024"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2023" } }, [
+                          _vm._v("2023"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2022" } }, [
+                          _vm._v("2022"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2021" } }, [
+                          _vm._v("2021"),
+                        ]),
+                      ]
+                    ),
                   ]),
                 ]),
               ]),

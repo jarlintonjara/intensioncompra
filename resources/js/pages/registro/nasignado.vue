@@ -247,20 +247,6 @@ export default {
                 } 
             });
         },
-        async jobAsignados(){
-            await this.axios.get('/api/executeAsignar')
-                .then(response=>{
-                     this.$swal.fire(
-                    'Asignados!',
-                    '',
-                    'success'
-                )              
-                    })
-                .catch(error=>{
-                    console.log(error);
-                })
-            
-        },
         cerrarModal(){
             $('#modalForm').modal('hide');
         }

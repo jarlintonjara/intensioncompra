@@ -20,7 +20,7 @@
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                 </router-link>
-                <li class="" @click="selectLi" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
+                <li class="active open" @click="selectLi"   v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
                     <a href="#" title="Registros" data-filter-tags="Registros">
                         <i class="fal fa-cog"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Mantenimientos</span>
@@ -49,8 +49,8 @@
                         </router-link>
                     </ul>
                 </li>
-                <li class="" @click="selectLi">
-                    <a href="#" title="Registros" data-filter-tags="registros">
+                <li class="active open" >
+                    <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-th-list"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Registros</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
@@ -68,48 +68,48 @@
                         </router-link>
                     </ul>
                 </li>
-                <li class="" @click="selectLi">
-                    <a href="#" title="Registros" data-filter-tags="registros">
+                <li class="active open" >
+                    <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-edit"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Asignaciones</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li" to="/asignacion" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/asignacion" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Lista de asignaciones</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/reservado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/reservado" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Reservados</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/emplazado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/emplazado" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Emplazados</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/facturado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/facturado"  active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Facturados</span>
                             </a>
                         </router-link>
                     </ul>
                 </li>
-                <li class="" @click="selectLi">
-                    <a href="#" title="Packing" data-filter-tags="Packing">
+                <li class="active open" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
+                    <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-globe"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li" to="/ingreso" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/ingreso" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Lista de packing list</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/bloqueado" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/bloqueado" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Bloqueados</span>
                             </a>
@@ -142,10 +142,10 @@ export default {
     },
     methods: {
         selectLi(e){
-            //$("#js-nav-menu > li").removeClass("active");
-            $("#js-nav-menu > li").removeClass("active");
-            console.log($(e.target).parent('li'));
-            $(e.target).addClass('active');
+            /* console.log($(e.target).parent(''));
+            $("#js-nav-menu > li").removeClass("active"); */
+            //$("#js-nav-menu > li").eq(i).addClass("active");
+            //$("#js-nav-menu > li").eq(i).addClass("open");
         }
     }
 }

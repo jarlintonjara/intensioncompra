@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "maatwebsite/excel": "^3.1",
+        "nesbot/carbon": "^2.57",
         "phpoffice/phpspreadsheet": "1.22",
         "psr/simple-cache": "1.0",
         "yozaz/laravel-swiftmailer": "~4.0"

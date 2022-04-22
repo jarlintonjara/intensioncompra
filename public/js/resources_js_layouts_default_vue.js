@@ -393,10 +393,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     selectLi: function selectLi(e) {
-      //$("#js-nav-menu > li").removeClass("active");
-      $("#js-nav-menu > li").removeClass("active");
-      console.log($(e.target).parent('li'));
-      $(e.target).addClass('active');
+      /* console.log($(e.target).parent(''));
+      $("#js-nav-menu > li").removeClass("active"); */
+      //$("#js-nav-menu > li").eq(i).addClass("active");
+      //$("#js-nav-menu > li").eq(i).addClass("open");
     }
   }
 });
@@ -1470,12 +1470,14 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _c("span", { staticStyle: { color: "red" } }, [
-          _vm._v("Tienda : "),
-          _c("span", { staticStyle: { color: "#425C79" } }, [
-            _vm._v(_vm._s(_vm.tienda.nombre)),
-          ]),
-        ]),
+        _vm.tienda.nombre
+          ? _c("span", { staticStyle: { color: "red" } }, [
+              _vm._v("Tienda : "),
+              _c("span", { staticStyle: { color: "#425C79" } }, [
+                _vm._v(_vm._s(_vm.tienda.nombre)),
+              ]),
+            ])
+          : _vm._e(),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "ml-auto d-flex" }, [
@@ -1856,101 +1858,137 @@ var render = function () {
               _vm.user.role_id == 6 ||
               _vm.user.role_id == 2 ||
               _vm.user.role_id == 3
-                ? _c("li", { on: { click: _vm.selectLi } }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      [
-                        _vm.user.role_id == 6 ||
-                        _vm.user.role_id == 2 ||
-                        _vm.user.role_id == 3
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: "/usuarios",
-                                  "active-class": "",
+                ? _c(
+                    "li",
+                    { staticClass: "active open", on: { click: _vm.selectLi } },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        [
+                          _vm.user.role_id == 6 ||
+                          _vm.user.role_id == 2 ||
+                          _vm.user.role_id == 3
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    tag: "li",
+                                    to: "/usuarios",
+                                    "active-class": "",
+                                  },
                                 },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Usuarios"),
+                                [
+                                  _c("a", { attrs: { href: "" } }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "nav-link-text" },
+                                      [_vm._v("Usuarios")]
+                                    ),
                                   ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.user.role_id == 6
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: "/concesionarios",
-                                  "active-class": "",
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.user.role_id == 6
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    tag: "li",
+                                    to: "/concesionarios",
+                                    "active-class": "",
+                                  },
                                 },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Concesionarios"),
+                                [
+                                  _c("a", { attrs: { href: "" } }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "nav-link-text" },
+                                      [_vm._v("Concesionarios")]
+                                    ),
                                   ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.user.role_id == 6
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: "/tiendas",
-                                  "active-class": "",
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.user.role_id == 6
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    tag: "li",
+                                    to: "/tiendas",
+                                    "active-class": "",
+                                  },
                                 },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Tiendas"),
+                                [
+                                  _c("a", { attrs: { href: "" } }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "nav-link-text" },
+                                      [_vm._v("Tiendas")]
+                                    ),
                                   ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.user.role_id == 6
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: "/caracteristicas",
-                                  "active-class": "",
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.user.role_id == 6
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    tag: "li",
+                                    to: "/caracteristicas",
+                                    "active-class": "",
+                                  },
                                 },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Caracteristicas"),
+                                [
+                                  _c("a", { attrs: { href: "" } }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "nav-link-text" },
+                                      [_vm._v("Caracteristicas")]
+                                    ),
                                   ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
-                      ],
-                      1
-                    ),
-                  ])
+                                ]
+                              )
+                            : _vm._e(),
+                        ],
+                        1
+                      ),
+                    ]
+                  )
                 : _vm._e(),
               _vm._v(" "),
-              _c("li", { on: { click: _vm.selectLi } }, [
-                _vm._m(2),
+              _c("li", { staticClass: "active open" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "#",
+                      title: "Registros",
+                      "data-filter-tags": "registros",
+                    },
+                    on: { click: _vm.selectLi },
+                  },
+                  [
+                    _c("i", { staticClass: "fal fa-th-list" }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "nav-link-text",
+                        attrs: { "data-i18n": "nav.application_intel" },
+                      },
+                      [_vm._v("Registros")]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2),
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "ul",
@@ -2004,126 +2042,146 @@ var render = function () {
                 ),
               ]),
               _vm._v(" "),
-              _c("li", { on: { click: _vm.selectLi } }, [
-                _vm._m(3),
+              _c("li", { staticClass: "active open" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "#",
+                      title: "Registros",
+                      "data-filter-tags": "registros",
+                    },
+                    on: { click: _vm.selectLi },
+                  },
+                  [
+                    _c("i", { staticClass: "fal fa-edit" }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "nav-link-text",
+                        attrs: { "data-i18n": "nav.application_intel" },
+                      },
+                      [_vm._v("Asignaciones")]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(3),
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "ul",
                   [
-                    _vm.user.role_id == 1 ||
-                    _vm.user.role_id == 2 ||
-                    _vm.user.role_id == 3 ||
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
-                      ? _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/asignacion",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Lista de asignaciones"),
-                              ]),
-                            ]),
-                          ]
-                        )
-                      : _vm._e(),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/asignacion",
+                          "active-class": "active",
+                        },
+                      },
+                      [
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("span", { staticClass: "nav-link-text" }, [
+                            _vm._v("Lista de asignaciones"),
+                          ]),
+                        ]),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm.user.role_id == 1 ||
-                    _vm.user.role_id == 2 ||
-                    _vm.user.role_id == 3 ||
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
-                      ? _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/reservado",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Reservados"),
-                              ]),
-                            ]),
-                          ]
-                        )
-                      : _vm._e(),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/reservado",
+                          "active-class": "active",
+                        },
+                      },
+                      [
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("span", { staticClass: "nav-link-text" }, [
+                            _vm._v("Reservados"),
+                          ]),
+                        ]),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm.user.role_id == 1 ||
-                    _vm.user.role_id == 2 ||
-                    _vm.user.role_id == 3 ||
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
-                      ? _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/emplazado",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Emplazados"),
-                              ]),
-                            ]),
-                          ]
-                        )
-                      : _vm._e(),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/emplazado",
+                          "active-class": "active",
+                        },
+                      },
+                      [
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("span", { staticClass: "nav-link-text" }, [
+                            _vm._v("Emplazados"),
+                          ]),
+                        ]),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm.user.role_id == 1 ||
-                    _vm.user.role_id == 2 ||
-                    _vm.user.role_id == 3 ||
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
-                      ? _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/facturado",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Facturados"),
-                              ]),
-                            ]),
-                          ]
-                        )
-                      : _vm._e(),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "li",
+                          to: "/facturado",
+                          "active-class": "active",
+                        },
+                      },
+                      [
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("span", { staticClass: "nav-link-text" }, [
+                            _vm._v("Facturados"),
+                          ]),
+                        ]),
+                      ]
+                    ),
                   ],
                   1
                 ),
               ]),
               _vm._v(" "),
-              _c("li", { on: { click: _vm.selectLi } }, [
-                _vm._m(4),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  [
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
-                      ? _c(
+              _vm.user.role_id == 4 ||
+              _vm.user.role_id == 5 ||
+              _vm.user.role_id == 6
+                ? _c("li", { staticClass: "active open" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "#",
+                          title: "Registros",
+                          "data-filter-tags": "registros",
+                        },
+                        on: { click: _vm.selectLi },
+                      },
+                      [
+                        _c("i", { staticClass: "fal fa-globe" }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { "data-i18n": "nav.application_intel" },
+                          },
+                          [_vm._v("Packing List")]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(4),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      [
+                        _c(
                           "router-link",
                           {
                             attrs: {
@@ -2139,13 +2197,9 @@ var render = function () {
                               ]),
                             ]),
                           ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
-                      ? _c(
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "router-link",
                           {
                             attrs: {
@@ -2161,12 +2215,12 @@ var render = function () {
                               ]),
                             ]),
                           ]
-                        )
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-              ]),
+                        ),
+                      ],
+                      1
+                    ),
+                  ])
+                : _vm._e(),
             ],
             1
           ),
@@ -2248,88 +2302,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        attrs: {
-          href: "#",
-          title: "Registros",
-          "data-filter-tags": "registros",
-        },
-      },
-      [
-        _c("i", { staticClass: "fal fa-th-list" }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "nav-link-text",
-            attrs: { "data-i18n": "nav.application_intel" },
-          },
-          [_vm._v("Registros")]
-        ),
-        _vm._v(" "),
-        _c("b", { staticClass: "collapse-sign" }, [
-          _c("em", { staticClass: "fal fa-angle-down" }),
-        ]),
-      ]
-    )
+    return _c("b", { staticClass: "collapse-sign" }, [
+      _c("em", { staticClass: "fal fa-angle-down" }),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        attrs: {
-          href: "#",
-          title: "Registros",
-          "data-filter-tags": "registros",
-        },
-      },
-      [
-        _c("i", { staticClass: "fal fa-edit" }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "nav-link-text",
-            attrs: { "data-i18n": "nav.application_intel" },
-          },
-          [_vm._v("Asignaciones")]
-        ),
-        _vm._v(" "),
-        _c("b", { staticClass: "collapse-sign" }, [
-          _c("em", { staticClass: "fal fa-angle-down" }),
-        ]),
-      ]
-    )
+    return _c("b", { staticClass: "collapse-sign" }, [
+      _c("em", { staticClass: "fal fa-angle-down" }),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { attrs: { href: "#", title: "Packing", "data-filter-tags": "Packing" } },
-      [
-        _c("i", { staticClass: "fal fa-globe" }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "nav-link-text",
-            attrs: { "data-i18n": "nav.application_intel" },
-          },
-          [_vm._v("Packing List")]
-        ),
-        _vm._v(" "),
-        _c("b", { staticClass: "collapse-sign" }, [
-          _c("em", { staticClass: "fal fa-angle-down" }),
-        ]),
-      ]
-    )
+    return _c("b", { staticClass: "collapse-sign" }, [
+      _c("em", { staticClass: "fal fa-angle-down" }),
+    ])
   },
 ]
 render._withStripped = true

@@ -11,6 +11,10 @@ class RegistroModel extends Model
 
     protected $table = 'registros';
 
+    protected $dates = [
+        'fecha' => 'datetime:Y-m-d H:i:s'
+    ];
+
     protected $fillable = [
         'id',	
         'concesionario_id',	

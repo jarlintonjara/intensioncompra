@@ -13,8 +13,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\UtilsController;
-use Illuminate\Routing\Route as RoutingRoute;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,17 +36,12 @@ Route::resource('usuario', UserController::class);
 
 Route::resource('registro', RegistroController::class);
 Route::get('asignados', [RegistroController::class, 'asignados']);
-Route::get('executeAsignar', [RegistroController::class, 'jobAsignar']);
 Route::resource('ingreso', IngresoController::class);
 
 Route::resource('asignacion', AsignacionController::class);
 Route::get('reservado', [AsignacionController::class, 'reservado']);
 Route::get('facturado', [AsignacionController::class, 'facturado']);
 Route::get('emplazado', [AsignacionController::class, 'emplazado']);
-Route::get('executeEmplazado', [AsignacionController::class, 'jobEmplazar']);
-Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);
-// Route::get('exportarExcel',[ScheduleExport::class, 'jobExportar']);
-
 
 //Mantenimiento
 Route::resource('tienda', TiendaController::class);

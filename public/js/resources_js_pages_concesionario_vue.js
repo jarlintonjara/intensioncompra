@@ -120,7 +120,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "Concesionario",
   data: function data() {
     return {
-      concesioanrio: [],
+      concesionarios: [],
       datos: {
         nombre: '',
         descripcion: 0,
@@ -128,7 +128,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       btnCrear: false,
       btnEditar: false,
-      id: ''
+      id: '',
+      titulo: ''
     };
   },
   mounted: function mounted() {
@@ -152,7 +153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  _this.concesioanrio = response.data;
+                  _this.concesionarios = response.data;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -198,11 +199,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('/api/concesionario', _this2.datos).then(function (response) {
-                    _this2.tienda.push(response.data);
+                    _this2.concesionarios.push(response.data);
 
                     $('#modalForm').modal('hide');
 
-                    _this2.$swal.fire('Concesionario creado correctamente!', '', 'success');
+                    _this2.$swal.fire('Registro creado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -233,11 +234,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/concesionario/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.tienda = [].concat(response.data);
+                    _this3.concesionarios = [].concat(response.data);
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
-                    _this3.$swal.fire('Concesionario editado correctamente!', '', 'success');
+                    _this3.$swal.fire('Editado correctamente!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -254,41 +255,69 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this4 = this;
 
-      if (confirm("¿Confirma eliminar el registro?")) {
-        this.axios["delete"]("/api/concesionario/".concat(id)).then(function (response) {
-          _this4.tienda = [].concat(response.data);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+      this.$swal({
+        title: "¿Seguro de eliminar?",
+        text: "",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then( /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(willDelete) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  if (!willDelete) {
+                    _context4.next = 3;
+                    break;
+                  }
+
+                  _context4.next = 3;
+                  return _this4.axios["delete"]("/api/concesionario/".concat(id)).then(function (response) {
+                    var index = _this4.concesionarios.map(function (e) {
+                      return e.id;
+                    }).indexOf(id);
+
+                    if (index !== -1) {
+                      var concesionarios = _this4.concesionarios;
+                      concesionarios.splice(index, 1);
+                      _this4.concesionarios = [].concat(concesionarios);
+                    }
+
+                    _this4.$swal.fire('Registro eliminado', '', 'success');
+                  })["catch"](function (error) {
+                    console.log(error);
+                  });
+
+                case 3:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
     },
     abrirModalCrear: function abrirModalCrear() {
       this.datos = {
         nombre: '',
-        apellido: '',
-        documento: '',
-        email: '',
-        role_id: '',
-        cargo: '',
-        area: ''
+        descripcion: '',
+        direccion: ''
       };
-      this.titulo = 'Crear usuario';
+      this.titulo = 'Crear concesionario';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
-      this.datos = {
-        nombre: datos.nombre,
-        apellido: datos.apellido,
-        documento: datos.documento,
-        email: datos.email,
-        role_id: datos.role_id,
-        tienda_id: datos.tienda_id,
-        concesionario_id: datos.concesionario_id,
-        usuario: datos.usuario
-      };
-      this.titulo = ' Editar usuario';
+      this.titulo = ' Editar concesionario';
+      this.datos.nombre = datos.nombre;
+      this.datos.descripcion = datos.descripcion;
+      this.datos.direccion = datos.direccion;
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
@@ -1191,13 +1220,13 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.users, function (concesionario) {
+                    _vm._l(_vm.concesionarios, function (concesionario) {
                       return _c("tr", { key: concesionario.id }, [
                         _c("td", [_vm._v(_vm._s(concesionario.nombre))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(concesionario.descripcion))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(_vm.concesioanrio.direccion))]),
+                        _c("td", [_vm._v(_vm._s(concesionario.direccion))]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1243,7 +1272,7 @@ var render = function () {
             _c("div", { staticClass: "modal-header" }, [
               _c("h5", { staticClass: "modal-title" }, [
                 _c("i", { staticClass: "fa fa-user-plus" }),
-                _vm._v(" " + _vm._s(_vm.titulo) + "\n                "),
+                _vm._v(" " + _vm._s(_vm.titulo) + "\n                    "),
               ]),
               _vm._v(" "),
               _c(
@@ -1342,43 +1371,39 @@ var render = function () {
                       },
                     }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("div", { staticClass: "form-group col-md-4" }, [
-                      _c("label", { attrs: { for: "Direccion" } }, [
-                        _vm._v("Dirección"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.datos.direccion,
-                            expression: "datos.direccion",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "Direccion",
-                          placeholder: "Direccion",
-                        },
-                        domProps: { value: _vm.datos.direccion },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.datos,
-                              "direccion",
-                              $event.target.value
-                            )
-                          },
-                        },
-                      }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "Direccion" } }, [
+                      _vm._v("Dirección"),
                     ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.direccion,
+                          expression: "datos.direccion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "Direccion",
+                        placeholder: "Direccion",
+                      },
+                      domProps: { value: _vm.datos.direccion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "direccion", $event.target.value)
+                        },
+                      },
+                    }),
                   ]),
                 ]),
               ]),
