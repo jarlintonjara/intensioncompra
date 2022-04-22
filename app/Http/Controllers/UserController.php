@@ -8,6 +8,7 @@ use App\Models\TiendaModel;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Excel;
 
 class UserController extends Controller
 {
@@ -104,5 +105,5 @@ class UserController extends Controller
         $user->delete();
         $data = User::all();
         return response()->json($data);
-    }   
+    }  
 }

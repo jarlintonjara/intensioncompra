@@ -1291,8 +1291,8 @@ var render = function () {
                         _c("td", [
                           _vm._v(
                             _vm._s(
-                              noasignado.created_at
-                                ? _vm.$dateFormat(noasignado.created_at)
+                              noasignado.fecha
+                                ? _vm.$dateFormat(noasignado.fecha)
                                 : ""
                             )
                           ),

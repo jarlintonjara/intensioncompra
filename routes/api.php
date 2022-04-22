@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TiendaController;
+use App\Http\Controllers\UtilsController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -53,3 +54,6 @@ Route::get('executeFacturado', [AsignacionController::class, 'jobFacturar']);
 Route::resource('tienda', TiendaController::class);
 Route::resource('caracteristica', CaracteristicaController::class);
 Route::resource('concesionario', ConcesinarioController::class);
+
+//Utils
+Route::post('exportExcel', [UtilsController::class, 'exportExcel']);

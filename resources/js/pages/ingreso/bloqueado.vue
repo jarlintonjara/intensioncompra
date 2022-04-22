@@ -30,9 +30,9 @@
                                     <th>MODELO</th>
                                     <th>VERSION</th>
                                     <th>AÑO MODELO</th>
+                                    <th>AÑO FABRICACIÓN</th>
                                     <th>USUARIO_BLOQUEO</th>
                                     <th>FECHA BLOQUEO</th>
-                                    <th>AÑO FABRICACIÓN</th>
                                     <th>COLOR</th>
                                     <th>CODIGO SAP</th>
                                     <th>NAVE</th>
@@ -46,9 +46,9 @@
                                     <td>{{bloqueado.modelo}}</td>
                                     <td>{{bloqueado.version}}</td>
                                     <td>{{bloqueado.anio_modelo}}</td>
+                                    <td>{{bloqueado.anio_fabricacion}}</td>
                                     <td>{{bloqueado.nombre}}</td>
                                     <td>{{bloqueado.fecha_bloqueo ? $dateFormat(bloqueado.fecha_bloqueo): ""}}</td>
-                                    <td>{{bloqueado.anio_fabricacion}}</td>
                                     <td>{{bloqueado.color}}</td>
                                     <td>{{bloqueado.codigo_sap}}</td>
                                     <td>{{bloqueado.nave}}</td>

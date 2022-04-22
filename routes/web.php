@@ -29,33 +29,11 @@ use Illuminate\Routing\Router;
 |
 */
 Route::get('/test', function () {
-    
-    $array = [
-        'dercocenter.2022',
-        'autobacs$',
-        'autoland$',
-        'pakatnamu$',
-        'cristoblanco$',
-        'motormass$',
-        'granprix$',
-        'bmotors$',
-        'cam$',
-        'sanpedro$',
-        'corsa$',
-        'erimassa$',
-        'gacsa$',
-        'klm$',
-        'maqgama$',
-        'motorgas$',
-        'motorshow$',
-        'peñaranda$',
-        'resersur$',
-        'pacifico$'
-    ];
-    //$data = RegistroModel::where('estado',1)->get();
-    foreach($array as $row){
-        echo Hash::make($row)."<br>";
-    } 
+
+    $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'situacion', 'fecha')
+    ->where('situacion', 'SINASIGNAR')->where('estado', '1')->orderBy('fecha', 'asc')
+    ->get();
+    return $registros;
 });
 
 

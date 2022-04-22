@@ -22,6 +22,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -137,6 +166,8 @@ var staticRenderFns = [
             _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
           ]),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }),
       ]
     )
   },

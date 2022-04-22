@@ -19,6 +19,7 @@ class AsignacionController extends Controller
         $user = $auth->getUser($request->bearerToken());
         $query = AsignacionModel::select(
             'registros.created_at',
+            'registros.fecha',
             'registros.nombre_completo',
             'registros.documento',
             'registros.celular',
@@ -89,7 +90,7 @@ class AsignacionController extends Controller
         
         foreach($data as $e){
             $vin = Hash::make($e["vin"]);
-            $e["vin"]= substr($vin, 0, 15);
+            $e["vin"]= substr($vin, 0, 30);
         }
         return response()->json(['asignaciones' => $data, 'user' => $user]);
     }

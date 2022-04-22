@@ -18,43 +18,30 @@
                             <thead>
                                 <tr>
                                     <td></td>
-                                    <!-- <th>CONCESIONARIO</th> -->
                                     <th>ASESOR</th>
-                                    <!-- <th>VIN</th> -->
                                     <th>MARCA</th>
                                     <th>MODELO</th>
-                                    <!-- <th>VERSION</th>
-                                    <th>COLOR</th>
-                                    <th>AÑO MODELO</th> -->
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CÓDIGO SAP</th>
                                     <th>FECHA ESTIMADA LLEGADA</th>
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
-                                    <!-- <th>ESTADO</th> -->
                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                      <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
-                                   <!--  <td>{{asignacion.concesionario}}</td> -->
                                     <td>{{asignacion.nombre}}</td>
-                                    <!-- <td>{{asignacion.vin}}</td> -->
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
-                                    <!-- <td>{{asignacion.version}}</td>
-                                    <td>{{asignacion.color}}</td>
-                                    <td>{{asignacion.anio_modelo}}</td> -->
-                                    <td>{{asignacion.fecha_distribucion ? $dateFormat(asignacion.fecha_distribucion) : ""}}</td>
+                                    <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : ""}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
-                                    <td>{{asignacion.fecha_ingreso ? $dateFormat(asignacion.fecha_ingreso) : ""}}</td>
+                                    <td>{{asignacion.fecha_ingreso ? asignacion.fecha_ingreso : ""}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
                                     <td>{{asignacion.fecha_reserva}}</td>
-                                    <!-- <td>{{asignacion.situacion}}</td> -->
-                                    
                                 </tr>
                             </tbody>
                             
