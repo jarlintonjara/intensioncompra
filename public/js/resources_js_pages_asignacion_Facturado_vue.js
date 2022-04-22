@@ -1586,7 +1586,7 @@ var staticRenderFns = [
       _c("h1", { staticClass: "subheader-title" }, [
         _c("i", { staticClass: "subheader-icon fal fa-pencil" }),
         _vm._v(" "),
-        _c("span", { staticClass: "fw-300" }, [_vm._v("Reservados")]),
+        _c("span", { staticClass: "fw-300" }, [_vm._v("Facturados")]),
       ]),
     ])
   },

@@ -120,8 +120,8 @@
                             </div>
                     
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-danger" @click.prevent="limpiar">LIMPIAR</button>
-                                <button type="submit" class="btn btn-primary" @click.prevent="crear">CREAR</button>
+                                <button type="button" class="btn btn-danger" @click.prevent="limpiar">LIMPIAR</button>
+                                <button type="button" class="btn btn-primary" @click.prevent="crear">CREAR</button>
                             </div>
                         </form>
                     </div>
@@ -251,23 +251,11 @@ export default {
             .filter((e) => arr[e]).map(e => arr[e]);
             return unique;
         },
-        validarCampos(){
-            if(!this.form.nombre_completo || !this.form.documento || !this.form.celular || !this.form.correo || !this.selectMarca|| !this.selectModelo || !this.selectVersion || !this.form.color1 ){
-                this.$swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Completa los campos requeridos!',
-                });
-                return false;
-            }
-            return true;
-        },
         async crear(){
             this.submited=true;
             if(this.$v.$invalid){
                 return false;
             }
-
             this.form.marca = this.selectMarca;
             this.form.modelo = this.selectModelo;
             this.form.version = this.selectVersion;
@@ -279,6 +267,7 @@ export default {
                         'success'
                     )
                     this.noasignados.push(response.data.NO);
+                    this.submited=false;
                     this.limpiar();
                 }).catch(function (error) {
                     console.log(error);

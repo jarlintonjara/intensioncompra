@@ -43,11 +43,7 @@
     </div>
     <script src="{{ asset('admin/js/vendors.bundle.js') }}"></script>
     <script src="{{ asset('admin/js/app.bundle.js') }}"></script>
-    <script src="{{ asset('admin/js/statistics/peity/peity.bundle.js') }}"></script>
-    <script src="{{ asset('admin/js/statistics/flot/flot.bundle.js') }}"></script>
-    <script src="{{ asset('admin/js/statistics/easypiechart/easypiechart.bundle.js') }}"></script>
     <script src="{{ asset('admin/js/datagrid/datatables/datatables.bundle.js') }}"></script>
-
 </body>
 
 </html>

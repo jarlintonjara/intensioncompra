@@ -54,10 +54,9 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    { 
-        $data = $request->post();
-        $data['password'] = Hash::make('12345678');
-        $user = User::create($data);
+    {
+        $request['password'] = Hash::make($request->password);
+        $user = User::create($request);
         $user["role"] = $user->role;
         return response()->json($user);
     }

@@ -1396,7 +1396,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("div", { staticClass: "row mt-2" }, [
                         _c("div", { staticClass: "col-md-3" }, [
-                          _vm._v("Fecha Emplazado:"),
+                          _vm._v("Fecha SAP:"),
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-3" }, [
@@ -1404,9 +1404,7 @@ var render = function () {
                             _vm._v(
                               _vm._s(
                                 _vm.registro.fecha_emplazado
-                                  ? _vm.$dateFormat(
-                                      _vm.registro.fecha_emplazado
-                                    )
+                                  ? _vm.registro.fecha_emplazado
                                   : "-"
                               )
                             ),
@@ -1639,7 +1637,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("FECHA RESERVA")]),
         _vm._v(" "),
-        _c("th", [_vm._v("FECHA EMPLAZADO")]),
+        _c("th", [_vm._v("FECHA SAP")]),
       ]),
     ])
   },

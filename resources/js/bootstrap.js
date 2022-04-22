@@ -30,3 +30,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+    /* $("#js-nav-menu > li").on('click',function(){
+        // remove classname 'active' from all li who already has classname 'active'
+        //$("#navMenus li.active").removeClass("active");
+        $("#js-nav-menu > li").removeClass("active"); 
+        // adding classname 'active' to current click li 
+        $(this).addClass("active"); 
+        console.log("active")
+    }); */

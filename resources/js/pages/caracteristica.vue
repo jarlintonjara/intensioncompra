@@ -24,16 +24,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="caracteristicas in caracteristicas" :key="caracteristicas.id">
-                                    <td>{{ caracteristicas.marca }}</td>
-                                    <td>{{ caracteristicas.modelo }}</td>
-                                    <td>{{ caracteristicas.color1 }}</td>
-                                    <td>{{ caracteristicas.color2 }}</td>
-                                    <td>{{ caracteristicas.color3 }}</td>
+                                <tr v-for="caracteristica in caracteristicas" :key="caracteristica.id">
+                                    <td>{{ caracteristica.marca }}</td>
+                                    <td>{{ caracteristica.modelo }}</td>
+                                    <td>{{ caracteristica.color1 }}</td>
+                                    <td>{{ caracteristica.color2 }}</td>
+                                    <td>{{ caracteristica.color3 }}</td>
                                     <!-- <td>{{ user.Fecha }}</td>  -->
                                     <td>
-                                        <button class="btn btn-warning" @click="abrirModalEditar(caracteristicas)"><i class="far fa-edit"></i></button>
-                                        <button class="btn btn-danger" @click="borrar(caracteristicas.id)"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-warning" @click="abrirModalEditar(caracteristica)"><i class="far fa-edit"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(caracteristica.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -49,37 +49,53 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fa fa-user-plus"></i> {{titulo}}
-                    </h5>
-                    <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <h5 class="modal-title">
+                            <i class="fa fa-user-plus"></i> {{titulo}}
+                        </h5>
+                        <button  @click.prevent="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <form>
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="Marcas">Marca</label>
-                                <input type="text" id="Marcas" class="form-control" placeholder="Marcas" required="" v-model="datos.marca">
+                                <label for="marca">Marca:</label>
+                                <input type="text" id="marca" class="form-control" v-model="datos.marca">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="Modelos">Modelo</label>
-                                <input type="text" id="Modelos" class="form-control" placeholder="Modelos" required="" v-model="datos.modelo">
+                                <label for="modelo">Modelo:</label>
+                                <input type="text" id="modelo" class="form-control" v-model="datos.modelo">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="Color">Color 1</label>
-                                <input type="text" id="Color" class="form-control" placeholder="Color" required="" v-model="datos.color1">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="Color">Color 2</label>
-                                <input type="text" id="Color" class="form-control" placeholder="Color" required="" v-model="datos.color2">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="Color">Color 3</label>
-                                <input type="text" id="Color" class="form-control" placeholder="Color" required="" v-model="datos.color3">
-                            </div> 
                         </div>  
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="version">Versión:</label>
+                                <input type="text" id="version" class="form-control" v-model="datos.version">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="anioModelo">Año del modelo</label>
+                                <select id="anioModelo" class="browser-default custom-select" v-model="datos.anio_modelo" :disabled="btnEditar">
+                                    <option>Seleccione año modelo</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="anioModelo">Año de fabricación</label>
+                                <select id="anioModelo" class="browser-default custom-select" v-model="datos.anio_fabricacion" :disabled="btnEditar">
+                                    <option>Seleccione año fabricación</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>

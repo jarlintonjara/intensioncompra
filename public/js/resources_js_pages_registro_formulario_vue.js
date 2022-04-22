@@ -373,18 +373,6 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       });
       return unique;
     },
-    validarCampos: function validarCampos() {
-      if (!this.form.nombre_completo || !this.form.documento || !this.form.celular || !this.form.correo || !this.selectMarca || !this.selectModelo || !this.selectVersion || !this.form.color1) {
-        this.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Completa los campos requeridos!'
-        });
-        return false;
-      }
-
-      return true;
-    },
     crear: function crear() {
       var _this2 = this;
 
@@ -410,6 +398,8 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   _this2.$swal.fire('Registro creado!', '', 'success');
 
                   _this2.noasignados.push(response.data.NO);
+
+                  _this2.submited = false;
 
                   _this2.limpiar();
                 })["catch"](function (error) {
@@ -1839,7 +1829,7 @@ var render = function () {
                     "button",
                     {
                       staticClass: "btn btn-danger",
-                      attrs: { type: "submit" },
+                      attrs: { type: "button" },
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
@@ -1854,7 +1844,7 @@ var render = function () {
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
+                      attrs: { type: "button" },
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
