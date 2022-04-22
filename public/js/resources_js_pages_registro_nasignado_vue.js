@@ -279,19 +279,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this2.$swal({
-                  title: "¿Seguro de eliminar?",
-                  text: "",
-                  icon: "warning",
-                  buttons: true,
-                  dangerMode: true
+                _this2.$swal.fire({
+                  title: '¿Seguro de eliminar?',
+                  showDenyButton: true,
+                  confirmButtonText: 'Eliminar',
+                  denyButtonText: "Cancelar"
                 }).then( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(willDelete) {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(result) {
                     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
                       while (1) {
                         switch (_context2.prev = _context2.next) {
                           case 0:
-                            if (!willDelete) {
+                            if (!result.isConfirmed) {
                               _context2.next = 3;
                               break;
                             }

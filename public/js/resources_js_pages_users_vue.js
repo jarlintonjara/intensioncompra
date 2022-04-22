@@ -257,7 +257,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.usuario) {
         this.$swal.fire({
           icon: 'error',
-          title: 'Oops...',
+          title: 'Error',
           text: 'Completa los campos requeridos!'
         });
         return false;
@@ -286,7 +286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     $('#modalForm').modal('hide');
 
-                    _this2.$swal.fire('Usuario creado correctamente!', '', 'success');
+                    _this2.$swal.fire('Registro creado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -321,7 +321,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
-                    _this3.$swal.fire('Usuario editado correctamente!', '', 'success');
+                    _this3.$swal.fire('Registro editado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -338,19 +338,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this4 = this;
 
-      this.$swal({
-        title: "¿Seguro de eliminar?",
-        text: "",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
+      this.$swal.fire({
+        title: '¿Seguro de eliminar?',
+        showDenyButton: true,
+        confirmButtonText: 'Eliminar',
+        denyButtonText: "Cancelar"
       }).then( /*#__PURE__*/function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(willDelete) {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(result) {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
             while (1) {
               switch (_context4.prev = _context4.next) {
                 case 0:
-                  if (willDelete) {
+                  if (result.isConfirmed) {
                     _this4.axios["delete"]("/api/usuario/".concat(id)).then(function (response) {
                       var index = _this4.users.map(function (e) {
                         return e.id;
@@ -362,7 +361,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         _this4.users = [].concat(users);
                       }
 
-                      _this4.$swal.fire('Usuario eliminado', '', 'success');
+                      _this4.$swal.fire('Registro eliminado', '', 'success');
                     })["catch"](function (error) {
                       console.log(error);
                     });

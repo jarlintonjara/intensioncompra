@@ -220,32 +220,26 @@ export default {
             $('#modalForm').modal('show')
         },
         async borrar(id){
-            this.$swal({
-                title: "¿Seguro de eliminar?",
-                text: "",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then(async (willDelete) => {
-                if (willDelete) {
-                     await this.axios.delete(`/api/registro/${id}`).then(response=>{
+            this.$swal.fire({
+                title: '¿Seguro de eliminar?',
+                showDenyButton: true,
+                confirmButtonText: 'Eliminar',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await this.axios.delete(`/api/registro/${id}`).then(response=>{
                         let index =  this.noasignados.map(e => e.id).indexOf(id);
                         if(index !== -1){
                             let noasignados = this.noasignados;
                             noasignados.splice(index, 1);
                             this.noasignados = [].concat(noasignados);
                         }
-                        this.$swal.fire(
-                            'Registro eliminado',
-                            '',
-                            'success'
-                        ) 
+                        this.$swal.fire('Registro eliminado', '', 'success') 
                     }).catch(error=>{
                         console.log(error)
                     });
-                } 
-            });
+                }
+            })
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

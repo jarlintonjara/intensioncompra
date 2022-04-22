@@ -206,7 +206,7 @@ export default {
             if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.usuario ){
                 this.$swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
+                    title: 'Error',
                     text: 'Completa los campos requeridos!',
                 });
                 return false;
@@ -219,11 +219,7 @@ export default {
                 axios.post('api/usuario', this.datos).then(response=>{
                     this.users.push(response.data);
                     $('#modalForm').modal('hide'); 
-                    this.$swal.fire(
-                        'Usuario creado correctamente!',
-                        '',
-                        'success'
-                    )
+                    this.$swal.fire('Registro creado!', '', 'success');
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -236,43 +232,33 @@ export default {
                     this.users = [].concat(response.data);          
                     this.id='';
                     $('#modalForm').modal('hide');
-                    this.$swal.fire(
-                        'Usuario editado correctamente!',
-                        '',
-                        'success'
-                    )
+                    this.$swal.fire('Registro editado!', '', 'success');
                 }).catch(function (error) {
                     console.log(error);
                 });
             }
         },
         borrar(id){
-            this.$swal({
-                title: "¿Seguro de eliminar?",
-                text: "",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then(async (willDelete) => {
-                if (willDelete) {
-                     this.axios.delete(`/api/usuario/${id}`).then(response=>{
+            this.$swal.fire({
+                title: '¿Seguro de eliminar?',
+                showDenyButton: true,
+                confirmButtonText: 'Eliminar',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                   this.axios.delete(`/api/usuario/${id}`).then(response=>{
                         let index =  this.users.map(e => e.id).indexOf(id);
                         if(index !== -1){
                             let users = this.users;
                             users.splice(index, 1);
                             this.users = [].concat(users);
                         }
-                        this.$swal.fire(
-                            'Usuario eliminado',
-                            '',
-                            'success'
-                        ) 
+                        this.$swal.fire('Registro eliminado', '', 'success');
                     }).catch(error=>{
                         console.log(error)
                     });
-                } 
-            });
+                }
+            })
         },
         abrirModalCrear(){
             this.datos = {
