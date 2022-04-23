@@ -21,28 +21,28 @@
                     </a>
                 </router-link>
                 <li class="active open" @click="selectLi"   v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
-                    <a href="#" title="Registros" data-filter-tags="Registros">
+                    <a href="#" title="Registros" data-filter-tags="registros">
                         <i class="fal fa-cog"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Mantenimientos</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li" to="/usuarios" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3" active-class="">
+                        <router-link tag="li" to="/usuarios" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Usuarios</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/concesionarios" v-if="user.role_id == 6 " active-class="">
+                        <router-link tag="li" to="/concesionarios" v-if="user.role_id == 6 " active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Concesionarios</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="">
+                        <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Tiendas</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/caracteristicas" v-if="user.role_id == 6 " active-class="">
+                        <router-link tag="li" to="/caracteristicas" v-if="user.role_id == 6 " active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Caracteristicas</span>
                             </a>

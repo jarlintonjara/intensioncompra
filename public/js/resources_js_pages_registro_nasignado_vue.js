@@ -175,16 +175,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1204,8 +1194,6 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "panel", attrs: { id: "panel-4" } }, [
-          _c("div", { staticClass: "panel-hdr" }),
-          _vm._v(" "),
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [
               _c(
@@ -1261,8 +1249,6 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(noasignado.version))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.tienda))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.situacion))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -1535,7 +1521,7 @@ var staticRenderFns = [
       _c("h1", { staticClass: "subheader-title" }, [
         _c("i", { staticClass: "subheader-icon fal fa-list" }),
         _vm._v(" "),
-        _c("span", { staticClass: "fw-300" }, [_vm._v("No Asignados")]),
+        _c("span", { staticClass: "fw-300" }, [_vm._v("Registros")]),
       ]),
     ])
   },
@@ -1545,9 +1531,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticStyle: { width: "12% !important" } }),
+        _c("th", { staticStyle: { width: "8% !important" } }),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "25% !important" } }, [
+        _c("th", { staticStyle: { width: "22% !important" } }, [
           _vm._v("Nombre Completo"),
         ]),
         _vm._v(" "),
@@ -1560,8 +1546,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Versión")]),
         _vm._v(" "),
         _c("th", [_vm._v("Tienda")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Situación")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fecha Creación")]),
       ]),

@@ -3,33 +3,24 @@
 
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-list'></i> <span class='fw-300'>No Asignados</span>
+                <i class='subheader-icon fal fa-list'></i> <span class='fw-300'>Registros</span>
             </h1>
         </div>
 
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
-                <div class="panel-hdr">
-                    <!-- <div class="row">
-                        <div class="col-md-12">
-                            <button style="text-align: center;" class="btn btn-success" @click="jobAsignados()">job Asignar</button>
-                        </div>
-                    </div> -->
-                </div>
-
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
-                                    <th style="width:12% !important"></th>
-                                    <th style="width:25% !important">Nombre Completo</th>
+                                    <th style="width:8% !important"></th>
+                                    <th style="width:22% !important">Nombre Completo</th>
                                     <th>celular</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
                                     <th>Versión</th>
                                     <th>Tienda</th>
-                                    <th>Situación</th>
                                     <th>Fecha Creación</th>
                                 </tr>
                             </thead>
@@ -45,7 +36,6 @@
                                     <td>{{noasignado.modelo}}</td>
                                     <td>{{noasignado.version}}</td>
                                     <td>{{noasignado.tienda}}</td>
-                                    <td>{{noasignado.situacion}}</td>
                                     <td>{{noasignado.fecha ? noasignado.fecha:""}}</td>
                                     
                                 </tr>

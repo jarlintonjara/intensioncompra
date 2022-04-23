@@ -51,7 +51,6 @@ class Emplazado extends Command
                 
                 $row->situacion = 'EMPLAZADO';
                 $row->save();
-                print_r($row);
             }
         }
     }
