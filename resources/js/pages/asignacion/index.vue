@@ -244,12 +244,17 @@ export default {
     validations:{
         submited: true,
         form: {
-            codigo_reserva: {required,minLength: minLength(2)},
-            monto_reserva : {required,minLength: minLength(4),numeric,minValue: minValue(1000)},
+            codigo_reserva: {required, minLength: minLength(2)},
+            monto_reserva : {required, minLength: minLength(4), numeric, minValue: minValue(1000)},
         }
     },
     mounted(){
         this.init();
+    },
+    watch:{
+        session(val){
+            this.user = val
+        }
     },
     methods:{
         async init(){
@@ -273,7 +278,6 @@ export default {
             this.id = asignacion.id;
             this.form.codigo_reserva = asignacion.codigo_reserva;
             this.form.monto_reserva = asignacion.monto_reserva;
-            // this.form.fecha_reserva = Date.now();
             $('#modalForm').modal('show')
         },
         detalle(datos){
@@ -309,29 +313,19 @@ export default {
                 }
                 this.id = null;
                 $('#modalForm').modal('hide');
-                this.$swal.fire(
-                    'Bloqueado',
-                    'Se tiene 24 horas para hacer la reserva (considerar dias laborables)',
-                    'success'
-                )
+                this.submited=false;
+                this.$swal.fire( 'Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
             }).catch(function (error) {
                 console.log(error);
             });
-            
             /* $('#asignaciones').DataTable().destroy();
             await this.$tablaGlobal('#asignaciones'); */
-            
         },
         cerrarModal(){
             $('#modalForm').modal('hide');
             $('#modalDetalle').modal('hide');
         }
-    },
-    watch:{
-        session(val){
-            this.user = val
-        }
-    },
+    }
 }
 
 </script>

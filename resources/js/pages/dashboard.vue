@@ -7,7 +7,7 @@
             </h1>
         </div>
         <div class="row">
-            <!-- <div class="col-lg-12">
+            <div class="col-lg-12">
                 <div id="panel-1" class="panel">
                     <div class="panel-hdr">
                         <h2>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </main>
 </template>

@@ -287,6 +287,11 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
   mounted: function mounted() {
     this.init();
   },
+  watch: {
+    session: function session(val) {
+      this.user = val;
+    }
+  },
   methods: {
     init: function init() {
       var _this = this;
@@ -328,8 +333,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
       this.titulo = 'Reservar';
       this.id = asignacion.id;
       this.form.codigo_reserva = asignacion.codigo_reserva;
-      this.form.monto_reserva = asignacion.monto_reserva; // this.form.fecha_reserva = Date.now();
-
+      this.form.monto_reserva = asignacion.monto_reserva;
       $('#modalForm').modal('show');
     },
     detalle: function detalle(datos) {
@@ -383,6 +387,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
 
                   _this2.id = null;
                   $('#modalForm').modal('hide');
+                  _this2.submited = false;
 
                   _this2.$swal.fire('Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
                 })["catch"](function (error) {
@@ -400,11 +405,6 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex(
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
       $('#modalDetalle').modal('hide');
-    }
-  },
-  watch: {
-    session: function session(val) {
-      this.user = val;
     }
   }
 });

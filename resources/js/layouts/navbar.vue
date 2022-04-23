@@ -47,17 +47,17 @@
                         
                     <div class="dropdown-divider m-0"></div>
                     <router-link to="perfil" class="dropdown-item fw-500 pt-2 pb-2">
-                        <span data-i18n="drpdwn.page-logout">Perfil</span> 
+                        <span >Perfil</span> 
                     </router-link>
 
                     <!-- <div class="dropdown-divider m-0"></div>
                     <router-link to="configuracion" class="dropdown-item fw-500 pt-2 pb-2">
-                        <span data-i18n="drpdwn.page-logout">Configuración</span> 
+                        <span>Configuración</span> 
                     </router-link>
  -->
                     <div class="dropdown-divider m-0"></div>
                     <a class="dropdown-item fw-500 pt-2 pb-2" href="" @click.prevent="logout">
-                        <span data-i18n="drpdwn.page-logout">Logout</span>
+                        <span >Logout</span>
                     </a>
                 </div>
             </div>

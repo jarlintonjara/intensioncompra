@@ -13,44 +13,26 @@ class Emplazado extends Command
 
     public function handle()
     {
-        $registros = AsignacionModel::select(
+        $asignaciones = AsignacionModel::select(
             'packing_list.vin',
-            'packing_list.marca',
-            'packing_list.modelo',
-            'packing_list.version',
-            'packing_list.color',
-            'packing_list.anio_modelo',
-            'packing_list.codigo_sap',
-            'packing_list.fecha_ingreso',
-            'asignaciones.id',
-            'asignaciones.fecha_distribucion',
-            'asignaciones.codigo_reserva',
-            'asignaciones.monto_reserva',
-            'asignaciones.fecha_reserva',
-            'asignaciones.fecha_a_facturar',
+            'asignaciones.fecha_sap_emplazado',
             'asignaciones.fecha_emplazado',
             'asignaciones.situacion'
         )
         ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
-        ->where('asignaciones.situacion', 'RESERVADO')->get();
+        ->where('asignaciones.situacion', 'RESERVADO')
+        ->get();
 
-        foreach ($registros as $registro) {
-            $row = EmplazadoModel::where('vin', $registro->vin)->first();
-            if ($row) {
-                $input = $row->fecha_emplazamiento;
-                $date = strtotime($input);
-
-                $fecha = date('Y-m-j');
-                $nuevafecha = strtotime('+2 day', strtotime($fecha));
-                $nuevafecha = date('Y-m-d', $nuevafecha);
-                $registro->situacion = 'EMPLAZADO';
-                $registro->fecha_emplazado = date('Y-m-d', $date);
-                $registro->fecha_a_facturar = $nuevafecha;
-                $registro->save();
-
+        foreach ($asignaciones as $asignacion) {
+            $emplazado = EmplazadoModel::where('vin', $asignacion->vin)->first();
+            if ($emplazado) {
+                $asignacion->fecha_emplazado = date('Y-m-d');
+                $asignacion->fecha_sap_emplazado = $emplazado->fecha_emplazamiento;
+                $asignacion->situacion = 'EMPLAZADO';
+                $asignacion->save();
                 
-                $row->situacion = 'EMPLAZADO';
-                $row->save();
+                $emplazado->situacion = 'EMPLAZADO';
+                $emplazado->save();
             }
         }
     }

@@ -63,7 +63,6 @@ export default{
                 { path: '/concesionarios', component: concesionarios, name: 'concesionarios'},
                 { path: '/tiendas', component: tiendas, name: 'tiendas'},
                 { path: '/caracteristicas', component: caracteristicas, name: 'caracteristicas'},
-                
             ]
         },
     ]

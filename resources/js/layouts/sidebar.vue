@@ -16,14 +16,14 @@
                 <router-link tag="li" to="/dashboard" active-class="active" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
                     <a href="#" >
                         <i class="fal fa-info-circle"></i>
-                        <span class="nav-link-text" data-i18n="nav.application_intel">Dashboard</span>
+                        <span class="nav-link-text">Dashboard</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                 </router-link>
                 <li class="active open" @click="selectLi"   v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
                     <a href="#" title="Registros" data-filter-tags="registros">
                         <i class="fal fa-cog"></i>
-                        <span class="nav-link-text" data-i18n="nav.application_intel">Mantenimientos</span>
+                        <span class="nav-link-text">Mantenimientos</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
@@ -52,7 +52,7 @@
                 <li class="active open" >
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-th-list"></i>
-                        <span class="nav-link-text" data-i18n="nav.application_intel">Registros</span>
+                        <span class="nav-link-text">Registros</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
@@ -71,7 +71,7 @@
                 <li class="active open" >
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-edit"></i>
-                        <span class="nav-link-text" data-i18n="nav.application_intel">Asignaciones</span>
+                        <span class="nav-link-text">Asignaciones</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
@@ -100,7 +100,7 @@
                 <li class="active open" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-globe"></i>
-                        <span class="nav-link-text" data-i18n="nav.application_intel">Packing List</span>
+                        <span class="nav-link-text">Packing List</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>

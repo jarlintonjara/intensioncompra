@@ -1510,11 +1510,7 @@ var render = function () {
                   staticClass: "dropdown-item fw-500 pt-2 pb-2",
                   attrs: { to: "perfil" },
                 },
-                [
-                  _c("span", { attrs: { "data-i18n": "drpdwn.page-logout" } }, [
-                    _vm._v("Perfil"),
-                  ]),
-                ]
+                [_c("span", [_vm._v("Perfil")])]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "dropdown-divider m-0" }),
@@ -1531,11 +1527,7 @@ var render = function () {
                     },
                   },
                 },
-                [
-                  _c("span", { attrs: { "data-i18n": "drpdwn.page-logout" } }, [
-                    _vm._v("Logout"),
-                  ]),
-                ]
+                [_c("span", [_vm._v("Logout")])]
               ),
             ],
             1
@@ -1838,14 +1830,9 @@ var render = function () {
                       _c("a", { attrs: { href: "#" } }, [
                         _c("i", { staticClass: "fal fa-info-circle" }),
                         _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
-                          },
-                          [_vm._v("Dashboard")]
-                        ),
+                        _c("span", { staticClass: "nav-link-text" }, [
+                          _vm._v("Dashboard"),
+                        ]),
                         _vm._v(" "),
                         _c("b", { staticClass: "collapse-sign" }, [
                           _c("em", { staticClass: "fal fa-angle-down" }),
@@ -1977,14 +1964,9 @@ var render = function () {
                   [
                     _c("i", { staticClass: "fal fa-th-list" }),
                     _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "nav-link-text",
-                        attrs: { "data-i18n": "nav.application_intel" },
-                      },
-                      [_vm._v("Registros")]
-                    ),
+                    _c("span", { staticClass: "nav-link-text" }, [
+                      _vm._v("Registros"),
+                    ]),
                     _vm._v(" "),
                     _vm._m(2),
                   ]
@@ -2056,14 +2038,9 @@ var render = function () {
                   [
                     _c("i", { staticClass: "fal fa-edit" }),
                     _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "nav-link-text",
-                        attrs: { "data-i18n": "nav.application_intel" },
-                      },
-                      [_vm._v("Asignaciones")]
-                    ),
+                    _c("span", { staticClass: "nav-link-text" }, [
+                      _vm._v("Asignaciones"),
+                    ]),
                     _vm._v(" "),
                     _vm._m(3),
                   ]
@@ -2165,14 +2142,9 @@ var render = function () {
                       [
                         _c("i", { staticClass: "fal fa-globe" }),
                         _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "nav-link-text",
-                            attrs: { "data-i18n": "nav.application_intel" },
-                          },
-                          [_vm._v("Packing List")]
-                        ),
+                        _c("span", { staticClass: "nav-link-text" }, [
+                          _vm._v("Packing List"),
+                        ]),
                         _vm._v(" "),
                         _vm._m(4),
                       ]
@@ -2283,14 +2255,9 @@ var staticRenderFns = [
       [
         _c("i", { staticClass: "fal fa-cog" }),
         _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "nav-link-text",
-            attrs: { "data-i18n": "nav.application_intel" },
-          },
-          [_vm._v("Mantenimientos")]
-        ),
+        _c("span", { staticClass: "nav-link-text" }, [
+          _vm._v("Mantenimientos"),
+        ]),
         _vm._v(" "),
         _c("b", { staticClass: "collapse-sign" }, [
           _c("em", { staticClass: "fal fa-angle-down" }),
