@@ -1876,7 +1876,7 @@ var render = function () {
                                   attrs: {
                                     tag: "li",
                                     to: "/usuarios",
-                                    "active-class": "",
+                                    "active-class": "active",
                                   },
                                 },
                                 [
@@ -1898,7 +1898,7 @@ var render = function () {
                                   attrs: {
                                     tag: "li",
                                     to: "/concesionarios",
-                                    "active-class": "",
+                                    "active-class": "active",
                                   },
                                 },
                                 [
@@ -1920,7 +1920,7 @@ var render = function () {
                                   attrs: {
                                     tag: "li",
                                     to: "/tiendas",
-                                    "active-class": "",
+                                    "active-class": "active",
                                   },
                                 },
                                 [
@@ -1942,7 +1942,7 @@ var render = function () {
                                   attrs: {
                                     tag: "li",
                                     to: "/caracteristicas",
-                                    "active-class": "",
+                                    "active-class": "active",
                                   },
                                 },
                                 [
@@ -2277,7 +2277,7 @@ var staticRenderFns = [
         attrs: {
           href: "#",
           title: "Registros",
-          "data-filter-tags": "Registros",
+          "data-filter-tags": "registros",
         },
       },
       [

@@ -167,7 +167,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Usuario",
   data: function data() {
@@ -207,11 +206,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         this.tiendasFilter = [].concat(tiendasFilter);
         this.datos.tienda_id = this.datos.tienda_id ? this.datos.tienda_id : '';
-      }
-    },
-    'datos.tienda_id': function datosTienda_id(value) {
-      if (value) {
-        this.datos.tienda_id = value;
       }
     }
   },
@@ -1659,7 +1653,7 @@ var render = function () {
                     ),
                   ]),
                 ]),
-                _vm._v("∂\n                    "),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-row" }, [
                   _c("div", { staticClass: "form-group col-md-6" }, [
                     _c("label", { attrs: { for: "Role" } }, [_vm._v("Rol")]),

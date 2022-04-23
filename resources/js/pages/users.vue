@@ -97,8 +97,7 @@
                                     <option v-for="tienda in tiendasFilter" :key="tienda.id + 22" :value="tienda.id">{{ tienda.nombre }}</option>
                                 </select>
                             </div>
-                            
-                        </div>∂
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="Role">Rol</label>
@@ -168,7 +167,6 @@ export default {
     },
     mounted(){
         this.init()
-
     },
     watch: {
         'datos.concesionario_id': function(value) {
@@ -176,11 +174,6 @@ export default {
                 let tiendasFilter = this.tiendas.filter(e => e.concesionario_id == value);
                 this.tiendasFilter = [].concat(tiendasFilter);
                 this.datos.tienda_id = this.datos.tienda_id ? this.datos.tienda_id :'';
-            }
-        },
-        'datos.tienda_id': function(value) {
-            if(value){
-                this.datos.tienda_id = value;
             }
         }
     },
