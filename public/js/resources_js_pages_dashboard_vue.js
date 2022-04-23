@@ -51,6 +51,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -168,6 +214,136 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                                        21.5k\n                                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Registros"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1",
+                  staticStyle: { "font-size": "6rem" },
+                }),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                                        $10,203\n                                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Asignados"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4",
+                  staticStyle: { "font-size": "6rem" },
+                }),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                                        - 10.72\n                                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Emplazados"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6",
+                  staticStyle: { "font-size": "8rem" },
+                }),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g",
+              },
+              [
+                _c("div", {}, [
+                  _c(
+                    "h3",
+                    { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                    [
+                      _vm._v(
+                        "\n                                        +40%\n                                        "
+                      ),
+                      _c("small", { staticClass: "m-0 l-h-n" }, [
+                        _vm._v("Facturado"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4",
+                  staticStyle: { "font-size": "6rem" },
+                }),
+              ]
+            ),
+          ]),
+        ]),
       ]
     )
   },

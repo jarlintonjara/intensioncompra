@@ -376,21 +376,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1971,55 +1956,6 @@ var render = function () {
                                 ]
                               )
                             : _vm._e(),
-                          _vm._v("\n<<<<<<< HEAD\n                        "),
-                          _vm.user.role_id == 6
-                            ? _c(
-                                "router-link",
-                                {
-                                  attrs: {
-                                    tag: "li",
-                                    to: "/concesionarios",
-                                    "active-class": "",
-                                  },
-                                },
-                                [
-                                  _c("a", { attrs: { href: "" } }, [
-                                    _c("i", {
-                                      staticClass: "fa-solid fa-users",
-                                      staticStyle: {
-                                        color: "white !important",
-                                      },
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "nav-link-text" },
-                                      [_vm._v("Concesionarios")]
-                                    ),
-                                  ]),
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" -->\n                        "),
-                          _c(
-                            "router-link",
-                            {
-                              attrs: { tag: "li", to: "", "active-class": "" },
-                            },
-                            [
-                              _c("a", { attrs: { href: "" } }, [
-                                _c("i", {
-                                  staticClass: "fa-solid fa-pencil fa-3x",
-                                  staticStyle: { color: "white !important" },
-                                }),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "nav-link-text" }, [
-                                  _vm._v("REGISTRO"),
-                                ]),
-                              ]),
-                            ]
-                          ),
-                          _vm._v("\n=======\n                    "),
                         ],
                         1
                       ),
@@ -2057,9 +1993,6 @@ var render = function () {
                 _c(
                   "ul",
                   [
-                    _vm._v(
-                      "\n>>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd\n                        "
-                    ),
                     _vm.user.role_id == 1 || _vm.user.role_id == 6
                       ? _c(
                           "router-link",

@@ -47,20 +47,6 @@
                                 <span class="nav-link-text">Caracteristicas</span>
                             </a>
                         </router-link>
-<<<<<<< HEAD
-                        <router-link tag="li" to="/concesionarios" v-if="user.role_id == 6 " active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-users" style="color: white !important;"></i>
-                                <span class="nav-link-text">Concesionarios</span>
-                            </a>
-                        </router-link> -->
-                        <router-link tag="li" to=""  active-class="">
-                            <a href="">
-                                <i class="fa-solid fa-pencil fa-3x" style="color: white !important;"></i>
-                                <span class="nav-link-text">REGISTRO</span>
-                            </a>
-                        </router-link>
-=======
                     </ul>
                 </li>
                 <li class="active open" >
@@ -70,7 +56,6 @@
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
                         <router-link tag="li" to="/registro" v-if="user.role_id == 1 || user.role_id == 6" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Nuevo Registro</span>

@@ -24,15 +24,9 @@
                             </thead>
                             <tbody>
                                 <tr v-for="concesionario in concesionarios" :key="concesionario.id">
-<<<<<<< HEAD
                                     <td>{{concesionario.nombre }}</td>
                                     <td>{{concesionario.descripcion}}</td>
                                     <td>{{concesionario.direccion }}</td>                               
-=======
-                                    <td>{{ concesionario.nombre }}</td>
-                                    <td>{{ concesionario.descripcion}}</td>
-                                    <td>{{ concesionario.direccion }}</td>                               
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(concesionario)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(concesionario.id)"><i class="fa fa-trash"></i></button>
@@ -105,11 +99,7 @@ export default {
             btnCrear:false,
             btnEditar:false,
             id:'',
-<<<<<<< HEAD
             titulo:''
-=======
-            titulo: ''
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
         }
     },
     mounted(){
@@ -124,11 +114,8 @@ export default {
                 })
                 .then(response=>{
                     this.concesionarios = response.data;
-<<<<<<< HEAD
 
             
-=======
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
             })
                 .catch(error=>{
                     console.log(error);
@@ -150,11 +137,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.post('/api/concesionario', this.datos).then(response=>{
-<<<<<<< HEAD
-                    this.concesionario.push(response.data);
-=======
                     this.concesionarios.push(response.data);
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
                     $('#modalForm').modal('hide'); 
                     this.$swal.fire(
                         'Registro creado!',
@@ -170,11 +153,7 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.put('/api/concesionario/'+this.id, this.datos).then(response=>{
-<<<<<<< HEAD
-                    this.concesionario = [].concat(response.data);          
-=======
                     this.concesionarios = [].concat(response.data);          
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
                     this.id='';
                     $('#modalForm').modal('hide');
                     this.$swal.fire(
@@ -188,7 +167,6 @@ export default {
             }
         },
         borrar(id){
-<<<<<<< HEAD
             if(confirm("¿Confirma eliminar el registro?")){
                 this.axios.delete(`/api/concesionario/${id}`).then(response=>{
                     this.concesionario = [].concat(response.data);
@@ -199,7 +177,6 @@ export default {
         },
         abrirModalCrear(){
             this.datos = {nombre:'', descripcion:'', direccion: ''};
-=======
             this.$swal({
                 title: "¿Seguro de eliminar?",
                 text: "",
@@ -233,24 +210,12 @@ export default {
                 descripcion: '',
                 direccion: ''
             };
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
             this.titulo='Crear concesionario'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-<<<<<<< HEAD
-            this.datos= {
-                nombre: datos.nombre, 
-                descripcion: datos.descripcion,
-                direccion: datos.direccion       
-            };
-            this.titulo=' Editar concesionario'
-            this.btnCrear=false
-            this.btnEditar=true
-            this.id=datos.id
-=======
             this.titulo=' Editar concesionario';
             this.datos.nombre = datos.nombre;
             this.datos.descripcion = datos.descripcion;
@@ -258,7 +223,6 @@ export default {
             this.btnCrear=false;
             this.btnEditar = true;
             this.id = datos.id;
->>>>>>> 5a3a12c3a956ab814d6276aacc4969092e1ea6fd
             $('#modalForm').modal('show')
         },
         cerrarModal(){
