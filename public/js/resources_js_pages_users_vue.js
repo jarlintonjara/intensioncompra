@@ -187,7 +187,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         telefono: '',
         usuario: '',
         password: '',
-        confirmar_password: ''
+        password_confirmation: ''
       },
       titulo: '',
       btnCrear: false,
@@ -237,7 +237,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 _context.next = 5;
-                return _this.$tablaGlobal('#tableUser');
+                return _this.$tablaGlobal('#tablaListado');
 
               case 5:
               case "end":
@@ -248,7 +248,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.usuario) {
+      if (!this.datos.nombre || !this.datos.apellido || !this.datos.role_id || !this.datos.concesionario_id || !this.datos.tienda_id || !this.datos.usuario) {
         this.$swal.fire({
           icon: 'error',
           title: 'Error',
@@ -311,7 +311,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/usuario/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.users = [].concat(response.data);
+                    var index = _this3.users.map(function (e) {
+                      return e.id;
+                    }).indexOf(_this3.id);
+
+                    if (index !== -1) {
+                      var users = _this3.users;
+                      users[index] = response.data;
+                      _this3.users = [].concat(users);
+                    }
+
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
@@ -375,26 +384,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }());
     },
     abrirModalCrear: function abrirModalCrear() {
-      this.datos = {
-        nombre: '',
-        apellido: '',
-        concesionario_id: 0,
-        tienda_id: 0,
-        documento: '',
-        email: '',
-        role_id: '',
-        telefono: '',
-        usuario: '',
-        password: '',
-        confirmar_password: ''
-      };
+      this.datos.nombre = '';
+      this.datos.apellido = '';
+      this.datos.concesionario_id = '';
+      this.datos.tienda_id = '';
+      this.datos.documento = '';
+      this.datos.email = '';
+      this.datos.role_id = '';
+      this.datos.telefono = '';
+      this.datos.usuario = '';
+      this.datos.password = '';
+      this.datos.password_confirmation = '';
       this.titulo = 'Crear usuario';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
-      console.log(datos);
       this.tiendasFilter = [].concat(this.tiendas);
       this.titulo = ' Editar usuario';
       this.datos.nombre = datos.nombre;
@@ -1300,7 +1306,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tableUser" },
+                  attrs: { id: "tablaListado" },
                 },
                 [
                   _vm._m(1),
@@ -1779,26 +1785,28 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-md-6" }, [
-                        _c("label", { attrs: { for: "confirmar_password" } }, [
-                          _vm._v("Confirmar contraseña"),
-                        ]),
+                        _c(
+                          "label",
+                          { attrs: { for: "password_confirmation" } },
+                          [_vm._v("Confirmar contraseña")]
+                        ),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.datos.confirmar_password,
-                              expression: "datos.confirmar_password",
+                              value: _vm.datos.password_confirmation,
+                              expression: "datos.password_confirmation",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: {
                             type: "password",
-                            id: "confirmar_password",
+                            id: "password_confirmation",
                             autocomplete: "new-password2",
                           },
-                          domProps: { value: _vm.datos.confirmar_password },
+                          domProps: { value: _vm.datos.password_confirmation },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
@@ -1806,7 +1814,7 @@ var render = function () {
                               }
                               _vm.$set(
                                 _vm.datos,
-                                "confirmar_password",
+                                "password_confirmation",
                                 $event.target.value
                               )
                             },

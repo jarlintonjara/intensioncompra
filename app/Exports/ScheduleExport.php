@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use App\Models\User;
 
 class ScheduleExport implements FromCollection, WithHeadings
 {
@@ -17,12 +18,12 @@ class ScheduleExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return $this->columns;
+        return ['nombre','apellido'];
     }
 
     public function collection()
     {
-        return $this->data;
+        return User::select('nombre','apellido')->get();
     }
     
 }

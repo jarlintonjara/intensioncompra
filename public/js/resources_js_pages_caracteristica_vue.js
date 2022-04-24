@@ -142,17 +142,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Caracteristica",
   data: function data() {
     return {
       caracteristicas: [],
+      marcas: [],
       datos: {
         marca: '',
         modelo: '',
-        color1: '',
-        color2: '',
-        color3: ''
+        version: '',
+        anio_modelo: '',
+        anio_fabricacion: '',
+        color: ''
       },
       btnCrear: false,
       btnEditar: false,
@@ -181,14 +191,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  _this.caracteristicas = response.data;
+                  _this.caracteristicas = response.data.caracteristicas;
+                  _this.marcas = response.data.marcas;
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
               case 3:
                 _context.next = 5;
-                return _this.$tablaGlobal('#tableUser');
+                return _this.$tablaGlobal('#tablaListado');
 
               case 5:
               case "end":
@@ -197,18 +208,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    validarCampos: function validarCampos() {
-      if (!this.datos.marca || !this.datos.modelo || !this.datos.color1 || !this.datos.color2 || !this.datos.color3) {
-        this.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Completa los campos requeridos!'
-        });
-        return false;
-      }
-
-      return true;
     },
     crear: function crear() {
       var _this2 = this;
@@ -227,11 +226,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.post('/api/caracteristica', _this2.datos).then(function (response) {
-                    _this2.tienda.push(response.data);
+                    _this2.caracteristicas.push(response.data);
 
                     $('#modalForm').modal('hide');
 
-                    _this2.$swal.fire('Caracteritica creada correctamente!', '', 'success');
+                    _this2.$swal.fire('Registro creada!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -262,11 +261,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/caracteristica/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.tienda = [].concat(response.data);
+                    var index = _this3.caracteristicas.map(function (e) {
+                      return e.id;
+                    }).indexOf(_this3.id);
+
+                    if (index !== -1) {
+                      var caracteristicas = _this3.caracteristicas;
+                      caracteristicas[index] = response.data;
+                      _this3.caracteristicas = [].concat(caracteristicas);
+                    }
+
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
-                    _this3.$swal.fire('Caracteritica editada correctamente!', '', 'success');
+                    _this3.$swal.fire('Registro editado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -283,40 +291,84 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this4 = this;
 
-      if (confirm("¿Confirma eliminar el registro?")) {
-        this.axios["delete"]("/api/caracteristica/".concat(id)).then(function (response) {
-          _this4.caracteristicas = [].concat(response.data);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+      this.$swal.fire({
+        title: '¿Seguro de eliminar?',
+        showDenyButton: true,
+        confirmButtonText: 'Eliminar',
+        denyButtonText: "Cancelar"
+      }).then( /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(result) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  if (result.isConfirmed) {
+                    _this4.axios["delete"]("/api/caracteristica/".concat(id)).then(function (response) {
+                      var index = _this4.caracteristicas.map(function (e) {
+                        return e.id;
+                      }).indexOf(id);
+
+                      if (index !== -1) {
+                        var caracteristicas = _this4.caracteristicas;
+                        caracteristicas.splice(index, 1);
+                        _this4.caracteristicas = [].concat(caracteristicas);
+                      }
+
+                      _this4.$swal.fire('Registro eliminado', '', 'success');
+                    })["catch"](function (error) {
+                      console.log(error);
+                    });
+                  }
+
+                case 1:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
     },
     abrirModalCrear: function abrirModalCrear() {
-      this.datos = {
-        marca: '',
-        modelo: '',
-        color1: '',
-        color2: '',
-        color3: ''
-      };
+      this.datos.marca = '';
+      this.datos.modelo = '';
+      this.datos.version = '';
+      this.datos.anio_modelo = '';
+      this.datos.anio_fabricacion = '';
+      this.datos.color = '';
       this.titulo = 'Crear caracteristica';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
-      this.datos = {
-        marca: datos.marca,
-        modelo: datos.modelo,
-        color1: datos.color1,
-        color2: datos.color2,
-        color3: datos.color3
-      };
+      this.datos.marca = datos.marca;
+      this.datos.modelo = datos.modelo;
+      this.datos.version = datos.version;
+      this.datos.anio_modelo = datos.anio_modelo;
+      this.datos.anio_fabricacion = datos.anio_fabricacion;
+      this.datos.color = datos.color;
       this.titulo = ' Editar caracteristicas';
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
       $('#modalForm').modal('show');
+    },
+    validarCampos: function validarCampos() {
+      if (!this.datos.marca || !this.datos.modelo || !this.datos.version || !this.datos.color) {
+        this.$swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Completa los campos requeridos!'
+        });
+        return false;
+      }
+
+      return true;
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
@@ -1208,7 +1260,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tableUser" },
+                  attrs: { id: "tablaListado" },
                 },
                 [
                   _vm._m(1),
@@ -1221,11 +1273,11 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(caracteristica.modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristica.color1))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.version))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristica.color2))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.anio_modelo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(caracteristica.color3))]),
+                        _c("td", [_vm._v(_vm._s(caracteristica.color))]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -1302,31 +1354,57 @@ var render = function () {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-row" }, [
                   _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("label", { attrs: { for: "marca" } }, [
-                      _vm._v("Marca:"),
-                    ]),
+                    _c("label", { attrs: { for: "marca" } }, [_vm._v("Marca")]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.marca,
-                          expression: "datos.marca",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", id: "marca" },
-                      domProps: { value: _vm.datos.marca },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.datos, "marca", $event.target.value)
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datos.marca,
+                            expression: "datos.marca",
+                          },
+                        ],
+                        staticClass: "browser-default custom-select",
+                        attrs: { id: "marca", disabled: _vm.btnEditar },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "marca",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
                       },
-                    }),
+                      [
+                        _c("option", [_vm._v("Seleccione una marca")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.marcas, function (item) {
+                          return _c(
+                            "option",
+                            {
+                              key: item.marca,
+                              domProps: { value: item.marca },
+                            },
+                            [_vm._v(_vm._s(item.marca))]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-6" }, [
@@ -1344,7 +1422,11 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", id: "modelo" },
+                      attrs: {
+                        type: "text",
+                        id: "modelo",
+                        disabled: _vm.btnEditar,
+                      },
                       domProps: { value: _vm.datos.modelo },
                       on: {
                         input: function ($event) {
@@ -1374,7 +1456,11 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", id: "version" },
+                      attrs: {
+                        type: "text",
+                        id: "version",
+                        disabled: _vm.btnEditar,
+                      },
                       domProps: { value: _vm.datos.version },
                       on: {
                         input: function ($event) {
@@ -1387,6 +1473,40 @@ var render = function () {
                     }),
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-6" }, [
+                    _c("label", { attrs: { for: "color" } }, [
+                      _vm._v("Color:"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.color,
+                          expression: "datos.color",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "color",
+                        disabled: _vm.btnEditar,
+                      },
+                      domProps: { value: _vm.datos.color },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "color", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
                   _c("div", { staticClass: "form-group col-md-3" }, [
                     _c("label", { attrs: { for: "anioModelo" } }, [
                       _vm._v("Año del modelo"),
@@ -1404,7 +1524,7 @@ var render = function () {
                           },
                         ],
                         staticClass: "browser-default custom-select",
-                        attrs: { id: "anioModelo", disabled: _vm.btnEditar },
+                        attrs: { id: "anioModelo" },
                         on: {
                           change: function ($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -1468,7 +1588,7 @@ var render = function () {
                           },
                         ],
                         staticClass: "browser-default custom-select",
-                        attrs: { id: "anioModelo", disabled: _vm.btnEditar },
+                        attrs: { id: "anioModelo" },
                         on: {
                           change: function ($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -1596,11 +1716,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Modelo")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Color 1")]),
+        _c("th", [_vm._v("Versión")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Color 2")]),
+        _c("th", [_vm._v("Año modelo")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Color 3")]),
+        _c("th", [_vm._v("Color")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConcesionarioModel;
 use App\Models\TiendaModel;
 use Illuminate\Http\Request;
 
@@ -10,16 +11,18 @@ class TiendaController extends Controller
     
     public function index()
     {
-        $data = TiendaModel::where('estado',1)->get();
-        return response()->json($data);
+        $data = TiendaModel::where('estado', 1)->get();
+        $concesionarios = ConcesionarioModel::where('estado',1)->get();
+        return response()->json([
+                'tiendas' => $data,
+                'concesionarios' => $concesionarios
+            ]);
     }
-
     
     public function create()
     {
         //
     }
-
     
     public function store(Request $request)
     {

@@ -1,18 +1,14 @@
 <template>
     
     <main id="js-page-content" role="main" class="page-content">
-        
         <div class="subheader">
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-chart-area'></i> Roles 
-                <small>
-                </small>
             </h1>
         </div>
         <br>
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
-                
                 <div class="panel-container show">
                     <div class="panel-content">
                             <div class="panel-hdr">

@@ -31,6 +31,7 @@ class IngresoModel extends Model
         'bloqueado',
         'codigo_sap',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'motivo'
     ];
 }

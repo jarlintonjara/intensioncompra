@@ -20,17 +20,26 @@ class UserController extends Controller
     {
         $auth = new AuthController();
         $session = $auth->getUser($request->bearerToken());
-        $users = [];
+        $query = User::where('status', 1)
+                ->where('id', '!=', $session->id)
+                ->whereNotIn('usuario', ['admin', 'admin.bolivia'])
+                ->orderBy('apellido', 'ASC');
         switch ($session->role_id) {
             case 2:
-                $users = User::where('status', 1)->where('tienda_id', $session->tienda_id)->where('id', '!=',$session->id)->orderBy('apellido', 'ASC')->get();
+                $users = $query->where('tienda_id', $session->tienda_id)->get();
                 break;
             case 3:
-                $users = User::where('status', 1)->where('concesionario_id', $session->concesionario_id)->where('id', '!=', $session->id)->orderBy('apellido', 'ASC')->get();
+                $users = $query->where('concesionario_id', $session->concesionario_id)->get();
+                break;
+            case 4:
+            case 5:
+                $users = $query->where('marca', $session->marca)->get();
                 break;
             case 6:
-                $users = User::where('status', 1)->where('id', '!=', $session->id)->orderBy('apellido', 'ASC')->get();
+                $users = $query->get();
                 break;  
+            default:
+                $users = [];
         }
         foreach ($users as $user) {
             $user["role"] = $user->role;
@@ -54,8 +63,9 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request['password'] = Hash::make($request->password);
-        $user = User::create($request);
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
         $user["role"] = $user->role;
         return response()->json($user);
     }
@@ -72,12 +82,17 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->all();
         $user = User::findOrFail($id);
-        // $data = $request->post();
-        $request['password'] = Hash::make($request->password);
-        $user->update($request->all());
-        $data = User::all();
-        return response()->json($data);
+        if (empty($request->password)) {
+            $data['password'] = $user->password;
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
+        $user->update($data);
+        $user["role"] = $user->role;
+        $user["tienda"] = $user->tienda_id ? $user->tienda : "";
+        return response()->json($user);
     }
 
     public function updateProfile(Request $request, $id)
@@ -100,8 +115,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $user->delete();
-        $data = User::all();
-        return response()->json($data);
-    }   
+        $user->update(['status' => 0]);
+        return response()->json($user);
+    }  
 }

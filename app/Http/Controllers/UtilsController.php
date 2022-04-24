@@ -14,6 +14,6 @@ class UtilsController extends Controller
             'data' => ['required'],
             'name' => ['required']
         ]);
-        return Excel::download(new ScheduleExport($request->columns, $request->data), 'schedule.xlsx');
+        return Excel::store(new ScheduleExport($request->columns, $request->data), 'schedule.xlsx');
     }
 }

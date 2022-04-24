@@ -7,19 +7,20 @@ use Illuminate\Http\Request;
 
 class CaracteristicaController extends Controller
 {
-    
     public function index()
     {
         $data = CaracteristicaModel::where('estado',1)->get();
-        return response()->json($data);
+        $marcas = CaracteristicaModel::select('marca')->where('estado',1)->groupBy('marca')->get();
+        return response()->json([
+            'caracteristicas'  => $data,
+            'marcas'  => $marcas
+        ]);
     }
-
     
     public function create()
     {
         //
     }
-
     
     public function store(Request $request)
     {
@@ -27,11 +28,9 @@ class CaracteristicaController extends Controller
             'marca' => ['required'],
             'modelo' => ['required'],
             'version' => ['required'],
-            'color1' => ['required'],
-            'color2' => ['required'],
-            'color3' => ['required'],
+            'color' => ['required'],
         ]);
-        $register = CaracteristicaModel::create($request->post());
+        $register = CaracteristicaModel::create($request->all());
         return response()->json($register);
     }
 
@@ -49,9 +48,10 @@ class CaracteristicaController extends Controller
     {
         $register = CaracteristicaModel::findOrFail($id);
         $request->validate([
-            'concesionario_id' => ['required'],
-            'nombre' => ['required'],
-            'direccion' => ['required'],
+            'marca' => ['required'],
+            'modelo' => ['required'],
+            'version' => ['required'],
+            'color' => ['required'],
         ]);
         $register->update($request->all());
         return response()->json($register);

@@ -50,3 +50,5 @@ Route::resource('concesionario', ConcesinarioController::class);
 
 //Utils
 Route::post('exportExcel', [UtilsController::class, 'exportExcel']);
+
+Route::get('home', [HomeController::class, 'index']);

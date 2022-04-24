@@ -65,17 +65,20 @@ class AuthController extends Controller
     }
     
     function getUser($token)
-    {
-        [$id, $user_token] = explode('|', $token, 2);
-        $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
-        if ($token_data) {
-            $user_id = $token_data->tokenable_id;
-            $user = User::find($user_id);
-            if ($user) {
-                return $user;
+    {   
+        if ($token){
+            [$id, $user_token] = explode('|', $token, 2);
+            $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+            if ($token_data) {
+                $user_id = $token_data->tokenable_id;
+                $user = User::find($user_id);
+                if ($user) {
+                    return $user;
+                }
+                return response()->json("Unauthenticated", 401);
             }
-            return response()->json("Unauthenticated", 401);
         }
+        return response()->json("Unauthenticated", 401);
     }
 
     public function getSession($token)

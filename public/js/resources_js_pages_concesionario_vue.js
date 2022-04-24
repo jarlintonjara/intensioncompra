@@ -123,7 +123,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       concesionarios: [],
       datos: {
         nombre: '',
-        descripcion: 0,
+        descripcion: '',
         direccion: ''
       },
       btnCrear: false,
@@ -160,7 +160,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 _context.next = 5;
-                return _this.$tablaGlobal('#tableUser');
+                return _this.$tablaGlobal('#tablaListado');
 
               case 5:
               case "end":
@@ -169,18 +169,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.descripcion || !this.datos.direccion) {
-        this.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Completa los campos requeridos!'
-        });
-        return false;
-      }
-
-      return true;
     },
     crear: function crear() {
       var _this2 = this;
@@ -234,11 +222,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/concesionario/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.concesionarios = [].concat(response.data);
+                    var index = _this3.concesionarios.map(function (e) {
+                      return e.id;
+                    }).indexOf(_this3.id);
+
+                    if (index !== -1) {
+                      var concesionarios = _this3.concesionarios;
+                      concesionarios[index] = response.data;
+                      _this3.concesionarios = [].concat(concesionarios);
+                    }
+
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
-                    _this3.$swal.fire('Editado correctamente!', '', 'success');
+                    _this3.$swal.fire('Registro editado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -255,41 +252,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this4 = this;
 
-      this.$swal({
-        title: "¿Seguro de eliminar?",
-        text: "",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
+      this.$swal.fire({
+        title: '¿Seguro de eliminar?',
+        showDenyButton: true,
+        confirmButtonText: 'Eliminar',
+        denyButtonText: "Cancelar"
       }).then( /*#__PURE__*/function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(willDelete) {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(result) {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
             while (1) {
               switch (_context4.prev = _context4.next) {
                 case 0:
-                  if (!willDelete) {
-                    _context4.next = 3;
-                    break;
+                  if (result.isConfirmed) {
+                    _this4.axios["delete"]("/api/concesionario/".concat(id)).then(function (response) {
+                      var index = _this4.concesionarios.map(function (e) {
+                        return e.id;
+                      }).indexOf(id);
+
+                      if (index !== -1) {
+                        var concesionarios = _this4.concesionarios;
+                        concesionarios.splice(index, 1);
+                        _this4.concesionarios = [].concat(concesionarios);
+                      }
+
+                      _this4.$swal.fire('Registro eliminado', '', 'success');
+                    })["catch"](function (error) {
+                      console.log(error);
+                    });
                   }
 
-                  _context4.next = 3;
-                  return _this4.axios["delete"]("/api/concesionario/".concat(id)).then(function (response) {
-                    var index = _this4.concesionarios.map(function (e) {
-                      return e.id;
-                    }).indexOf(id);
-
-                    if (index !== -1) {
-                      var concesionarios = _this4.concesionarios;
-                      concesionarios.splice(index, 1);
-                      _this4.concesionarios = [].concat(concesionarios);
-                    }
-
-                    _this4.$swal.fire('Registro eliminado', '', 'success');
-                  })["catch"](function (error) {
-                    console.log(error);
-                  });
-
-                case 3:
+                case 1:
                 case "end":
                   return _context4.stop();
               }
@@ -303,11 +295,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }());
     },
     abrirModalCrear: function abrirModalCrear() {
-      this.datos = {
-        nombre: '',
-        descripcion: '',
-        direccion: ''
-      };
+      this.datos.nombre = '';
+      this.datos.descripcion = '';
+      this.datos.direccion = '';
       this.titulo = 'Crear concesionario';
       this.btnCrear = true;
       this.btnEditar = false;
@@ -322,6 +312,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.btnEditar = true;
       this.id = datos.id;
       $('#modalForm').modal('show');
+    },
+    validarCampos: function validarCampos() {
+      if (!this.datos.nombre || !this.datos.descripcion || !this.datos.direccion) {
+        this.$swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Completa los campos requeridos!'
+        });
+        return false;
+      }
+
+      return true;
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
@@ -1213,7 +1215,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tableUser" },
+                  attrs: { id: "tablaListado" },
                 },
                 [
                   _vm._m(1),
@@ -1473,7 +1475,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "subheader" }, [
       _c("h1", { staticClass: "subheader-title" }, [
         _c("i", { attrs: { cwlass: "subheader-icon fal fa-chart-area" } }),
-        _vm._v(" Concesionario\n        "),
+        _vm._v("Concesionarios\n        "),
       ]),
     ])
   },

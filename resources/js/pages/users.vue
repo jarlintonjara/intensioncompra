@@ -13,7 +13,7 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                         </div><br>
-                        <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
+                        <table id="tablaListado" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
                                     <th>Nombre Completo</th>
@@ -117,8 +117,8 @@
                                 <input type="password" id="password" class="form-control" placeholder="ejem: ventas.." autocomplete="new-password" v-model="datos.password">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="confirmar_password" >Confirmar contraseña</label>
-                                <input type="password" id="confirmar_password" class="form-control" autocomplete="new-password2" v-model="datos.confirmar_password">
+                                <label for="password_confirmation" >Confirmar contraseña</label>
+                                <input type="password" id="password_confirmation" class="form-control" autocomplete="new-password2" v-model="datos.password_confirmation">
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ export default {
                 telefono:'', 
                 usuario:'',
                 password: '',
-                confirmar_password: ''
+                password_confirmation: ''
             },
             titulo:'',
             btnCrear:false,
@@ -193,15 +193,11 @@ export default {
             .catch(error=>{
                 console.log(error);
             }) 
-            await this.$tablaGlobal('#tableUser');
+            await this.$tablaGlobal('#tablaListado');
         },
         validarCampos(){
-            if(!this.datos.nombre || !this.datos.apellido || !this.datos.email || !this.datos.role_id || !this.datos.usuario ){
-                this.$swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Completa los campos requeridos!',
-                });
+            if(!this.datos.nombre || !this.datos.apellido || !this.datos.role_id || !this.datos.concesionario_id || !this.datos.tienda_id || !this.datos.usuario ){
+                this.$swal.fire({icon: 'error', title: 'Error', text: 'Completa los campos requeridos!'});
                 return false;
             }
             return true;
@@ -221,11 +217,16 @@ export default {
         async editar(){
             let valid = await this.validarCampos();
             if(valid){
-                axios.put('/api/usuario/'+this.id, this.datos).then(response=>{
-                    this.users = [].concat(response.data);          
+                axios.put('/api/usuario/' + this.id, this.datos).then(response=>{
+                    let index =  this.users.map(e => e.id).indexOf(this.id);
+                    if(index !== -1){
+                        let users = this.users;
+                        users[index] = response.data;
+                        this.users = [].concat(users);
+                    }
                     this.id='';
                     $('#modalForm').modal('hide');
-                    this.$swal.fire('Registro editado!', '', 'success');
+                    this.$swal.fire( 'Registro editado!', '', 'success');
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -254,26 +255,23 @@ export default {
             })
         },
         abrirModalCrear(){
-            this.datos = {
-                nombre:'', 
-                apellido:'', 
-                concesionario_id: 0,
-                tienda_id: 0,
-                documento:'', 
-                email:'', 
-                role_id: '',
-                telefono:'', 
-                usuario:'',
-                password: '',
-                confirmar_password: ''
-            };
+            this.datos.nombre = '';
+            this.datos.apellido = '';
+            this.datos.concesionario_id = '';
+            this.datos.tienda_id = '';
+            this.datos.documento = '';
+            this.datos.email = '';
+            this.datos.role_id = '';
+            this.datos.telefono = '';
+            this.datos.usuario = '';
+            this.datos.password = '';
+            this.datos.password_confirmation = '';
             this.titulo='Crear usuario'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            console.log(datos);
             this.tiendasFilter = [].concat(this.tiendas);
             this.titulo=' Editar usuario'
             this.datos.nombre = datos.nombre; 

@@ -13,13 +13,12 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" >Nuevo</button>
                         </div><br>
-                        <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
+                        <table id="tablaListado" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
-                                    <!-- <th>Fecha de Creacion</th>  -->
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -28,7 +27,6 @@
                                     <td>{{ tienda.id }}</td>
                                     <td>{{ tienda.nombre }}</td>
                                     <td>{{ tienda.direccion }}</td>
-                                    <!-- <td>{{ user.Fecha }}</td>  -->
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(tienda)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(tienda.id)"><i class="fa fa-trash"></i></button>
@@ -59,18 +57,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="Concesionario">Concesionario</label>
-                                <input type="text" id="Concesionario" class="form-control" placeholder="Concesionario" required="" v-model="datos.concesionario">
+                                <select id="Concesionario" class="browser-default custom-select" v-model="datos.concesionario_id" :disabled="btnEditar">
+                                    <option>Seleccione una Concesionario</option>
+                                    <option v-for="concesionario in concesionarios" :key="concesionario.id + 11" :value="concesionario.id">{{ concesionario.nombre }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="Nombre">Nombre</label>
                                 <input type="text" id="Nombre" class="form-control" placeholder="Nombre" required="" v-model="datos.nombre">
                             </div> 
-                            <div class="form-group col-md-6">
-                            <div class="form-group col-md-4">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
                                 <label for="Direccion">Dirección</label>
                                 <input type="text" id="Direccion" class="form-control" placeholder="Direccion" v-model="datos.direccion">
                             </div>
-                        </div>                          
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -92,24 +93,22 @@ export default {
     name: "Tienda",
     data(){
         return {
+            concesionarios:[],
             tiendas:[],
             datos: { 
+                concesionario_id:'', 
                 nombre:'', 
-                tienda: 0,
                 direccion: '',
-                },
+            },
+            id:'',
+            titulo:'',
             btnCrear:false,
             btnEditar:false,
-            selectTienda :"",
-            id:'',
-            titulo:''
         }
     },
     mounted(){
         this.init()
-
     },
-    
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
@@ -118,36 +117,21 @@ export default {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then(response=>{
-                    this.tiendas = response.data;
-            console.log(this.tiendas)
+                    this.tiendas = response.data.tiendas;
+                    this.concesionarios = response.data.concesionarios;
             })
                 .catch(error=>{
                     console.log(error);
                 }) 
-            await this.$tablaGlobal('#tableUser');
-        },
-        validarCampos(){
-            if(!this.datos.nombre || !this.datos.tienda || !this.datos.direccion ){
-                this.$swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Completa los campos requeridos!',
-                });
-                return false;
-            }
-            return true;
+            await this.$tablaGlobal('#tablaListado');
         },
         async crear(){
             let valid = await this.validarCampos();
             if(valid){
-                axios.post('api/tienda', this.datos).then(response=>{
+                axios.post('api/tienda', this.datos).then(response => {
                     this.tienda.push(response.data);
                     $('#modalForm').modal('hide'); 
-                    this.$swal.fire(
-                        'Tienda creada correctamente!',
-                        '',
-                        'success'
-                    )
+                    this.$swal.fire('Registro creado!', '', 'success');
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -156,47 +140,68 @@ export default {
         async editar(){
             let valid = await this.validarCampos();
             if(valid){
-                axios.put('/api/tienda/'+this.id, this.datos).then(response=>{
-                    this.tienda = [].concat(response.data);          
+                axios.put('/api/tienda/' + this.id, this.datos).then(response => { 
+                    let index =  this.tiendas.map(e => e.id).indexOf(this.id);
+                    if(index !== -1){
+                        let tiendas = this.tiendas;
+                        tiendas[index] = response.data;
+                        this.tiendas = [].concat(tiendas);
+                    }
                     this.id='';
                     $('#modalForm').modal('hide');
-                    this.$swal.fire(
-                        'Tienda editada correctamente!',
-                        '',
-                        'success'
-                    )
+                    this.$swal.fire( 'Registro editado!', '', 'success');
                 }).catch(function (error) {
                     console.log(error);
                 });
             }
         },
         borrar(id){
-            if(confirm("¿Confirma eliminar el registro?")){
-                this.axios.delete(`/api/tienda/${id}`).then(response=>{
-                    this.tienda = [].concat(response.data);
-                }).catch(error=>{
-                    console.log(error)  
-                })
-            }
+            this.$swal.fire({
+                title: '¿Seguro de eliminar?',
+                showDenyButton: true,
+                confirmButtonText: 'Eliminar',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                   this.axios.delete(`/api/tienda/${id}`).then(response=>{
+                        let index =  this.tiendas.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let tiendas = this.tiendas;
+                            tiendas.splice(index, 1);
+                            this.tiendas = [].concat(tiendas);
+                        }
+                        this.$swal.fire('Registro eliminado', '', 'success');
+                    }).catch(error=>{
+                        console.log(error)
+                    });
+                }
+            })
         },
         abrirModalCrear(){
-            this.datos = {nombre:'', tienda:'', direccion:''};
+            this.datos.concesionario_id = 0;
+            this.datos.nombre = '';
+            this.datos.direccion = '';
             this.titulo='Crear Tienda'
             this.btnCrear=true;
             this.btnEditar=false;
             $('#modalForm').modal('show')
         },
         abrirModalEditar(datos){
-            this.datos= {
-                nombre: datos.nombre, 
-                tienda: datos.tienda,
-                direccion: datos.direccion,      
-            };
-            this.titulo=' Editar tienda'
+            this.datos.concesionario_id = datos.concesionario_id;
+            this.datos.nombre = datos.nombre;
+            this.datos.direccion = datos.direccion;
+            this.titulo = 'Editar tienda'
             this.btnCrear=false
             this.btnEditar=true
-            this.id=datos.id
+            this.id = datos.id
             $('#modalForm').modal('show')
+        },
+        validarCampos(){
+            if(!this.datos.nombre || !this.datos.concesionario_id || !this.datos.direccion ){
+                this.$swal.fire({icon: 'error', title: 'Error', text: 'Completa los campos requeridos!',});
+                return false;
+            }
+            return true;
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

@@ -16,7 +16,6 @@
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
                     </div>
                 </div>
                 <div class="panel-container show">
@@ -24,7 +23,7 @@
                         <table id="tingresos" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
-                                    <th>BLOQUEADO</th>
+                                    <th>BLOQUEAR</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -41,10 +40,7 @@
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
                                     <td style="text-align: center">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" :id="'customSwitch2'+ingreso.id" :checked="ingreso.bloqueado == 0 ?'checked':'' " @click="ChangeBloquear(ingreso.id, ingreso.bloqueado)">
-                                            <label class="custom-control-label" :for="'customSwitch2'+ingreso.id"></label> 
-                                        </div>
+                                        <button class="btn btn-danger" @click="ChangeBloquear(ingreso.id)"><i class="fa fa-lock"></i></button>
                                     </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>
@@ -90,24 +86,38 @@ export default {
                 })
                 .then(response=>{
                     this.ingresos = response.data.data
-                    
                 })
                 .catch(error=>{
                     console.log(error);
                 })
                 await this.$tablaGlobal('#tingresos');
         },
-        async ChangeBloquear(id, estadoBloqueado){
-            const token = localStorage.getItem('access_token');
-            await axios.get('api/getSession/'+ token).then((res)=>{
-                this.user = res.data.id;
-            })
+        async ChangeBloquear(id){
             
-            let estado = estadoBloqueado == 1 ? 0 : 1;
-            await axios.put('/api/ingreso/' + id, { bloqueado : estado, user_bloqueo : this.user }).then(response=>{
-                }).catch(function (error) {
-                    console.log(error);
-                }); 
+            this.$swal.fire({
+                title: '¿Seguro de bloquear?',
+                showDenyButton: true,
+                confirmButtonText: 'Bloquear',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                const token = localStorage.getItem('access_token');
+                if (result.isConfirmed) {
+                   await axios.put(`/api/ingreso/${id}`, {
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+                }).then(response=>{
+                        let index =  this.ingresos.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let ingresos = this.ingresos;
+                            ingresos.splice(index, 1);
+                            this.ingresos = [].concat(ingresos);
+                        }
+                        this.$swal.fire('Registro bloqueado', '', 'success');
+                    }).catch(error=>{
+                        console.log(error)
+                    });
+                }
+            })
         }
     }
 }

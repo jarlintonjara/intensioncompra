@@ -235,8 +235,6 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                $data = $query->where('packing_list.marca', $user->marca)->get();
-                break;
             case 5:
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;

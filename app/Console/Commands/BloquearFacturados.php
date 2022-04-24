@@ -23,7 +23,7 @@ class BloquearFacturados extends Command
                 $ingreso->situacion = 'BLOQUEADO';
                 $ingreso->fecha_bloqueo = date('Y-m-d');
                 $ingreso->bloqueado = 1;
-                $ingreso->observacion = 'JOB: unidad ya facturado';
+                $ingreso->motivo = 'JOB: unidad ya facturado';
                 $ingreso->save();
             } 
         }

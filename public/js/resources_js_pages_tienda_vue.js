@@ -118,21 +118,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Tienda",
   data: function data() {
     return {
+      concesionarios: [],
       tiendas: [],
       datos: {
+        concesionario_id: '',
         nombre: '',
-        tienda: 0,
         direccion: ''
       },
-      btnCrear: false,
-      btnEditar: false,
-      selectTienda: "",
       id: '',
-      titulo: ''
+      titulo: '',
+      btnCrear: false,
+      btnEditar: false
     };
   },
   mounted: function mounted() {
@@ -156,15 +157,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  _this.tiendas = response.data;
-                  console.log(_this.tiendas);
+                  _this.tiendas = response.data.tiendas;
+                  _this.concesionarios = response.data.concesionarios;
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
               case 3:
                 _context.next = 5;
-                return _this.$tablaGlobal('#tableUser');
+                return _this.$tablaGlobal('#tablaListado');
 
               case 5:
               case "end":
@@ -173,18 +174,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    validarCampos: function validarCampos() {
-      if (!this.datos.nombre || !this.datos.tienda || !this.datos.direccion) {
-        this.$swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Completa los campos requeridos!'
-        });
-        return false;
-      }
-
-      return true;
     },
     crear: function crear() {
       var _this2 = this;
@@ -207,7 +196,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     $('#modalForm').modal('hide');
 
-                    _this2.$swal.fire('Tienda creada correctamente!', '', 'success');
+                    _this2.$swal.fire('Registro creado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -238,11 +227,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (valid) {
                   axios.put('/api/tienda/' + _this3.id, _this3.datos).then(function (response) {
-                    _this3.tienda = [].concat(response.data);
+                    var index = _this3.tiendas.map(function (e) {
+                      return e.id;
+                    }).indexOf(_this3.id);
+
+                    if (index !== -1) {
+                      var tiendas = _this3.tiendas;
+                      tiendas[index] = response.data;
+                      _this3.tiendas = [].concat(tiendas);
+                    }
+
                     _this3.id = '';
                     $('#modalForm').modal('hide');
 
-                    _this3.$swal.fire('Tienda editada correctamente!', '', 'success');
+                    _this3.$swal.fire('Registro editado!', '', 'success');
                   })["catch"](function (error) {
                     console.log(error);
                   });
@@ -259,36 +257,78 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     borrar: function borrar(id) {
       var _this4 = this;
 
-      if (confirm("¿Confirma eliminar el registro?")) {
-        this.axios["delete"]("/api/tienda/".concat(id)).then(function (response) {
-          _this4.tienda = [].concat(response.data);
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+      this.$swal.fire({
+        title: '¿Seguro de eliminar?',
+        showDenyButton: true,
+        confirmButtonText: 'Eliminar',
+        denyButtonText: "Cancelar"
+      }).then( /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(result) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  if (result.isConfirmed) {
+                    _this4.axios["delete"]("/api/tienda/".concat(id)).then(function (response) {
+                      var index = _this4.tiendas.map(function (e) {
+                        return e.id;
+                      }).indexOf(id);
+
+                      if (index !== -1) {
+                        var tiendas = _this4.tiendas;
+                        tiendas.splice(index, 1);
+                        _this4.tiendas = [].concat(tiendas);
+                      }
+
+                      _this4.$swal.fire('Registro eliminado', '', 'success');
+                    })["catch"](function (error) {
+                      console.log(error);
+                    });
+                  }
+
+                case 1:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
     },
     abrirModalCrear: function abrirModalCrear() {
-      this.datos = {
-        nombre: '',
-        tienda: '',
-        direccion: ''
-      };
+      this.datos.concesionario_id = 0;
+      this.datos.nombre = '';
+      this.datos.direccion = '';
       this.titulo = 'Crear Tienda';
       this.btnCrear = true;
       this.btnEditar = false;
       $('#modalForm').modal('show');
     },
     abrirModalEditar: function abrirModalEditar(datos) {
-      this.datos = {
-        nombre: datos.nombre,
-        tienda: datos.tienda,
-        direccion: datos.direccion
-      };
-      this.titulo = ' Editar tienda';
+      this.datos.concesionario_id = datos.concesionario_id;
+      this.datos.nombre = datos.nombre;
+      this.datos.direccion = datos.direccion;
+      this.titulo = 'Editar tienda';
       this.btnCrear = false;
       this.btnEditar = true;
       this.id = datos.id;
       $('#modalForm').modal('show');
+    },
+    validarCampos: function validarCampos() {
+      if (!this.datos.nombre || !this.datos.concesionario_id || !this.datos.direccion) {
+        this.$swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Completa los campos requeridos!'
+        });
+        return false;
+      }
+
+      return true;
     },
     cerrarModal: function cerrarModal() {
       $('#modalForm').modal('hide');
@@ -1171,7 +1211,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tableUser" },
+                  attrs: { id: "tablaListado" },
                 },
                 [
                   _vm._m(2),
@@ -1265,36 +1305,55 @@ var render = function () {
                       _vm._v("Concesionario"),
                     ]),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.datos.concesionario,
-                          expression: "datos.concesionario",
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datos.concesionario_id,
+                            expression: "datos.concesionario_id",
+                          },
+                        ],
+                        staticClass: "browser-default custom-select",
+                        attrs: { id: "Concesionario", disabled: _vm.btnEditar },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.datos,
+                              "concesionario_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
                         },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "Concesionario",
-                        placeholder: "Concesionario",
-                        required: "",
                       },
-                      domProps: { value: _vm.datos.concesionario },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.datos,
-                            "concesionario",
-                            $event.target.value
+                      [
+                        _c("option", [_vm._v("Seleccione una Concesionario")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.concesionarios, function (concesionario) {
+                          return _c(
+                            "option",
+                            {
+                              key: concesionario.id + 11,
+                              domProps: { value: concesionario.id },
+                            },
+                            [_vm._v(_vm._s(concesionario.nombre))]
                           )
-                        },
-                      },
-                    }),
+                        }),
+                      ],
+                      2
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-md-6" }, [
@@ -1329,43 +1388,39 @@ var render = function () {
                       },
                     }),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-6" }, [
-                    _c("div", { staticClass: "form-group col-md-4" }, [
-                      _c("label", { attrs: { for: "Direccion" } }, [
-                        _vm._v("Dirección"),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.datos.direccion,
-                            expression: "datos.direccion",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "Direccion",
-                          placeholder: "Direccion",
-                        },
-                        domProps: { value: _vm.datos.direccion },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.datos,
-                              "direccion",
-                              $event.target.value
-                            )
-                          },
-                        },
-                      }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("label", { attrs: { for: "Direccion" } }, [
+                      _vm._v("Dirección"),
                     ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.datos.direccion,
+                          expression: "datos.direccion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "Direccion",
+                        placeholder: "Direccion",
+                      },
+                      domProps: { value: _vm.datos.direccion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.datos, "direccion", $event.target.value)
+                        },
+                      },
+                    }),
                   ]),
                 ]),
               ]),

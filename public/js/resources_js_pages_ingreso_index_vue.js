@@ -97,10 +97,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -146,37 +142,74 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    ChangeBloquear: function ChangeBloquear(id, estadoBloqueado) {
+    ChangeBloquear: function ChangeBloquear(id) {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var token, estado;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                token = localStorage.getItem('access_token');
-                _context2.next = 3;
-                return axios.get('api/getSession/' + token).then(function (res) {
-                  _this2.user = res.data.id;
-                });
+                _this2.$swal.fire({
+                  title: '¿Seguro de bloquear?',
+                  showDenyButton: true,
+                  confirmButtonText: 'Bloquear',
+                  denyButtonText: "Cancelar"
+                }).then( /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(result) {
+                    var token;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            token = localStorage.getItem('access_token');
 
-              case 3:
-                estado = estadoBloqueado == 1 ? 0 : 1;
-                _context2.next = 6;
-                return axios.put('/api/ingreso/' + id, {
-                  bloqueado: estado,
-                  user_bloqueo: _this2.user
-                }).then(function (response) {})["catch"](function (error) {
-                  console.log(error);
-                });
+                            if (!result.isConfirmed) {
+                              _context2.next = 4;
+                              break;
+                            }
 
-              case 6:
+                            _context2.next = 4;
+                            return axios.put("/api/ingreso/".concat(id), {
+                              withCredentials: true,
+                              headers: {
+                                Authorization: "Bearer ".concat(token)
+                              }
+                            }).then(function (response) {
+                              var index = _this2.ingresos.map(function (e) {
+                                return e.id;
+                              }).indexOf(id);
+
+                              if (index !== -1) {
+                                var ingresos = _this2.ingresos;
+                                ingresos.splice(index, 1);
+                                _this2.ingresos = [].concat(ingresos);
+                              }
+
+                              _this2.$swal.fire('Registro bloqueado', '', 'success');
+                            })["catch"](function (error) {
+                              console.log(error);
+                            });
+
+                          case 4:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2);
+                  }));
+
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   }
@@ -1067,34 +1100,16 @@ var render = function () {
                       return _c("tr", { key: ingreso.id }, [
                         _c("td", { staticStyle: { "text-align": "center" } }, [
                           _c(
-                            "div",
-                            { staticClass: "custom-control custom-switch" },
-                            [
-                              _c("input", {
-                                staticClass: "custom-control-input",
-                                attrs: {
-                                  type: "checkbox",
-                                  id: "customSwitch2" + ingreso.id,
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.ChangeBloquear(ingreso.id)
                                 },
-                                domProps: {
-                                  checked:
-                                    ingreso.bloqueado == 0 ? "checked" : "",
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.ChangeBloquear(
-                                      ingreso.id,
-                                      ingreso.bloqueado
-                                    )
-                                  },
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("label", {
-                                staticClass: "custom-control-label",
-                                attrs: { for: "customSwitch2" + ingreso.id },
-                              }),
-                            ]
+                              },
+                            },
+                            [_c("i", { staticClass: "fa fa-lock" })]
                           ),
                         ]),
                         _vm._v(" "),
@@ -1191,7 +1206,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("BLOQUEADO")]),
+        _c("th", [_vm._v("BLOQUEAR")]),
         _vm._v(" "),
         _c("th", [_vm._v("VIN")]),
         _vm._v(" "),

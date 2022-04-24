@@ -2,7 +2,7 @@
     <main id="js-page-content" role="main" class="page-content">
         <div class="subheader">
             <h1 class="subheader-title">
-                <i cwlass='subheader-icon fal fa-chart-area'></i> Concesionario
+                <i cwlass='subheader-icon fal fa-chart-area'></i>Concesionarios
             </h1>
         </div>
         <div class="col-lg-12">
@@ -13,7 +13,7 @@
                             <div class="panel-hdr">
                             <button class="btn btn-success" @click="abrirModalCrear">Nuevo</button>
                         </div><br>
-                        <table id="tableUser" class="table table-bordered table-hover table-striped w-100">
+                        <table id="tablaListado" class="table table-bordered table-hover table-striped w-100">
                             <thead class="bg-warning-200">
                                 <tr>
                                     <th>Nombre</th>
@@ -24,9 +24,9 @@
                             </thead>
                             <tbody>
                                 <tr v-for="concesionario in concesionarios" :key="concesionario.id">
-                                    <td>{{ concesionario.nombre }}</td>
-                                    <td>{{ concesionario.descripcion}}</td>
-                                    <td>{{ concesionario.direccion }}</td>                               
+                                    <td>{{concesionario.nombre }}</td>
+                                    <td>{{concesionario.descripcion}}</td>
+                                    <td>{{concesionario.direccion }}</td>                               
                                     <td>
                                         <button class="btn btn-warning" @click="abrirModalEditar(concesionario)"><i class="far fa-edit"></i></button>
                                         <button class="btn btn-danger" @click="borrar(concesionario.id)"><i class="fa fa-trash"></i></button>
@@ -93,13 +93,13 @@ export default {
             concesionarios:[],
             datos: {
                 nombre:'', 
-                descripcion: 0,
+                descripcion:'',
                 direccion: '',
             },
             btnCrear:false,
             btnEditar:false,
             id:'',
-            titulo: ''
+            titulo:''
         }
     },
     mounted(){
@@ -118,18 +118,7 @@ export default {
                 .catch(error=>{
                     console.log(error);
                 }) 
-            await this.$tablaGlobal('#tableUser');
-        },
-        validarCampos(){
-            if(!this.datos.nombre || !this.datos.descripcion || !this.datos.direccion){
-                this.$swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Completa los campos requeridos!',
-                });
-                return false;
-            }
-            return true;
+            await this.$tablaGlobal('#tablaListado');
         },
         async crear(){
             let valid = await this.validarCampos();
@@ -151,53 +140,46 @@ export default {
             let valid = await this.validarCampos();
             if(valid){
                 axios.put('/api/concesionario/'+this.id, this.datos).then(response=>{
-                    this.concesionarios = [].concat(response.data);          
+                    let index =  this.concesionarios.map(e => e.id).indexOf(this.id);
+                    if(index !== -1){
+                        let concesionarios = this.concesionarios;
+                        concesionarios[index] = response.data;
+                        this.concesionarios = [].concat(concesionarios);
+                    }
                     this.id='';
                     $('#modalForm').modal('hide');
-                    this.$swal.fire(
-                        'Editado correctamente!',
-                        '',
-                        'success'
-                    )
+                    this.$swal.fire( 'Registro editado!', '', 'success');
                 }).catch(function (error) {
                     console.log(error);
                 });
             }
         },
         borrar(id){
-            this.$swal({
-                title: "¿Seguro de eliminar?",
-                text: "",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
-            })
-            .then(async (willDelete) => {
-                if (willDelete) {
-                     await this.axios.delete(`/api/concesionario/${id}`).then(response=>{
+            this.$swal.fire({
+                title: '¿Seguro de eliminar?',
+                showDenyButton: true,
+                confirmButtonText: 'Eliminar',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                   this.axios.delete(`/api/concesionario/${id}`).then(response=>{
                         let index =  this.concesionarios.map(e => e.id).indexOf(id);
                         if(index !== -1){
                             let concesionarios = this.concesionarios;
                             concesionarios.splice(index, 1);
                             this.concesionarios = [].concat(concesionarios);
                         }
-                        this.$swal.fire(
-                            'Registro eliminado',
-                            '',
-                            'success'
-                        ) 
+                        this.$swal.fire('Registro eliminado', '', 'success');
                     }).catch(error=>{
                         console.log(error)
                     });
-                } 
-            });
+                }
+            })
         },
         abrirModalCrear(){
-            this.datos = {
-                nombre:'', 
-                descripcion: '',
-                direccion: ''
-            };
+            this.datos.nombre = '';
+            this.datos.descripcion = '';
+            this.datos.direccion = '';
             this.titulo='Crear concesionario'
             this.btnCrear=true;
             this.btnEditar=false;
@@ -212,6 +194,13 @@ export default {
             this.btnEditar = true;
             this.id = datos.id;
             $('#modalForm').modal('show')
+        },
+        validarCampos(){
+            if(!this.datos.nombre || !this.datos.descripcion || !this.datos.direccion){
+                this.$swal.fire({icon: 'error', title: 'Error', text: 'Completa los campos requeridos!'});
+                return false;
+            }
+            return true;
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

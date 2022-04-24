@@ -7,6 +7,63 @@
             </h1>
         </div>
         <div class="row">
+            <div class="col-sm-6 col-xl-3">
+                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                            {{ totalRegistros }}
+                            <small class="m-0 l-h-n">Registros</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+                <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                            {{ totalAsignados }}
+                            <small class="m-0 l-h-n">Asignados</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-ballot position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+                <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                            {{ totalReservados }}
+                            <small class="m-0 l-h-n">Reservados</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+                <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                            {{ totalEmplazados }}
+                            <small class="m-0 l-h-n">Emplazados</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-check-double position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                            {{ totalFacturados }}
+                            <small class="m-0 l-h-n">Facturados</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-barcode-alt position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-12">
                 <div id="panel-1" class="panel">
                     <div class="panel-hdr">
@@ -36,6 +93,7 @@
                 </div>
             </div>
         </div>
+        
     </main>
 </template>
 <script>
@@ -43,13 +101,34 @@
 export default {
     data(){
         return{
-            
+            totalRegistros: 0,
+            totalAsignados: 0,
+            totalEmplazados: 0,
+            totalReservados: 0,
+            totalFacturados: 0
         }
     },
     mounted(){
-        
+        this.init();
     },
     methods:{
+        async init(){
+            const token = localStorage.getItem('access_token');
+            await this.axios.get('/api/home',{
+                   withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` },
+            })
+            .then(response=>{
+                this.totalRegistros = response.data.totalRegistros;
+                this.totalAsignados = response.data.totalAsigandos;
+                this.totalReservados = response.data.totalReservados;
+                this.totalEmplazados = response.data.totalEmplazados;
+                this.totalFacturados = response.data.totalFacturados;
+            })
+            .catch(error=>{
+                console.log(error);
+            }) 
+        }
     }
 }
 </script>

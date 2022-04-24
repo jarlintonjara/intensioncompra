@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IngresoModel;
 use App\Http\Requests\StoreIngresoModelRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IngresoController extends Controller
 {
@@ -16,103 +14,42 @@ class IngresoController extends Controller
         $user = $auth->getUser($request->bearerToken());
         $data = IngresoModel::where('bloqueado',0)->get();
         $bloqueados = [];
+        $query = IngresoModel::select(
+            'packing_list.id',
+            'users.nombre',
+            'packing_list.fecha_bloqueo',
+            'packing_list.vin',
+            'packing_list.marca',
+            'packing_list.modelo',
+            'packing_list.version',
+            'packing_list.color',
+            'packing_list.anio_modelo',
+            'packing_list.anio_fabricacion',
+            'packing_list.codigo_sap',
+            'packing_list.fecha_ingreso',
+            'packing_list.nave',
+        )
+            ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
+            ->where('bloqueado', 1);
         switch ($user->role_id) {
             case 1:
-                $bloqueados = IngresoModel::select(
-                    'packing_list.id',
-                    'users.nombre',
-                    'packing_list.fecha_bloqueo',
-                    'packing_list.vin',
-                    'packing_list.marca',
-                    'packing_list.modelo',
-                    'packing_list.version',
-                    'packing_list.color',
-                    'packing_list.anio_modelo',
-                    'packing_list.anio_fabricacion',
-                    'packing_list.codigo_sap',
-                    'packing_list.fecha_ingreso',
-                    'packing_list.nave',
-                )
-                    ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
-                    ->where('bloqueado', 1)->where('users.user_id', $user->id)->get();
+                $bloqueados = $query->where('users.user_id', $user->id)->get();
                 break;
             case 2:
-                $bloqueados = IngresoModel::select(
-                    'packing_list.id',
-                    'users.nombre',
-                    'packing_list.fecha_bloqueo',
-                    'packing_list.vin',
-                    'packing_list.marca',
-                    'packing_list.modelo',
-                    'packing_list.version',
-                    'packing_list.color',
-                    'packing_list.anio_modelo',
-                    'packing_list.anio_fabricacion',
-                    'packing_list.codigo_sap',
-                    'packing_list.fecha_ingreso',
-                    'packing_list.nave',
-                )
-                ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
-                ->where('bloqueado', 1)->where('users.tienda_id', $user->tienda_id)->get();
+                $bloqueados = $query->where('users.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-            case 4:
-                $bloqueados = IngresoModel::select(
-                    'packing_list.id',
-                    'users.nombre',
-                    'packing_list.fecha_bloqueo',
-                    'packing_list.vin',
-                    'packing_list.marca',
-                    'packing_list.modelo',
-                    'packing_list.version',
-                    'packing_list.color',
-                    'packing_list.anio_modelo',
-                    'packing_list.anio_fabricacion',
-                    'packing_list.codigo_sap',
-                    'packing_list.fecha_ingreso',
-                    'packing_list.nave',
-                )
-                ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
-                ->where('bloqueado', 1)->where('packing_list.marca', $user->marca)->get();
+                $bloqueados = $query->where('users.concesionario_id', $user->tienda_id)->get();
                 break;
+            case 4:
             case 5:
-                $bloqueados = IngresoModel::select(
-                    'packing_list.id',
-                    'users.nombre',
-                    'packing_list.fecha_bloqueo',
-                    'packing_list.vin',
-                    'packing_list.marca',
-                    'packing_list.modelo',
-                    'packing_list.version',
-                    'packing_list.color',
-                    'packing_list.anio_modelo',
-                    'packing_list.anio_fabricacion',
-                    'packing_list.codigo_sap',
-                    'packing_list.fecha_ingreso',
-                    'packing_list.nave',
-                )
-                    ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
-                    ->where('bloqueado', 1)->where('users.concesionario_id', $user->concesionario_id)->get();
+                $bloqueados = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                $bloqueados = IngresoModel::select(
-                    'packing_list.id',
-                    'users.nombre',
-                    'packing_list.fecha_bloqueo',
-                    'packing_list.vin',
-                    'packing_list.marca',
-                    'packing_list.modelo',
-                    'packing_list.version',
-                    'packing_list.color',
-                    'packing_list.anio_modelo',
-                    'packing_list.anio_fabricacion',
-                    'packing_list.codigo_sap',
-                    'packing_list.fecha_ingreso',
-                    'packing_list.nave',
-                )
-                ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
-                ->where('bloqueado', 1)->get();
+                $bloqueados = $query->get();
                 break;
+            default:
+                $bloqueados = [];
         }
         return response()->json(['data'=>$data,'bloqueados'=>$bloqueados]);
     }
@@ -139,8 +76,16 @@ class IngresoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $auth = new AuthController();
+        $session = $auth->getUser($request->bearerToken());
         $ingreso = IngresoModel::findOrFail($id);
-        $ingreso->update(["bloqueado" => $request->bloqueado, "user_bloqueo" => $request->user_bloqueo, "fecha_bloqueo" => now()]);
+        $ingreso->update([
+            "bloqueado" => 1, 
+            "user_bloqueo" => $session->id,
+            "situacion" => 'BLOQUEADO',
+            "motivo" => 'bloqueo manual',
+            "fecha_bloqueo" => date('Y-m-d')
+        ]);
         return response()->json($ingreso);
     }
 
