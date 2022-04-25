@@ -205,6 +205,7 @@ export default {
                 fecha_distribucion: "",
                 fecha_emplazado: "",
                 codigo_sap:"",
+                codigo_sap_cliente:"",
                 vin:""
             }
         }
@@ -250,6 +251,7 @@ export default {
             this.registro.fecha_distribucion = datos.fecha_distribucion;
             this.registro.fecha_emplazado = datos.fecha_emplazado;
             this.registro.codigo_sap = datos.codigo_sap;
+            this.registro.codigo_sap_cliente = datos.codigo_sap_cliente;
             this.registro.vin = datos.vin;
             $('#modalDetalle').modal('show')
         },
