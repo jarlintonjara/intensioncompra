@@ -31,7 +31,6 @@
                                     <th>AÑO MODELO</th>
                                     <th>AÑO FABRICACIÓN</th>
                                     <th>COLOR</th>
-                                    <th>CODIGO SAP</th>
                                     <th>SITUACIÓN</th>
                                     <th>NAVE</th>
                                     <th>FECHA INGRESO</th>
@@ -40,7 +39,7 @@
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
                                     <td style="text-align: center">
-                                        <button class="btn btn-danger" @click="ChangeBloquear(ingreso.id)"><i class="fa fa-lock"></i></button>
+                                        <button class="btn btn-danger" @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
                                     </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>
@@ -49,7 +48,6 @@
                                     <td>{{ingreso.anio_modelo}}</td>
                                     <td>{{ingreso.anio_fabricacion}}</td>
                                     <td>{{ingreso.color}}</td>
-                                    <td>{{ingreso.codigo_sap}}</td>
                                     <td>{{ingreso.situacion}}</td>
                                     <td>{{ingreso.nave}}</td>
                                     <td>{{$dateFormat(ingreso.fecha_ingreso)}}</td>
@@ -92,20 +90,19 @@ export default {
                 })
                 await this.$tablaGlobal('#tingresos');
         },
-        async ChangeBloquear(id){
-            
+        async bloquear(id){
             this.$swal.fire({
                 title: '¿Seguro de bloquear?',
                 showDenyButton: true,
                 confirmButtonText: 'Bloquear',
                 denyButtonText: `Cancelar`,
             }).then(async (result) => {
+
                 const token = localStorage.getItem('access_token');
                 if (result.isConfirmed) {
                    await axios.put(`/api/ingreso/${id}`, {
-                   withCredentials: true,
-                    headers: { Authorization: `Bearer ${token}` },
-                }).then(response=>{
+                        bearerToken: token,
+                    }).then(response=>{
                         let index =  this.ingresos.map(e => e.id).indexOf(id);
                         if(index !== -1){
                             let ingresos = this.ingresos;

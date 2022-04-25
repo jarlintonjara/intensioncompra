@@ -30,10 +30,9 @@
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
-                                    <th>CÓDIGO RESERVA</th>
-                                    <th>MONTO RESERVA</th>
                                     <th>FECHA FACTURADO</th>
-                                   
+                                    <th>FECHA SAP FACTURADO</th>
+                                    <th>CODIGO SAP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,10 +43,9 @@
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
-                                    <td>{{asignacion.codigo_reserva}}</td>
-                                    <td>{{asignacion.monto_reserva}}</td>
-                                    <td>{{asignacion.fecha_facturacion}}</td>
-                                    
+                                    <td>{{asignacion.fecha_facturado}}</td>
+                                    <td>{{asignacion.fecha_sap_facturado}}</td>
+                                    <td>{{asignacion.codigo_sap_cliente}}</td>
                                 </tr>
                             </tbody>
                             
@@ -101,7 +99,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">Fecha Emplazado:</div>
-                                        <div class="col-md-3"><b>{{ registro.fecha_emplazado ? $dateFormat(registro.fecha_emplazado) : "-"}}</b></div>
+                                        <div class="col-md-3"><b>{{ registro.fecha_emplazado ? registro.fecha_emplazado : "-"}}</b></div>
                                         <div class="col-md-3">Código Reserva:</div>
                                         <div class="col-md-3"><b>{{ registro.codigo_reserva }}</b></div>
                                     </div>
@@ -113,9 +111,9 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">Código SAP:</div>
-                                        <div class="col-md-3"><b>{{ registro.codigo_sap }}</b></div>
+                                        <div class="col-md-3"><b>{{ registro.codigo_sap_cliente }}</b></div>
                                         <div class="col-md-3">Fecha de distribución:</div>
-                                        <div class="col-md-3"><b>{{ registro.fecha_distribucion ? $dateFormat(registro.fecha_distribucion) : "-"}}</b></div>
+                                        <div class="col-md-3"><b>{{ registro.fecha_distribucion ? registro.fecha_distribucion : "-"}}</b></div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">VIN:</div>

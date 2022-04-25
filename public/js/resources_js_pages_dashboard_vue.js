@@ -1213,8 +1213,6 @@ var render = function () {
           ),
         ]),
       ]),
-      _vm._v(" "),
-      _vm._m(1),
     ]
   )
 }
@@ -1228,118 +1226,6 @@ var staticRenderFns = [
         _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
         _vm._v(" "),
         _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12" }, [
-        _c("div", { staticClass: "panel", attrs: { id: "panel-1" } }, [
-          _c("div", { staticClass: "panel-hdr" }, [
-            _c("h2", [
-              _vm._v(
-                "\n                        Marketing profits\n                    "
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "panel-container show" }, [
-            _c("div", { staticClass: "panel-content bg-subtlelight-fade" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "d-flex mb-3",
-                  attrs: { id: "js-checkbox-toggles" },
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "custom-control custom-switch mr-2" },
-                    [
-                      _c("input", {
-                        staticClass: "custom-control-input",
-                        attrs: {
-                          type: "checkbox",
-                          name: "gra-0",
-                          id: "gra-0",
-                          checked: "checked",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "gra-0" },
-                        },
-                        [_vm._v("Target Profit")]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "custom-control custom-switch mr-2" },
-                    [
-                      _c("input", {
-                        staticClass: "custom-control-input",
-                        attrs: {
-                          type: "checkbox",
-                          name: "gra-1",
-                          id: "gra-1",
-                          checked: "checked",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "gra-1" },
-                        },
-                        [_vm._v("Actual Profit")]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "custom-control custom-switch mr-2" },
-                    [
-                      _c("input", {
-                        staticClass: "custom-control-input",
-                        attrs: {
-                          type: "checkbox",
-                          name: "gra-2",
-                          id: "gra-2",
-                          checked: "checked",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "gra-2" },
-                        },
-                        [_vm._v("User Signups")]
-                      ),
-                    ]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "w-100 mt-4",
-                staticStyle: { height: "300px" },
-                attrs: { id: "flot-toggles" },
-              }),
-            ]),
-          ]),
-        ]),
       ]),
     ])
   },

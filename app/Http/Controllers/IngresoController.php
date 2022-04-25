@@ -77,7 +77,7 @@ class IngresoController extends Controller
     public function update(Request $request, $id)
     {
         $auth = new AuthController();
-        $session = $auth->getUser($request->bearerToken());
+        $session = $auth->getUser($request->bearerToken);
         $ingreso = IngresoModel::findOrFail($id);
         $ingreso->update([
             "bloqueado" => 1, 

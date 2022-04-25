@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">Fecha estimada de llegada:</div>
-                                        <div class="col-md-3"><b>{{ registro.fecha_ingreso ? $dateFormat(registro.fecha_ingreso) : ""}}</b></div>
+                                        <div class="col-md-3"><b>{{ registro.fecha_ingreso ? registro.fecha_ingreso : "-"}}</b></div>
                                         <div class="col-md-3">Código Reserva:</div>
                                         <div class="col-md-3"><b>{{ registro.codigo_reserva }}</b></div>
                                     </div>
@@ -109,7 +109,7 @@
                                         <div class="col-md-3">Código SAP:</div>
                                         <div class="col-md-3"><b>{{ registro.codigo_sap }}</b></div>
                                         <div class="col-md-3">Fecha de distribución:</div>
-                                        <div class="col-md-3"><b>{{ registro.fecha_distribucion ? $dateFormat(registro.fecha_distribucion) : ""}}</b></div>
+                                        <div class="col-md-3"><b>{{ registro.fecha_distribucion ? registro.fecha_distribucion : "-"}}</b></div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">VIN:</div>

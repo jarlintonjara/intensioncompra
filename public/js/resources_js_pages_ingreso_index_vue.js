@@ -95,8 +95,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -142,7 +140,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    ChangeBloquear: function ChangeBloquear(id) {
+    bloquear: function bloquear(id) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
@@ -171,10 +169,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                             _context2.next = 4;
                             return axios.put("/api/ingreso/".concat(id), {
-                              withCredentials: true,
-                              headers: {
-                                Authorization: "Bearer ".concat(token)
-                              }
+                              bearerToken: token
                             }).then(function (response) {
                               var index = _this2.ingresos.map(function (e) {
                                 return e.id;
@@ -1105,11 +1100,11 @@ var render = function () {
                               staticClass: "btn btn-danger",
                               on: {
                                 click: function ($event) {
-                                  return _vm.ChangeBloquear(ingreso.id)
+                                  return _vm.bloquear(ingreso.id)
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "fa fa-lock" })]
+                            [_c("i", { staticClass: "fa fa-unlock" })]
                           ),
                         ]),
                         _vm._v(" "),
@@ -1126,8 +1121,6 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(ingreso.anio_fabricacion))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.color))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(ingreso.codigo_sap))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.situacion))]),
                         _vm._v(" "),
@@ -1221,8 +1214,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("AÑO FABRICACIÓN")]),
         _vm._v(" "),
         _c("th", [_vm._v("COLOR")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("CODIGO SAP")]),
         _vm._v(" "),
         _c("th", [_vm._v("SITUACIÓN")]),
         _vm._v(" "),

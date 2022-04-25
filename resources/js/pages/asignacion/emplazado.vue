@@ -17,10 +17,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    
-                                    <!-- <th>CONCESIONARIO</th> -->
                                     <th>ASESOR</th>
-                                    <!-- <th>VIN</th> -->
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
@@ -106,7 +103,7 @@
                                         <div class="col-md-3">Código SAP:</div>
                                         <div class="col-md-3"><b>{{ registro.codigo_sap }}</b></div>
                                         <div class="col-md-3">Fecha de distribución:</div>
-                                        <div class="col-md-3"><b>{{ registro.fecha_distribucion ? $dateFormat(registro.fecha_distribucion) : "-"}}</b></div>
+                                        <div class="col-md-3"><b>{{ registro.fecha_distribucion ? registro.fecha_distribucion : "-"}}</b></div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">VIN:</div>

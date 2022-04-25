@@ -1398,8 +1398,8 @@ var render = function () {
                             _vm._v(
                               _vm._s(
                                 _vm.registro.fecha_ingreso
-                                  ? _vm.$dateFormat(_vm.registro.fecha_ingreso)
-                                  : ""
+                                  ? _vm.registro.fecha_ingreso
+                                  : "-"
                               )
                             ),
                           ]),
@@ -1452,10 +1452,8 @@ var render = function () {
                             _vm._v(
                               _vm._s(
                                 _vm.registro.fecha_distribucion
-                                  ? _vm.$dateFormat(
-                                      _vm.registro.fecha_distribucion
-                                    )
-                                  : ""
+                                  ? _vm.registro.fecha_distribucion
+                                  : "-"
                               )
                             ),
                           ]),

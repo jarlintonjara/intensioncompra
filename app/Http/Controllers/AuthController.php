@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -66,19 +67,24 @@ class AuthController extends Controller
     
     function getUser($token)
     {   
-        if ($token){
-            [$id, $user_token] = explode('|', $token, 2);
-            $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
-            if ($token_data) {
-                $user_id = $token_data->tokenable_id;
-                $user = User::find($user_id);
-                if ($user) {
-                    return $user;
+        try{
+            if ($token){
+                [$id, $user_token] = explode('|', $token, 2);
+                $token_data = DB::table('personal_access_tokens')->where('token', hash('sha256', $user_token))->first();
+                if ($token_data) {
+                    $user_id = $token_data->tokenable_id;
+                    $user = User::find($user_id);
+                    if ($user) {
+                        return $user;
+                    }
+                    return response()->json("Unauthenticated", 401);
                 }
-                return response()->json("Unauthenticated", 401);
             }
+            //throw new Exception('Exception message');
+            return response()->json("Unauthenticated", 401);
+        }catch(Exception $e){
+            echo $e->getMessage();
         }
-        return response()->json("Unauthenticated", 401);
     }
 
     public function getSession($token)
