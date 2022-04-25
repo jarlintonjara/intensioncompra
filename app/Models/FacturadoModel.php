@@ -13,14 +13,13 @@ class FacturadoModel extends Model
 
     protected $fillable = [
         'factura_sap',
-        'fecha_facturado',
-        'fecha_sap_facturado',
-        'codigo_sap_cliente',
+        'fecha_facturacion',
         'vin',
         'marca',
         'modelo',
         'version',
         'material',
+        'codigo_sap_cliente',
         'nombre_completo',
         'numero_documento',
         'situacion',

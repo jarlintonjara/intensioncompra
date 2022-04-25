@@ -215,9 +215,8 @@ class AsignacionController extends Controller
             'asignaciones.monto_reserva',
             'asignaciones.fecha_reserva',
             'asignaciones.fecha_emplazado',
-            'asignaciones.fecha_facturacion',
+            'asignaciones.fecha_facturado',
             'asignaciones.codigo_sap_cliente',
-            'asignaciones.fecha_sap_facturado',
             'asignaciones.situacion'
         )
             ->Join('registros', 'asignaciones.registro_id', 'registros.id')
