@@ -12,23 +12,25 @@ class AsignacionModel extends Model
     protected $table = 'asignaciones';
 
     protected $fillable = [
-        'id'.
+        'id',
         'registro_id',
         'user_id',
         'ingreso_id',
         'fecha_distribucion',
         'fecha_emplazado',
-        'fecha_sap_emplazado',
+        'fecha_reservacion',
+        'fecha_facturacion',
         'fecha_facturado',
-        'fecha_sap_facturado',
-        'codigo_sap_cliente',
-        'fecha_reserva',
         'codigo_reserva',
         'monto_reserva',
+        'fecha_reserva',
         'situacion',
         'estado',
         'observacion',
         'created_at',
         'updated_at',
+        'fecha_a_facturar',
+        'codigo_sap_cliente',
+        'fecha_sap_facturado'
     ];
 }

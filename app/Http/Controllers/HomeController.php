@@ -25,7 +25,9 @@ class HomeController extends Controller
         $query = RegistroModel::where('estado', 1);
         $query2 = AsignacionModel::select(
             'registros.user_id',
+            'asignaciones.registro_id',
             'asignaciones.situacion',
+            'registros.id',
             'registros.tienda_id',
             'registros.concesionario_id',
             'packing_list.marca'
