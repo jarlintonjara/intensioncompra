@@ -15,7 +15,6 @@ class Facturacion extends Command
     {
         $asignaciones = AsignacionModel::select(
             'packing_list.vin',
-            'packing_list.codigo_sap_cliente',
             'packing_list.fecha_ingreso',
             'asignaciones.id',
             'asignaciones.fecha_facturado',
