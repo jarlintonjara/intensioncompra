@@ -23,15 +23,15 @@ class IngresoModel extends Model
         'anio_modelo',
         'anio_fabricacion',
         'color',
+        'situacion',
+        'bloqueado',
+        'updated_at',
+        'codigo_sap',
+        'nave',
         'fecha_ingreso',
         'fecha_bloqueo',
         'estado',
-        'situacion',
-        'nave',
-        'bloqueado',
-        'codigo_sap',
         'created_at',
-        'updated_at',
         'motivo'
     ];
 }
