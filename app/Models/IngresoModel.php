@@ -13,6 +13,7 @@ class IngresoModel extends Model
 
     protected $table = 'packing_list';
 
+    
     protected $fillable = [
         'id',
         'user_bloqueo',
