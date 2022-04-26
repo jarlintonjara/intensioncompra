@@ -34,6 +34,7 @@
                                     <th>SITUACIÓN</th>
                                     <th>NAVE</th>
                                     <th>FECHA INGRESO</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +92,7 @@ export default {
                 await this.$tablaGlobal('#tingresos');
         },
         async bloquear(id){
+            
             this.$swal.fire({
                 title: '¿Seguro de bloquear?',
                 showDenyButton: true,
