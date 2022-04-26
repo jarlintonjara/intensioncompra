@@ -1127,11 +1127,7 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.nave))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm.$dateFormat(ingreso.fecha_ingreso))
-                          ),
-                        ]),
+                        _c("td", [_vm._v(_vm._s(ingreso.fecha_ingreso))]),
                       ])
                     }),
                     0

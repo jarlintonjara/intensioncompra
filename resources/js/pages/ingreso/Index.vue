@@ -51,7 +51,7 @@
                                     <td>{{ingreso.color}}</td>
                                     <td>{{ingreso.situacion}}</td>
                                     <td>{{ingreso.nave}}</td>
-                                    <td>{{$dateFormat(ingreso.fecha_ingreso)}}</td>
+                                    <td>{{ingreso.fecha_ingreso}}</td>
                                 </tr>
                             </tbody>
                             
@@ -92,7 +92,7 @@ export default {
                 await this.$tablaGlobal('#tingresos');
         },
         async bloquear(id){
-            
+
             this.$swal.fire({
                 title: '¿Seguro de bloquear?',
                 showDenyButton: true,
