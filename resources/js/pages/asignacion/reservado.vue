@@ -9,9 +9,7 @@
 
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
-                <!-- <div class="panel-hdr">
-                    <button style="text-align: center;" class="btn btn-success" @click="jobEmplazar()">job Emplazar</button>
-                </div> -->
+                
                 <div class="panel-container show">
                     <div class="panel-content">
                         <table id="treservado" class="table table-bordered table-hover table-striped w-100">
@@ -27,7 +25,6 @@
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
                                     <th>FECHA RESERVA</th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,20 +243,6 @@ export default {
             this.registro.codigo_sap = datos.codigo_sap;
             this.registro.vin = datos.vin;
             $('#modalDetalle').modal('show')
-        },
-        async jobEmplazar(){
-            await this.axios.get('/api/executeEmplazado')
-                .then(response=>{
-                     this.$swal.fire(
-                    'Emplazados!',
-                    '',
-                    'success'
-                )              
-                    })
-                .catch(error=>{
-                    console.log(error);
-                })
-            
         },
         cerrarModal(){
             $('#modalDetalle').modal('hide');

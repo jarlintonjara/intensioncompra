@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 use App\Models\AsignacionModel;
 use App\Models\FacturadoModel;
+use App\Models\RegistroModel;
 use Illuminate\Console\Command;
 
 class Facturacion extends Command
@@ -28,6 +29,14 @@ class Facturacion extends Command
 
         foreach ($asignaciones as $asignacion) {
             $facturado = FacturadoModel::where('vin', $asignacion->vin)->first();
+
+            $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
+
+            if ($registro) {
+                $registro->situacion = 'EMPLAZADO';
+                $registro->save();
+            }
+
             if ($facturado) {
                 $asignacion->situacion = 'FACTURADO';
                 $asignacion->fecha_facturado = date('Y-m-d'); 

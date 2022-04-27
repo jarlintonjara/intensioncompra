@@ -73,19 +73,32 @@
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="Codigo">Código Reserva</label>
+                                    <label for="Codigo">Código Reserva:</label>
                                     <input type="text" id="Codigo" class="form-control" placeholder="Codigo" required="" v-model="form.codigo_reserva">
                                     <div style="color:red;" v-if="submited && !$v.form.codigo_reserva.required">El campo es obligatorio</div>
                                     <div style="color:red;" v-if="submited && !$v.form.codigo_reserva.minLength">Tiene que ingresar mas de 1 caracteres</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="MontoReserva">Monto Reserva en USD</label>
+                                    <label for="MontoReserva">Monto Reserva en USD:</label>
                                     <input type="text" id="MontoReserva" class="form-control" placeholder="Monto Reserva" required="" v-model="form.monto_reserva">
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.required">El campo es obligatorio</div>
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">Tiene que ingresar mas de 3 caracteres</div>
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">El monto mínimo es 1000 Dólares</div>
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <label for="dropzone">Adjuntar documentos:</label>
+                                <vue-dropzone 
+                                    ref="myVueDropzone" 
+                                    id="dropzone" 
+                                    class="form-control"
+                                    :options="dropzoneOptions"
+                                    @vdropzone-success="handleResponse"
+                                ></vue-dropzone>
+                            </div>
+                           
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
@@ -199,18 +212,71 @@
 </template>
 <script>
 
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import {required, minLength,helpers,numeric, minValue} from 'vuelidate/lib/validators';
 const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
 
 export default {
     name: "Asignacion",
+    components: {
+        vueDropzone: vue2Dropzone
+    },
      props:[
         'session'
     ],
     data(){
         return{
+            selectedImages: [],
             asignaciones:[],
             id : null,
+            baseURL: 'https://httpbin.org/post',
+            /* dropzoneOptions: {
+                url: 'https://httpbin.org/post',
+                thumbnailWidth: 150,
+                maxFilesize: 0.5,
+                headers: { "My-Awesome-Header": "header value" }
+            }, */
+            dropzoneOptions: {
+                url: "https://httpbin.org/post",
+                addRemoveLinks: true,
+                maxFilesize: 3,
+                dictDefaultMessage: "Cargar archivos",
+                uploadMultiple: true,
+                //previewsContainer: ".dropzone-previews",
+                autoProcessQueue: true,
+                clickable: true,
+                init: function() {
+                    this.on("sending", function(test) {
+                        $('#myModal').modal('show');
+                    });
+
+                    var submitButton = document.querySelector("#submit-all");
+                    this.on("success", function(file, response) {
+                        $("#response").append(response);
+
+                    });
+                },
+                accept: function(file, done) {
+                    console.log(file);
+                    if (
+                        file.type.toLowerCase() != "image/jpg" &&
+                        file.type.toLowerCase() != "image/gif" &&
+                        file.type.toLowerCase() != "image/jpeg" &&
+                        file.type.toLowerCase() != "application/pdf" &&
+                        file.type.toLowerCase() != "image/png"
+                    ) {
+                        done("Invalid file");
+                    } else {
+                        done();
+                    }
+                },
+                headers: {
+                    "Cache-Control": null,
+                    "X-Requested-With": null,
+                    withCredentials: true
+                }
+            },
             form: {
                 codigo_reserva: "",
                 monto_reserva: 0,
@@ -257,6 +323,16 @@ export default {
         }
     },
     methods:{
+        handleResponse(file, response) {
+          console.log(response);
+          var Image = {
+            key: response.key,
+            imageId: parseInt(response.id),
+            bucket: this.location
+          };
+          this.selectedImages.push(Image);
+          this.$emit("input", this.selectedImages);
+        },
         async init(){
             const token = localStorage.getItem('access_token');
             await this.axios.get('/api/asignacion',{
@@ -329,3 +405,12 @@ export default {
 }
 
 </script>
+<style scoped>
+
+    #dropzone{
+        height :  100%;
+        border-radius: 15px;
+    }
+  
+    
+</style>

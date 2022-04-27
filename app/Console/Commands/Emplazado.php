@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 use App\Models\AsignacionModel;
 use App\Models\EmplazadoModel;
+use App\Models\RegistroModel;
 use Illuminate\Console\Command;
 
 class Emplazado extends Command
@@ -25,6 +26,14 @@ class Emplazado extends Command
 
         foreach ($asignaciones as $asignacion) {
             $emplazado = EmplazadoModel::where('vin', $asignacion->vin)->first();
+
+            $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
+
+            if ($registro) {
+                $registro->situacion = 'EMPLAZADO';
+                $registro->save();
+            }
+
             if ($emplazado) {
                 $asignacion->fecha_emplazado = date('Y-m-d');
                 $asignacion->fecha_sap_emplazado = $emplazado->fecha_emplazamiento;

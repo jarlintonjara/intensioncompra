@@ -23,11 +23,19 @@ class ReAsignar extends Command
             $registro = RegistroModel::where('id', $asignacion->registro_id)
                         ->where('situacion', 'ASIGNADO')
                         ->first();
+
+            $packing = IngresoModel::where('id', $asignacion->ingreso_id)->first();
+
+            if($packing){
+                $packing->situacion = 'LIBRE';
+                $packing->save();
+            } 
     
             if($registro){
                 $registro->situacion = 'SINASIGNAR';
                 $registro->fecha = date('Y-m-d');
                 $registro->save();
+
                 $asignacion->situacion = 'SINASIGNAR';
                 $asignacion->save();
             } 
@@ -38,14 +46,20 @@ class ReAsignar extends Command
 
         foreach ($asignaciones as $asignacion) {
 
-            $registro = RegistroModel::where('id', $asignacion->registro_id)
-                        //->where('situacion', 'ASIGNADO')
-                        ->first();
+            $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
+
+            $packing = IngresoModel::where('id', $asignacion->ingreso_id)->first();
+
+            if($packing){
+                $packing->situacion = 'LIBRE';
+                $packing->save();
+            }
     
             if($registro){
                 $registro->situacion = 'SINASIGNAR';
                 $registro->fecha = date('Y-m-d');
                 $registro->save();
+
                 $asignacion->situacion = 'SINASIGNAR';
                 $asignacion->save();
             } 
