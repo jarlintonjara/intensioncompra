@@ -87,7 +87,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <label for="dropzone">Adjuntar documentos:</label>
                                 <vue-dropzone 
                                     ref="myVueDropzone" 
@@ -96,7 +96,7 @@
                                     :options="dropzoneOptions"
                                     @vdropzone-success="handleResponse"
                                 ></vue-dropzone>
-                            </div>
+                            </div> -->
                            
 
                         </div>
@@ -212,15 +212,15 @@
 </template>
 <script>
 
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+//import vue2Dropzone from 'vue2-dropzone'
+//import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import {required, minLength,helpers,numeric, minValue} from 'vuelidate/lib/validators';
 const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
 
 export default {
     name: "Asignacion",
     components: {
-        vueDropzone: vue2Dropzone
+        //vueDropzone: vue2Dropzone
     },
      props:[
         'session'
