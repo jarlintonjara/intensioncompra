@@ -318,6 +318,7 @@ export default {
         this.init();
     },
     watch:{
+        
         session(val){
             this.user = val
         }
