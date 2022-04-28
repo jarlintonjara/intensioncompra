@@ -39,7 +39,7 @@
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
                                     <td style="text-align: center" v-if="user.role_id == 6 || user.role_id == 1">
-                                        <button class="btn btn-success" @click="abrirModalEditar(asignacion)"><i class="fa fa-lock"></i></button>
+                                        <button class="btn btn-success" @click="modalReservar(asignacion)"><i class="fa fa-lock"></i></button>
                                     </td>
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.nombre}}</td>
@@ -86,23 +86,37 @@
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">El monto mínimo es 1000 Dólares</div>
                                 </div>
                             </div>
+                            <!-- financiamiento / Contado y Crédito -->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Anio">Tipo financiamiento:</label>
+                                    <select id="Anio_modelo" class="custom-select form-control" v-model="form.tipo_financiamiento">
+                                        <option value="">Selecionar una opción</option>
+                                        <option value="CONTADO">CONTADO</option>
+                                        <option value="CREDITO">CRÉDITO</option>
+                                    </select>
+                                    <div style="color:red;" v-if="submited && !$v.form.tipo_financiamiento.required">El campo es obligatorio</div>
+                                </div>
+                            </div>
 
-                            <!-- <div class="form-row">
-                                <label for="dropzone">Adjuntar documentos:</label>
-                                <vue-dropzone 
-                                    ref="myVueDropzone" 
-                                    id="dropzone" 
-                                    class="form-control"
-                                    :options="dropzoneOptions"
-                                    @vdropzone-success="handleResponse"
-                                ></vue-dropzone>
-                            </div> -->
+                            <div class="form-row mt-3">
+                                 <div class="form-group col-md-12">
+                                    <label for="dropzone">Adjuntar documentos:</label>
+                                    <vue-dropzone
+                                        ref="myVueDropzone"
+                                        id="dropzone"
+                                        :options="dropzoneOptions"
+                                        @vdropzone-complete="afterUploadComplete"
+                                        @vdropzone-sending-multiple="sendMessage"
+                                        @vdropzone-success="success"
+                                    ></vue-dropzone>
+                                 </div>
+                            </div>
                            
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" @click.prevent="cerrarModal" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" @click.prevent="reservar">Reservar</button>
+                            <button type="submit" class="btn btn-primary" @click.prevent="shootMessage">Reservar</button>
                         </div>
                     </form>
                 </div>
@@ -212,76 +226,46 @@
 </template>
 <script>
 
-//import vue2Dropzone from 'vue2-dropzone'
-//import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import {required, minLength,helpers,numeric, minValue} from 'vuelidate/lib/validators';
 const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
 
 export default {
     name: "Asignacion",
     components: {
-        //vueDropzone: vue2Dropzone
+        vueDropzone: vue2Dropzone
     },
      props:[
         'session'
     ],
     data(){
         return{
-            selectedImages: [],
             asignaciones:[],
             id : null,
-            baseURL: 'https://httpbin.org/post',
-            /* dropzoneOptions: {
-                url: 'https://httpbin.org/post',
-                thumbnailWidth: 150,
-                maxFilesize: 0.5,
-                headers: { "My-Awesome-Header": "header value" }
-            }, */
             dropzoneOptions: {
-                url: "https://httpbin.org/post",
-                addRemoveLinks: true,
-                maxFilesize: 3,
-                dictDefaultMessage: "Cargar archivos",
+                url: "http://localhost:8000/api/gallery",
+                thumbnailWidth: 150,
+                maxFilesize: 2,
+                parallelUploads: 3,
+                maxFiles: 3,
                 uploadMultiple: true,
-                //previewsContainer: ".dropzone-previews",
-                autoProcessQueue: true,
+                autoProcessQueue: false,
+                addRemoveLinks: true,
+                dictDefaultMessage: "Cargar archivos",
+                acceptedFiles: ".jpeg,.jpg,.png,.gif",
                 clickable: true,
                 init: function() {
-                    this.on("sending", function(test) {
-                        $('#myModal').modal('show');
-                    });
-
-                    var submitButton = document.querySelector("#submit-all");
-                    this.on("success", function(file, response) {
-                        $("#response").append(response);
-
-                    });
+                    var file = { size: 123, name: "Icon", type: "image/png" };
+                    var url = "https://myvizo.com/img/logo_sm.png";
+                    this.$refs.myVueDropzone.manuallyAddFile(file, url);
                 },
-                accept: function(file, done) {
-                    console.log(file);
-                    if (
-                        file.type.toLowerCase() != "image/jpg" &&
-                        file.type.toLowerCase() != "image/gif" &&
-                        file.type.toLowerCase() != "image/jpeg" &&
-                        file.type.toLowerCase() != "application/pdf" &&
-                        file.type.toLowerCase() != "image/png"
-                    ) {
-                        done("Invalid file");
-                    } else {
-                        done();
-                    }
-                },
-                headers: {
-                    "Cache-Control": null,
-                    "X-Requested-With": null,
-                    withCredentials: true
-                }
             },
             form: {
                 codigo_reserva: "",
                 monto_reserva: 0,
-                // fecha_reserva: "",
-                situacion: "RESERVADO"
+                tipo_financiamiento: "",
+                images: []
             },
             registro: {
                 nombreCompleto: "", 
@@ -312,27 +296,49 @@ export default {
         form: {
             codigo_reserva: {required, minLength: minLength(2)},
             monto_reserva : {required, minLength: minLength(4), numeric, minValue: minValue(1000)},
+            tipo_financiamiento : {required}
         }
     },
     mounted(){
         this.init();
     },
     watch:{
-        
         session(val){
             this.user = val
         }
     },
     methods:{
-        handleResponse(file, response) {
-          console.log(response);
-          var Image = {
-            key: response.key,
-            imageId: parseInt(response.id),
-            bucket: this.location
-          };
-          this.selectedImages.push(Image);
-          this.$emit("input", this.selectedImages);
+        afterUploadComplete: async function (response) {
+            if (response.status == "success") {
+                console.log("upload successful");
+                this.sendSuccess = true;
+            } else {
+                console.log("upload failed");
+            }
+        },
+        shootMessage: async function () {
+            this.submited=true;
+            if(this.$v.$invalid){
+                return false;
+            }
+            this.$refs.myVueDropzone.processQueue();
+        },
+        sendMessage: async function (files, xhr, formData) {
+            formData.append("id", this.id);
+            formData.append("codigo_reserva", this.form.codigo_reserva);
+            formData.append("monto_reserva", this.form.monto_reserva);
+            formData.append("tipo_financiamiento", this.form.tipo_financiamiento);
+        },
+        success: async function (file, response) {
+            if(response != 0){
+                // Download link
+                var anchorEl = document.createElement('a');
+                anchorEl.setAttribute('href',response);
+                anchorEl.setAttribute('target','_blank');
+                anchorEl.innerHTML = "<br>Download";
+                file.previewTemplate.appendChild(anchorEl);
+            }
+            $("#response").append(response);
         },
         async init(){
             const token = localStorage.getItem('access_token');
@@ -350,11 +356,12 @@ export default {
                 })
                 await this.$tablaGlobal('#asignaciones');
         },
-        abrirModalEditar(asignacion){
+        modalReservar(asignacion){
+            this.submited=false;
             this.titulo='Reservar';
             this.id = asignacion.id;
-            this.form.codigo_reserva = asignacion.codigo_reserva;
-            this.form.monto_reserva = asignacion.monto_reserva;
+            this.form.codigo_reserva = '';
+            this.form.monto_reserva = '';
             $('#modalForm').modal('show')
         },
         detalle(datos){
@@ -381,6 +388,7 @@ export default {
             if(this.$v.$invalid){
                 return false;
             }
+            console.log(this.form);
             await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
                 let index =  this.asignaciones.map(function(e) { return e.id }).indexOf(this.id);
                 if(index !== -1){
@@ -395,8 +403,6 @@ export default {
             }).catch(function (error) {
                 console.log(error);
             });
-            /* $('#asignaciones').DataTable().destroy();
-            await this.$tablaGlobal('#asignaciones'); */
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

@@ -9,11 +9,8 @@ class IngresoModel extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
     protected $table = 'packing_list';
 
-    
     protected $fillable = [
         'id',
         'user_bloqueo',

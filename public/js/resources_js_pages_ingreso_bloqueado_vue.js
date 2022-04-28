@@ -1046,7 +1046,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               bloqueado.fecha_bloqueo
-                                ? _vm.$dateFormat(bloqueado.fecha_bloqueo)
+                                ? bloqueado.fecha_bloqueo
                                 : ""
                             )
                           ),
@@ -1062,7 +1062,7 @@ var render = function () {
                           _vm._v(
                             _vm._s(
                               bloqueado.fecha_ingreso
-                                ? _vm.$dateFormat(bloqueado.fecha_ingreso)
+                                ? bloqueado.fecha_ingreso
                                 : ""
                             )
                           ),

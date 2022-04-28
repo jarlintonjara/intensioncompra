@@ -48,11 +48,11 @@
                                     <td>{{bloqueado.anio_modelo}}</td>
                                     <td>{{bloqueado.anio_fabricacion}}</td>
                                     <td>{{bloqueado.nombre}}</td>
-                                    <td>{{bloqueado.fecha_bloqueo ? $dateFormat(bloqueado.fecha_bloqueo): ""}}</td>
+                                    <td>{{bloqueado.fecha_bloqueo ? bloqueado.fecha_bloqueo: ""}}</td>
                                     <td>{{bloqueado.color}}</td>
                                     <td>{{bloqueado.codigo_sap}}</td>
                                     <td>{{bloqueado.nave}}</td>
-                                    <td>{{bloqueado.fecha_ingreso ? $dateFormat(bloqueado.fecha_ingreso) : ""}}</td>
+                                    <td>{{bloqueado.fecha_ingreso ? bloqueado.fecha_ingreso : ""}}</td>
                                 </tr>
                             </tbody>
                             

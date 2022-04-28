@@ -8,6 +8,7 @@ use App\Http\Controllers\IngresoController;
 use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\ConcesinarioController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -50,5 +51,9 @@ Route::resource('concesionario', ConcesinarioController::class);
 
 //Utils
 Route::post('exportExcel', [UtilsController::class, 'exportExcel']);
-
 Route::get('home', [HomeController::class, 'index']);
+
+//Files
+Route::resource('gallery', FileController::class);
+Route::get('getimages', [FileController::class, 'getImages']);
+Route::post('image/delete', [FileController::class, 'destroy']); 
