@@ -284,17 +284,8 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
         autoProcessQueue: false,
         addRemoveLinks: true,
         dictDefaultMessage: "Cargar archivos",
-        acceptedFiles: ".jpeg,.jpg,.png,.gif",
-        clickable: true,
-        init: function init() {
-          var file = {
-            size: 123,
-            name: "Icon",
-            type: "image/png"
-          };
-          var url = "https://myvizo.com/img/logo_sm.png";
-          this.$refs.myVueDropzone.manuallyAddFile(file, url);
-        }
+        acceptedFiles: ".jpeg, .jpg, .png, .gif, .pdf",
+        clickable: true
       },
       form: {
         codigo_reserva: "",
@@ -355,6 +346,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
   methods: {
     afterUploadComplete: function () {
       var _afterUploadComplete = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(response) {
+        var index, asignaciones;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -362,8 +354,26 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                 if (response.status == "success") {
                   console.log("upload successful");
                   this.sendSuccess = true;
+                  index = this.asignaciones.map(function (e) {
+                    return e.id;
+                  }).indexOf(this.id);
+
+                  if (index !== -1) {
+                    asignaciones = this.asignaciones;
+                    asignaciones.splice(index, 1);
+                    this.asignaciones = [].concat(asignaciones);
+                  }
+
+                  this.id = null;
+                  $('#modalForm').modal('hide');
+                  this.submited = false;
+                  this.$swal.fire('Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
                 } else {
-                  console.log("upload failed");
+                  this.$swal.fire({
+                    icon: 'Error',
+                    title: '',
+                    text: 'Ocurrio un error!'
+                  });
                 }
 
               case 1:
@@ -453,9 +463,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                   file.previewTemplate.appendChild(anchorEl);
                 }
 
-                $("#response").append(response);
-
-              case 2:
+              case 1:
               case "end":
                 return _context4.stop();
             }
@@ -511,6 +519,8 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
       this.id = asignacion.id;
       this.form.codigo_reserva = '';
       this.form.monto_reserva = '';
+      this.form.tipo_financiamiento = '';
+      this.$refs.myVueDropzone.removeAllFiles();
       $('#modalForm').modal('show');
     },
     detalle: function detalle(datos) {
@@ -550,8 +560,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                 return _context6.abrupt("return", false);
 
               case 3:
-                console.log(_this2.form);
-                _context6.next = 6;
+                _context6.next = 5;
                 return axios.put('/api/asignacion/' + _this2.id, _this2.form).then(function (response) {
                   var index = _this2.asignaciones.map(function (e) {
                     return e.id;
@@ -572,7 +581,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                   console.log(error);
                 });
 
-              case 6:
+              case 5:
               case "end":
                 return _context6.stop();
             }

@@ -253,13 +253,9 @@ export default {
                 autoProcessQueue: false,
                 addRemoveLinks: true,
                 dictDefaultMessage: "Cargar archivos",
-                acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                acceptedFiles: ".jpeg, .jpg, .png, .gif, .pdf",
                 clickable: true,
-                init: function() {
-                    var file = { size: 123, name: "Icon", type: "image/png" };
-                    var url = "https://myvizo.com/img/logo_sm.png";
-                    this.$refs.myVueDropzone.manuallyAddFile(file, url);
-                },
+                
             },
             form: {
                 codigo_reserva: "",
@@ -312,8 +308,22 @@ export default {
             if (response.status == "success") {
                 console.log("upload successful");
                 this.sendSuccess = true;
+                let index =  this.asignaciones.map(function(e) { return e.id }).indexOf(this.id);
+                if(index !== -1){
+                    let asignaciones = this.asignaciones;
+                    asignaciones.splice(index, 1);
+                    this.asignaciones = [].concat(asignaciones);
+                }
+                this.id = null;
+                $('#modalForm').modal('hide');
+                this.submited=false;
+                this.$swal.fire( 'Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
             } else {
-                console.log("upload failed");
+                this.$swal.fire({
+                    icon: 'Error',
+                    title: '',
+                    text: 'Ocurrio un error!',
+                })
             }
         },
         shootMessage: async function () {
@@ -338,7 +348,6 @@ export default {
                 anchorEl.innerHTML = "<br>Download";
                 file.previewTemplate.appendChild(anchorEl);
             }
-            $("#response").append(response);
         },
         async init(){
             const token = localStorage.getItem('access_token');
@@ -362,6 +371,8 @@ export default {
             this.id = asignacion.id;
             this.form.codigo_reserva = '';
             this.form.monto_reserva = '';
+            this.form.tipo_financiamiento = '';
+            this.$refs.myVueDropzone.removeAllFiles();
             $('#modalForm').modal('show')
         },
         detalle(datos){
@@ -381,14 +392,13 @@ export default {
             this.registro.color2= datos.color2;
             this.registro.color3= datos.color3;
             this.registro.vin= datos.vin;
-            $('#modalDetalle').modal('show')
+            $('#modalDetalle').modal('show');
         },
         async reservar(){
             this.submited=true;
             if(this.$v.$invalid){
                 return false;
             }
-            console.log(this.form);
             await axios.put('/api/asignacion/'+this.id, this.form).then(response=>{
                 let index =  this.asignaciones.map(function(e) { return e.id }).indexOf(this.id);
                 if(index !== -1){

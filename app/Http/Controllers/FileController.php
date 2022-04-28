@@ -43,13 +43,13 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
-        /* $asignacion = AsignacionModel::findOrFail($request->id);
+        $asignacion = AsignacionModel::findOrFail($request->id);
         $asignacion->codigo_reserva = $request->codigo_reserva;
         $asignacion->monto_reserva = $request->monto_reserva;
         $asignacion->tipo_financiamiento = $request->tipo_financiamiento;
         $asignacion->fecha_reserva = date('Y-m-d');
         $asignacion->situacion = 'RESERVADO';
-        $asignacion->save(); */
+        $asignacion->save();
 
         if ($request->file('file')) {
             /* Multiple file upload */
@@ -60,13 +60,15 @@ class FileController extends Controller
             //loop throu the array 
             for ($i = 0; $i < count($files); $i++) {
                 $file = $files[$i];
-                $filename = $file->getClientOriginalName();
-                $filename = str_replace(' ', '', $filename);
-                $file->storeAs('uploads', $filename);
+                $filenameOriginal = $file->getClientOriginalName();
+                $extension = pathinfo($filenameOriginal, PATHINFO_EXTENSION);
+                $filename = ($i + 1) . '.' . $extension;
+                $file->storeAs('public/'.$asignacion->id , $filename);
 
                 FileModel::create([
                     'asignacion_id' => $request->id, 
                     'filename' => $filename, 
+                    'original_filename' => $filenameOriginal, 
                     'created_at' => date('Y-m-d H:m:s'),
                     'updated_at' => date('Y-m-d H:m:s')
                 ]);
