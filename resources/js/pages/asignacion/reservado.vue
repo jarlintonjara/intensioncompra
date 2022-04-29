@@ -280,6 +280,7 @@ export default {
             this.registro.codigo_sap = datos.codigo_sap;
             this.registro.vin = datos.vin;
             this.registro.id = datos.id;
+            
             this.axios.get('/api/getimages/'+ this.registro.id)
             .then(response=>{
                 this.images = response.data;
