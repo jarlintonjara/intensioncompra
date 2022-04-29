@@ -156,7 +156,31 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="card mb-5">
+                            <div class="card-body p-3">
+                                <h5 class="text-danger">
+                                    Documentos adjuntos
+                                </h5>
+                                <div class="d-flex mt-3 flex-wrap">
+                                    <div class="btn-group mr-1 mt-1" v-for="image in images" :key="image.id + 99"
+                                        role="group" aria-label="Button group with nested dropdown ">
+                                        <button type="button" class="btn btn-default btn-xs btn-block px-1 py-1 fw-500 waves-effect waves-themed" data-action="toggle">
+                                            <span class="d-block text-truncate text-truncate-sm">
+                                                <i class="fal fa-file-pdf mr-1 color-danger-700"></i> {{ image.original_filename  }}
+                                            </span>
+                                        </button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-default btn-xs dropdown-toggle px-2 js-waves-off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                            <div class="dropdown-menu p-0 fs-xs" aria-labelledby="btnGroupDrop1" style="">
+                                                <a class="dropdown-item px-3 py-2" :href="`/displayImage/${registro.id}/${image.filename}`" download>download</a>
+                                                <a class="dropdown-item px-3 py-2" :href="`/displayImage/${registro.id}/${image.filename}`" target="_blank">Open</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="cerrarModal()">Close</button>
@@ -173,7 +197,9 @@ export default {
         return{
             loading: true,
             asignaciones:[],
+            images:[],
             registro: {
+                id: "", 
                 nombreCompleto: "", 
                 documento: "", 
                 email: "", 
@@ -242,6 +268,15 @@ export default {
             this.registro.fecha_emplazado = datos.fecha_emplazado;
             this.registro.codigo_sap = datos.codigo_sap;
             this.registro.vin = datos.vin;
+            this.registro.id = datos.id;
+            this.axios.get('/api/getimages/' + this.registro.id)
+            .then(response=>{
+                this.images = response.data;
+            })
+            .catch(error=>{
+                console.log(error);
+                this.images =[]
+            })
             $('#modalDetalle').modal('show')
         },
         async jobFacturar(){

@@ -208,11 +208,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       asignaciones: [],
+      images: [],
       registro: {
+        id: "",
         nombreCompleto: "",
         documento: "",
         email: "",
@@ -280,6 +307,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     detalle: function detalle(datos) {
+      var _this2 = this;
+
       this.registro.nombreCompleto = datos.nombre_completo;
       this.registro.documento = datos.documento;
       this.registro.email = datos.correo;
@@ -303,6 +332,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.registro.codigo_sap = datos.codigo_sap;
       this.registro.codigo_sap_cliente = datos.codigo_sap_cliente;
       this.registro.vin = datos.vin;
+      this.registro.id = datos.id;
+      this.axios.get('/api/getimages/' + this.registro.id).then(function (response) {
+        _this2.images = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+        _this2.images = [];
+      });
       $('#modalDetalle').modal('show');
     },
     cerrarModal: function cerrarModal() {
@@ -1551,6 +1587,133 @@ var render = function () {
                         ]),
                       ]),
                     ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card mb-5" }, [
+                  _c("div", { staticClass: "card-body p-3" }, [
+                    _c("h5", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                Documentos adjuntos\n                            "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "d-flex mt-3 flex-wrap" },
+                      _vm._l(_vm.images, function (image) {
+                        return _c(
+                          "div",
+                          {
+                            key: image.id + 99,
+                            staticClass: "btn-group mr-1 mt-1",
+                            attrs: {
+                              role: "group",
+                              "aria-label":
+                                "Button group with nested dropdown ",
+                            },
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-default btn-xs btn-block px-1 py-1 fw-500 waves-effect waves-themed",
+                                attrs: {
+                                  type: "button",
+                                  "data-action": "toggle",
+                                },
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "d-block text-truncate text-truncate-sm",
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass:
+                                        "fal fa-file-pdf mr-1 color-danger-700",
+                                    }),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(image.original_filename) +
+                                        "\n                                        "
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "btn-group",
+                                attrs: { role: "group" },
+                              },
+                              [
+                                _c("button", {
+                                  staticClass:
+                                    "btn btn-default btn-xs dropdown-toggle px-2 js-waves-off",
+                                  attrs: {
+                                    id: "btnGroupDrop1",
+                                    type: "button",
+                                    "data-toggle": "dropdown",
+                                    "aria-haspopup": "true",
+                                    "aria-expanded": "false",
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "dropdown-menu p-0 fs-xs",
+                                    attrs: {
+                                      "aria-labelledby": "btnGroupDrop1",
+                                    },
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "dropdown-item px-3 py-2",
+                                        attrs: {
+                                          href:
+                                            "/displayImage/" +
+                                            _vm.registro.id +
+                                            "/" +
+                                            image.filename,
+                                          download: "",
+                                        },
+                                      },
+                                      [_vm._v("download")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "dropdown-item px-3 py-2",
+                                        attrs: {
+                                          href:
+                                            "/displayImage/" +
+                                            _vm.registro.id +
+                                            "/" +
+                                            image.filename,
+                                          target: "_blank",
+                                        },
+                                      },
+                                      [_vm._v("Open")]
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                   ]),
                 ]),
               ]),

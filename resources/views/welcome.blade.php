@@ -40,6 +40,7 @@
     <link rel="stylesheet" media="screen, print" href="{{ asset('admin/css/markdown.css') }}">
     <link rel="stylesheet" media="screen, print" href="{{ asset('admin/css/datagrid/datatables/datatables.bundle.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
 </head>
 
 <body>
@@ -49,6 +50,7 @@
     <script src="{{ asset('admin/js/vendors.bundle.js') }}"></script>
     <script src="{{ asset('admin/js/app.bundle.js') }}"></script>
     <script src="{{ asset('admin/js/datagrid/datatables/datatables.bundle.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 </body>
 
 </html>

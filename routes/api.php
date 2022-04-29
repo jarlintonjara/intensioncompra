@@ -55,5 +55,6 @@ Route::get('home', [HomeController::class, 'index']);
 
 //Files
 Route::resource('gallery', FileController::class);
-Route::get('getimages', [FileController::class, 'getImages']);
+Route::get('getimages/{id}', [FileController::class, 'getImages']);
 Route::post('image/delete', [FileController::class, 'destroy']); 
+

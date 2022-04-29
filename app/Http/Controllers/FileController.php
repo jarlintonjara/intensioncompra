@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\AsignacionModel;
 use App\Models\FileModel;
+use Faker\Provider\File as ProviderFile;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File as FacadesFile;
+use Illuminate\Support\Facades\Response;
 
 class FileController extends Controller
 {
@@ -15,26 +19,23 @@ class FileController extends Controller
         return response()->json($data);
     }
 
-    public function getImages()
+    public function displayImage($asignacion, $filename)
     {
-        $images = FileModel::all()->toArray();
-        foreach ($images as $image) {
-            $tableImages[] = $image['filename'];
+        $path = storage_path('/app/public/'. $asignacion.'/'. $filename);
+        if (!FacadesFile::exists($path)) {
+            abort(404);
         }
-        $storeFolder = storage_path('app\uploads');
-        $file_path = storage_path('app\uploads');
-        $files = scandir($storeFolder);
-        foreach ($files as $file) {
-            if ($file != '.' && $file != '..' && in_array($file, $tableImages)) {
-                $obj['name'] = $file;
-                $file_path = storage_path('app/uploads/') . $file;
-                $obj['size'] = filesize($file_path);
-                $obj['path'] = storage_path('app\\uploads\\'. $file); //url('app/uploads/' . $file);
-                $data[] = $obj;
-            }
-        }
-        //dd($data);
-        return response()->json($data);
+        $file = FacadesFile::get($path);
+        $type = FacadesFile::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+    }
+
+    public function getImages($id)
+    {
+        $images = FileModel::where('asignacion_id', $id)->get();
+        return response()->json($images);
     }
 
     public function create()
