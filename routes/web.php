@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\FileController;
+use App\Models\AsignacionModel;
+use App\Models\EmplazadoModel;
+use App\Models\FacturadoModel;
+use App\Models\RegistroModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test', function(){
+    
+});
 
 Route::get('displayImage/{asignacion}/{filename}', [FileController::class, 'displayImage']);
 

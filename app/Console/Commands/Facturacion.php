@@ -28,21 +28,20 @@ class Facturacion extends Command
         ->where('asignaciones.situacion', 'EMPLAZADO')->get();
 
         foreach ($asignaciones as $asignacion) {
+            $row = AsignacionModel::find($asignacion->id);
             $facturado = FacturadoModel::where('vin', $asignacion->vin)->first();
 
             $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
 
-            if ($registro) {
+            if ($facturado && $registro) {
                 $registro->situacion = 'EMPLAZADO';
                 $registro->save();
-            }
 
-            if ($facturado) {
-                $asignacion->situacion = 'FACTURADO';
-                $asignacion->fecha_facturado = date('Y-m-d'); 
-                $asignacion->fecha_sap_facturado = $facturado->fecha_facturacion;
-                $asignacion->codigo_sap_cliente = $facturado->codigo_sap_cliente;
-                $asignacion->save();
+                $row->situacion = 'FACTURADO';
+                $row->fecha_facturado = date('Y-m-d');
+                $row->fecha_sap_facturado = $facturado->fecha_facturacion;
+                $row->codigo_sap_cliente = $facturado->codigo_sap_cliente;
+                $row->save();
 
                 $facturado->situacion = 'FACTURADO';
                 $facturado->save();

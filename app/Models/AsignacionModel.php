@@ -23,6 +23,7 @@ class AsignacionModel extends Model
         'fecha_facturado',
         'codigo_reserva',
         'monto_reserva',
+        'tipo_financiamiento',
         'fecha_reserva',
         'situacion',
         'estado',
@@ -31,6 +32,7 @@ class AsignacionModel extends Model
         'updated_at',
         'fecha_a_facturar',
         'codigo_sap_cliente',
-        'fecha_sap_facturado'
+        'fecha_sap_facturado',
+        'fecha_sap_emplazado'
     ];
 }

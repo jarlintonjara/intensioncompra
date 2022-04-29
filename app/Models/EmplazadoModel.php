@@ -9,7 +9,11 @@ class EmplazadoModel extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'vin';
+
     protected $table = 'proceso_emplazados';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'vin',
