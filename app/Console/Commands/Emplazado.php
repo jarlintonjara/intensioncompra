@@ -29,7 +29,7 @@ class Emplazado extends Command
         foreach ($asignaciones as $asignacion) {
             $row = AsignacionModel::find($asignacion->id);
             $emplazado = EmplazadoModel::find($asignacion->vin);
-            $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
+            $registro = RegistroModel::find($row->registro_id);
 
             if ($emplazado && $registro) {
                 $row->fecha_emplazado = date('Y-m-d');

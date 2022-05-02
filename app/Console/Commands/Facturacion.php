@@ -30,11 +30,10 @@ class Facturacion extends Command
         foreach ($asignaciones as $asignacion) {
             $row = AsignacionModel::find($asignacion->id);
             $facturado = FacturadoModel::where('vin', $asignacion->vin)->first();
-
-            $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
+            $registro = RegistroModel::find($row->registro_id);
 
             if ($facturado && $registro) {
-                $registro->situacion = 'EMPLAZADO';
+                $registro->situacion = 'FACTURADO';
                 $registro->save();
 
                 $row->situacion = 'FACTURADO';

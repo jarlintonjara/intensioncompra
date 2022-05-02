@@ -9,6 +9,10 @@ class FacturadoModel extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'vin';
+
+    public $timestamps = false;
+
     protected $table = 'proceso_facturacion_si';
 
     protected $fillable = [
