@@ -15,7 +15,6 @@
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
                     </div>
 
                 </div>
@@ -37,7 +36,10 @@
                             </thead>
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
-                                    <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
+                                    <td tyle="text-align: center">
+                                        <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
+                                        <!--button class="btn btn-danger" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button-->
+                                    </td>
                                     <td style="text-align: center" v-if="user.role_id == 6 || user.role_id == 1">
                                         <button class="btn btn-success" @click="modalReservar(asignacion)"><i class="fa fa-lock"></i></button>
                                     </td>
@@ -101,7 +103,7 @@
 
                             <div class="form-row mt-3">
                                  <div class="form-group col-md-12">
-                                    <label for="dropzone">Adjuntar documentos:</label>
+                                    <label for="dropzone">Adjuntar documentos(max. 3):</label>
                                     <vue-dropzone
                                         ref="myVueDropzone"
                                         id="dropzone"
@@ -413,6 +415,28 @@ export default {
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        async borrar(id){
+            this.$swal.fire({
+                title: '¿Seguro de eliminar?',
+                showDenyButton: true,
+                confirmButtonText: 'Eliminar',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await this.axios.delete(`/api/asignacion/${id}`).then(response=>{
+                        let index =  this.asignaciones.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let asignaciones = this.asignaciones;
+                            asignaciones.splice(index, 1);
+                            this.asignaciones = [].concat(asignaciones);
+                        }
+                        this.$swal.fire('Registro eliminado', '', 'success') 
+                    }).catch(error=>{
+                        console.log(error)
+                    });
+                }
+            })
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

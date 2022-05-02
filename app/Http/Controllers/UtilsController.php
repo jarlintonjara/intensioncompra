@@ -9,11 +9,11 @@ use Maatwebsite\Excel\Facades\Excel;
 class UtilsController extends Controller
 {
     public function exportExcel(Request $request){
-        $request->validate([
+        /* $request->validate([
             'columns' => ['required'],
             'data' => ['required'],
             'name' => ['required']
-        ]);
-        return Excel::store(new ScheduleExport($request->columns, $request->data), 'schedule.xlsx');
+        ]); */
+        return Excel::download(new ScheduleExport([], []), 'schedule.xlsx');
     }
 }

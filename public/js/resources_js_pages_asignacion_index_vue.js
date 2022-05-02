@@ -260,6 +260,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -587,6 +589,68 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
             }
           }
         }, _callee6);
+      }))();
+    },
+    borrar: function borrar(id) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _this3.$swal.fire({
+                  title: '¿Seguro de eliminar?',
+                  showDenyButton: true,
+                  confirmButtonText: 'Eliminar',
+                  denyButtonText: "Cancelar"
+                }).then( /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(result) {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+                      while (1) {
+                        switch (_context7.prev = _context7.next) {
+                          case 0:
+                            if (!result.isConfirmed) {
+                              _context7.next = 3;
+                              break;
+                            }
+
+                            _context7.next = 3;
+                            return _this3.axios["delete"]("/api/asignacion/".concat(id)).then(function (response) {
+                              var index = _this3.asignaciones.map(function (e) {
+                                return e.id;
+                              }).indexOf(id);
+
+                              if (index !== -1) {
+                                var asignaciones = _this3.asignaciones;
+                                asignaciones.splice(index, 1);
+                                _this3.asignaciones = [].concat(asignaciones);
+                              }
+
+                              _this3.$swal.fire('Registro eliminado', '', 'success');
+                            })["catch"](function (error) {
+                              console.log(error);
+                            });
+
+                          case 3:
+                          case "end":
+                            return _context7.stop();
+                        }
+                      }
+                    }, _callee7);
+                  }));
+
+                  return function (_x7) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
       }))();
     },
     cerrarModal: function cerrarModal() {
@@ -1906,7 +1970,7 @@ var render = function () {
                     { staticClass: "form-group col-md-12" },
                     [
                       _c("label", { attrs: { for: "dropzone" } }, [
-                        _vm._v("Adjuntar documentos:"),
+                        _vm._v("Adjuntar documentos(max. 3):"),
                       ]),
                       _vm._v(" "),
                       _c("vue-dropzone", {

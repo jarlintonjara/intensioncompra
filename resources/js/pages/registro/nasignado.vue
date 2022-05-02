@@ -11,6 +11,7 @@
             <div id="panel-4" class="panel">
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <!--button @click.prevent="exportExcel">Exportar</button-->
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
@@ -144,7 +145,7 @@
     </main>
 </template>
 <script>
-
+import { exportExcel } from '../../utils.js';
 export default {
     data(){
         return{
@@ -230,6 +231,30 @@ export default {
                     });
                 }
             })
+        },
+        exportExcel(){
+            let data = [];
+            this.noasignados.map((e)=>{
+                data.push({
+                    ['ID'] : e.id,
+                    ['Concesionario'] : e.concesionario,
+                    ['Tienda'] : e.tienda,
+                    ['Nombre Completo'] : e.nombre_completo,
+                    ['Documento'] : e.documento,
+                    ['Celular'] : e.celular,
+                    ['Marca'] : e.marca,
+                    ['Modelo'] : e.modelo,
+                    ['Version'] : e.version,
+                    ['Año modelo'] : e.anio_modelo,
+                    ['Color 1'] : e.color1,
+                    ['Color 2'] : e.color2,
+                    ['Color 3'] : e.color3,
+                    ['Ejecutivo'] : e.nombre + (e.apellido ? e.apellido : ''),
+                    ['Fecha actualizada'] : e.fecha,
+                    ['Fecha creación'] : e.created_at
+                })
+            });
+            exportExcel('registros', data);
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+
 export const displayDate = (timestamp) => {
     const date = new Date(timestamp);
   
@@ -116,3 +117,34 @@ export const displayDate = (timestamp) => {
     return now;
   }
   
+export const exportExcel = async (name, data) => {
+	const excel = require("exceljs");
+	let workbook = new excel.Workbook();
+	let worksheet = workbook.addWorksheet("Registros");
+
+	if(Array.isArray(data)){
+		const values = Object.keys(data[0]);
+		console.log(values)
+		let columns = [];
+		values.forEach((value)=>{
+			columns.push({ header: value, key: value});
+		})
+		worksheet.columns = columns;
+		worksheet.addRows(data);	
+	} 
+
+	const buffer = await workbook.xlsx.writeBuffer();
+	downloadFile(name, buffer);
+}
+
+export const downloadFile = async (name, blob) => {
+	const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+	const url = window.URL.createObjectURL(new Blob([blob], {type: fileType}));
+	const link = document.createElement('a');
+	link.href = url;
+	const fileName = `${name}.xlsx`// whatever your file name .
+	link.setAttribute('download', fileName);
+	document.body.appendChild(link);
+	link.click();
+	link.remove();
+}
