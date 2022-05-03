@@ -21,6 +21,7 @@
                                     <th>Marca</th>
                                     <th>Modelo</th>
                                     <th>Versión</th>
+                                    <th>Color 1</th>
                                     <th>Tienda</th>
                                     <th>Fecha Creación</th>
                                 </tr>
@@ -36,6 +37,7 @@
                                     <td>{{noasignado.marca}}</td>
                                     <td>{{noasignado.modelo}}</td>
                                     <td>{{noasignado.version}}</td>
+                                    <td>{{noasignado.color1}}</td>
                                     <td>{{noasignado.tienda}}</td>
                                     <td>{{noasignado.fecha ? noasignado.fecha:""}}</td>
                                     

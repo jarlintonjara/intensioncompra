@@ -30,6 +30,7 @@
                                     <th>DOCUMENTO</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
+                                    <th>COLOR</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>FECHA LLEGADA</th>
                                 </tr>
@@ -48,6 +49,7 @@
                                     <td>{{asignacion.documento}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
+                                    <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : ""}}</td>
                                     <td>{{asignacion.fecha_ingreso ? asignacion.fecha_ingreso : ""}}</td>
                                 </tr>

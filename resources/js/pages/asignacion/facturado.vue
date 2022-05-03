@@ -29,6 +29,7 @@
                                     <th>ASESOR</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
+                                    <th>COLOR</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>FECHA FACTURADO</th>
                                     <th>FECHA SAP FACTURADO</th>
@@ -42,6 +43,7 @@
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
+                                    <td>{{asignacion.color}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
                                     <td>{{asignacion.fecha_facturado}}</td>
                                     <td>{{asignacion.fecha_sap_facturado}}</td>

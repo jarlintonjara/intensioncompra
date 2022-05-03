@@ -262,6 +262,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -1678,6 +1680,8 @@ var render = function () {
                       _vm._v(" "),
                       _c("th", [_vm._v("MODELO")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("COLOR")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("FECHA LLEGADA")]),
@@ -1733,6 +1737,8 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(asignacion.marca))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.modelo))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.color))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
