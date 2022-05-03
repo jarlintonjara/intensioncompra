@@ -12,7 +12,28 @@ class IngresoController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = IngresoModel::where('bloqueado',0)->get();
+        $query2 = IngresoModel::where('bloqueado', 0);
+        $data = [];
+        switch ($user->role_id) {
+            case 1:
+                $data = $query2->where('users.user_id', $user->id)->get();
+                break;
+            case 2:
+                $data = $query2->where('users.tienda_id', $user->tienda_id)->get();
+                break;
+            case 3:
+                $data = $query2->where('users.concesionario_id', $user->tienda_id)->get();
+                break;
+            case 4:
+            case 5:
+                $data = $query2->where('packing_list.marca', $user->marca)->get();
+                break;
+            case 6:
+                $data = $query2->get();
+                break;
+            default:
+                $data = [];
+        }
         $bloqueados = [];
         $query = IngresoModel::select(
             'packing_list.id',
