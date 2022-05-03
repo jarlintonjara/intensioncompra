@@ -29,7 +29,7 @@ class IngresoController extends Controller
             'packing_list.fecha_ingreso',
             'packing_list.nave',
         )
-            ->Join('users', 'packing_list.user_bloqueo', '=', 'users.id')
+            ->leftJoin('users', 'packing_list.user_bloqueo', 'users.id')
             ->where('bloqueado', 1);
         switch ($user->role_id) {
             case 1:
