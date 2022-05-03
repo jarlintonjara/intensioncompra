@@ -12,44 +12,27 @@ class IngresoController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $query2 = IngresoModel::select(
-            'packing_list.id',
-            'users.nombre',
-            'packing_list.fecha_bloqueo',
-            'packing_list.vin',
-            'packing_list.marca',
-            'packing_list.modelo',
-            'packing_list.version',
-            'packing_list.color',
-            'packing_list.anio_modelo',
-            'packing_list.anio_fabricacion',
-            'packing_list.codigo_sap',
-            'packing_list.fecha_ingreso',
-            'packing_list.nave',
-        )
-            ->leftJoin('users', 'packing_list.user_bloqueo', 'users.id')
-            ->where('bloqueado',0);
-        $data = [];
-        switch ($user->role_id) {
+        $data = IngresoModel::where('bloqueado',0)->get();
+       /*  switch ($user->role_id) {
             case 1:
-                $data = $query2->where('users.user_id', $user->id)->get();
+                $bloqueados = $query->where('users.user_id', $user->id)->get();
                 break;
             case 2:
-                $data = $query2->where('users.tienda_id', $user->tienda_id)->get();
+                $bloqueados = $query->where('users.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                $data = $query2->where('users.concesionario_id', $user->tienda_id)->get();
+                $bloqueados = $query->where('users.concesionario_id', $user->tienda_id)->get();
                 break;
             case 4:
             case 5:
-                $data = $query2->where('packing_list.marca', $user->marca)->get();
+                $bloqueados = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                $data = $query2->get();
+                $bloqueados = $query->get();
                 break;
             default:
-                $data = [];
-        }
+                $bloqueados = [];
+        } */
         $bloqueados = [];
         $query = IngresoModel::select(
             'packing_list.id',
