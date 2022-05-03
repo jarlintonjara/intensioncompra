@@ -20,6 +20,7 @@ class BloquearFacturados extends Command
             $ingreso = IngresoModel::where('vin', $facturado->vin)->where('situacion', 'LIBRE')->where('bloqueado', 0)->first();
     
             if($ingreso){
+                $ingreso->user_bloqueo = 1751;
                 $ingreso->situacion = 'BLOQUEADO';
                 $ingreso->fecha_bloqueo = date('Y-m-d');
                 $ingreso->bloqueado = 1;

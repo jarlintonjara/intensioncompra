@@ -12,27 +12,44 @@ class IngresoController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = IngresoModel::where('bloqueado',0)->get();
-       /*  switch ($user->role_id) {
+        $data = [];
+        $query2 = IngresoModel::select(
+            'packing_list.id',
+            'users.nombre',
+            'packing_list.fecha_bloqueo',
+            'packing_list.vin',
+            'packing_list.marca',
+            'packing_list.modelo',
+            'packing_list.version',
+            'packing_list.color',
+            'packing_list.anio_modelo',
+            'packing_list.anio_fabricacion',
+            'packing_list.codigo_sap',
+            'packing_list.fecha_ingreso',
+            'packing_list.nave',
+        )
+            ->leftjoin('users', 'packing_list.user_bloqueo', 'users.id')
+            ->where('bloqueado', 0);
+        switch ($user->role_id) {
             case 1:
-                $bloqueados = $query->where('users.user_id', $user->id)->get();
+                $data = $query2->where('users.user_id', $user->id)->get();
                 break;
             case 2:
-                $bloqueados = $query->where('users.tienda_id', $user->tienda_id)->get();
+                $data = $query2->where('users.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                $bloqueados = $query->where('users.concesionario_id', $user->tienda_id)->get();
+                $data = $query2->where('users.concesionario_id', $user->tienda_id)->get();
                 break;
             case 4:
             case 5:
-                $bloqueados = $query->where('packing_list.marca', $user->marca)->get();
+                $data = $query2->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
-                $bloqueados = $query->get();
+                $data = $query2->get();
                 break;
             default:
-                $bloqueados = [];
-        } */
+                $data = [];
+        }
         $bloqueados = [];
         $query = IngresoModel::select(
             'packing_list.id',
@@ -49,7 +66,7 @@ class IngresoController extends Controller
             'packing_list.fecha_ingreso',
             'packing_list.nave',
         )
-            ->leftJoin('users', 'packing_list.user_bloqueo', 'users.id')
+            ->join('users', 'packing_list.user_bloqueo', 'users.id')
             ->where('bloqueado', 1);
         switch ($user->role_id) {
             case 1:
