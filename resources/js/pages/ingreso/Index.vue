@@ -23,6 +23,7 @@
                         <table id="tingresos" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
+                                    
                                     <th v-if="user.role_id == 4 || user.role_id == 5">BLOQUEAR</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
