@@ -24,6 +24,7 @@ Route::get('test', function(){
 
 Route::get('displayImage/{asignacion}/{filename}', [FileController::class, 'displayImage']);
 
+
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
