@@ -4,6 +4,7 @@ use App\Http\Controllers\FileController;
 use App\Models\AsignacionModel;
 use App\Models\EmplazadoModel;
 use App\Models\FacturadoModel;
+use App\Models\IngresoModel;
 use App\Models\RegistroModel;
 use Illuminate\Support\Facades\Route;
 
