@@ -181,6 +181,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -1514,6 +1518,10 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.color1))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.color2))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.color3))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.tienda))]),
                         _vm._v(" "),
                         _c("td", [
@@ -1812,6 +1820,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("Versión")]),
         _vm._v(" "),
         _c("th", [_vm._v("Color 1")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Color 2")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Color 3")]),
         _vm._v(" "),
         _c("th", [_vm._v("Tienda")]),
         _vm._v(" "),
