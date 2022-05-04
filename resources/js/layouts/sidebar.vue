@@ -23,7 +23,7 @@
                 <li class="active open" @click="selectLi"   v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
                     <a href="#" title="Registros" data-filter-tags="registros">
                         <i class="fal fa-cog"></i>
-                        <span class="nav-link-text">Mantenimientos</span>
+                        <span class="nav-link-text" translate="no">Mantenimientos</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
@@ -52,18 +52,18 @@
                 <li class="active open" >
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-th-list"></i>
-                        <span class="nav-link-text">Registros</span>
+                        <span class="nav-link-text" translate="no">Registros</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
                         <router-link tag="li" to="/registro" v-if="user.role_id == 1 || user.role_id == 6" active-class="active">
                             <a href="">
-                                <span class="nav-link-text">Nuevo Registro</span>
+                                <span class="nav-link-text" translate="no">Nuevo Registro</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/no-asignado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8" active-class="active">
                             <a href="">
-                                <span class="nav-link-text">Lista de registros</span>
+                                <span class="nav-link-text" translate="no">Lista de registros</span>
                             </a>
                         </router-link>
                     </ul>
@@ -71,28 +71,28 @@
                 <li class="active open" >
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-edit"></i>
-                        <span class="nav-link-text">Asignaciones</span>
+                        <span class="nav-link-text" translate="no">Asignaciones</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
                         <router-link tag="li" to="/asignacion" active-class="active">
                             <a href="">
-                                <span class="nav-link-text">Lista de asignaciones</span>
+                                <span class="nav-link-text" translate="no">Lista de asignaciones</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/reservado" active-class="active">
                             <a href="">
-                                <span class="nav-link-text">Reservados</span>
+                                <span class="nav-link-text" translate="no">Reservados</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/emplazado" active-class="active">
                             <a href="">
-                                <span class="nav-link-text">Emplazados</span>
+                                <span class="nav-link-text" translate="no">Emplazados</span>
                             </a>
                         </router-link>
                         <router-link tag="li" to="/facturado"  active-class="active">
                             <a href="">
-                                <span class="nav-link-text">Facturados</span>
+                                <span class="nav-link-text" translate="no">Facturados</span>
                             </a>
                         </router-link>
                     </ul>
@@ -100,7 +100,7 @@
                 <li class="active open" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8">
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-globe"></i>
-                        <span class="nav-link-text">Packing List</span>
+                        <span class="nav-link-text" translate="no">Packing List</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>

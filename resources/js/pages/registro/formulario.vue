@@ -62,21 +62,21 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="selectMarca">MARCA</label>
-                                    <v-select class="vue-select2" name="selectMarca"
+                                    <v-select class="vue-select2" name="selectMarca" translate="no"
                                         :options="marca" v-model="selectMarca" :reduce="label => label.code">
                                     </v-select>
                                     <div style="color:red;" v-if="submited && !$v.selectMarca.required">El campo es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectModelo">MODELO</label>
-                                    <v-select class="vue-select2" name="selectModelo"
+                                    <v-select class="vue-select2" name="selectModelo" translate="no"
                                         :options="modelo" v-model="selectModelo" :reduce="label => label.code">
                                     </v-select>
                                     <div style="color:red;" v-if="submited && !$v.selectModelo.required">El campo es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectVersion">VERSIÓN</label>
-                                    <v-select class="vue-select2" name="selectVersion"
+                                    <v-select class="vue-select2" name="selectVersion" translate="no"
                                         :options="version" v-model="selectVersion" :reduce="label => label.code">
                                     </v-select>
                                     <div style="color:red;" v-if="submited && !$v.selectVersion.required">El campo es obligatorio</div>
@@ -86,20 +86,20 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="selectColor">COLOR 1</label>
-                                    <v-select class="vue-select2" name="selectColor"
+                                    <v-select class="vue-select2" name="selectColor" translate="no"
                                         :options="color" v-model="form.color1" :reduce="label => label.code">
                                     </v-select>
                                     <div style="color:red;" v-if="submited && !$v.form.color1.required">El campo es obligatorio</div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectColor">COLOR 2</label>
-                                    <v-select class="vue-select2" name="selectColor"
+                                    <v-select class="vue-select2" name="selectColor" translate="no"
                                         :options="color" v-model="form.color2" :reduce="label => label.code">
                                     </v-select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="selectColor">COLOR 3</label>
-                                    <v-select class="vue-select2" name="selectColor"
+                                    <v-select class="vue-select2" name="selectColor" translate="no"
                                         :options="color" v-model="form.color3" :reduce="label => label.code">
                                     </v-select>
                                 </div>

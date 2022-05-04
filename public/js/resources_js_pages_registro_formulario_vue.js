@@ -1559,6 +1559,7 @@ var render = function () {
                         staticClass: "vue-select2",
                         attrs: {
                           name: "selectMarca",
+                          translate: "no",
                           options: _vm.marca,
                           reduce: function (label) {
                             return label.code
@@ -1594,6 +1595,7 @@ var render = function () {
                         staticClass: "vue-select2",
                         attrs: {
                           name: "selectModelo",
+                          translate: "no",
                           options: _vm.modelo,
                           reduce: function (label) {
                             return label.code
@@ -1629,6 +1631,7 @@ var render = function () {
                         staticClass: "vue-select2",
                         attrs: {
                           name: "selectVersion",
+                          translate: "no",
                           options: _vm.version,
                           reduce: function (label) {
                             return label.code
@@ -1666,6 +1669,7 @@ var render = function () {
                         staticClass: "vue-select2",
                         attrs: {
                           name: "selectColor",
+                          translate: "no",
                           options: _vm.color,
                           reduce: function (label) {
                             return label.code
@@ -1701,6 +1705,7 @@ var render = function () {
                         staticClass: "vue-select2",
                         attrs: {
                           name: "selectColor",
+                          translate: "no",
                           options: _vm.color,
                           reduce: function (label) {
                             return label.code
@@ -1730,6 +1735,7 @@ var render = function () {
                         staticClass: "vue-select2",
                         attrs: {
                           name: "selectColor",
+                          translate: "no",
                           options: _vm.color,
                           reduce: function (label) {
                             return label.code

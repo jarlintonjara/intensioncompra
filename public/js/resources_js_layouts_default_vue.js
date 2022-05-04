@@ -1964,9 +1964,14 @@ var render = function () {
                   [
                     _c("i", { staticClass: "fal fa-th-list" }),
                     _vm._v(" "),
-                    _c("span", { staticClass: "nav-link-text" }, [
-                      _vm._v("Registros"),
-                    ]),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "nav-link-text",
+                        attrs: { translate: "no" },
+                      },
+                      [_vm._v("Registros")]
+                    ),
                     _vm._v(" "),
                     _vm._m(2),
                   ]
@@ -1987,9 +1992,14 @@ var render = function () {
                           },
                           [
                             _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Nuevo Registro"),
-                              ]),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "nav-link-text",
+                                  attrs: { translate: "no" },
+                                },
+                                [_vm._v("Nuevo Registro")]
+                              ),
                             ]),
                           ]
                         )
@@ -2013,9 +2023,14 @@ var render = function () {
                           },
                           [
                             _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Lista de registros"),
-                              ]),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "nav-link-text",
+                                  attrs: { translate: "no" },
+                                },
+                                [_vm._v("Lista de registros")]
+                              ),
                             ]),
                           ]
                         )
@@ -2039,9 +2054,14 @@ var render = function () {
                   [
                     _c("i", { staticClass: "fal fa-edit" }),
                     _vm._v(" "),
-                    _c("span", { staticClass: "nav-link-text" }, [
-                      _vm._v("Asignaciones"),
-                    ]),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "nav-link-text",
+                        attrs: { translate: "no" },
+                      },
+                      [_vm._v("Asignaciones")]
+                    ),
                     _vm._v(" "),
                     _vm._m(3),
                   ]
@@ -2061,9 +2081,14 @@ var render = function () {
                       },
                       [
                         _c("a", { attrs: { href: "" } }, [
-                          _c("span", { staticClass: "nav-link-text" }, [
-                            _vm._v("Lista de asignaciones"),
-                          ]),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "nav-link-text",
+                              attrs: { translate: "no" },
+                            },
+                            [_vm._v("Lista de asignaciones")]
+                          ),
                         ]),
                       ]
                     ),
@@ -2079,9 +2104,14 @@ var render = function () {
                       },
                       [
                         _c("a", { attrs: { href: "" } }, [
-                          _c("span", { staticClass: "nav-link-text" }, [
-                            _vm._v("Reservados"),
-                          ]),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "nav-link-text",
+                              attrs: { translate: "no" },
+                            },
+                            [_vm._v("Reservados")]
+                          ),
                         ]),
                       ]
                     ),
@@ -2097,9 +2127,14 @@ var render = function () {
                       },
                       [
                         _c("a", { attrs: { href: "" } }, [
-                          _c("span", { staticClass: "nav-link-text" }, [
-                            _vm._v("Emplazados"),
-                          ]),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "nav-link-text",
+                              attrs: { translate: "no" },
+                            },
+                            [_vm._v("Emplazados")]
+                          ),
                         ]),
                       ]
                     ),
@@ -2115,9 +2150,14 @@ var render = function () {
                       },
                       [
                         _c("a", { attrs: { href: "" } }, [
-                          _c("span", { staticClass: "nav-link-text" }, [
-                            _vm._v("Facturados"),
-                          ]),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "nav-link-text",
+                              attrs: { translate: "no" },
+                            },
+                            [_vm._v("Facturados")]
+                          ),
                         ]),
                       ]
                     ),
@@ -2144,9 +2184,14 @@ var render = function () {
                       [
                         _c("i", { staticClass: "fal fa-globe" }),
                         _vm._v(" "),
-                        _c("span", { staticClass: "nav-link-text" }, [
-                          _vm._v("Packing List"),
-                        ]),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { translate: "no" },
+                          },
+                          [_vm._v("Packing List")]
+                        ),
                         _vm._v(" "),
                         _vm._m(4),
                       ]
@@ -2257,9 +2302,11 @@ var staticRenderFns = [
       [
         _c("i", { staticClass: "fal fa-cog" }),
         _vm._v(" "),
-        _c("span", { staticClass: "nav-link-text" }, [
-          _vm._v("Mantenimientos"),
-        ]),
+        _c(
+          "span",
+          { staticClass: "nav-link-text", attrs: { translate: "no" } },
+          [_vm._v("Mantenimientos")]
+        ),
         _vm._v(" "),
         _c("b", { staticClass: "collapse-sign" }, [
           _c("em", { staticClass: "fal fa-angle-down" }),
