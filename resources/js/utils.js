@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-
+const excel = require("exceljs");
 export const displayDate = (timestamp) => {
     const date = new Date(timestamp);
   
@@ -118,13 +118,12 @@ export const displayDate = (timestamp) => {
   }
   
 export const exportExcel = async (name, data) => {
-	const excel = require("exceljs");
+	
 	let workbook = new excel.Workbook();
 	let worksheet = workbook.addWorksheet("Registros");
 
 	if(Array.isArray(data)){
 		const values = Object.keys(data[0]);
-		console.log(values)
 		let columns = [];
 		values.forEach((value)=>{
 			columns.push({ header: value, key: value});

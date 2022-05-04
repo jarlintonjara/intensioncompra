@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\AsignacionModel;
 use App\Models\RegistroModel;
-use App\Models\IngresoModel;
 use App\Http\Requests\StoreAsignacionRequest;
-use App\Models\EmplazadoModel;
-use App\Models\FacturadoModel;
 
 class AsignacionController extends Controller
 {
@@ -82,6 +79,7 @@ class AsignacionController extends Controller
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
+            case 8:
                 $data = $query->get();
                 break;
             default:
@@ -162,6 +160,7 @@ class AsignacionController extends Controller
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
+            case 8:
                 $data = $query->get();
                 break;
             default:
@@ -241,6 +240,7 @@ class AsignacionController extends Controller
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
+            case 8:
                 $data = $query->get();
                 break;
             default:
@@ -315,6 +315,7 @@ class AsignacionController extends Controller
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
+            case 8:
                 $data = $query->get();
                 break;
             default:

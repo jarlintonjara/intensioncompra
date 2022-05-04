@@ -101,7 +101,14 @@ class HomeController extends Controller
                  $totalEmplazados = $query3->count();
                  $totalReservados = $query4->count();
                  $totalFacturados = $query5->count();
-                break;      
+                break;   
+            default:
+                $totalRegistros = $query->count();
+                $totalAsignados = $query2->count();
+                $totalEmplazados = $query3->count();
+                $totalReservados = $query4->count();
+                $totalFacturados = $query5->count();
+                
         }
 
         return response()->json([

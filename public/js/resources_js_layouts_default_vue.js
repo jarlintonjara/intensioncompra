@@ -2000,7 +2000,8 @@ var render = function () {
                     _vm.user.role_id == 3 ||
                     _vm.user.role_id == 4 ||
                     _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6
+                    _vm.user.role_id == 6 ||
+                    _vm.user.role_id == 8
                       ? _c(
                           "router-link",
                           {
@@ -2127,7 +2128,8 @@ var render = function () {
               _vm._v(" "),
               _vm.user.role_id == 4 ||
               _vm.user.role_id == 5 ||
-              _vm.user.role_id == 6
+              _vm.user.role_id == 6 ||
+              _vm.user.role_id == 8
                 ? _c("li", { staticClass: "active open" }, [
                     _c(
                       "a",

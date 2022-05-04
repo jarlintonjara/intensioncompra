@@ -23,7 +23,7 @@
                         <table id="tingresos" class="table table-bordered table-hover table-striped w-100">
                             <thead>
                                 <tr>
-                                    <th>BLOQUEAR</th>
+                                    <th v-if="user.role_id == 4 || user.role_id == 5">BLOQUEAR</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -39,8 +39,8 @@
                             </thead>
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
-                                    <td style="text-align: center">
-                                        <button class="btn btn-danger" @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
+                                    <td style="text-align: center" v-if="user.role_id == 4 || user.role_id == 5">
+                                        <button class="btn btn-danger"  @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
                                     </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>
@@ -71,6 +71,7 @@ export default {
         return{
             loading: true,
             ingresos:[],
+            user: {role_id: 0}
         }
     },
     mounted(){
@@ -79,6 +80,9 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+            });
             await this.axios.get('/api/ingreso',{
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },

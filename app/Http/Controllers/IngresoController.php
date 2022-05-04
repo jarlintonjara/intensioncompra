@@ -45,6 +45,7 @@ class IngresoController extends Controller
                 $data = $query2->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
+            case 8:
                 $data = $query2->get();
                 break;
             default:
@@ -83,10 +84,11 @@ class IngresoController extends Controller
                 $bloqueados = $query->where('packing_list.marca', $user->marca)->get();
                 break;
             case 6:
+            case 8:
                 $bloqueados = $query->get();
                 break;
             default:
-                $bloqueados = [];
+                $bloqueados = $query->get();
         }
         return response()->json(['data'=>$data,'bloqueados'=>$bloqueados]);
     }

@@ -61,7 +61,7 @@
                                 <span class="nav-link-text">Nuevo Registro</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/no-asignado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6" active-class="active">
+                        <router-link tag="li" to="/no-asignado" v-if="user.role_id == 1 || user.role_id == 2 || user.role_id == 3 || user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Lista de registros</span>
                             </a>
@@ -97,7 +97,7 @@
                         </router-link>
                     </ul>
                 </li>
-                <li class="active open" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
+                <li class="active open" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8">
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-globe"></i>
                         <span class="nav-link-text">Packing List</span>

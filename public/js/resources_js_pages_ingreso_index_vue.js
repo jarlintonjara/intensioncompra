@@ -100,7 +100,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       loading: true,
-      ingresos: []
+      ingresos: [],
+      user: {
+        role_id: 0
+      }
     };
   },
   mounted: function mounted() {
@@ -118,6 +121,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
+                  _this.user = res.data;
+                });
+
+              case 3:
+                _context.next = 5;
                 return _this.axios.get('/api/ingreso', {
                   withCredentials: true,
                   headers: {
@@ -129,11 +138,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 3:
-                _context.next = 5;
+              case 5:
+                _context.next = 7;
                 return _this.$tablaGlobal('#tingresos');
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -1088,26 +1097,58 @@ var render = function () {
                   attrs: { id: "tingresos" },
                 },
                 [
-                  _vm._m(2),
+                  _c("thead", [
+                    _c("tr", [
+                      _vm.user.role_id == 4 || _vm.user.role_id == 5
+                        ? _c("th", [_vm._v("BLOQUEAR")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("VIN")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("MARCA")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("MODELO")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("VERSION")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("AÑO MODELO")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("AÑO FABRICACIÓN")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("COLOR")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("SITUACIÓN")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("NAVE")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("FECHA INGRESO")]),
+                    ]),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
                     _vm._l(_vm.ingresos, function (ingreso) {
                       return _c("tr", { key: ingreso.id }, [
-                        _c("td", { staticStyle: { "text-align": "center" } }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.bloquear(ingreso.id)
-                                },
-                              },
-                            },
-                            [_c("i", { staticClass: "fa fa-unlock" })]
-                          ),
-                        ]),
+                        _vm.user.role_id == 4 || _vm.user.role_id == 5
+                          ? _c(
+                              "td",
+                              { staticStyle: { "text-align": "center" } },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.bloquear(ingreso.id)
+                                      },
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fa fa-unlock" })]
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(ingreso.vin))]),
                         _vm._v(" "),
@@ -1187,36 +1228,6 @@ var staticRenderFns = [
             "data-original-title": "Fullscreen",
           },
         }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("BLOQUEAR")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("VIN")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("MARCA")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("MODELO")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("VERSION")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("AÑO MODELO")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("AÑO FABRICACIÓN")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("COLOR")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("SITUACIÓN")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("NAVE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("FECHA INGRESO")]),
       ]),
     ])
   },

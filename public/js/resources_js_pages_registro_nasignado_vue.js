@@ -378,6 +378,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* eslint-disable no-nested-ternary */
+var excel = __webpack_require__(/*! exceljs */ "./node_modules/exceljs/dist/exceljs.min.js");
+
 var displayDate = function displayDate(timestamp) {
   var date = new Date(timestamp);
   var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -470,18 +472,16 @@ var dateNow = function dateNow() {
 };
 var exportExcel = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(name, data) {
-    var excel, workbook, worksheet, values, columns, buffer;
+    var workbook, worksheet, values, columns, buffer;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            excel = __webpack_require__(/*! exceljs */ "./node_modules/exceljs/dist/exceljs.min.js");
             workbook = new excel.Workbook();
             worksheet = workbook.addWorksheet("Registros");
 
             if (Array.isArray(data)) {
               values = Object.keys(data[0]);
-              console.log(values);
               columns = [];
               values.forEach(function (value) {
                 columns.push({
@@ -493,14 +493,14 @@ var exportExcel = /*#__PURE__*/function () {
               worksheet.addRows(data);
             }
 
-            _context.next = 6;
+            _context.next = 5;
             return workbook.xlsx.writeBuffer();
 
-          case 6:
+          case 5:
             buffer = _context.sent;
             downloadFile(name, buffer);
 
-          case 8:
+          case 7:
           case "end":
             return _context.stop();
         }
