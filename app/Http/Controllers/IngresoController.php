@@ -25,6 +25,7 @@ class IngresoController extends Controller
             'packing_list.anio_modelo',
             'packing_list.anio_fabricacion',
             'packing_list.codigo_sap',
+            'packing_list.situacion',
             'packing_list.fecha_ingreso',
             'packing_list.nave',
         )
@@ -64,6 +65,7 @@ class IngresoController extends Controller
             'packing_list.anio_modelo',
             'packing_list.anio_fabricacion',
             'packing_list.codigo_sap',
+            'packing_list.situacion',
             'packing_list.fecha_ingreso',
             'packing_list.nave',
         )
