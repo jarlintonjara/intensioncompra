@@ -37,6 +37,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
+                                    
                                     <td tyle="text-align: center">
                                         <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
                                         <button class="btn btn-danger" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
