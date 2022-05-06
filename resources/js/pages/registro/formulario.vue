@@ -161,6 +161,10 @@ export default {
             submited: false,
             caracteristicas : [],
             marca : [],
+            tipo :[
+                {code : 'GLP', label : 'GLP'},
+                {code : 'GLPT', label : 'GLPT'}
+            ],
             modelo : [],
             color : [],
             version : [],
@@ -168,6 +172,7 @@ export default {
             selectMarca : "",
             selectModelo : "",
             selectVersion : "",
+            selectTipo : "",
             showTable1: true,
             showTable2: false,
             user : null

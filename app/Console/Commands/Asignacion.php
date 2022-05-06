@@ -39,7 +39,6 @@ class Asignacion extends Command
                 AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
             } 
         }
-        // dd($ingresos);
 
         //segundo
         $registros2 = RegistroModel::select('id','marca','modelo','version','anio_modelo','color2','situacion')

@@ -358,7 +358,7 @@ class AsignacionController extends Controller
     public function destroy($id)
     {
         $asignacion = AsignacionModel::findOrFail($id);
-        $asignacion->update(['estado' => 0, 'situacion' => 'SINASIGNAR']);
+        $asignacion->update(['estado' => 0, 'situacion' => 'SINASIGNAR', 'observacion' => 'cancelado por el asesor']);
 
         $registro = RegistroModel::findOrFail($asignacion->registro_id);
         $registro->update(['estado' => 0, 'situacion' => 'SINASIGNAR']);

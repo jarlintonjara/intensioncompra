@@ -12,20 +12,21 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <!--button @click.prevent="exportExcel">Exportar</button-->
-                        <table id="tnoasignado" class="table table-bordered table-hover table-striped w-100">
+                        <table id="tnoasignado" class="table table-bordered table-hover table-striped table-responsive w-100">
                             <thead>
                                 <tr>
                                     <th style="width:8% !important"></th>
-                                    <th style="width:22% !important">Nombre Completo</th>
-                                    <th>celular</th>
-                                    <th>Marca</th>
-                                    <th>Modelo</th>
-                                    <th>Versión</th>
-                                    <th>Color 1</th>
-                                    <th>Color 2</th>
-                                    <th>Color 3</th>
-                                    <th>Tienda</th>
-                                    <th>Fecha Creación</th>
+                                    <th style="width:22% !important">NOMBRE COMPLETO</th>
+                                    <th>CELULAR</th>
+                                    <th>ASESOR</th>
+                                    <th>MARCA</th>
+                                    <th>MODELO</th>
+                                    <th>VERSION</th>
+                                    <th>COLOR 1</th>
+                                    <th>COLOR 2</th>
+                                    <th>COLOR 3</th>
+                                    <th>TIENDA</th>
+                                    <th>FECHA CREACION</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +37,7 @@
                                     </td>
                                     <td>{{noasignado.nombre_completo}}</td>
                                     <td>{{noasignado.celular}}</td>
+                                    <td>{{noasignado.nombre}}</td>
                                     <td>{{noasignado.marca}}</td>
                                     <td>{{noasignado.modelo}}</td>
                                     <td>{{noasignado.version}}</td>
@@ -44,7 +46,6 @@
                                     <td>{{noasignado.color3}}</td>
                                     <td>{{noasignado.tienda}}</td>
                                     <td>{{noasignado.fecha ? noasignado.fecha:""}}</td>
-                                    
                                 </tr>
                             </tbody>
                             
@@ -255,7 +256,7 @@ export default {
                     ['Color 1'] : e.color1,
                     ['Color 2'] : e.color2,
                     ['Color 3'] : e.color3,
-                    ['Ejecutivo'] : e.nombre + (e.apellido ? e.apellido : ''),
+                    ['Asesor'] : e.nombre + (e.apellido ? e.apellido : ''),
                     ['Fecha actualizada'] : e.fecha,
                     ['Fecha creación'] : e.created_at
                 })

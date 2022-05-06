@@ -185,6 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -339,7 +340,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.noasignados.map(function (e) {
         var _data$push;
 
-        data.push((_data$push = {}, _defineProperty(_data$push, 'ID', e.id), _defineProperty(_data$push, 'Concesionario', e.concesionario), _defineProperty(_data$push, 'Tienda', e.tienda), _defineProperty(_data$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_data$push, 'Documento', e.documento), _defineProperty(_data$push, 'Celular', e.celular), _defineProperty(_data$push, 'Marca', e.marca), _defineProperty(_data$push, 'Modelo', e.modelo), _defineProperty(_data$push, 'Version', e.version), _defineProperty(_data$push, 'Año modelo', e.anio_modelo), _defineProperty(_data$push, 'Color 1', e.color1), _defineProperty(_data$push, 'Color 2', e.color2), _defineProperty(_data$push, 'Color 3', e.color3), _defineProperty(_data$push, 'Ejecutivo', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_data$push, 'Fecha actualizada', e.fecha), _defineProperty(_data$push, 'Fecha creación', e.created_at), _data$push));
+        data.push((_data$push = {}, _defineProperty(_data$push, 'ID', e.id), _defineProperty(_data$push, 'Concesionario', e.concesionario), _defineProperty(_data$push, 'Tienda', e.tienda), _defineProperty(_data$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_data$push, 'Documento', e.documento), _defineProperty(_data$push, 'Celular', e.celular), _defineProperty(_data$push, 'Marca', e.marca), _defineProperty(_data$push, 'Modelo', e.modelo), _defineProperty(_data$push, 'Version', e.version), _defineProperty(_data$push, 'Año modelo', e.anio_modelo), _defineProperty(_data$push, 'Color 1', e.color1), _defineProperty(_data$push, 'Color 2', e.color2), _defineProperty(_data$push, 'Color 3', e.color3), _defineProperty(_data$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_data$push, 'Fecha actualizada', e.fecha), _defineProperty(_data$push, 'Fecha creación', e.created_at), _data$push));
       });
 
       (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.exportExcel)('registros', data);
@@ -1468,7 +1469,7 @@ var render = function () {
                 "table",
                 {
                   staticClass:
-                    "table table-bordered table-hover table-striped w-100",
+                    "table table-bordered table-hover table-striped table-responsive w-100",
                   attrs: { id: "tnoasignado" },
                 },
                 [
@@ -1509,6 +1510,8 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(noasignado.nombre_completo))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.celular))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.nombre))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.marca))]),
                         _vm._v(" "),
@@ -1808,26 +1811,28 @@ var staticRenderFns = [
         _c("th", { staticStyle: { width: "8% !important" } }),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "22% !important" } }, [
-          _vm._v("Nombre Completo"),
+          _vm._v("NOMBRE COMPLETO"),
         ]),
         _vm._v(" "),
-        _c("th", [_vm._v("celular")]),
+        _c("th", [_vm._v("CELULAR")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Marca")]),
+        _c("th", [_vm._v("ASESOR")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modelo")]),
+        _c("th", [_vm._v("MARCA")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Versión")]),
+        _c("th", [_vm._v("MODELO")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Color 1")]),
+        _c("th", [_vm._v("VERSION")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Color 2")]),
+        _c("th", [_vm._v("COLOR 1")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Color 3")]),
+        _c("th", [_vm._v("COLOR 2")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Tienda")]),
+        _c("th", [_vm._v("COLOR 3")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Fecha Creación")]),
+        _c("th", [_vm._v("TIENDA")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("FECHA CREACION")]),
       ]),
     ])
   },
