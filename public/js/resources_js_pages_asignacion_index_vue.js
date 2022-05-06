@@ -275,11 +275,12 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
   },
   props: ['session'],
   data: function data() {
+    this.user;
     return {
       asignaciones: [],
       id: null,
       dropzoneOptions: {
-        url: "http://localhost:8000/api/gallery",
+        url: "http://162.243.173.90:82/api/gallery",
         thumbnailWidth: 150,
         maxFilesize: 2,
         parallelUploads: 3,
@@ -602,9 +603,9 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
             switch (_context8.prev = _context8.next) {
               case 0:
                 _this3.$swal.fire({
-                  title: '¿Seguro de eliminar?',
+                  title: '¿Seguro de eliminar asignación?',
                   showDenyButton: true,
-                  confirmButtonText: 'Eliminar',
+                  confirmButtonText: 'Eliminar asignación',
                   denyButtonText: "Cancelar"
                 }).then( /*#__PURE__*/function () {
                   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(result) {
@@ -1705,6 +1706,21 @@ var render = function () {
                             },
                             [_c("i", { staticClass: "fa fa-list" })]
                           ),
+                          _vm._v(" "),
+                          _vm.user.role_id == 1
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.borrar(asignacion.id)
+                                    },
+                                  },
+                                },
+                                [_c("i", { staticClass: "fa fa-trash" })]
+                              )
+                            : _vm._e(),
                         ]),
                         _vm._v(" "),
                         _vm.user.role_id == 6 || _vm.user.role_id == 1

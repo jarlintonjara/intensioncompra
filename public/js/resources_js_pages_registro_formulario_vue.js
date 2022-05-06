@@ -198,6 +198,13 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       submited: false,
       caracteristicas: [],
       marca: [],
+      tipo: [{
+        code: 'GLP',
+        label: 'GLP'
+      }, {
+        code: 'GLPT',
+        label: 'GLPT'
+      }],
       modelo: [],
       color: [],
       version: [],
@@ -205,6 +212,7 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       selectMarca: "",
       selectModelo: "",
       selectVersion: "",
+      selectTipo: "",
       showTable1: true,
       showTable2: false,
       user: null

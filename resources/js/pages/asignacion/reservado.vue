@@ -30,7 +30,10 @@
                             </thead>
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
-                                     <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
+                                     <td tyle="text-align: center">
+                                        <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
+                                        <button class="btn btn-danger" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
+                                    </td>
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
@@ -292,6 +295,28 @@ export default {
                 this.images =[]
             })
             $('#modalDetalle').modal('show')
+        },
+        async borrar(id){
+            this.$swal.fire({
+                title: '¿Seguro de cancelar reserva?',
+                showDenyButton: true,
+                confirmButtonText: 'Eliminar reserva',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await this.axios.delete(`/api/asignacion/${id}`).then(response=>{
+                        let index =  this.asignaciones.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let asignaciones = this.asignaciones;
+                            asignaciones.splice(index, 1);
+                            this.asignaciones = [].concat(asignaciones);
+                        }
+                        this.$swal.fire('Registro eliminado', '', 'success') 
+                    }).catch(error=>{
+                        console.log(error)
+                    });
+                }
+            })
         },
         cerrarModal(){
             $('#modalDetalle').modal('hide');

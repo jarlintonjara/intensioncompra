@@ -268,6 +268,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -375,6 +378,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.images = [];
       });
       $('#modalDetalle').modal('show');
+    },
+    borrar: function borrar(id) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.$swal.fire({
+                  title: '¿Seguro de cancelar reserva?',
+                  showDenyButton: true,
+                  confirmButtonText: 'Eliminar reserva',
+                  denyButtonText: "Cancelar"
+                }).then( /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(result) {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            if (!result.isConfirmed) {
+                              _context2.next = 3;
+                              break;
+                            }
+
+                            _context2.next = 3;
+                            return _this3.axios["delete"]("/api/asignacion/".concat(id)).then(function (response) {
+                              var index = _this3.asignaciones.map(function (e) {
+                                return e.id;
+                              }).indexOf(id);
+
+                              if (index !== -1) {
+                                var asignaciones = _this3.asignaciones;
+                                asignaciones.splice(index, 1);
+                                _this3.asignaciones = [].concat(asignaciones);
+                              }
+
+                              _this3.$swal.fire('Registro eliminado', '', 'success');
+                            })["catch"](function (error) {
+                              console.log(error);
+                            });
+
+                          case 3:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2);
+                  }));
+
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     },
     cerrarModal: function cerrarModal() {
       $('#modalDetalle').modal('hide');
@@ -1372,6 +1437,19 @@ var render = function () {
                               },
                             },
                             [_c("i", { staticClass: "fa fa-list" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.borrar(asignacion.id)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "fa fa-trash" })]
                           ),
                         ]),
                         _vm._v(" "),
