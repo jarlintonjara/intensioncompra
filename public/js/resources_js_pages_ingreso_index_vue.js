@@ -1100,7 +1100,9 @@ var render = function () {
                 [
                   _c("thead", [
                     _c("tr", [
-                      _vm.user.role_id == 4 || _vm.user.role_id == 5
+                      _vm.user.role_id == 4 ||
+                      _vm.user.role_id == 5 ||
+                      _vm.user.role_id == 6
                         ? _c("th", [_vm._v("BLOQUEAR")])
                         : _vm._e(),
                       _vm._v(" "),
@@ -1130,7 +1132,9 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.ingresos, function (ingreso) {
                       return _c("tr", { key: ingreso.id }, [
-                        _vm.user.role_id == 4 || _vm.user.role_id == 5
+                        _vm.user.role_id == 4 ||
+                        _vm.user.role_id == 5 ||
+                        _vm.user.role_id == 6
                           ? _c(
                               "td",
                               { staticStyle: { "text-align": "center" } },
