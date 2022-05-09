@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\AsignacionModel;
 use App\Models\RegistroModel;
 use App\Http\Requests\StoreAsignacionRequest;
+use App\Models\IngresoModel;
 
 class AsignacionController extends Controller
 {
@@ -360,8 +361,11 @@ class AsignacionController extends Controller
         $asignacion = AsignacionModel::findOrFail($id);
         $asignacion->update(['estado' => 0, 'situacion' => 'SINASIGNAR', 'observacion' => 'cancelado por el asesor']);
 
+        $packing = IngresoModel::findOrFail($asignacion->ingreso_id);
+        $packing->update(['situacion' => 'LIBRE']);
+
         $registro = RegistroModel::findOrFail($asignacion->registro_id);
-        $registro->update(['estado' => 0, 'situacion' => 'SINASIGNAR']);
+        $registro->update(['estado' => 0]);
         return response()->json($asignacion);
     }
 }
