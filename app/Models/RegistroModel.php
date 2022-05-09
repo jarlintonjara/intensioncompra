@@ -37,6 +37,7 @@ class RegistroModel extends Model
         'estado',
         'fecha',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'tipo'
     ];
 }

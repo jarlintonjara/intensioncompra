@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-2">
                                     <label for="selectMarca">MARCA</label>
                                     <v-select class="vue-select2" name="selectMarca" translate="no"
                                         :options="marca" v-model="selectMarca" :reduce="label => label.code">
@@ -80,6 +80,13 @@
                                         :options="version" v-model="selectVersion" :reduce="label => label.code">
                                     </v-select>
                                     <div style="color:red;" v-if="submited && !$v.selectVersion.required">El campo es obligatorio</div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="tipo">Tipo</label>
+                                    <v-select class="vue-select2" name="tipo" translate="no"
+                                        :options="tipos" v-model="form.tipo" :reduce="label => label.code">
+                                    </v-select>
+                                    
                                 </div>
                             </div>
 
@@ -152,6 +159,7 @@ export default {
                 marca : "",	
                 modelo : "",	
                 version : "",	
+                tipo: "",
                 anio_modelo : "",	
                 anio_fabricacion : "",
                 color1 : "",
@@ -161,7 +169,7 @@ export default {
             submited: false,
             caracteristicas : [],
             marca : [],
-            tipo :[
+            tipos :[
                 {code : 'GLP', label : 'GLP'},
                 {code : 'GLPT', label : 'GLPT'}
             ],

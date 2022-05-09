@@ -170,6 +170,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("alpha", /^[a-z\s]+$/i);
 var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("start9", /^(9)\d{8}$/);
@@ -189,6 +196,7 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         marca: "",
         modelo: "",
         version: "",
+        tipo: "",
         anio_modelo: "",
         anio_fabricacion: "",
         color1: "",
@@ -198,7 +206,7 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       submited: false,
       caracteristicas: [],
       marca: [],
-      tipo: [{
+      tipos: [{
         code: 'GLP',
         label: 'GLP'
       }, {
@@ -1557,7 +1565,7 @@ var render = function () {
                 _c("div", { staticClass: "form-row" }, [
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-4" },
+                    { staticClass: "form-group col-md-2" },
                     [
                       _c("label", { attrs: { for: "selectMarca" } }, [
                         _vm._v("MARCA"),
@@ -1659,6 +1667,34 @@ var render = function () {
                             _vm._v("El campo es obligatorio"),
                           ])
                         : _vm._e(),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-md-2" },
+                    [
+                      _c("label", { attrs: { for: "tipo" } }, [_vm._v("Tipo")]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "vue-select2",
+                        attrs: {
+                          name: "tipo",
+                          translate: "no",
+                          options: _vm.tipos,
+                          reduce: function (label) {
+                            return label.code
+                          },
+                        },
+                        model: {
+                          value: _vm.form.tipo,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.form, "tipo", $$v)
+                          },
+                          expression: "form.tipo",
+                        },
+                      }),
                     ],
                     1
                   ),
