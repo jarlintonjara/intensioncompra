@@ -18,7 +18,7 @@ class RegistroController extends Controller
     {
         $auth = new AuthController();
         $user = $auth->getUser($request->bearerToken());
-        $data = CaracteristicaModel::all();
+        $data = CaracteristicaModel::where('estado', 1)->get();
         $noasignado = [];
 
         $query = RegistroModel::select(
