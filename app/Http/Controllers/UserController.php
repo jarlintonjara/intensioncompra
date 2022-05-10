@@ -45,7 +45,7 @@ class UserController extends Controller
             $user["role"] = $user->role;
             $user["tienda"] = $user->tienda_id ? $user->tienda : "";
         } 
-        $roles = RoleModel::where('estado', 1)->get();
+        $roles = RoleModel::where('estado', 1)->whereNotIn('id', [6, 7, 8])->get();
         $concesionarios = ConcesionarioModel::where('estado', 1)->get();
         $tiendas = TiendaModel::where('estado', 1)->get();
         return response()->json([
