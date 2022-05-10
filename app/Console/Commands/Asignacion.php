@@ -16,7 +16,7 @@ class Asignacion extends Command
     public function handle()
     {
         $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'situacion')
-        ->where('situacion', 'SINASIGNAR')->where('estado', '1')->where('marca', '!=', 'Changan')->orderBy('fecha', 'asc')
+        ->where('situacion', 'SINASIGNAR')->where('estado', '1')->orderBy('fecha', 'asc')
         ->get();
 
         foreach ($registros as $registro) {

@@ -322,7 +322,7 @@ export default {
                 this.id = null;
                 $('#modalForm').modal('hide');
                 this.submited=false;
-                this.$swal.fire( 'Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
+                this.$swal.fire( 'Reservado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
             } else {
                 this.$swal.fire({
                     icon: 'Error',

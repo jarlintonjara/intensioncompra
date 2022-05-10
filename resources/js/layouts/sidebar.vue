@@ -27,7 +27,7 @@
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li" to="/usuarios" v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3" active-class="active">
+                        <router-link tag="li" to="/usuarios" v-if="user.role_id == 6" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Usuarios</span>
                             </a>
