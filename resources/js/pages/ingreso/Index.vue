@@ -41,7 +41,7 @@
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
                                     <td style="text-align: center" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
-                                        <button class="btn btn-danger"  @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
+                                        <button class="btn btn-danger" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6"  @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
                                     </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>

@@ -2,13 +2,13 @@ require('./bootstrap');
 import './../css/app.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import 'datatables.net-dt'
-import datatable from 'datatables.net'
-import 'datatables.net-buttons/js/buttons.print.js'
-import 'datatables.net-buttons/js/buttons.colVis.js'
-import 'datatables.net-buttons/js/buttons.html5.js'
+import 'datatables.net-dt';
+import datatable from 'datatables.net';
+import 'datatables.net-buttons/js/buttons.print.js';
+import 'datatables.net-buttons/js/buttons.colVis.js';
+import 'datatables.net-buttons/js/buttons.html5.js';
 import 'vue-select/dist/vue-select.css';
-import jszip from 'jszip/dist/jszip'
+import jszip from 'jszip/dist/jszip';
 import App from './pages/App.vue';
 import { Vuelidate } from 'vuelidate';
 import Vue from 'vue';

@@ -1854,9 +1854,7 @@ var render = function () {
                       _c(
                         "ul",
                         [
-                          _vm.user.role_id == 6 ||
-                          _vm.user.role_id == 2 ||
-                          _vm.user.role_id == 3
+                          _vm.user.role_id == 6
                             ? _c(
                                 "router-link",
                                 {

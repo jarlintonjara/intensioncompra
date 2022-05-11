@@ -1439,18 +1439,20 @@ var render = function () {
                             [_c("i", { staticClass: "fa fa-list" })]
                           ),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.borrar(asignacion.id)
+                          _vm.user.role_id == 6 || _vm.user.role_id == 1
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.borrar(asignacion.id)
+                                    },
+                                  },
                                 },
-                              },
-                            },
-                            [_c("i", { staticClass: "fa fa-trash" })]
-                          ),
+                                [_c("i", { staticClass: "fa fa-trash" })]
+                              )
+                            : _vm._e(),
                         ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.nombre))]),

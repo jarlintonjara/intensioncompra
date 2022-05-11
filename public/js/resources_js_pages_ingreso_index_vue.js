@@ -1139,18 +1139,22 @@ var render = function () {
                               "td",
                               { staticStyle: { "text-align": "center" } },
                               [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger",
-                                    on: {
-                                      click: function ($event) {
-                                        return _vm.bloquear(ingreso.id)
+                                _vm.user.role_id == 4 ||
+                                _vm.user.role_id == 5 ||
+                                _vm.user.role_id == 6
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger",
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.bloquear(ingreso.id)
+                                          },
+                                        },
                                       },
-                                    },
-                                  },
-                                  [_c("i", { staticClass: "fa fa-unlock" })]
-                                ),
+                                      [_c("i", { staticClass: "fa fa-unlock" })]
+                                    )
+                                  : _vm._e(),
                               ]
                             )
                           : _vm._e(),

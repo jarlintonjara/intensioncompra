@@ -373,7 +373,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                   this.id = null;
                   $('#modalForm').modal('hide');
                   this.submited = false;
-                  this.$swal.fire('Bloqueado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
+                  this.$swal.fire('Reservado', 'Se tiene 24 horas para hacer la reserva (considerar dias laborables)', 'success');
                 } else {
                   this.$swal.fire({
                     icon: 'Error',
@@ -1708,18 +1708,20 @@ var render = function () {
                             [_c("i", { staticClass: "fa fa-list" })]
                           ),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.borrar(asignacion.id)
+                          _vm.user.role_id == 6 || _vm.user.role_id == 1
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.borrar(asignacion.id)
+                                    },
+                                  },
                                 },
-                              },
-                            },
-                            [_c("i", { staticClass: "fa fa-trash" })]
-                          ),
+                                [_c("i", { staticClass: "fa fa-trash" })]
+                              )
+                            : _vm._e(),
                         ]),
                         _vm._v(" "),
                         _vm.user.role_id == 6 || _vm.user.role_id == 1
