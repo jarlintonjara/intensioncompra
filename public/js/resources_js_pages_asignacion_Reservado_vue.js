@@ -278,6 +278,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       asignaciones: [],
       images: [],
       registro: {
+        user: {
+          role_id: 0
+        },
         id: "",
         nombreCompleto: "",
         documento: "",
@@ -322,6 +325,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
+                  _this.user = res.data;
+                });
+
+              case 3:
+                _context.next = 5;
                 return _this.axios.get('/api/reservado', {
                   withCredentials: true,
                   headers: {
@@ -334,11 +343,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.asignaciones = [];
                 });
 
-              case 3:
-                _context.next = 5;
+              case 5:
+                _context.next = 7;
                 return _this.$tablaGlobal('#treservado');
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }

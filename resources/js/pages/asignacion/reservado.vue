@@ -214,6 +214,7 @@ export default {
             asignaciones:[],
             images: [],
             registro: {
+                user: {role_id:0},
                 id: "", 
                 nombreCompleto: "", 
                 documento: "", 
@@ -249,6 +250,9 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+            });
             await this.axios.get('/api/reservado',{
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },
