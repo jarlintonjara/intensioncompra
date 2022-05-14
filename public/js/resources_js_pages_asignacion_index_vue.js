@@ -276,7 +276,6 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
   },
   props: ['session'],
   data: function data() {
-    this.user;
     return {
       asignaciones: [],
       id: null,

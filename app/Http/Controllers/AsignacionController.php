@@ -29,7 +29,7 @@ class AsignacionController extends Controller
             'registros.color2',
             'registros.color3',
             'registros.anio_modelo',
-            'registros.situacion',
+            'registros.situacion as regSituacion',
             'users.nombre',
             'users.apellido',
             'users.email',
@@ -61,7 +61,8 @@ class AsignacionController extends Controller
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->join('tiendas', 'tiendas.id', '=', 'registros.tienda_id')
-            ->where('asignaciones.situacion', 'ASIGNADO');
+            ->where('asignaciones.situacion', 'ASIGNADO')
+            ->where('registros.estado', 1);
             $data = [];
         switch ($user->role_id) {
             case 1:
@@ -143,7 +144,8 @@ class AsignacionController extends Controller
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->join('tiendas', 'tiendas.id', 'registros.tienda_id')
-            ->where('asignaciones.situacion', 'RESERVADO');
+            ->where('asignaciones.situacion', 'RESERVADO')
+            ->where('registros.estado', 1);
         switch ($user->role_id) {
             case 1:
                 $data = $query->where('registros.user_id', $user->id)->get();
@@ -225,7 +227,8 @@ class AsignacionController extends Controller
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->join('tiendas', 'tiendas.id', 'registros.tienda_id')
-            ->where('asignaciones.situacion', 'FACTURADO');
+            ->where('asignaciones.situacion', 'FACTURADO')
+            ->where('registros.estado', 1);
         switch ($user->role_id) {
             case 1:
                 $data = $query->where('registros.user_id', $user->id)->get();
@@ -298,7 +301,8 @@ class AsignacionController extends Controller
             ->Join('users', 'registros.user_id', 'users.id')
             ->Join('concesionarios', 'users.concesionario_id', 'concesionarios.id')
             ->join('tiendas', 'tiendas.id', 'registros.tienda_id')
-            ->where('asignaciones.situacion', 'EMPLAZADO');
+            ->where('asignaciones.situacion', 'EMPLAZADO')
+            ->where('registros.estado', 1);
         switch ($user->role_id) {
             case 1:
                 $data = $query->where('registros.user_id', $user->id)->get();
@@ -353,6 +357,13 @@ class AsignacionController extends Controller
         $asignacion->fecha_reserva = date('Y-m-d');
         $asignacion->situacion = 'RESERVADO';
         $asignacion->save();
+
+        $packing = IngresoModel::findOrFail($asignacion->ingreso_id);
+        $packing->update(['situacion' => 'RESERVADO']);
+
+        $registro = RegistroModel::findOrFail($asignacion->registro_id);
+        $registro->update(['situacion' => 'RESERVADO']);
+        
         return response()->json($asignacion);
     }
 

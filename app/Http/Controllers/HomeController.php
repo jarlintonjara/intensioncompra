@@ -28,15 +28,19 @@ class HomeController extends Controller
             'asignaciones.registro_id',
             'asignaciones.situacion',
             'registros.id',
+            'registros.estado',
             'registros.tienda_id',
             'registros.concesionario_id',
             'packing_list.marca'
         )
         ->Join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
         ->Join('registros', 'asignaciones.registro_id', 'registros.id')
-        ->where('asignaciones.situacion','ASIGNADO');
+        ->where('asignaciones.situacion','ASIGNADO')
+        ->where('registros.estado', 1);
+
         $query3 = AsignacionModel::select(
             'registros.user_id',
+            'registros.estado',
             'asignaciones.situacion',
             'registros.tienda_id',
             'registros.concesionario_id',
@@ -44,19 +48,23 @@ class HomeController extends Controller
         )
         ->Join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
         ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+        ->where('registros.estado', 1)
         ->where('asignaciones.situacion','EMPLAZADO');
         $query4 = AsignacionModel::select(
             'registros.user_id',
+            'registros.estado',
             'asignaciones.situacion',
             'registros.tienda_id',
             'registros.concesionario_id',
             'packing_list.marca'
         )
-        ->Join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
-        ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+        ->join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
+        ->join('registros', 'asignaciones.registro_id', 'registros.id')
+        ->where('registros.estado', 1)
         ->where('asignaciones.situacion','RESERVADO');
         $query5 = AsignacionModel::select(
             'registros.user_id',
+            'registros.estado',
             'asignaciones.situacion',
             'registros.tienda_id',
             'registros.concesionario_id',
@@ -64,6 +72,7 @@ class HomeController extends Controller
         )
         ->Join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
         ->Join('registros', 'asignaciones.registro_id', 'registros.id')
+        ->where('registros.estado', 1)
         ->where('asignaciones.situacion','FACTURADO');
         switch ($user->role_id) {
             case 1:

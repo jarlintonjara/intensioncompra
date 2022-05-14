@@ -244,7 +244,7 @@ export default {
      props:[
         'session'
     ],
-    data(){this.user
+    data(){
         return{
             asignaciones:[],
             id : null,
