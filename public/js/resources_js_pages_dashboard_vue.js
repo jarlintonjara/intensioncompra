@@ -157,81 +157,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       totalEmplazados: 0,
       totalReservados: 0,
       totalFacturados: 0,
-      getWidth: '99%',
-      dataAdapter: new jqx.dataAdapter(),
-      columns: [{
-        text: 'Product Name',
-        datafield: 'marca',
-        width: 250
-      }, {
-        text: 'Quantity per Unit',
-        datafield: 'modelo',
-        align: 'right',
-        cellsalign: 'right'
-      }, {
-        text: 'Unit Price',
-        datafield: 'nombre_completo',
-        align: 'right',
-        cellsalign: 'right',
-        cellsformat: 'c2'
-      }, {
-        text: 'Units In Stock',
-        datafield: 'correo',
-        cellsalign: 'right',
-        cellsrenderer: this.cellsrenderer,
-        width: 100
-      }]
+      getWidth: '99%'
+      /* dataAdapter: new jqx.dataAdapter(),
+      columns: [
+          { text: 'Product Name', datafield: 'marca', width: 250 },
+          { text: 'Quantity per Unit', datafield: 'modelo', align: 'right', cellsalign: 'right' },
+          { text: 'Unit Price', datafield: 'nombre_completo', align: 'right', cellsalign: 'right', cellsformat: 'c2' },
+          { text: 'Units In Stock', datafield: 'correo', cellsalign: 'right', cellsrenderer: this.cellsrenderer, width: 100 },
+      ] */
+
     };
   },
   beforeCreate: function () {
     var _beforeCreate = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var _this = this;
-
-      var token;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              token = localStorage.getItem('access_token');
-              _context.next = 3;
-              return this.axios.get('/api/registro', {
-                withCredentials: true,
-                headers: {
-                  Authorization: "Bearer ".concat(token)
-                }
-              }).then(function (response) {
-                _this.source = {
-                  localdata: response.data.noasignados,
-                  datafields: [{
-                    name: 'marca',
-                    type: 'string',
-                    map: '0'
-                  }, {
-                    name: 'modelo',
-                    type: 'string',
-                    map: '1'
-                  }, {
-                    name: 'nombre_completo',
-                    type: 'string',
-                    map: '2'
-                  }, {
-                    name: 'correo',
-                    type: 'string',
-                    map: '3'
-                  }],
-                  datatype: 'json'
-                };
-                _this.dataAdapter = new jqx.dataAdapter(_this.source); //this.noasignados = response.data.noasignados;
-              })["catch"](function (error) {
-                console.log(error);
-              });
-
-            case 3:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, this);
+      }, _callee);
     }));
 
     function beforeCreate() {
@@ -245,7 +192,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     init: function init() {
-      var _this2 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var token;
@@ -255,31 +202,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context2.next = 3;
-                return _this2.axios.get('/api/home', {
+                return _this.axios.get('/api/home', {
                   withCredentials: true,
                   headers: {
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  _this2.totalRegistros = response.data.totalRegistros;
-                  _this2.totalNoAsignados = response.data.totalNoAsignados;
-                  _this2.totalAsignados = response.data.totalAsigandos;
-                  _this2.totalReservados = response.data.totalReservados;
-                  _this2.totalEmplazados = response.data.totalEmplazados;
-                  _this2.totalFacturados = response.data.totalFacturados;
+                  _this.totalRegistros = response.data.totalRegistros;
+                  _this.totalNoAsignados = response.data.totalNoAsignados;
+                  _this.totalAsignados = response.data.totalAsigandos;
+                  _this.totalReservados = response.data.totalReservados;
+                  _this.totalEmplazados = response.data.totalEmplazados;
+                  _this.totalFacturados = response.data.totalFacturados;
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
               case 3:
                 _context2.next = 5;
-                return _this2.axios.get('/api/registro', {
+                return _this.axios.get('/api/registro', {
                   withCredentials: true,
                   headers: {
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
-                  _this2.noasignados = response.data.noasignados;
+                  _this.noasignados = response.data.noasignados;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -6706,24 +6653,7 @@ var render = function () {
           ),
         ]),
       ]),
-      _vm._v(" "),
-      _c("JqxGrid", {
-        attrs: {
-          theme: "material",
-          width: _vm.getWidth,
-          source: _vm.dataAdapter,
-          columns: _vm.columns,
-          pageable: true,
-          autoheight: true,
-          sortable: true,
-          filterable: true,
-          altrows: true,
-          editable: true,
-          selectionmode: "multiplecellsadvanced",
-        },
-      }),
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = [

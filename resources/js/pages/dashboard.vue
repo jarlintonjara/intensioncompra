@@ -74,10 +74,10 @@
                 </div>
             </div>
         </div>
-        <JqxGrid :theme="'material'" :width="getWidth" :source="dataAdapter" :columns="columns"
+        <!-- <JqxGrid :theme="'material'" :width="getWidth" :source="dataAdapter" :columns="columns"
                  :pageable="true" :autoheight="true" :sortable="true" :filterable="true" :altrows="true" 
                  :editable="true" :selectionmode="'multiplecellsadvanced'" >
-        </JqxGrid>
+        </JqxGrid> -->
         <!-- div class="row">
             <div class="col-lg-12">
                 <div id="panel-1" class="panel">
@@ -126,17 +126,17 @@ export default {
             totalReservados: 0,
             totalFacturados: 0,
             getWidth: '99%',
-            dataAdapter: new jqx.dataAdapter(),
+            /* dataAdapter: new jqx.dataAdapter(),
             columns: [
                 { text: 'Product Name', datafield: 'marca', width: 250 },
                 { text: 'Quantity per Unit', datafield: 'modelo', align: 'right', cellsalign: 'right' },
                 { text: 'Unit Price', datafield: 'nombre_completo', align: 'right', cellsalign: 'right', cellsformat: 'c2' },
                 { text: 'Units In Stock', datafield: 'correo', cellsalign: 'right', cellsrenderer: this.cellsrenderer, width: 100 },
-            ]
+            ] */
         }
     },
     beforeCreate: async function () {
-        const token = localStorage.getItem('access_token');
+        /* const token = localStorage.getItem('access_token');
             await this.axios.get('/api/registro', {
                 withCredentials: true,
                 headers: { Authorization: `Bearer ${token}` },
@@ -157,7 +157,7 @@ export default {
             })
             .catch(error=>{
                 console.log(error);
-            });
+            }); */
      },
     mounted(){
         this.init();
