@@ -54921,7 +54921,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\ndiv.dataTables_wrapper div.dataTables_length select {\r\n    padding-right: 20px;\r\n}\r\ndiv.dataTables_wrapper div.dataTables_filter input {\r\n    margin-left: 0.5em !important;\r\n}\r\ndiv.dataTables_wrapper div.dataTables_filter label {\r\n    line-height: 40px;\r\n}\r\n\r\n.table-bordered thead{\r\n    background-color: rgb(227, 0, 37) !important;\r\n    color: white;\r\n}\r\nhtml {\r\n    font-size: 15px;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.dataTables_wrapper div.dataTables_length select {\n    padding-right: 20px;\n}\ndiv.dataTables_wrapper div.dataTables_filter input {\n    margin-left: 0.5em !important;\n}\ndiv.dataTables_wrapper div.dataTables_filter label {\n    line-height: 40px;\n}\n\n.table-bordered thead{\n    background-color: rgb(227, 0, 37) !important;\n    color: white;\n}\nhtml {\n    font-size: 15px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -74,6 +74,10 @@
                 </div>
             </div>
         </div>
+        <JqxGrid :theme="'material'" :width="getWidth" :source="dataAdapter" :columns="columns"
+                 :pageable="true" :autoheight="true" :sortable="true" :filterable="true" :altrows="true" 
+                 :editable="true" :selectionmode="'multiplecellsadvanced'" >
+        </JqxGrid>
         <!-- div class="row">
             <div class="col-lg-12">
                 <div id="panel-1" class="panel">
@@ -108,8 +112,11 @@
     </main>
 </template>
 <script>
-
+import JqxGrid from "jqwidgets-scripts/jqwidgets-vue/vue_jqxgrid.vue";
 export default {
+    components: {
+        JqxGrid
+    },
     data(){
         return{
             totalRegistros: 0,
@@ -117,9 +124,41 @@ export default {
             totalAsignados: 0,
             totalEmplazados: 0,
             totalReservados: 0,
-            totalFacturados: 0
+            totalFacturados: 0,
+            getWidth: '99%',
+            dataAdapter: new jqx.dataAdapter(),
+            columns: [
+                { text: 'Product Name', datafield: 'marca', width: 250 },
+                { text: 'Quantity per Unit', datafield: 'modelo', align: 'right', cellsalign: 'right' },
+                { text: 'Unit Price', datafield: 'nombre_completo', align: 'right', cellsalign: 'right', cellsformat: 'c2' },
+                { text: 'Units In Stock', datafield: 'correo', cellsalign: 'right', cellsrenderer: this.cellsrenderer, width: 100 },
+            ]
         }
     },
+    beforeCreate: async function () {
+        const token = localStorage.getItem('access_token');
+            await this.axios.get('/api/registro', {
+                withCredentials: true,
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then(response=> {
+                this.source = {
+                    localdata: response.data.noasignados,
+                    datafields: [
+                        { name: 'marca', type: 'string', map: '0' },
+                        { name: 'modelo', type: 'string', map: '1' },
+                        { name: 'nombre_completo', type: 'string', map: '2' },
+                        { name: 'correo', type: 'string', map: '3' }
+                    ],
+                    datatype: 'json'
+                };
+                this.dataAdapter = new jqx.dataAdapter(this.source)
+                //this.noasignados = response.data.noasignados;
+            })
+            .catch(error=>{
+                console.log(error);
+            });
+     },
     mounted(){
         this.init();
     },
@@ -140,7 +179,26 @@ export default {
             })
             .catch(error=>{
                 console.log(error);
-            }) 
+            });
+
+            await this.axios.get('/api/registro', {
+                withCredentials: true,
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then(response=> {
+                this.noasignados = response.data.noasignados;
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+        },
+        cellsrenderer: function (row, columnsfield, value, defaulthtml, columnproperties, rowdata) {
+            if (value < 20) {
+                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+            }
+            else {
+                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+            }
         }
     }
 }
