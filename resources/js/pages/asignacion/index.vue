@@ -348,6 +348,7 @@ export default {
         success: async function (file, response) {
             if(response != 0){
                 // Download link
+                
                 var anchorEl = document.createElement('a');
                 anchorEl.setAttribute('href',response);
                 anchorEl.setAttribute('target','_blank');
