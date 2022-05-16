@@ -411,7 +411,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                 return _context2.abrupt("return", false);
 
               case 3:
-                console.log("upload"); //this.$refs.myVueDropzone.processQueue();
+                this.$refs.myVueDropzone.processQueue();
 
               case 4:
               case "end":

@@ -337,8 +337,7 @@ export default {
             if(this.$v.$invalid){
                 return false;
             }
-            console.log("upload");
-            //this.$refs.myVueDropzone.processQueue();
+            this.$refs.myVueDropzone.processQueue();
         },
         sendMessage: async function (files, xhr, formData) {
             formData.append("id", this.id);
