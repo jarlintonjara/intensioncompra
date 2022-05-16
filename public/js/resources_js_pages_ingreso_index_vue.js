@@ -1095,7 +1095,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "tingresos" },
+                  attrs: { id: "tingresos", translate: "no" },
                 },
                 [
                   _c("thead", [

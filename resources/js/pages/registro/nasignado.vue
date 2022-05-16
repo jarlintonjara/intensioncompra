@@ -12,7 +12,7 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <!--button @click.prevent="exportExcel">Exportar</button-->
-                        <table id="tnoasignado" class="table table-bordered table-hover table-striped table-responsive w-100">
+                        <table id="tnoasignado" class="table table-bordered table-hover table-striped table-responsive w-100" translate="no">
                             <thead>
                                 <tr>
                                     <th style="width:8% !important"></th>
