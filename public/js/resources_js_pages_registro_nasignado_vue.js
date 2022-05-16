@@ -1470,7 +1470,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped table-responsive w-100",
-                  attrs: { id: "tnoasignado" },
+                  attrs: { id: "tnoasignado", translate: "no" },
                 },
                 [
                   _vm._m(1),

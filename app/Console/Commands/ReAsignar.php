@@ -40,7 +40,6 @@ class ReAsignar extends Command
                 $asignacion->save();
             } 
         }
-
         // No se factura en 48 horas pasa a la cola de registros
         $asignaciones = AsignacionModel::where('situacion', 'EMPLAZADO')->get();
 

@@ -276,12 +276,11 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
   },
   props: ['session'],
   data: function data() {
-    this.user;
     return {
       asignaciones: [],
       id: null,
       dropzoneOptions: {
-        url: "http://162.243.173.90:82/api/gallery",
+        url: "/api/gallery",
         thumbnailWidth: 150,
         maxFilesize: 2,
         parallelUploads: 3,
@@ -412,7 +411,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                 return _context2.abrupt("return", false);
 
               case 3:
-                this.$refs.myVueDropzone.processQueue();
+                console.log("upload"); //this.$refs.myVueDropzone.processQueue();
 
               case 4:
               case "end":
@@ -1661,7 +1660,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "asignaciones" },
+                  attrs: { id: "asignaciones", translate: "no" },
                 },
                 [
                   _c("thead", [
@@ -1911,9 +1910,9 @@ var render = function () {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.submited && !_vm.$v.form.monto_reserva.minLength
+                    _vm.submited && !_vm.$v.form.monto_reserva.numeric
                       ? _c("div", { staticStyle: { color: "red" } }, [
-                          _vm._v("Tiene que ingresar mas de 3 caracteres"),
+                          _vm._v("Se aceptan solo valores enteros"),
                         ])
                       : _vm._e(),
                     _vm._v(" "),

@@ -7,7 +7,7 @@
             </h1>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-xl-3">
+            <div class="col-sm-6 col-xl-2">
                 <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -22,6 +22,17 @@
                 <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                            {{ totalNoAsignados }}
+                            <small class="m-0 l-h-n">No Asignados</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-ballot position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+                <div class="p-3 bg-success-400 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
                             {{ totalAsignados }}
                             <small class="m-0 l-h-n">Asignados</small>
                         </h3>
@@ -30,7 +41,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-xl-2">
-                <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                             {{ totalReservados }}
@@ -41,7 +52,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-xl-2">
-                <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="p-3 bg-primary-200 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                             {{ totalEmplazados }}
@@ -52,7 +63,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-xl-2">
-                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="p-3 bg-warning-300 rounded overflow-hidden position-relative text-white mb-g">
                     <div class="">
                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                             {{ totalFacturados }}
@@ -109,6 +120,7 @@ export default {
     data(){
         return{
             totalRegistros: 0,
+            totalNoAsignados: 0,
             totalAsignados: 0,
             totalEmplazados: 0,
             totalReservados: 0,
@@ -159,6 +171,7 @@ export default {
             })
             .then(response=>{
                 this.totalRegistros = response.data.totalRegistros;
+                this.totalNoAsignados = response.data.totalNoAsignados;
                 this.totalAsignados = response.data.totalAsigandos;
                 this.totalReservados = response.data.totalReservados;
                 this.totalEmplazados = response.data.totalEmplazados;

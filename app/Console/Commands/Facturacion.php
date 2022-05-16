@@ -15,6 +15,7 @@ class Facturacion extends Command
     public function handle()
     {
         $asignaciones = AsignacionModel::select(
+            'registros.id',
             'packing_list.vin',
             'packing_list.fecha_ingreso',
             'asignaciones.id',
@@ -24,7 +25,9 @@ class Facturacion extends Command
             'asignaciones.ingreso_id',
             'asignaciones.situacion'
         )
-        ->Join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
+        ->join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
+        ->join('registros', 'registros.id', 'asignaciones.registro_id')
+        ->where('registros.estado', 1)
         ->where('asignaciones.situacion', 'EMPLAZADO')->get();
 
         foreach ($asignaciones as $asignacion) {

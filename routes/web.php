@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('test', function(){
-/*     return RegistroModel::select('id', 'documento', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'situacion', 'fecha')
-    ->where('situacion', 'SINASIGNAR')->where('estado', '1')->where('version', 'GRAND VAN TURISMO 1.5L 11 PASAJEROS')->orderBy('fecha', 'asc')
-        ->get(); */
+    
 });
 
 Route::get('displayImage/{asignacion}/{filename}', [FileController::class, 'displayImage']);

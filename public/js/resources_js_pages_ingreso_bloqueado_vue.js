@@ -1019,7 +1019,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "bloqueados" },
+                  attrs: { id: "bloqueados", translate: "no" },
                 },
                 [
                   _vm._m(2),

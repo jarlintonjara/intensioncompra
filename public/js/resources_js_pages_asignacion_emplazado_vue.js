@@ -1232,7 +1232,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "treservado" },
+                  attrs: { id: "treservado", translate: "no" },
                 },
                 [
                   _vm._m(1),

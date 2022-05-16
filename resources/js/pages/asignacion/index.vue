@@ -20,7 +20,7 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <table id="asignaciones" class="table table-bordered table-hover table-striped w-100">
+                        <table id="asignaciones" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -87,7 +87,7 @@
                                     <label for="MontoReserva">Monto Reserva en USD:</label>
                                     <input type="text" id="MontoReserva" class="form-control" placeholder="Monto Reserva" required="" v-model="form.monto_reserva">
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.required">El campo es obligatorio</div>
-                                    <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">Tiene que ingresar mas de 3 caracteres</div>
+                                    <div style="color:red;" v-if="submited && !$v.form.monto_reserva.numeric">Se aceptan solo valores enteros</div>
                                     <div style="color:red;" v-if="submited && !$v.form.monto_reserva.minLength">El monto mínimo es 1000 Dólares</div>
                                 </div>
                             </div>
@@ -244,12 +244,12 @@ export default {
      props:[
         'session'
     ],
-    data(){this.user
+    data(){
         return{
             asignaciones:[],
             id : null,
             dropzoneOptions: {
-                url: "http://162.243.173.90:82/api/gallery",
+                url: "/api/gallery",
                 thumbnailWidth: 150,
                 maxFilesize: 2,
                 parallelUploads: 3,
@@ -332,11 +332,13 @@ export default {
             }
         },
         shootMessage: async function () {
+            
             this.submited=true;
             if(this.$v.$invalid){
                 return false;
             }
-            this.$refs.myVueDropzone.processQueue();
+            console.log("upload");
+            //this.$refs.myVueDropzone.processQueue();
         },
         sendMessage: async function (files, xhr, formData) {
             formData.append("id", this.id);

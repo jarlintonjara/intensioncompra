@@ -133,6 +133,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -141,6 +152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       totalRegistros: 0,
+      totalNoAsignados: 0,
       totalAsignados: 0,
       totalEmplazados: 0,
       totalReservados: 0,
@@ -250,6 +262,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function (response) {
                   _this2.totalRegistros = response.data.totalRegistros;
+                  _this2.totalNoAsignados = response.data.totalNoAsignados;
                   _this2.totalAsignados = response.data.totalAsigandos;
                   _this2.totalReservados = response.data.totalReservados;
                   _this2.totalEmplazados = response.data.totalEmplazados;
@@ -6489,7 +6502,7 @@ var render = function () {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6 col-xl-3" }, [
+        _c("div", { staticClass: "col-sm-6 col-xl-2" }, [
           _c(
             "div",
             {
@@ -6538,6 +6551,40 @@ var render = function () {
                   [
                     _vm._v(
                       "\n                        " +
+                        _vm._s(_vm.totalNoAsignados) +
+                        "\n                        "
+                    ),
+                    _c("small", { staticClass: "m-0 l-h-n" }, [
+                      _vm._v("No Asignados"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass:
+                  "fal fa-ballot position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4",
+                staticStyle: { "font-size": "6rem" },
+              }),
+            ]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-6 col-xl-2" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "p-3 bg-success-400 rounded overflow-hidden position-relative text-white mb-g",
+            },
+            [
+              _c("div", {}, [
+                _c(
+                  "h3",
+                  { staticClass: "display-4 d-block l-h-n m-0 fw-500" },
+                  [
+                    _vm._v(
+                      "\n                        " +
                         _vm._s(_vm.totalAsignados) +
                         "\n                        "
                     ),
@@ -6562,7 +6609,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g",
+                "p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g",
             },
             [
               _c("div", {}, [
@@ -6596,7 +6643,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g",
+                "p-3 bg-primary-200 rounded overflow-hidden position-relative text-white mb-g",
             },
             [
               _c("div", {}, [
@@ -6630,7 +6677,7 @@ var render = function () {
             "div",
             {
               staticClass:
-                "p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g",
+                "p-3 bg-warning-300 rounded overflow-hidden position-relative text-white mb-g",
             },
             [
               _c("div", {}, [
