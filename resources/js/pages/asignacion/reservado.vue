@@ -12,7 +12,7 @@
                 
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <table id="treservado" class="table table-bordered table-hover table-striped w-100">
+                        <table id="treservado" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <td></td>

@@ -1660,7 +1660,7 @@ var render = function () {
                 {
                   staticClass:
                     "table table-bordered table-hover table-striped w-100",
-                  attrs: { id: "asignaciones" },
+                  attrs: { id: "asignaciones", translate: "no" },
                 },
                 [
                   _c("thead", [
