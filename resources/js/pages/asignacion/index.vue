@@ -20,17 +20,26 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                            </div>
+                        </div>
                         <table id="asignaciones" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th v-if="user.role_id == 6 || user.role_id == 1">RESERVAR</th>
                                     <th>CONCESIONARIO</th>
+                                    <th>TIENDA</th>
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
+                                    <th>CELULAR</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
+                                    <th>VERSIÓN</th>
                                     <th>COLOR</th>
+                                    <th>AÑO MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>FECHA LLEGADA</th>
                                 </tr>
@@ -46,11 +55,15 @@
                                         <button class="btn btn-success" @click="modalReservar(asignacion)"><i class="fa fa-lock"></i></button>
                                     </td>
                                     <td>{{asignacion.concesionario}}</td>
+                                    <td>{{asignacion.tienda}}</td>
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
+                                    <td>{{asignacion.celular}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
+                                    <td>{{asignacion.version}}</td>
                                     <td>{{asignacion.color}}</td>
+                                    <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : ""}}</td>
                                     <td>{{asignacion.fecha_ingreso ? asignacion.fecha_ingreso : ""}}</td>
                                 </tr>
@@ -235,6 +248,7 @@ import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import {required, minLength,helpers,numeric, minValue} from 'vuelidate/lib/validators';
 const alpha = helpers.regex("alpha",/^[a-z\s]+$/i);
+import { ExpExcel } from '../../utils.js';
 
 export default {
     name: "Asignacion",
@@ -442,6 +456,40 @@ export default {
                     });
                 }
             })
+        },
+        ReporteExcel(){
+            //e.preventDefault();
+            let dataExcel = [];
+            this.asignaciones.map((e)=>{
+                dataExcel.push({
+                    ['ID'] : e.id,
+                    ['Concesionario'] : e.concesionario,
+                    ['Tienda'] : e.tienda,
+                    ['Asesor'] : e.nombre + (e.apellido ? e.apellido : ''),
+                    ['Nombre Completo'] : e.nombre_completo,
+                    ['Documento'] : e.documento,
+                    ['Celular'] : e.celular,
+                    ['Marca'] : e.marca,
+                    ['Modelo'] : e.modelo,
+                    ['Version'] : e.version,
+                    ['Año modelo'] : e.anio_modelo,
+                    ['Color Asignado'] : e.color,
+                    ['Color 1'] : e.color1,
+                    ['Color 2'] : e.color2,
+                    ['Color 3'] : e.color3,
+                    ['Fecha actualizada'] : e.fecha,
+                    ['Fecha creación'] : e.created_at
+                })
+            });
+            let dataSend = {
+                data: {
+                    "Report": dataExcel,
+                },
+                name: ['Reporte'],
+                filename: 'Asignaciones.xlsx',
+                vacios: [[]],
+            };
+            ExpExcel(dataExcel, "Asignaciones.xlsx", dataSend.name, dataSend.vacios);
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

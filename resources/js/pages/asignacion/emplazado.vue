@@ -8,19 +8,27 @@
         </div>
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
-                <!-- <div class="panel-hdr">
-                    <button style="text-align: center;" class="btn btn-success" @click="jobFacturar()">job Facturar</button>
-                </div> -->
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                            </div>
+                        </div>
                         <table id="treservado" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <th></th>
+                                    <th>CONCESIONARIO</th>
+                                    <th>TIENDA</th>
                                     <th>ASESOR</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>CELULAR</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
+                                    <th>VERSIÓN</th>
                                     <th>COLOR</th>
+                                    <th>AÑO MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CÓDIGO RESERVA</th>
                                     <th>MONTO RESERVA</th>
@@ -31,10 +39,16 @@
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
+                                    <td>{{asignacion.concesionario}}</td>
+                                    <td>{{asignacion.tienda}}</td>
                                     <td>{{asignacion.nombre}}</td>
+                                    <td>{{asignacion.documento}}</td>
+                                    <td>{{asignacion.celular}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
+                                    <td>{{asignacion.version}}</td>
                                     <td>{{asignacion.color}}</td>
+                                    <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{ asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
                                     <td>{{asignacion.codigo_reserva}}</td>
                                     <td>{{asignacion.monto_reserva}}</td>
@@ -193,7 +207,7 @@
     </main>
 </template>
 <script>
-
+import { ExpExcel } from '../../utils.js';
 export default {
     data(){
         return{
@@ -293,6 +307,40 @@ export default {
                 .catch(error=>{
                     console.log(error);
                 })
+        },
+         ReporteExcel(){
+            //e.preventDefault();
+            let dataExcel = [];
+            this.asignaciones.map((e)=>{
+                dataExcel.push({
+                    ['ID'] : e.id,
+                    ['Concesionario'] : e.concesionario,
+                    ['Tienda'] : e.tienda,
+                    ['Asesor'] : e.nombre + (e.apellido ? e.apellido : ''),
+                    ['Nombre Completo'] : e.nombre_completo,
+                    ['Documento'] : e.documento,
+                    ['Celular'] : e.celular,
+                    ['Marca'] : e.marca,
+                    ['Modelo'] : e.modelo,
+                    ['Version'] : e.version,
+                    ['Año modelo'] : e.anio_modelo,
+                    ['Color Reservado'] : e.color,
+                    ['Código reserva'] : e.codigo_reserva,
+                    ['Monto reserva'] : e.monto_reserva,
+                    ['Fecha reserva'] : e.fecha_reserva,
+                    ['Fecha emplazado'] : e.fecha_emplazado,
+                    ['Fecha creación'] : e.created_at
+                })
+            });
+            let dataSend = {
+                data: {
+                    "Report": dataExcel,
+                },
+                name: ['Reporte'],
+                filename: 'Emplazados.xlsx',
+                vacios: [[]],
+            };
+            ExpExcel(dataExcel, "Emplazados.xlsx", dataSend.name, dataSend.vacios);
         },
         cerrarModal(){
             $('#modalDetalle').modal('hide');

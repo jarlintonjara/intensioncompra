@@ -56,6 +56,7 @@ class IngresoController extends Controller
         $query = IngresoModel::select(
             'packing_list.id',
             'users.nombre',
+            'users.apellido',
             'packing_list.fecha_bloqueo',
             'packing_list.vin',
             'packing_list.marca',

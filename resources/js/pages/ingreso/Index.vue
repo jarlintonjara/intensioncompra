@@ -20,10 +20,14 @@
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                            </div>
+                        </div>
                         <table id="tingresos" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
-                                    
                                     <th v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">BLOQUEAR</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
@@ -66,7 +70,7 @@
     </main>
 </template>
 <script>
-
+import { ExpExcel } from '../../utils.js';
 export default {
     data(){
         return{
@@ -122,7 +126,35 @@ export default {
                     });
                 }
             })
-        }
+        },
+        ReporteExcel(){
+            //e.preventDefault();
+            let dataExcel = [];
+            this.ingresos.map((e)=>{
+                dataExcel.push({
+                    ['ID'] : e.id,
+                    ['VIN'] : e.vin,
+                    ['Marca'] : e.marca,
+                    ['Modelo'] : e.modelo,
+                    ['Version'] : e.version,
+                    ['Año modelo'] : e.anio_modelo,
+                    ['Color'] : e.color,
+                    ['Situacion'] : e.situacion,
+                    ['Nave'] : e.nave,
+                    ['Codigo SAP'] : e.codigo_sap,
+                    ['Fecha ingreso'] : e.fecha_ingreso
+                })
+            });
+            let dataSend = {
+                data: {
+                    "Report": dataExcel,
+                },
+                name: ['Reporte'],
+                filename: 'PackingList.xlsx',
+                vacios: [[]],
+            };
+            ExpExcel(dataExcel, "PackingList.xlsx", dataSend.name, dataSend.vacios);
+        },
     }
 }
 

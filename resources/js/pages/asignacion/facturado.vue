@@ -14,17 +14,20 @@
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <!-- <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button> -->
                     </div>
 
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                            </div>
+                        </div>
                         <table id="treservado" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    
                                     <th>CONCESIONARIO</th>
                                     <th>ASESOR</th>
                                     <th>MARCA</th>
@@ -204,7 +207,7 @@
     </main>
 </template>
 <script>
-
+import { ExpExcel } from '../../utils.js';
 export default {
     data(){
         return{ 
@@ -292,6 +295,42 @@ export default {
                 this.images =[]
             })
             $('#modalDetalle').modal('show')
+        },
+        ReporteExcel(){
+            //e.preventDefault();
+            let dataExcel = [];
+            this.asignaciones.map((e)=>{
+                dataExcel.push({
+                    ['ID'] : e.id,
+                    ['Concesionario'] : e.concesionario,
+                    ['Tienda'] : e.tienda,
+                    ['Asesor'] : e.nombre + (e.apellido ? e.apellido : ''),
+                    ['Nombre Completo'] : e.nombre_completo,
+                    ['Documento'] : e.documento,
+                    ['Celular'] : e.celular,
+                    ['Marca'] : e.marca,
+                    ['Modelo'] : e.modelo,
+                    ['Version'] : e.version,
+                    ['Año modelo'] : e.anio_modelo,
+                    ['Color Reservado'] : e.color,
+                    ['Código reserva'] : e.codigo_reserva,
+                    ['Monto reserva'] : e.monto_reserva,
+                    ['Fecha reserva'] : e.fecha_reserva,
+                    ['Fecha emplazado'] : e.fecha_emplazado,
+                    ['Fecha Facturado'] : e.fecha_facturado,
+                    ['Fecha SAP_facturado'] : e.fecha_sap_facturado,
+                    ['código SAP cliente'] : e.codigo_sap_cliente
+                })
+            });
+            let dataSend = {
+                data: {
+                    "Report": dataExcel,
+                },
+                name: ['Reporte'],
+                filename: 'Facturados.xlsx',
+                vacios: [[]],
+            };
+            ExpExcel(dataExcel, "Facturados.xlsx", dataSend.name, dataSend.vacios);
         },
         cerrarModal(){
             $('#modalDetalle').modal('hide');

@@ -12,14 +12,25 @@
                 
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                            </div>
+                        </div>
                         <table id="treservado" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <td></td>
+                                    <th>CONCESIONARIO</th>
+                                    <th>TIENDA</th>
                                     <th>ASESOR</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>CELULAR</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
+                                    <th>VERSIÓN</th>
                                     <th>COLOR</th>
+                                    <th>AÑO MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>CÓDIGO SAP</th>
                                     <th>FECHA ESTIMADA LLEGADA</th>
@@ -34,10 +45,16 @@
                                         <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
                                         <button class="btn btn-danger" v-if="user.role_id == 6 || user.role_id == 1" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
                                     </td>
+                                    <td>{{asignacion.concesionario}}</td>
+                                    <td>{{asignacion.tienda}}</td>
                                     <td>{{asignacion.nombre}}</td>
+                                    <td>{{asignacion.documento}}</td>
+                                    <td>{{asignacion.celular}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
+                                    <td>{{asignacion.version}}</td>
                                     <td>{{asignacion.color}}</td>
+                                    <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : ""}}</td>
                                     <td>{{asignacion.codigo_sap}}</td>
                                     <td>{{asignacion.fecha_ingreso ? asignacion.fecha_ingreso : ""}}</td>
@@ -207,7 +224,8 @@
     </main>
 </template>
 <script>
-import fancybox from './../../components/fancybox.vue';
+//import fancybox from './../../components/fancybox.vue';
+import { ExpExcel } from '../../utils.js';
 export default {
     data(){
         return{
@@ -242,7 +260,6 @@ export default {
         }
     },
     components: {
-        fancybox
     },
     mounted(){
         this.init();
@@ -321,6 +338,39 @@ export default {
                     });
                 }
             })
+        },
+         ReporteExcel(){
+            //e.preventDefault();
+            let dataExcel = [];
+            this.asignaciones.map((e)=>{
+                dataExcel.push({
+                    ['ID'] : e.id,
+                    ['Concesionario'] : e.concesionario,
+                    ['Tienda'] : e.tienda,
+                    ['Asesor'] : e.nombre + (e.apellido ? e.apellido : ''),
+                    ['Nombre Completo'] : e.nombre_completo,
+                    ['Documento'] : e.documento,
+                    ['Celular'] : e.celular,
+                    ['Marca'] : e.marca,
+                    ['Modelo'] : e.modelo,
+                    ['Version'] : e.version,
+                    ['Año modelo'] : e.anio_modelo,
+                    ['Color reservado'] : e.color,
+                    ['Código reserva'] : e.codigo_reserva,
+                    ['Monto reserva'] : e.monto_reserva,
+                    ['Fecha reserva'] : e.fecha_reserva,
+                    ['Fecha creación'] : e.created_at
+                })
+            });
+            let dataSend = {
+                data: {
+                    "Report": dataExcel,
+                },
+                name: ['Reporte'],
+                filename: 'Reservados.xlsx',
+                vacios: [[]],
+            };
+            ExpExcel(dataExcel, "Reservados.xlsx", dataSend.name, dataSend.vacios);
         },
         cerrarModal(){
             $('#modalDetalle').modal('hide');

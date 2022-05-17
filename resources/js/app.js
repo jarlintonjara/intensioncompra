@@ -1,5 +1,6 @@
 require('./bootstrap');
 import './../css/app.css';
+import { ExpExcel } from './utils.js';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'datatables.net-dt';
@@ -35,38 +36,23 @@ Vue.prototype.$dateFormat = function(date){
 }
 Vue.prototype.$tablaGlobal = function(nombreTabla) {
     this.$nextTick(() => {
-        $(nombreTabla).DataTable( {
-            responsive: true,
-            dom: `<'row'<'col-sm-12 mb-3'B>>
-                    <'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                             "<'row'<'col-sm-12 col-md-12'i><'col-sm-12 col-md-12'p>>`,
-            "buttons": [
-                {
-                    "extend":    'copyHtml5',
-                    "text": "<i class='fas fa-copy'></i> Copiar",
-                    "titleAttr": 'Copy',
-                    "className": "btn btn-primary"
-                },
-                {
-                    "extend": "excelHtml5",
-                    "text": "<i class='fas fa-file-excel'></i> Excel",
-                    "titleAttr": "Esportar a Excel",
-                    "className": "btn btn-success"
-                },
-                {
-                    "extend": "print",
-                    "text": "<i class='fas fa-print'></i> Imprimir",
-                    "titleAttr": "Imprimir archivo",
-                    "className": "btn btn-secondary"
-                }
-            ],
+        $(nombreTabla).DataTable({
+            //"scrollX": true,
+            //"bAutoWidth" : true,
+            //responsive: true,
+            "initComplete": function (settings, json) {  
+                $(nombreTabla).wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
+            },
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }
         });
   
     })
+}
+
+Vue.prototype.$exportExcel = function(dataSend){
+    ExpExcel(dataSend.dataExcel, dataSend.filename, dataSend.name, dataSend.vacios);
 }
 
 import VueRouter from 'vue-router';

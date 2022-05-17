@@ -11,7 +11,11 @@
             <div id="panel-4" class="panel">
                 <div class="panel-container show">
                     <div class="panel-content">
-                        <!--button @click.prevent="exportExcel">Exportar</button-->
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                            </div>
+                        </div>
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped table-responsive w-100" translate="no">
                             <thead>
                                 <tr>
@@ -152,7 +156,7 @@
     </main>
 </template>
 <script>
-import { exportExcel } from '../../utils.js';
+import { ExpExcel } from '../../utils.js';
 export default {
     data(){
         return{
@@ -239,10 +243,11 @@ export default {
                 }
             })
         },
-        exportExcel(){
-            let data = [];
+        ReporteExcel(){
+            //e.preventDefault();
+            let dataExcel = [];
             this.noasignados.map((e)=>{
-                data.push({
+                dataExcel.push({
                     ['ID'] : e.id,
                     ['Concesionario'] : e.concesionario,
                     ['Tienda'] : e.tienda,
@@ -261,7 +266,15 @@ export default {
                     ['Fecha creación'] : e.created_at
                 })
             });
-            exportExcel('registros', data);
+            let dataSend = {
+                data: {
+                    "Report": dataExcel,
+                },
+                name: ['Reporte'],
+                filename: 'Registros.xlsx',
+                vacios: [[]],
+            };
+            ExpExcel(dataExcel, "Registros.xlsx", dataSend.name, dataSend.vacios);
         },
         cerrarModal(){
             $('#modalForm').modal('hide');

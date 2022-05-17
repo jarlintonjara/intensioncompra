@@ -1,5 +1,7 @@
 /* eslint-disable no-nested-ternary */
-const excel = require("exceljs");
+//const Excel = require("exceljs");
+import * as Excel from "exceljs"
+import { saveAs } from "file-saver";
 export const displayDate = (timestamp) => {
     const date = new Date(timestamp);
   
@@ -116,6 +118,165 @@ export const displayDate = (timestamp) => {
       dt.getSeconds().toString().padStart(2, '0')}`;
     return now;
   }
+
+//#region Funcion exportar
+export const ExpExcel = async (data = {}, nombrearchivo = "", nombrehojas = [], columnasomitir, columnasformato, columnasCalculo) => {
+    if (Array.isArray(data) && data.length == 0) {
+        console.log('Sin datos para exportar', 'error');
+        return;
+    }
+    let mydata = {};
+    if (Array.isArray(data)) { mydata = { data: data } } else { mydata = { ...data } }
+    if (!columnasomitir) {
+        columnasomitir = [];
+        for (const item of Object.keys(data)) {
+            columnasomitir.push([]);
+        }
+    }
+    if (!columnasformato) {
+        columnasformato = [];
+        for (const item of Object.keys(data)) {
+            columnasformato.push([]);
+        }
+    }
+    if (!columnasCalculo) {
+        columnasCalculo = [];
+        for (const item of Object.keys(data)) {
+            columnasCalculo.push([]);
+        }
+    }
+    let detailExcel = { data: mydata, nombrearchivo: nombrearchivo, nombrehojas: nombrehojas, columnasomitir: columnasomitir, columnasformato: columnasformato, columnasCalculo: columnasCalculo}
+    exportExcel2({ detail: detailExcel });
+} 
+const exportExcel2 = async (e) => {
+    //ShowCargando(true, 'Generando Excel');
+    let columnasformato = [];
+    for (const nombrehoja of e.detail.nombrehojas) {
+        columnasformato.push([]);
+    }
+    if (Reflect.has(e.detail, 'columnasformato')) { columnasformato = e.detail.columnasformato }
+    let columnasCalculo = [];
+    if (Reflect.has(e.detail, 'columnasCalculo')) { columnasCalculo = e.detail.columnasCalculo }
+    ExportExcel(e.detail.data, e.detail.nombrearchivo, e.detail.nombrehojas, e.detail.columnasomitir, columnasformato, columnasCalculo);
+}
+const ExportExcel = async (data, nombrearchivo, nombrehojas, columnasomitir, columnasformato, columnasCalculo) => {
+    let mydata = {};
+    if (Array.isArray(data)) { mydata = { data: data } } else { mydata = { ...data } }
+    try {
+        let workbook = await ExportArrayExcel(mydata, nombrehojas, columnasomitir, columnasformato, columnasCalculo);
+        let buffer = await workbook.xlsx.writeBuffer();
+        if (!buffer) { throw Error('Error writing excel export') }
+        saveAs(new Blob([buffer]), `${nombrearchivo}`);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        //ShowCargando(false);
+    }
+}
+const ExportArrayExcel = async (mydata, ArrayNombrehojas, ArrayColumnasomitir, columnasformato, columnasCalculo) => {
+    var finalColLetter = "";
+    if (Array.isArray(mydata)) { return; }
+    if (Object.keys(mydata).length != ArrayNombrehojas.length) {
+        console.log('Diferencias entre Nombres y Keys a Exportar');
+        return;
+    }
+    let workbook = new Excel.Workbook()
+    let tablas = Object.keys(mydata);
+    for (var i = 0; i < tablas.length; i++) {
+        let worksheet = workbook.addWorksheet(ArrayNombrehojas[i], { views: [{ state: 'frozen', xSplit: 1, ySplit: 1 }] })
+        let nomDataTem = tablas[i];
+        worksheet.columns = get_head(mydata[nomDataTem][0]);
+        let finalrango = get_lastcolumn(worksheet.columns.length);
+        worksheet.autoFilter = `A1:${finalrango}1`
+        fill_workshet(mydata[nomDataTem], worksheet);
+        if (columnasCalculo != undefined && columnasCalculo.length > 0) add_formules_end(worksheet, columnasCalculo[i]);
+        format_head_rows(worksheet, columnasformato[i]);
+    }
+    return workbook;
+}
+function get_head(encabezado) {
+    var ArrayTemp = [];
+    for (var key in encabezado) {
+        let modelo = { header: key, key: key, width: key.length * 1.2 }
+        ArrayTemp.push(modelo);
+    }
+    return ArrayTemp;
+}
+function format_head_rows(sheet, columnasformato) {
+    sheet.columns.forEach(function (column) {
+        var dataMax = 0;
+        column.eachCell({ includeEmpty: true }, function (cell) {
+            var columnLength = 0;
+            if (!!cell.value) { columnLength = cell.value.length }
+            if (columnLength > 50) { columnLength = 50 }
+            if (columnLength > dataMax) {
+                dataMax = columnLength;
+            }
+        })
+        column.width = dataMax < 10 ? 10 : dataMax;
+    });
+    sheet.eachRow({ includeEmpty: true }, function (row, rowNumber) {
+        if (rowNumber == 1) {
+            row.eachCell(function (cell, colNumber) {
+                cell.font = {
+                    name: 'Arial',
+                    family: 2,
+                    bold: true,
+                    size: 8,
+                    color: { argb: 'FFFFFF' },
+                };
+                cell.alignment = {
+                    vertical: 'middle', horizontal: 'center'
+                };
+                cell.fill = {
+                    type: 'pattern',
+                    pattern: 'solid',
+                    fgColor: { argb: '305496' }
+                };
+            });
+        } else {
+            row.eachCell(function (cell, colNumber) {
+                cell.font = {
+                    size: 8,
+                };
+                if (columnasformato.length) {
+                    for (const item of columnasformato) {
+                        if (cell._column._key == item.key && item.tipo == 'Date') {
+                            var date = new Date(cell.value);
+                            cell.value = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()))
+                            cell.style.numFmt = item.formato //"dd/mm/yyyy";
+                        }
+                        if (cell._column._key == item.key && item.tipo == 'Price') {
+                            cell.style.numFmt = item.structure;
+                        }
+                    }
+                }
+            });
+        }
+    });
+}
+function get_lastcolumn(columns) {
+    let colCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let colCharsetLen = colCharset.length;
+    let finalColLetter = "";
+    if (columns > colCharsetLen) { finalColLetter = colCharset.substr((columns - 1) / colCharsetLen - 1, 1) }
+    finalColLetter += colCharset.substr((columns - 1) % (colCharsetLen), 1)
+    return finalColLetter;
+}
+function fill_workshet(myarray, worksheet) {
+    myarray.forEach((e, index) => {
+        worksheet.addRow({
+            ...e
+        })
+    })
+}
+function add_formules_end(worksheet, columnFormules) {
+    columnFormules.forEach(item => {
+        worksheet.addRow(item);
+    });
+}
+//#endregion
+
   
 export const exportExcel = async (name, data) => {
 	
