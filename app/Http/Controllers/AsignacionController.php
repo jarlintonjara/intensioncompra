@@ -40,6 +40,7 @@ class AsignacionController extends Controller
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'packing_list.vin',
+            'packing_list.vin_e',
             'packing_list.marca',
             'packing_list.modelo',
             'packing_list.version',
@@ -87,11 +88,7 @@ class AsignacionController extends Controller
             default:
                 $data = $query->where('registros.concesionario_id', " ")->get();
         }
-        
-        foreach($data as $e){
-            $vin = Hash::make($e["vin"]);
-            $e["vin"]= substr($vin, 0, 30);
-        }
+
         return response()->json(['asignaciones' => $data, 'user' => $user]);
     }
     
@@ -123,6 +120,7 @@ class AsignacionController extends Controller
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'packing_list.vin',
+            'packing_list.vin_e',
             'packing_list.marca',
             'packing_list.modelo',
             'packing_list.version',
@@ -170,10 +168,6 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.concesionario_id', " ")->get();
         }
 
-        foreach ($data as $e) {
-            $vin = Hash::make($e["vin"]);
-            $e["vin"] = substr($vin, 0, 30);
-        }
         return response()->json($data);
     }
     public function facturado(Request $request)
@@ -204,6 +198,7 @@ class AsignacionController extends Controller
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'packing_list.vin',
+            'packing_list.vin_e',
             'packing_list.marca',
             'packing_list.modelo',
             'packing_list.version',
@@ -280,6 +275,7 @@ class AsignacionController extends Controller
             'asignaciones.fecha_distribucion',
             'concesionarios.nombre as concesionario',
             'packing_list.vin',
+            'packing_list.vin_e',
             'packing_list.marca',
             'packing_list.modelo',
             'packing_list.version',

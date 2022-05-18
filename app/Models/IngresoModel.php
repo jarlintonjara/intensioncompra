@@ -30,6 +30,7 @@ class IngresoModel extends Model
         'fecha_bloqueo',
         'estado',
         'created_at',
+        'vin_e',
         'motivo'
     ];
 }

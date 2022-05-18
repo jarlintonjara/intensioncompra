@@ -1050,7 +1050,7 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.celular))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(asignacion.vin))]),
+                        _c("td", [_vm._v(_vm._s(asignacion.vin_e))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.marca))]),
                         _vm._v(" "),

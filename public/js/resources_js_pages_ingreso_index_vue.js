@@ -221,7 +221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.ingresos.map(function (e) {
         var _dataExcel$push;
 
-        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'VIN', e.vin), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color', e.color), _defineProperty(_dataExcel$push, 'Situacion', e.situacion), _defineProperty(_dataExcel$push, 'Nave', e.nave), _defineProperty(_dataExcel$push, 'Codigo SAP', e.codigo_sap), _defineProperty(_dataExcel$push, 'Fecha ingreso', e.fecha_ingreso), _dataExcel$push));
+        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'VIN', e.vin), _defineProperty(_dataExcel$push, 'VIN ENCRIPTADO', e.vin_e), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color', e.color), _defineProperty(_dataExcel$push, 'Situacion', e.situacion), _defineProperty(_dataExcel$push, 'Nave', e.nave), _defineProperty(_dataExcel$push, 'Codigo SAP', e.codigo_sap), _defineProperty(_dataExcel$push, 'Fecha ingreso', e.fecha_ingreso), _dataExcel$push));
       });
       var dataSend = {
         data: {

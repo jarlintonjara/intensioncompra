@@ -40,7 +40,7 @@
                                 <tr v-for="noasignado in noasignados" :key="noasignado.id">
                                     <td style="text-align: center; display: flex">
                                         <button class="btn btn-warning" @click="detalle(noasignado)"><i class="fa fa-list"></i></button>
-                                        <button class="btn btn-danger" v-if="user.role_id == 6 || user.role_id == 1" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger" v-if="user.role_id != 8" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                     <td>{{noasignado.concesionario}}</td>
                                     <td>{{noasignado.tienda}}</td>

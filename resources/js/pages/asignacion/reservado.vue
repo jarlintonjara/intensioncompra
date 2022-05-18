@@ -51,7 +51,7 @@
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
                                     <td>{{asignacion.celular}}</td>
-                                    <td>{{asignacion.vin}}</td>
+                                    <td>{{asignacion.vin_e}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
                                     <td>{{asignacion.version}}</td>

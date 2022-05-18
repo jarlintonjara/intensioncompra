@@ -134,6 +134,7 @@ export default {
                 dataExcel.push({
                     ['ID'] : e.id,
                     ['VIN'] : e.vin,
+                    ['VIN ENCRIPTADO'] : e.vin_e,
                     ['Marca'] : e.marca,
                     ['Modelo'] : e.modelo,
                     ['Version'] : e.version,

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\IngresoModel;
-use App\Http\Requests\StoreIngresoModelRequest;
 use Illuminate\Http\Request;
 
 class IngresoController extends Controller
@@ -18,6 +17,7 @@ class IngresoController extends Controller
             'users.nombre',
             'packing_list.fecha_bloqueo',
             'packing_list.vin',
+            'packing_list.vin_e',
             'packing_list.marca',
             'packing_list.modelo',
             'packing_list.version',
@@ -39,7 +39,7 @@ class IngresoController extends Controller
                 $data = $query2->where('users.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                $data = $query2->where('users.concesionario_id', $user->tienda_id)->get();
+                $data = $query2->where('users.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
             case 5:
@@ -52,6 +52,7 @@ class IngresoController extends Controller
             default:
                 $data = [];
         }
+
         $bloqueados = [];
         $query = IngresoModel::select(
             'packing_list.id',
@@ -80,7 +81,7 @@ class IngresoController extends Controller
                 $bloqueados = $query->where('users.tienda_id', $user->tienda_id)->get();
                 break;
             case 3:
-                $bloqueados = $query->where('users.concesionario_id', $user->tienda_id)->get();
+                $bloqueados = $query->where('users.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
             case 5:
@@ -93,6 +94,7 @@ class IngresoController extends Controller
             default:
                 $bloqueados = $query->get();
         }
+        
         return response()->json(['data'=>$data,'bloqueados'=>$bloqueados]);
     }
 
@@ -101,7 +103,7 @@ class IngresoController extends Controller
         //
     }
 
-    public function store(StoreIngresoModelRequest $request)
+    public function store(IngresoModel $request)
     {
         //
     }
