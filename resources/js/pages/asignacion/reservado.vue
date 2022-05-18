@@ -44,7 +44,7 @@
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                      <td tyle="text-align: center; display: flex">
                                         <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
-                                        <button class="btn btn-danger" v-if="user.role_id == 6 || user.role_id == 1" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger" v-if="user.role_id != 8" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                     <td>{{asignacion.concesionario}}</td>
                                     <td>{{asignacion.tienda}}</td>
@@ -364,7 +364,7 @@ export default {
                     ['Fecha creación'] : e.created_at
                 })
             });
-            
+
             let dataSend = {
                 data: {
                     "Report": dataExcel,

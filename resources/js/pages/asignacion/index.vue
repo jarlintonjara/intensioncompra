@@ -50,7 +50,7 @@
                                     
                                     <td tyle="text-align: center; display: flex">
                                         <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
-                                        <button class="btn btn-danger" v-if="user.role_id == 6 || user.role_id == 1" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-danger" v-if="user.role_id != 8" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
                                     </td>
                                     <td style="text-align: center" v-if="user.role_id == 6 || user.role_id == 1">
                                         <button class="btn btn-success" @click="modalReservar(asignacion)"><i class="fa fa-lock"></i></button>

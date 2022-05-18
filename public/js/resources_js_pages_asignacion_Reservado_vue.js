@@ -605,7 +605,7 @@ var render = function () {
                               [_c("i", { staticClass: "fa fa-list" })]
                             ),
                             _vm._v(" "),
-                            _vm.user.role_id == 6 || _vm.user.role_id == 1
+                            _vm.user.role_id != 8
                               ? _c(
                                   "button",
                                   {
