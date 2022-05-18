@@ -146,6 +146,7 @@ export default {
                     ['Fecha ingreso'] : e.fecha_ingreso
                 })
             });
+            
             let dataSend = {
                 data: {
                     "Report": dataExcel,
