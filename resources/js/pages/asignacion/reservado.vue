@@ -364,6 +364,7 @@ export default {
                     ['Fecha creación'] : e.created_at
                 })
             });
+            
             let dataSend = {
                 data: {
                     "Report": dataExcel,
