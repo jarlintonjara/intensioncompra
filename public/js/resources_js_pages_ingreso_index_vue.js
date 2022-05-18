@@ -352,7 +352,7 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "fa fa-file-excel" }),
-                      _vm._v(" Excel"),
+                      _vm._v(" Reporte"),
                     ]
                   ),
                 ]),

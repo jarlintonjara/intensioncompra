@@ -925,7 +925,7 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "fa fa-file-excel" }),
-                      _vm._v(" Excel"),
+                      _vm._v(" Reporte"),
                     ]
                   ),
                 ]),
@@ -941,7 +941,7 @@ var render = function () {
                 [
                   _c("thead", [
                     _c("tr", [
-                      _c("th"),
+                      _c("th", [_vm._v("ACCIONES")]),
                       _vm._v(" "),
                       _vm.user.role_id == 6 || _vm.user.role_id == 1
                         ? _c("th", [_vm._v("RESERVAR")])
@@ -977,35 +977,43 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.asignaciones, function (asignacion) {
                       return _c("tr", { key: asignacion.id }, [
-                        _c("td", { attrs: { tyle: "text-align: center" } }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.detalle(asignacion)
-                                },
-                              },
+                        _c(
+                          "td",
+                          {
+                            attrs: {
+                              tyle: "text-align: center; display: flex",
                             },
-                            [_c("i", { staticClass: "fa fa-list" })]
-                          ),
-                          _vm._v(" "),
-                          _vm.user.role_id == 6 || _vm.user.role_id == 1
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.borrar(asignacion.id)
-                                    },
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.detalle(asignacion)
                                   },
                                 },
-                                [_c("i", { staticClass: "fa fa-trash" })]
-                              )
-                            : _vm._e(),
-                        ]),
+                              },
+                              [_c("i", { staticClass: "fa fa-list" })]
+                            ),
+                            _vm._v(" "),
+                            _vm.user.role_id == 6 || _vm.user.role_id == 1
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.borrar(asignacion.id)
+                                      },
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fa fa-trash" })]
+                                )
+                              : _vm._e(),
+                          ]
+                        ),
                         _vm._v(" "),
                         _vm.user.role_id == 6 || _vm.user.role_id == 1
                           ? _c(

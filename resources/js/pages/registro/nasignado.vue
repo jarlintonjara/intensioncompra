@@ -13,42 +13,48 @@
                     <div class="panel-content">
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                         </div>
                         <table id="tnoasignado" class="table table-bordered table-hover table-striped table-responsive w-100" translate="no">
                             <thead>
                                 <tr>
-                                    <th style="width:8% !important"></th>
-                                    <th style="width:22% !important">NOMBRE COMPLETO</th>
-                                    <th>CELULAR</th>
+                                    <th>ACCIONES</th>
+                                    <th>CONCESIONARIO</th>
+                                    <th>TIENDA</th>
                                     <th>ASESOR</th>
+                                    <th>NOMBRE COMPLETO</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>CELULAR</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>VERSION</th>
+                                    <th>AÑO MODELO</th>
                                     <th>COLOR 1</th>
                                     <th>COLOR 2</th>
                                     <th>COLOR 3</th>
-                                    <th>TIENDA</th>
                                     <th>FECHA CREACION</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="noasignado in noasignados" :key="noasignado.id">
-                                    <td style="text-align: center">
+                                    <td style="text-align: center; display: flex">
                                         <button class="btn btn-warning" @click="detalle(noasignado)"><i class="fa fa-list"></i></button>
                                         <button class="btn btn-danger" v-if="user.role_id == 6 || user.role_id == 1" @click="borrar(noasignado.id)"><i class="fa fa-trash"></i></button>
                                     </td>
-                                    <td>{{noasignado.nombre_completo}}</td>
-                                    <td>{{noasignado.celular}}</td>
+                                    <td>{{noasignado.concesionario}}</td>
+                                    <td>{{noasignado.tienda}}</td>
                                     <td>{{noasignado.nombre}}</td>
+                                    <td>{{noasignado.nombre_completo}}</td>
+                                    <td>{{noasignado.documento}}</td>
+                                    <td>{{noasignado.celular}}</td>
                                     <td>{{noasignado.marca}}</td>
                                     <td>{{noasignado.modelo}}</td>
                                     <td>{{noasignado.version}}</td>
+                                    <td>{{noasignado.anio_modelo}}</td>
                                     <td>{{noasignado.color1}}</td>
                                     <td>{{noasignado.color2}}</td>
                                     <td>{{noasignado.color3}}</td>
-                                    <td>{{noasignado.tienda}}</td>
                                     <td>{{noasignado.fecha ? noasignado.fecha:""}}</td>
                                 </tr>
                             </tbody>

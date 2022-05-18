@@ -426,7 +426,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     ReporteExcel: function ReporteExcel() {
-      //e.preventDefault();
       var dataExcel = [];
       this.asignaciones.map(function (e) {
         var _dataExcel$push;
@@ -563,7 +562,7 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "fa fa-file-excel" }),
-                      _vm._v(" Excel"),
+                      _vm._v(" Reporte"),
                     ]
                   ),
                 ]),
@@ -583,35 +582,43 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.asignaciones, function (asignacion) {
                       return _c("tr", { key: asignacion.id }, [
-                        _c("td", { attrs: { tyle: "text-align: center" } }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.detalle(asignacion)
-                                },
-                              },
+                        _c(
+                          "td",
+                          {
+                            attrs: {
+                              tyle: "text-align: center; display: flex",
                             },
-                            [_c("i", { staticClass: "fa fa-list" })]
-                          ),
-                          _vm._v(" "),
-                          _vm.user.role_id == 6 || _vm.user.role_id == 1
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.borrar(asignacion.id)
-                                    },
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.detalle(asignacion)
                                   },
                                 },
-                                [_c("i", { staticClass: "fa fa-trash" })]
-                              )
-                            : _vm._e(),
-                        ]),
+                              },
+                              [_c("i", { staticClass: "fa fa-list" })]
+                            ),
+                            _vm._v(" "),
+                            _vm.user.role_id == 6 || _vm.user.role_id == 1
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.borrar(asignacion.id)
+                                      },
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fa fa-trash" })]
+                                )
+                              : _vm._e(),
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.concesionario))]),
                         _vm._v(" "),
@@ -1145,7 +1152,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("td"),
+        _c("td", [_vm._v("ACCIONES")]),
         _vm._v(" "),
         _c("th", [_vm._v("CONCESIONARIO")]),
         _vm._v(" "),

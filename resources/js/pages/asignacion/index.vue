@@ -22,13 +22,13 @@
                     <div class="panel-content">
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <button class="btn btn-success" @click="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                                <button class="btn btn-success" @click="ReporteExcel"><i class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                         </div>
                         <table id="asignaciones" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>ACCIONES</th>
                                     <th v-if="user.role_id == 6 || user.role_id == 1">RESERVAR</th>
                                     <th>CONCESIONARIO</th>
                                     <th>TIENDA</th>
@@ -47,7 +47,7 @@
                             <tbody>
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     
-                                    <td tyle="text-align: center">
+                                    <td tyle="text-align: center; display: flex">
                                         <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
                                         <button class="btn btn-danger" v-if="user.role_id == 6 || user.role_id == 1" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
                                     </td>

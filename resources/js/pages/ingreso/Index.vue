@@ -22,7 +22,7 @@
                     <div class="panel-content">
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Excel</button>
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                         </div>
                         <table id="tingresos" class="table table-bordered table-hover table-striped w-100" translate="no">

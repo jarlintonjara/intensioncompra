@@ -179,6 +179,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -466,7 +472,7 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "fa fa-file-excel" }),
-                      _vm._v(" Excel"),
+                      _vm._v(" Reporte"),
                     ]
                   ),
                 ]),
@@ -486,41 +492,56 @@ var render = function () {
                     "tbody",
                     _vm._l(_vm.noasignados, function (noasignado) {
                       return _c("tr", { key: noasignado.id }, [
-                        _c("td", { staticStyle: { "text-align": "center" } }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning",
-                              on: {
-                                click: function ($event) {
-                                  return _vm.detalle(noasignado)
-                                },
-                              },
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              "text-align": "center",
+                              display: "flex",
                             },
-                            [_c("i", { staticClass: "fa fa-list" })]
-                          ),
-                          _vm._v(" "),
-                          _vm.user.role_id == 6 || _vm.user.role_id == 1
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.borrar(noasignado.id)
-                                    },
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.detalle(noasignado)
                                   },
                                 },
-                                [_c("i", { staticClass: "fa fa-trash" })]
-                              )
-                            : _vm._e(),
-                        ]),
+                              },
+                              [_c("i", { staticClass: "fa fa-list" })]
+                            ),
+                            _vm._v(" "),
+                            _vm.user.role_id == 6 || _vm.user.role_id == 1
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.borrar(noasignado.id)
+                                      },
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fa fa-trash" })]
+                                )
+                              : _vm._e(),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.concesionario))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.tienda))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.nombre))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.nombre_completo))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.celular))]),
+                        _c("td", [_vm._v(_vm._s(noasignado.documento))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.nombre))]),
+                        _c("td", [_vm._v(_vm._s(noasignado.celular))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.marca))]),
                         _vm._v(" "),
@@ -528,13 +549,13 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.version))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(noasignado.anio_modelo))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.color1))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.color2))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(noasignado.color3))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(noasignado.tienda))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -817,15 +838,19 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticStyle: { width: "8% !important" } }),
+        _c("th", [_vm._v("ACCIONES")]),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "22% !important" } }, [
-          _vm._v("NOMBRE COMPLETO"),
-        ]),
+        _c("th", [_vm._v("CONCESIONARIO")]),
         _vm._v(" "),
-        _c("th", [_vm._v("CELULAR")]),
+        _c("th", [_vm._v("TIENDA")]),
         _vm._v(" "),
         _c("th", [_vm._v("ASESOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("NOMBRE COMPLETO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("DOCUMENTO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CELULAR")]),
         _vm._v(" "),
         _c("th", [_vm._v("MARCA")]),
         _vm._v(" "),
@@ -833,13 +858,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("VERSION")]),
         _vm._v(" "),
+        _c("th", [_vm._v("AÑO MODELO")]),
+        _vm._v(" "),
         _c("th", [_vm._v("COLOR 1")]),
         _vm._v(" "),
         _c("th", [_vm._v("COLOR 2")]),
         _vm._v(" "),
         _c("th", [_vm._v("COLOR 3")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("TIENDA")]),
         _vm._v(" "),
         _c("th", [_vm._v("FECHA CREACION")]),
       ]),

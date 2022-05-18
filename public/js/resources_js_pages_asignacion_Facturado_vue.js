@@ -479,7 +479,7 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "fa fa-file-excel" }),
-                      _vm._v(" Excel"),
+                      _vm._v(" Reporte"),
                     ]
                   ),
                 ]),
@@ -1064,7 +1064,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th"),
+        _c("th", [_vm._v("ACCIONES")]),
         _vm._v(" "),
         _c("th", [_vm._v("CONCESIONARIO")]),
         _vm._v(" "),
