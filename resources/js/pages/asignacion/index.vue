@@ -35,6 +35,7 @@
                                     <th>ASESOR</th>
                                     <th>DOCUMENTO</th>
                                     <th>CELULAR</th>
+                                    <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
                                     <th>VERSIÓN</th>
@@ -59,6 +60,7 @@
                                     <td>{{asignacion.nombre}}</td>
                                     <td>{{asignacion.documento}}</td>
                                     <td>{{asignacion.celular}}</td>
+                                    <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
                                     <td>{{asignacion.version}}</td>
@@ -470,6 +472,7 @@ export default {
                     ['Documento'] : e.documento,
                     ['Celular'] : e.celular,
                     ['Marca'] : e.marca,
+                    ['VIN'] : e.vin,
                     ['Modelo'] : e.modelo,
                     ['Version'] : e.version,
                     ['Año modelo'] : e.anio_modelo,

@@ -270,6 +270,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -668,7 +670,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
       this.asignaciones.map(function (e) {
         var _dataExcel$push;
 
-        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color Asignado', e.color), _defineProperty(_dataExcel$push, 'Color 1', e.color1), _defineProperty(_dataExcel$push, 'Color 2', e.color2), _defineProperty(_dataExcel$push, 'Color 3', e.color3), _defineProperty(_dataExcel$push, 'Fecha actualizada', e.fecha), _defineProperty(_dataExcel$push, 'Fecha creación', e.created_at), _dataExcel$push));
+        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'VIN', e.vin), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color Asignado', e.color), _defineProperty(_dataExcel$push, 'Color 1', e.color1), _defineProperty(_dataExcel$push, 'Color 2', e.color2), _defineProperty(_dataExcel$push, 'Color 3', e.color3), _defineProperty(_dataExcel$push, 'Fecha actualizada', e.fecha), _defineProperty(_dataExcel$push, 'Fecha creación', e.created_at), _dataExcel$push));
       });
       var dataSend = {
         data: {
@@ -957,6 +959,8 @@ var render = function () {
                       _vm._v(" "),
                       _c("th", [_vm._v("CELULAR")]),
                       _vm._v(" "),
+                      _c("th", [_vm._v("VIN")]),
+                      _vm._v(" "),
                       _c("th", [_vm._v("MARCA")]),
                       _vm._v(" "),
                       _c("th", [_vm._v("MODELO")]),
@@ -1045,6 +1049,8 @@ var render = function () {
                         _c("td", [_vm._v(_vm._s(asignacion.documento))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.celular))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.vin))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.marca))]),
                         _vm._v(" "),

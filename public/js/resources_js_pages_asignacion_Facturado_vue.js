@@ -230,6 +230,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -345,7 +357,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.asignaciones.map(function (e) {
         var _dataExcel$push;
 
-        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color Reservado', e.color), _defineProperty(_dataExcel$push, 'Código reserva', e.codigo_reserva), _defineProperty(_dataExcel$push, 'Monto reserva', e.monto_reserva), _defineProperty(_dataExcel$push, 'Fecha reserva', e.fecha_reserva), _defineProperty(_dataExcel$push, 'Fecha emplazado', e.fecha_emplazado), _defineProperty(_dataExcel$push, 'Fecha Facturado', e.fecha_facturado), _defineProperty(_dataExcel$push, 'Fecha SAP_facturado', e.fecha_sap_facturado), _defineProperty(_dataExcel$push, 'código SAP cliente', e.codigo_sap_cliente), _dataExcel$push));
+        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'VIN', e.vin), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color Reservado', e.color), _defineProperty(_dataExcel$push, 'Código reserva', e.codigo_reserva), _defineProperty(_dataExcel$push, 'Monto reserva', e.monto_reserva), _defineProperty(_dataExcel$push, 'Fecha reserva', e.fecha_reserva), _defineProperty(_dataExcel$push, 'Fecha emplazado', e.fecha_emplazado), _defineProperty(_dataExcel$push, 'Fecha Facturado', e.fecha_facturado), _defineProperty(_dataExcel$push, 'Fecha SAP_facturado', e.fecha_sap_facturado), _defineProperty(_dataExcel$push, 'código SAP cliente', e.codigo_sap_cliente), _dataExcel$push));
       });
       var dataSend = {
         data: {
@@ -516,13 +528,25 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.concesionario))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.tienda))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.nombre))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.documento))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.celular))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.vin))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.marca))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.modelo))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.version))]),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(asignacion.color))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(asignacion.anio_modelo))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -1068,13 +1092,25 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("CONCESIONARIO")]),
         _vm._v(" "),
+        _c("th", [_vm._v("TIENDA")]),
+        _vm._v(" "),
         _c("th", [_vm._v("ASESOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("DOCUMENTO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("CELULAR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("VIN")]),
         _vm._v(" "),
         _c("th", [_vm._v("MARCA")]),
         _vm._v(" "),
         _c("th", [_vm._v("MODELO")]),
         _vm._v(" "),
+        _c("th", [_vm._v("VERSIÓN")]),
+        _vm._v(" "),
         _c("th", [_vm._v("COLOR")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("AÑO MODELO")]),
         _vm._v(" "),
         _c("th", [_vm._v("FECHA DISTRIBUCIÓN")]),
         _vm._v(" "),

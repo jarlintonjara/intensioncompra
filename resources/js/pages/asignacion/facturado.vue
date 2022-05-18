@@ -29,10 +29,16 @@
                                 <tr>
                                     <th>ACCIONES</th>
                                     <th>CONCESIONARIO</th>
+                                    <th>TIENDA</th>
                                     <th>ASESOR</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>CELULAR</th>
+                                    <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
+                                    <th>VERSIÓN</th>
                                     <th>COLOR</th>
+                                    <th>AÑO MODELO</th>
                                     <th>FECHA DISTRIBUCIÓN</th>
                                     <th>FECHA FACTURADO</th>
                                     <th>FECHA SAP FACTURADO</th>
@@ -43,10 +49,16 @@
                                 <tr v-for="asignacion in asignaciones" :key="asignacion.id">
                                     <td tyle="text-align: center"><button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button></td>
                                     <td>{{asignacion.concesionario}}</td>
+                                    <td>{{asignacion.tienda}}</td>
                                     <td>{{asignacion.nombre}}</td>
+                                    <td>{{asignacion.documento}}</td>
+                                    <td>{{asignacion.celular}}</td>
+                                    <td>{{asignacion.vin}}</td>
                                     <td>{{asignacion.marca}}</td>
                                     <td>{{asignacion.modelo}}</td>
+                                    <td>{{asignacion.version}}</td>
                                     <td>{{asignacion.color}}</td>
+                                    <td>{{asignacion.anio_modelo}}</td>
                                     <td>{{asignacion.fecha_distribucion ? asignacion.fecha_distribucion : "-"}}</td>
                                     <td>{{asignacion.fecha_facturado}}</td>
                                     <td>{{asignacion.fecha_sap_facturado}}</td>
@@ -308,6 +320,7 @@ export default {
                     ['Nombre Completo'] : e.nombre_completo,
                     ['Documento'] : e.documento,
                     ['Celular'] : e.celular,
+                    ['VIN'] : e.vin,
                     ['Marca'] : e.marca,
                     ['Modelo'] : e.modelo,
                     ['Version'] : e.version,
