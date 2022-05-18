@@ -552,7 +552,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
       this.registro.color1 = datos.color1;
       this.registro.color2 = datos.color2;
       this.registro.color3 = datos.color3;
-      this.registro.vin = datos.vin;
+      this.registro.vin = datos.vin_e;
       $('#modalDetalle').modal('show');
     },
     reservar: function reservar() {
@@ -670,7 +670,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
       this.asignaciones.map(function (e) {
         var _dataExcel$push;
 
-        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'VIN', e.vin), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color Asignado', e.color), _defineProperty(_dataExcel$push, 'Color 1', e.color1), _defineProperty(_dataExcel$push, 'Color 2', e.color2), _defineProperty(_dataExcel$push, 'Color 3', e.color3), _defineProperty(_dataExcel$push, 'Fecha actualizada', e.fecha), _defineProperty(_dataExcel$push, 'Fecha creación', e.created_at), _dataExcel$push));
+        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'VIN', e.vin_e), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color Asignado', e.color), _defineProperty(_dataExcel$push, 'Color 1', e.color1), _defineProperty(_dataExcel$push, 'Color 2', e.color2), _defineProperty(_dataExcel$push, 'Color 3', e.color3), _defineProperty(_dataExcel$push, 'Fecha actualizada', e.fecha), _defineProperty(_dataExcel$push, 'Fecha creación', e.created_at), _dataExcel$push));
       });
       var dataSend = {
         data: {
@@ -1444,7 +1444,7 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-9" }, [
-                          _c("b", [_vm._v(_vm._s(_vm.registro.vin))]),
+                          _c("b", [_vm._v(_vm._s(_vm.registro.vin_e))]),
                         ]),
                       ]),
                     ]),

@@ -355,7 +355,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.registro.fecha_reserva = datos.fecha_reserva;
       this.registro.fecha_distribucion = datos.fecha_distribucion;
       this.registro.codigo_sap = datos.codigo_sap;
-      this.registro.vin = datos.vin;
+      this.registro.vin = datos.vin_e;
       this.registro.id = datos.id;
       this.axios.get('/api/getimages/' + this.registro.id).then(function (response) {
         _this2.images = response.data;
@@ -432,7 +432,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.asignaciones.map(function (e) {
         var _dataExcel$push;
 
-        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'VIN', e.vin), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color reservado', e.color), _defineProperty(_dataExcel$push, 'Código reserva', e.codigo_reserva), _defineProperty(_dataExcel$push, 'Monto reserva', e.monto_reserva), _defineProperty(_dataExcel$push, 'Fecha reserva', e.fecha_reserva), _defineProperty(_dataExcel$push, 'Fecha creación', e.created_at), _dataExcel$push));
+        dataExcel.push((_dataExcel$push = {}, _defineProperty(_dataExcel$push, 'ID', e.id), _defineProperty(_dataExcel$push, 'Concesionario', e.concesionario), _defineProperty(_dataExcel$push, 'Tienda', e.tienda), _defineProperty(_dataExcel$push, 'Asesor', e.nombre + (e.apellido ? e.apellido : '')), _defineProperty(_dataExcel$push, 'Nombre Completo', e.nombre_completo), _defineProperty(_dataExcel$push, 'Documento', e.documento), _defineProperty(_dataExcel$push, 'Celular', e.celular), _defineProperty(_dataExcel$push, 'VIN', e.vin_e), _defineProperty(_dataExcel$push, 'Marca', e.marca), _defineProperty(_dataExcel$push, 'Modelo', e.modelo), _defineProperty(_dataExcel$push, 'Version', e.version), _defineProperty(_dataExcel$push, 'Año modelo', e.anio_modelo), _defineProperty(_dataExcel$push, 'Color reservado', e.color), _defineProperty(_dataExcel$push, 'Código reserva', e.codigo_reserva), _defineProperty(_dataExcel$push, 'Monto reserva', e.monto_reserva), _defineProperty(_dataExcel$push, 'Fecha reserva', e.fecha_reserva), _defineProperty(_dataExcel$push, 'Fecha creación', e.created_at), _dataExcel$push));
       });
       var dataSend = {
         data: {
@@ -882,7 +882,7 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-9" }, [
-                          _c("b", [_vm._v(_vm._s(_vm.registro.vin))]),
+                          _c("b", [_vm._v(_vm._s(_vm.registro.vin_e))]),
                         ]),
                       ]),
                     ]),

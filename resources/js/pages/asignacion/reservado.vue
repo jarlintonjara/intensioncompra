@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">VIN:</div>
-                                        <div class="col-md-9"><b>{{ registro.vin }}</b></div>
+                                        <div class="col-md-9"><b>{{ registro.vin_e }}</b></div>
                                         
                                     </div>
                                 </div>
@@ -306,7 +306,7 @@ export default {
             this.registro.fecha_reserva = datos.fecha_reserva;
             this.registro.fecha_distribucion = datos.fecha_distribucion;
             this.registro.codigo_sap = datos.codigo_sap;
-            this.registro.vin = datos.vin;
+            this.registro.vin = datos.vin_e;
             this.registro.id = datos.id;
             
             this.axios.get('/api/getimages/'+ this.registro.id)
@@ -352,7 +352,7 @@ export default {
                     ['Nombre Completo'] : e.nombre_completo,
                     ['Documento'] : e.documento,
                     ['Celular'] : e.celular,
-                    ['VIN'] : e.vin,
+                    ['VIN'] : e.vin_e,
                     ['Marca'] : e.marca,
                     ['Modelo'] : e.modelo,
                     ['Version'] : e.version,

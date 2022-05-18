@@ -175,7 +175,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-3">VIN:</div>
-                                        <div class="col-md-9"><b>{{ registro.vin }}</b></div>
+                                        <div class="col-md-9"><b>{{ registro.vin_e }}</b></div>
                                         
                                     </div>
                                 </div>
@@ -414,7 +414,7 @@ export default {
             this.registro.color1= datos.color1;        
             this.registro.color2= datos.color2;
             this.registro.color3= datos.color3;
-            this.registro.vin= datos.vin;
+            this.registro.vin= datos.vin_e;
             $('#modalDetalle').modal('show');
         },
         async reservar(){
@@ -472,7 +472,7 @@ export default {
                     ['Documento'] : e.documento,
                     ['Celular'] : e.celular,
                     ['Marca'] : e.marca,
-                    ['VIN'] : e.vin,
+                    ['VIN'] : e.vin_e,
                     ['Modelo'] : e.modelo,
                     ['Version'] : e.version,
                     ['Año modelo'] : e.anio_modelo,
