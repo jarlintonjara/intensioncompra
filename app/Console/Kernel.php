@@ -13,13 +13,11 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('send:bloquear')->dailyAt('7:00');
-        $schedule->command('send:reAsignar')->dailyAt('7:10');
-        $schedule->command('send:asignacion')->dailyAt('7:20');
-        $schedule->command('send:emplazado')->dailyAt('7:25');
-        $schedule->command('send:facturado')->dailyAt('7:30');
-        // ->everySixHours();
-        // ->dailyAt($time->time);	
+        $schedule->command('send:bloquear')->weekdays()->dailyAt('7:00');
+        $schedule->command('send:reAsignar')->weekdays()->dailyAt('7:10');
+        //$schedule->command('send:asignacion')->weekdays()->dailyAt('7:20');
+        //$schedule->command('send:emplazado')->weekdays()->dailyAt('7:25');
+        //$schedule->command('send:facturado')->weekdays()->dailyAt('7:30');
     }
 
     protected function commands()
