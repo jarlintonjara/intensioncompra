@@ -15,9 +15,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('send:bloquear')->weekdays()->dailyAt('7:00');
         $schedule->command('send:reAsignar')->weekdays()->dailyAt('7:10');
-        //$schedule->command('send:asignacion')->weekdays()->dailyAt('7:20');
-        //$schedule->command('send:emplazado')->weekdays()->dailyAt('7:25');
-        //$schedule->command('send:facturado')->weekdays()->dailyAt('7:30');
+        $schedule->command('send:asignacion')->weekdays()->dailyAt('7:20');
+        $schedule->command('send:emplazado')->weekdays()->dailyAt('7:25');
+        $schedule->command('send:facturado')->weekdays()->dailyAt('7:30');
     }
 
     protected function commands()
