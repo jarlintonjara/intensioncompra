@@ -29,7 +29,7 @@
                             <thead>
                                 <tr>
                                     <th>ACCIONES</th>
-                                    <th v-if="user.role_id == 6 || user.role_id == 1">RESERVAR</th>
+                                    <th v-if="user.role_id == 6 || user.role_id == 1 || user.role_id == 2">RESERVAR</th>
                                     <th>CONCESIONARIO</th>
                                     <th>TIENDA</th>
                                     <th>ASESOR</th>
@@ -52,7 +52,7 @@
                                         <button class="btn btn-warning" @click="detalle(asignacion)"><i class="fa fa-list"></i></button>
                                         <button class="btn btn-danger" v-if="user.role_id != 8" @click="borrar(asignacion.id)"><i class="fa fa-trash"></i></button>
                                     </td>
-                                    <td style="text-align: center" v-if="user.role_id == 6 || user.role_id == 1">
+                                    <td style="text-align: center" v-if="user.role_id == 6 || user.role_id == 1 || user.role_id == 2">
                                         <button class="btn btn-success" @click="modalReservar(asignacion)"><i class="fa fa-lock"></i></button>
                                     </td>
                                     <td>{{asignacion.concesionario}}</td>

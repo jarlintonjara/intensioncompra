@@ -945,7 +945,9 @@ var render = function () {
                     _c("tr", [
                       _c("th", [_vm._v("ACCIONES")]),
                       _vm._v(" "),
-                      _vm.user.role_id == 6 || _vm.user.role_id == 1
+                      _vm.user.role_id == 6 ||
+                      _vm.user.role_id == 1 ||
+                      _vm.user.role_id == 2
                         ? _c("th", [_vm._v("RESERVAR")])
                         : _vm._e(),
                       _vm._v(" "),
@@ -1019,7 +1021,9 @@ var render = function () {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm.user.role_id == 6 || _vm.user.role_id == 1
+                        _vm.user.role_id == 6 ||
+                        _vm.user.role_id == 1 ||
+                        _vm.user.role_id == 2
                           ? _c(
                               "td",
                               { staticStyle: { "text-align": "center" } },
