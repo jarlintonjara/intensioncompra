@@ -122,14 +122,16 @@ class IngresoController extends Controller
     {
         $auth = new AuthController();
         $session = $auth->getUser($request->bearerToken);
-        $ingreso = IngresoModel::findOrFail($id);
-        $ingreso->update([
-            "bloqueado" => 1, 
-            "user_bloqueo" => $session->id,
-            "situacion" => 'BLOQUEADO',
-            "motivo" => 'bloqueo manual',
-            "fecha_bloqueo" => date('Y-m-d')
-        ]);
+        $ingreso = IngresoModel::where('situacion', 'LIBRE')->where('bloqueado', 0)->where('id', $id)->first();
+        if($ingreso){
+            $ingreso->update([
+                "bloqueado" => 1,
+                "user_bloqueo" => $session->id,
+                "situacion" => 'BLOQUEADO',
+                "motivo" => 'bloqueo manual',
+                "fecha_bloqueo" => date('Y-m-d')
+            ]);
+        }
         return response()->json($ingreso);
     }
 
