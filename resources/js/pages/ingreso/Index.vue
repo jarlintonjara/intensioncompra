@@ -111,9 +111,10 @@ export default {
 
                 const token = localStorage.getItem('access_token');
                 if (result.isConfirmed) {
-                   await axios.put(`/api/ingreso/${id}`, {
-                        bearerToken: token,
-                    }).then(response=>{
+                   await axios.post(`/api/ingreso/bloquear`,{'ingreso_id' : id } , {
+                        withCredentials: true,
+                        headers: { Authorization: `Bearer ${token}` },
+                }).then(response=>{
                         let index =  this.ingresos.map(e => e.id).indexOf(id);
                         if(index !== -1){
                             let ingresos = this.ingresos;
@@ -122,13 +123,26 @@ export default {
                         }
                         this.$swal.fire('Registro bloqueado', '', 'success');
                     }).catch(error=>{
-                        console.log(error)
+                        if(error.response.status == 400){
+                            this.$swal.fire({
+                                icon: 'error',
+                                title: 'Packing List',
+                                text: error.response.data,
+                            })
+                        }
+                        if(error.response.status == 401){
+                            this.$swal.fire({
+                                icon: '',
+                                title: '',
+                                text: 'Session terminada',
+                            });
+                            this.$router.push({ name: "Login"}); 
+                        }
                     });
                 }
             })
         },
         ReporteExcel(){
-            //e.preventDefault();
             let dataExcel = [];
             this.ingresos.map((e)=>{
                 dataExcel.push({

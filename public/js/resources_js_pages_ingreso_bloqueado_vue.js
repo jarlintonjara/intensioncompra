@@ -91,11 +91,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      bloqueados: []
+      bloqueados: [],
+      user: {
+        role_id: 0
+      }
     };
   },
   mounted: function mounted() {
@@ -113,6 +120,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
+                  _this.user = res.data;
+                });
+
+              case 3:
+                _context.next = 5;
                 return _this.axios.get('/api/ingreso', {
                   withCredentials: true,
                   headers: {
@@ -125,16 +138,106 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.bloqueados = [];
                 });
 
-              case 3:
-                _context.next = 5;
+              case 5:
+                _context.next = 7;
                 return _this.$tablaGlobal('#bloqueados');
 
-              case 5:
+              case 7:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
+      }))();
+    },
+    desbloquear: function desbloquear(id) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this2.$swal.fire({
+                  title: '¿Seguro de desbloquear?',
+                  showDenyButton: true,
+                  confirmButtonText: 'Desbloquear',
+                  denyButtonText: "Cancelar"
+                }).then( /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(result) {
+                    var token;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            token = localStorage.getItem('access_token');
+
+                            if (!result.isConfirmed) {
+                              _context2.next = 4;
+                              break;
+                            }
+
+                            _context2.next = 4;
+                            return axios.post("/api/ingreso/desbloquear", {
+                              'ingreso_id': id
+                            }, {
+                              withCredentials: true,
+                              headers: {
+                                Authorization: "Bearer ".concat(token)
+                              }
+                            }).then(function (response) {
+                              var index = _this2.bloqueados.map(function (e) {
+                                return e.id;
+                              }).indexOf(id);
+
+                              if (index !== -1) {
+                                var bloqueados = _this2.bloqueados;
+                                bloqueados.splice(index, 1);
+                                _this2.bloqueados = [].concat(bloqueados);
+                              }
+
+                              _this2.$swal.fire('Registro desbloqueado', '', 'success');
+                            })["catch"](function (error) {
+                              if (error.response.status == 400) {
+                                _this2.$swal.fire({
+                                  icon: 'error',
+                                  title: 'Packing List',
+                                  text: error.response.data
+                                });
+                              }
+
+                              if (error.response.status == 401) {
+                                _this2.$swal.fire({
+                                  icon: '',
+                                  title: '',
+                                  text: 'Session terminada'
+                                });
+
+                                _this2.$router.push({
+                                  name: "Login"
+                                });
+                              }
+                            });
+
+                          case 4:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2);
+                  }));
+
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     },
     ReporteExcel: function ReporteExcel() {
@@ -288,12 +391,71 @@ var render = function () {
                   attrs: { id: "bloqueados", translate: "no" },
                 },
                 [
-                  _vm._m(2),
+                  _c("thead", [
+                    _c("tr", [
+                      _vm.user.role_id == 4 ||
+                      _vm.user.role_id == 5 ||
+                      _vm.user.role_id == 6
+                        ? _c("th", [_vm._v("DESBLOQUEAR")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("VIN")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("MARCA")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("MODELO")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("VERSION")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("AÑO MODELO")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("AÑO FABRICACIÓN")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("RESPONSABLE")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("FECHA BLOQUEO")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("COLOR")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("CODIGO SAP")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("NAVE")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("FECHA INGRESO")]),
+                    ]),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
                     _vm._l(_vm.bloqueados, function (bloqueado) {
                       return _c("tr", { key: bloqueado.id }, [
+                        _vm.user.role_id == 4 ||
+                        _vm.user.role_id == 5 ||
+                        _vm.user.role_id == 6
+                          ? _c(
+                              "td",
+                              { staticStyle: { "text-align": "center" } },
+                              [
+                                _vm.user.role_id == 4 ||
+                                _vm.user.role_id == 5 ||
+                                _vm.user.role_id == 6
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.desbloquear(bloqueado.id)
+                                          },
+                                        },
+                                      },
+                                      [_c("i", { staticClass: "fa fa-unlock" })]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.vin))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(bloqueado.marca))]),
@@ -390,38 +552,6 @@ var staticRenderFns = [
             "data-original-title": "Fullscreen",
           },
         }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("VIN")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("MARCA")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("MODELO")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("VERSION")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("AÑO MODELO")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("AÑO FABRICACIÓN")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("RESPONSABLE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("FECHA BLOQUEO")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("COLOR")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("CODIGO SAP")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("NAVE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("FECHA INGRESO")]),
       ]),
     ])
   },

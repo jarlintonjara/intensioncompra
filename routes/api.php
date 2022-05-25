@@ -39,6 +39,12 @@ Route::resource('registro', RegistroController::class);
 Route::get('asignados', [RegistroController::class, 'asignados']);
 Route::resource('ingreso', IngresoController::class);
 
+
+Route::group(['middleware' => 'validateToken'],function () {
+    Route::post('ingreso/bloquear', [IngresoController::class, 'bloquear']);
+    Route::post('ingreso/desbloquear', [IngresoController::class, 'desbloquear']);
+});
+
 Route::resource('asignacion', AsignacionController::class);
 Route::get('reservado', [AsignacionController::class, 'reservado']);
 Route::get('facturado', [AsignacionController::class, 'facturado']);

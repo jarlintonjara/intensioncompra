@@ -27,6 +27,7 @@
                         <table id="bloqueados" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
+                                    <th v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">DESBLOQUEAR</th>
                                     <th>VIN</th>
                                     <th>MARCA</th>
                                     <th>MODELO</th>
@@ -43,6 +44,9 @@
                             </thead>
                             <tbody>
                                 <tr v-for="bloqueado in bloqueados" :key="bloqueado.id">
+                                    <td style="text-align: center" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
+                                        <button class="btn btn-success" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6"  @click="desbloquear(bloqueado.id)"><i class="fa fa-unlock"></i></button>
+                                    </td>
                                     <td>{{bloqueado.vin}}</td>
                                     <td>{{bloqueado.marca}}</td>
                                     <td>{{bloqueado.modelo}}</td>
@@ -73,6 +77,7 @@ export default {
     data(){
         return{
             bloqueados:[],
+            user: {role_id: 0}
         }
     },
     mounted(){
@@ -81,6 +86,9 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+            });
             await this.axios.get('/api/ingreso',{
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },
@@ -93,6 +101,48 @@ export default {
                     this.bloqueados =[]
                 })
                 await this.$tablaGlobal('#bloqueados');
+        },
+        async desbloquear(id){
+
+            this.$swal.fire({
+                title: '¿Seguro de desbloquear?',
+                showDenyButton: true,
+                confirmButtonText: 'Desbloquear',
+                denyButtonText: `Cancelar`,
+            }).then(async (result) => {
+
+                const token = localStorage.getItem('access_token');
+                if (result.isConfirmed) {
+                   await axios.post(`/api/ingreso/desbloquear`,{'ingreso_id' : id } , {
+                        withCredentials: true,
+                        headers: { Authorization: `Bearer ${token}` },
+                }).then(response=>{
+                        let index =  this.bloqueados.map(e => e.id).indexOf(id);
+                        if(index !== -1){
+                            let bloqueados = this.bloqueados;
+                            bloqueados.splice(index, 1);
+                            this.bloqueados = [].concat(bloqueados);
+                        }
+                        this.$swal.fire('Registro desbloqueado', '', 'success');
+                    }).catch(error=>{
+                        if(error.response.status == 400){
+                            this.$swal.fire({
+                                icon: 'error',
+                                title: 'Packing List',
+                                text: error.response.data,
+                            })
+                        }
+                        if(error.response.status == 401){
+                            this.$swal.fire({
+                                icon: '',
+                                title: '',
+                                text: 'Session terminada',
+                            });
+                            this.$router.push({ name: "Login"}); 
+                        }
+                    });
+                }
+            })
         },
         ReporteExcel(){
             //e.preventDefault();

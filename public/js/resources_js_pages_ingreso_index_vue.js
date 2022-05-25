@@ -176,8 +176,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                             }
 
                             _context2.next = 4;
-                            return axios.put("/api/ingreso/".concat(id), {
-                              bearerToken: token
+                            return axios.post("/api/ingreso/bloquear", {
+                              'ingreso_id': id
+                            }, {
+                              withCredentials: true,
+                              headers: {
+                                Authorization: "Bearer ".concat(token)
+                              }
                             }).then(function (response) {
                               var index = _this2.ingresos.map(function (e) {
                                 return e.id;
@@ -191,7 +196,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                               _this2.$swal.fire('Registro bloqueado', '', 'success');
                             })["catch"](function (error) {
-                              console.log(error);
+                              if (error.response.status == 400) {
+                                _this2.$swal.fire({
+                                  icon: 'error',
+                                  title: 'Packing List',
+                                  text: error.response.data
+                                });
+                              }
+
+                              if (error.response.status == 401) {
+                                _this2.$swal.fire({
+                                  icon: '',
+                                  title: '',
+                                  text: 'Session terminada'
+                                });
+
+                                _this2.$router.push({
+                                  name: "Login"
+                                });
+                              }
                             });
 
                           case 4:
@@ -216,7 +239,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     ReporteExcel: function ReporteExcel() {
-      //e.preventDefault();
       var dataExcel = [];
       this.ingresos.map(function (e) {
         var _dataExcel$push;

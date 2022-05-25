@@ -118,6 +118,39 @@ class IngresoController extends Controller
         //
     }
 
+    public function bloquear(Request $request)
+    {
+        $ingreso = IngresoModel::where('situacion', 'LIBRE')->where('bloqueado', 0)->where('id', $request->ingreso_id)->first();
+        if ($ingreso) {
+            $ingreso->update([
+                "bloqueado" => 1,
+                "user_bloqueo" => $request->user->id,
+                "situacion" => 'BLOQUEADO',
+                "motivo" => 'BLOQUEO MANUAL',
+                "fecha_bloqueo" => date('Y-m-d')
+            ]);
+            return response()->json($ingreso);
+        }
+        return response()->json("La unidad no esta liberada", 400);
+    }
+
+    public function desbloquear(Request $request)
+    {
+        $ingreso = IngresoModel::where('bloqueado', 1)->where('id', $request->ingreso_id)->first();
+        if ($ingreso) {
+            $ingreso->update([
+                "bloqueado" => 0,
+                "user_bloqueo" => $request->user->id,
+                "situacion" => 'LIBRE',
+                "motivo" => 'DESBLOQUEO MANUAL',
+                "fecha_bloqueo" => date('Y-m-d')
+            ]);
+            return response()->json($ingreso, 200);
+        }
+        return response()->json("La unidad no esta bloqueada", 400);
+    }
+
+
     public function update(Request $request, $id)
     {
         $auth = new AuthController();
