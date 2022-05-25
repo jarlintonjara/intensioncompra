@@ -87,7 +87,6 @@ class AsignacionController extends Controller
             default:
                 $data = $query->where('registros.concesionario_id', " ")->get();
         }
-
         return response()->json(['asignaciones' => $data, 'user' => $user]);
     }
     
