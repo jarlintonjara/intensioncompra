@@ -9,6 +9,7 @@ use App\Models\ProgramacionModel;
 use App\Models\RegistroModel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -94,10 +95,25 @@ class HomeController extends Controller
                 $totalEmplazados = $query3->count();
                 $totalReservados = $query4->count();
                 $totalFacturados = $query5->count();
-                
         }
 
+        $packingDuplicado = AsignacionModel::select(DB::raw('count(*) as total'), 'ingreso_id')
+                        ->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])
+                        ->groupBy('ingreso_id')
+                        ->having('total', '>', 1)
+                        ->get();
+
+        $noAsignados =RegistroModel::where('estado', 1)
+                        -> whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])
+                        -> whereNotIn('id', AsignacionModel::join('registros', 'asignaciones.registro_id', 'registros.id')
+                                        ->whereIn('asignaciones.situacion',['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])
+                                        ->where('registros.estado', 1)->pluck('registros.id'))
+                    ->get();
+
+               
         return response()->json([
+            "packingDuplicado" => $packingDuplicado,
+            "noAsignados" => $noAsignados,
             "totalRegistros" => $totalRegistros,
             "totalNoAsignados" => $totalNoAsignados,
             "totalAsigandos" => $totalAsignados,

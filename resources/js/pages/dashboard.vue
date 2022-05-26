@@ -6,6 +6,7 @@
                 <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
             </h1>
         </div>
+        
         <div class="row">
             <div class="col-sm-6 col-xl-2">
                 <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
@@ -74,6 +75,74 @@
                 </div>
             </div>
         </div>
+        <div class="row" v-if="user.role_id == 6">
+            <div class="col-md-12">
+                <h2>ALERTAS</h2>
+                <div v-if="packingDuplicado.length > 0" class="alert border-danger bg-transparent text-secondary fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="alert-icon">
+                            <span class="icon-stack icon-stack-md">
+                                <i class="base-7 icon-stack-3x color-danger-900"></i>
+                                <i class="fal fa-times icon-stack-1x text-white"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <span class="h5 color-danger-900">Registros asignados con el mismo VIN : {{packingDuplicado.length}}</span>
+                            <br>
+                            Registros que tienen asignado un mismo VIN del packing List
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm btn-w-m waves-effect waves-themed">Report</button>
+                    </div>
+                </div>
+                <div v-if="packingDuplicado.length == 0" class="alert border-success bg-transparent text-secondary fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="alert-icon">
+                            <span class="icon-stack icon-stack-md">
+                                <i class="base-7 icon-stack-3x color-success-600"></i>
+                                <i class="fal fa-check icon-stack-1x text-white"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <span class="h5 color-success-600">Registros asignados con el mismo VIN : {{packingDuplicado.length}}</span>
+                            <br>
+                            Registros que tienen asignado un mismo VIN del packing List
+                        </div>
+                    </div>
+                </div> 
+                
+                <div v-if="noAsignados.length > 0" class="alert border-danger bg-transparent text-secondary fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="alert-icon">
+                            <span class="icon-stack icon-stack-md">
+                                <i class="base-7 icon-stack-3x color-danger-900"></i>
+                                <i class="fal fa-times icon-stack-1x text-white"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <span class="h5 color-danger-900">egistros con problema de asignación : {{noAsignados.length}}</span>
+                            <br>
+                            Registros que deberian estar en estado 'SINASIGNAR' pero se encuentran en estado ASIGNADO, RESERVADO, EMPLAZADO o FACTURADO
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm btn-w-m waves-effect waves-themed">Report</button>
+                    </div>
+                </div>
+                <div v-if="noAsignados.length == 0" class="alert border-success bg-transparent text-secondary fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="alert-icon">
+                            <span class="icon-stack icon-stack-md">
+                                <i class="base-7 icon-stack-3x color-success-600"></i>
+                                <i class="fal fa-check icon-stack-1x text-white"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <span class="h5 color-success-600">Registros con problema de asignación : {{noAsignados.length}}</span>
+                            <br>
+                           Registros que deberian estar en estado 'SINASIGNAR' pero se encuentran en estado ASIGNADO, RESERVADO, EMPLAZADO o FACTURADO
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
         <!-- <JqxGrid :theme="'material'" :width="getWidth" :source="dataAdapter" :columns="columns"
                  :pageable="true" :autoheight="true" :sortable="true" :filterable="true" :altrows="true" 
                  :editable="true" :selectionmode="'multiplecellsadvanced'" >
@@ -119,6 +188,9 @@ export default {
     },
     data(){
         return{
+            user: {role_id: 0},
+            packingDuplicado: [],
+            noAsignados: [],
             totalRegistros: 0,
             totalNoAsignados: 0,
             totalAsignados: 0,
@@ -165,11 +237,16 @@ export default {
     methods:{
         async init(){
             const token = localStorage.getItem('access_token');
+            await axios.get('api/getSession/'+ token).then((res)=>{
+                this.user = res.data;
+            });
             await this.axios.get('/api/home',{
                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` },
             })
             .then(response=>{
+                this.packingDuplicado = response.data.packingDuplicado;
+                this.noAsignados = response.data.noAsignados;
                 this.totalRegistros = response.data.totalRegistros;
                 this.totalNoAsignados = response.data.totalNoAsignados;
                 this.totalAsignados = response.data.totalAsigandos;

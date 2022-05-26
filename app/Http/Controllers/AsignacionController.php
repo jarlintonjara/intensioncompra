@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\AsignacionModel;
 use App\Models\RegistroModel;
 use App\Http\Requests\StoreAsignacionRequest;
@@ -75,8 +74,6 @@ class AsignacionController extends Controller
                 $data =  $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                $data = $query->where('packing_list.marca', $user->marca)->get();
-                break;
             case 5:
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
@@ -85,7 +82,7 @@ class AsignacionController extends Controller
                 $data = $query->get();
                 break;
             default:
-                $data = $query->where('registros.concesionario_id', " ")->get();
+                $data = $query->get();
         }
         return response()->json(['asignaciones' => $data, 'user' => $user]);
     }
@@ -152,8 +149,6 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
                 break;
             case 4:
-                $data = $query->where('packing_list.marca', $user->marca)->get();
-                break;
             case 5:
                 $data = $query->where('packing_list.marca', $user->marca)->get();
                 break;
@@ -167,6 +162,7 @@ class AsignacionController extends Controller
 
         return response()->json($data);
     }
+
     public function facturado(Request $request)
     {
         $auth = new AuthController();

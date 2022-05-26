@@ -133,6 +133,75 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -140,6 +209,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      user: {
+        role_id: 0
+      },
+      packingDuplicado: [],
+      noAsignados: [],
       totalRegistros: 0,
       totalNoAsignados: 0,
       totalAsignados: 0,
@@ -191,12 +265,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 token = localStorage.getItem('access_token');
                 _context2.next = 3;
+                return axios.get('api/getSession/' + token).then(function (res) {
+                  _this.user = res.data;
+                });
+
+              case 3:
+                _context2.next = 5;
                 return _this.axios.get('/api/home', {
                   withCredentials: true,
                   headers: {
                     Authorization: "Bearer ".concat(token)
                   }
                 }).then(function (response) {
+                  _this.packingDuplicado = response.data.packingDuplicado;
+                  _this.noAsignados = response.data.noAsignados;
                   _this.totalRegistros = response.data.totalRegistros;
                   _this.totalNoAsignados = response.data.totalNoAsignados;
                   _this.totalAsignados = response.data.totalAsigandos;
@@ -207,8 +289,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 3:
-                _context2.next = 5;
+              case 5:
+                _context2.next = 7;
                 return _this.axios.get('/api/registro', {
                   withCredentials: true,
                   headers: {
@@ -220,7 +302,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 5:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -5878,6 +5960,152 @@ var render = function () {
           ),
         ]),
       ]),
+      _vm._v(" "),
+      _vm.user.role_id == 6
+        ? _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("h2", [_vm._v("ALERTAS")]),
+              _vm._v(" "),
+              _vm.packingDuplicado.length > 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "alert border-danger bg-transparent text-secondary fade show",
+                      attrs: { role: "alert" },
+                    },
+                    [
+                      _c("div", { staticClass: "d-flex align-items-center" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex-1" }, [
+                          _c("span", { staticClass: "h5 color-danger-900" }, [
+                            _vm._v(
+                              "Registros asignados con el mismo VIN : " +
+                                _vm._s(_vm.packingDuplicado.length)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(
+                            "\n                        Registros que tienen asignado un mismo VIN del packing List\n                    "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-danger btn-sm btn-w-m waves-effect waves-themed",
+                          },
+                          [_vm._v("Report")]
+                        ),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.packingDuplicado.length == 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "alert border-success bg-transparent text-secondary fade show",
+                      attrs: { role: "alert" },
+                    },
+                    [
+                      _c("div", { staticClass: "d-flex align-items-center" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex-1" }, [
+                          _c("span", { staticClass: "h5 color-success-600" }, [
+                            _vm._v(
+                              "Registros asignados con el mismo VIN : " +
+                                _vm._s(_vm.packingDuplicado.length)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(
+                            "\n                        Registros que tienen asignado un mismo VIN del packing List\n                    "
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.noAsignados.length > 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "alert border-danger bg-transparent text-secondary fade show",
+                      attrs: { role: "alert" },
+                    },
+                    [
+                      _c("div", { staticClass: "d-flex align-items-center" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex-1" }, [
+                          _c("span", { staticClass: "h5 color-danger-900" }, [
+                            _vm._v(
+                              "egistros con problema de asignación : " +
+                                _vm._s(_vm.noAsignados.length)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(
+                            "\n                        Registros que deberian estar en estado 'SINASIGNAR' pero se encuentran en estado ASIGNADO, RESERVADO, EMPLAZADO o FACTURADO\n                    "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-danger btn-sm btn-w-m waves-effect waves-themed",
+                          },
+                          [_vm._v("Report")]
+                        ),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.noAsignados.length == 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "alert border-success bg-transparent text-secondary fade show",
+                      attrs: { role: "alert" },
+                    },
+                    [
+                      _c("div", { staticClass: "d-flex align-items-center" }, [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex-1" }, [
+                          _c("span", { staticClass: "h5 color-success-600" }, [
+                            _vm._v(
+                              "Registros con problema de asignación : " +
+                                _vm._s(_vm.noAsignados.length)
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(
+                            "\n                       Registros que deberian estar en estado 'SINASIGNAR' pero se encuentran en estado ASIGNADO, RESERVADO, EMPLAZADO o FACTURADO\n                    "
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+            ]),
+          ])
+        : _vm._e(),
     ]
   )
 }
@@ -5891,6 +6119,54 @@ var staticRenderFns = [
         _c("i", { staticClass: "subheader-icon fal fa-chart-area" }),
         _vm._v(" "),
         _c("span", { staticClass: "fw-300" }, [_vm._v("Dashboard")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-icon" }, [
+      _c("span", { staticClass: "icon-stack icon-stack-md" }, [
+        _c("i", { staticClass: "base-7 icon-stack-3x color-danger-900" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fal fa-times icon-stack-1x text-white" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-icon" }, [
+      _c("span", { staticClass: "icon-stack icon-stack-md" }, [
+        _c("i", { staticClass: "base-7 icon-stack-3x color-success-600" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fal fa-check icon-stack-1x text-white" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-icon" }, [
+      _c("span", { staticClass: "icon-stack icon-stack-md" }, [
+        _c("i", { staticClass: "base-7 icon-stack-3x color-danger-900" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fal fa-times icon-stack-1x text-white" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-icon" }, [
+      _c("span", { staticClass: "icon-stack icon-stack-md" }, [
+        _c("i", { staticClass: "base-7 icon-stack-3x color-success-600" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fal fa-check icon-stack-1x text-white" }),
       ]),
     ])
   },
