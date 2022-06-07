@@ -43,6 +43,8 @@ Route::resource('ingreso', IngresoController::class);
 Route::group(['middleware' => 'validateToken'],function () {
     Route::post('ingreso/bloquear', [IngresoController::class, 'bloquear']);
     Route::post('ingreso/desbloquear', [IngresoController::class, 'desbloquear']);
+    Route::post('asignacion/cancelarAsignacion', [AsignacionController::class, 'cancelarAsignacion']);
+    
 });
 
 Route::resource('asignacion', AsignacionController::class);

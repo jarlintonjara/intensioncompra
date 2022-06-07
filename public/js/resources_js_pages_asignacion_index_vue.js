@@ -617,17 +617,26 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                   denyButtonText: "Cancelar"
                 }).then( /*#__PURE__*/function () {
                   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(result) {
+                    var token;
                     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
                       while (1) {
                         switch (_context7.prev = _context7.next) {
                           case 0:
                             if (!result.isConfirmed) {
-                              _context7.next = 3;
+                              _context7.next = 4;
                               break;
                             }
 
-                            _context7.next = 3;
-                            return _this3.axios["delete"]("/api/asignacion/".concat(id)).then(function (response) {
+                            token = localStorage.getItem('access_token');
+                            _context7.next = 4;
+                            return _this3.axios.post("/api/asignacion/cancelarAsignacion", {
+                              'id': id
+                            }, {
+                              withCredentials: true,
+                              headers: {
+                                Authorization: "Bearer ".concat(token)
+                              }
+                            }).then(function (response) {
                               var index = _this3.asignaciones.map(function (e) {
                                 return e.id;
                               }).indexOf(id);
@@ -643,7 +652,7 @@ var alpha = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.regex(
                               console.log(error);
                             });
 
-                          case 3:
+                          case 4:
                           case "end":
                             return _context7.stop();
                         }

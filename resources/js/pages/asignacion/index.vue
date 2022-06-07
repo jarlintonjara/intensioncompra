@@ -437,7 +437,8 @@ export default {
                 console.log(error);
             });
         },
-        async borrar(id){
+        async borrar(id) {
+           
             this.$swal.fire({
                 title: '¿Seguro de eliminar asignación?',
                 showDenyButton: true,
@@ -445,7 +446,11 @@ export default {
                 denyButtonText: `Cancelar`,
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await this.axios.delete(`/api/asignacion/${id}`).then(response=>{
+                    const token = localStorage.getItem('access_token');
+                    await this.axios.post(`/api/asignacion/cancelarAsignacion`, {'id': id}, {
+                        withCredentials: true,
+                        headers: { Authorization: `Bearer ${token}` }
+                    }).then(response=>{
                         let index =  this.asignaciones.map(e => e.id).indexOf(id);
                         if(index !== -1){
                             let asignaciones = this.asignaciones;

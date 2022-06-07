@@ -356,6 +356,19 @@ class AsignacionController extends Controller
         return response()->json($asignacion);
     }
 
+    public function cancelarAsignacion(Request $request)
+    {
+        $asignacion = AsignacionModel::findOrFail($request->id);
+        $asignacion->update(['estado' => 0, 'situacion' => 'SINASIGNAR', 'observacion' => 'cancelado por el asesor: '.$request->user->id]);
+
+        $packing = IngresoModel::findOrFail($asignacion->ingreso_id);
+        $packing->update(['situacion' => 'LIBRE']);
+
+        $registro = RegistroModel::findOrFail($asignacion->registro_id);
+        $registro->update(['estado' => 0]);
+        return response()->json($asignacion);
+    }
+
     public function destroy($id)
     {
         $asignacion = AsignacionModel::findOrFail($id);
