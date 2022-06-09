@@ -16,7 +16,7 @@ class ReAsignar extends Command
     public function handle()
     {
         // No se reserva en 24 horas pasa a la cola de registros
-        /* $asignaciones = AsignacionModel::where('situacion', 'ASIGNADO')->get();
+        $asignaciones = AsignacionModel::where('situacion', 'ASIGNADO')->get();
 
         foreach ($asignaciones as $asignacion) {
 
@@ -39,7 +39,7 @@ class ReAsignar extends Command
                 $asignacion->situacion = 'SINASIGNAR';
                 $asignacion->save();
             } 
-        } */
+        }
         // No se factura en 48 horas pasa a la cola de registros
         $asignaciones = AsignacionModel::where('situacion', 'EMPLAZADO')->get();
 
