@@ -15,7 +15,7 @@ class Asignacion extends Command
 
     public function handle()
     {
-        $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'situacion')
+        $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'color2', 'color3', 'situacion', 'fecha')
         ->where('situacion', 'SINASIGNAR')->where('estado', 1)->orderBy('fecha', 'asc')
         ->get();
 
@@ -40,22 +40,15 @@ class Asignacion extends Command
                     $registro->save();
 
                     AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                    continue;
                 }
             }
-        }
 
-        //segundo
-        $registros2 = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color2', 'situacion')
-        ->where('situacion', 'SINASIGNAR')->where('estado', 1)->orderBy('fecha', 'asc')
-        ->get();
-
-        foreach ($registros2 as $registro2) {
-
-            $ingresos2 = IngresoModel::where('marca', $registro2->marca)
-                ->where('modelo', $registro2->modelo)
-                ->where('version', $registro2->version)
-                ->where('anio_modelo', $registro2->anio_modelo)
-                ->where('color', $registro2->color2)
+            $ingresos2 = IngresoModel::where('marca', $registro->marca)
+                ->where('modelo', $registro->modelo)
+                ->where('version', $registro->version)
+                ->where('anio_modelo', $registro->anio_modelo)
+                ->where('color', $registro->color2)
                 ->where('situacion', 'LIBRE')
                 ->where('bloqueado', 0)
                 ->first();
@@ -66,31 +59,22 @@ class Asignacion extends Command
                     $ingresos2->situacion = 'ASIGNADO';
                     $ingresos2->save();
 
-                    $registro2->situacion = 'ASIGNADO';
-                    $registro2->save();
+                    $registro->situacion = 'ASIGNADO';
+                    $registro->save();
 
-                    AsignacionModel::create(['registro_id' => $registro2->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                    AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                    continue;
                 }
             }
-        }
 
-        //tercero
-        $registros3 = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color3', 'situacion')
-        ->where('situacion', 'SINASIGNAR')->where('estado', 1)->orderBy('fecha', 'asc')
-        ->get();
-
-        foreach ($registros3 as $registro3) {
-
-            $ingresos3 = IngresoModel::where('marca', $registro3->marca)
-                ->where('modelo', $registro3->modelo)
-                ->where('version', $registro3->version)
-                ->where('anio_modelo', $registro3->anio_modelo)
-                ->where('color', $registro3->color3)
+            $ingresos3 = IngresoModel::where('marca', $registro->marca)
+                ->where('modelo', $registro->modelo)
+                ->where('version', $registro->version)
+                ->where('anio_modelo', $registro->anio_modelo)
+                ->where('color', $registro->color3)
                 ->where('situacion', 'LIBRE')
                 ->where('bloqueado', 0)
                 ->first();
-
-
 
             if ($ingresos3) {
                 $asignado3 = AsignacionModel::where('ingreso_id', $ingresos3->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
@@ -98,10 +82,10 @@ class Asignacion extends Command
                     $ingresos3->situacion = 'ASIGNADO';
                     $ingresos3->save();
 
-                    $registro3->situacion = 'ASIGNADO';
-                    $registro3->save();
+                    $registro->situacion = 'ASIGNADO';
+                    $registro->save();
 
-                    AsignacionModel::create(['registro_id' => $registro3->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                    AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
                 }
             }
         }

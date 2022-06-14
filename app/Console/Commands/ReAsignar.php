@@ -26,12 +26,13 @@ class ReAsignar extends Command
 
             $packing = IngresoModel::where('id', $asignacion->ingreso_id)->first();
 
-            if($packing){
+            if ($packing) {
                 $packing->situacion = 'LIBRE';
                 $packing->save();
-            } 
-    
+            }
+
             if($registro){
+
                 $registro->situacion = 'SINASIGNAR';
                 $registro->fecha = date('Y-m-d');
                 $registro->save();
@@ -41,10 +42,10 @@ class ReAsignar extends Command
             } 
         }
         // No se factura en 48 horas pasa a la cola de registros
-        $asignaciones = AsignacionModel::where('situacion', 'EMPLAZADO')->get();
+        /* $asignaciones = AsignacionModel::where('situacion', 'EMPLAZADO')->get();
 
         foreach ($asignaciones as $asignacion) {
-
+            
             $registro = RegistroModel::where('id', $asignacion->registro_id)->first();
 
             $packing = IngresoModel::where('id', $asignacion->ingreso_id)->first();
@@ -62,6 +63,6 @@ class ReAsignar extends Command
                 $asignacion->situacion = 'SINASIGNAR';
                 $asignacion->save();
             } 
-        } 
+        }  */
     }
 }
