@@ -7,39 +7,14 @@ use App\Models\AsignacionModel;
 
 use Illuminate\Console\Command;
 
-class ReAsignar extends Command
+class ReAsignarEmplazados extends Command
 {
-    protected $signature = 'send:reAsignar';
+    protected $signature = 'send:reAsignarEmplazados';
 
-    protected $description = 'Despues de 24h de reservarse pasan a cola de registros';
+    protected $description = 'Despues de 48h de emplazados pasan a cola de registros';
 
     public function handle()
     {
-        // No se reserva en 24 horas pasa a la cola de registros
-        $asignaciones = AsignacionModel::where('situacion', 'ASIGNADO')->get();
-
-        foreach ($asignaciones as $asignacion) {
-
-            $registro = RegistroModel::where('id', $asignacion->registro_id)
-                        ->where('situacion', 'ASIGNADO')
-                        ->first();
-
-            $packing = IngresoModel::where('id', $asignacion->ingreso_id)->first();
-
-            if ($packing) {
-                $packing->situacion = 'LIBRE';
-                $packing->save();
-            }
-
-            if($registro){
-                $registro->situacion = 'SINASIGNAR';
-                $registro->fecha = date('Y-m-d');
-                $registro->save();
-
-                $asignacion->situacion = 'SINASIGNAR';
-                $asignacion->save();
-            } 
-        }
         // No se factura en 48 horas pasa a la cola de registros
         $asignaciones = AsignacionModel::select(
             'packing_list.vin',
@@ -57,7 +32,7 @@ class ReAsignar extends Command
             ->get();
 
         $fecha = date('Y-m-d H:i:s');
-
+        
         foreach ($asignaciones as $asignacion) {
 
             $nuevafecha = strtotime('+2 day', strtotime($asignacion->fecha_emplazado));

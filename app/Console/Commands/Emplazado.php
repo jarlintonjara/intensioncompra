@@ -35,7 +35,7 @@ class Emplazado extends Command
             $registro = RegistroModel::find($row->registro_id);
 
             if ($emplazado && $registro) {
-                $row->fecha_emplazado = date('Y-m-d');
+                $row->fecha_emplazado = date('Y-m-d H:i:s');
                 $row->fecha_sap_emplazado = $emplazado->fecha_emplazamiento;
                 $row->situacion = 'EMPLAZADO';
                 $row->save();

@@ -6,6 +6,7 @@ use App\Console\Commands\BloquearFacturados;
 use App\Console\Commands\Emplazado;
 use App\Console\Commands\Facturacion;
 use App\Console\Commands\ReAsignar;
+use App\Console\Commands\ReAsignarEmplazados;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -18,6 +19,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('send:asignacion')->weekdays()->dailyAt('7:20');
         $schedule->command('send:emplazado')->weekdays()->dailyAt('7:25');
         $schedule->command('send:emplazado')->weekdays()->dailyAt('13:30');
+        $schedule->command('send:reAsignarEmplazados')->weekdays()->dailyAt('13:35');
         $schedule->command('send:facturado')->weekdays()->dailyAt('7:30');
     }
 
@@ -26,6 +28,7 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
         BloquearFacturados::class;
         ReAsignar::class;
+        ReAsignarEmplazados::class;
         Asignacion::class;
         Emplazado::class;
         Facturacion::class;
