@@ -31,7 +31,7 @@ Route::get('test', function(){
 
 }); */
 
-Route::get('asignacion', function () {
+/* Route::get('asignacionasasas', function () {
         $totalFacturados = [];
         $totalAsignados = [];
         $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'color2', 'color3', 'situacion', 'fecha')
@@ -135,7 +135,7 @@ Route::get('asignacion', function () {
         }
     print_r($totalFacturados);
     print_r($totalAsignados);
-});
+}); */
 
 Route::get('displayImage/{asignacion}/{filename}', [FileController::class, 'displayImage']);
 
