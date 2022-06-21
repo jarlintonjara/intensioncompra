@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 use App\Models\RegistroModel;
 use App\Models\IngresoModel;
 use App\Models\AsignacionModel;
-
+use App\Models\FacturadoModel;
 use Illuminate\Console\Command;
 
 class Asignacion extends Command
@@ -15,6 +15,8 @@ class Asignacion extends Command
 
     public function handle()
     {
+        $totalFacturados = [];
+        $totalAsignados = [];
         $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'color2', 'color3', 'situacion', 'fecha')
         ->where('situacion', 'SINASIGNAR')->where('estado', 1)->orderBy('fecha', 'asc')
         ->get();
@@ -29,9 +31,17 @@ class Asignacion extends Command
                 ->where('situacion', 'LIBRE')
                 ->where('bloqueado', 0)
                 ->first();
+            
+            $facturado = FacturadoModel::where('vin', $ingresos->vin)->first();
+            if($facturado){
+                array_push($totalFacturados, $facturado->vin);
+            }
 
-            if ($ingresos) {
+            if ($ingresos && !$facturado) {
                 $asignado = AsignacionModel::where('ingreso_id', $ingresos->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
+                if ($asignado) {
+                    array_push($totalAsignados, $asignado->id);
+                }
                 if (!$asignado) {
                     $ingresos->situacion = 'ASIGNADO';
                     $ingresos->save();
@@ -53,8 +63,16 @@ class Asignacion extends Command
                 ->where('bloqueado', 0)
                 ->first();
 
-            if ($ingresos2) {
+            $facturado = FacturadoModel::where('vin', $ingresos->vin)->first();
+            if ($facturado) {
+                array_push($totalFacturados, $facturado->vin);
+            }
+
+            if ($ingresos2 && !$facturado) {
                 $asignado2 = AsignacionModel::where('ingreso_id', $ingresos2->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
+                if ($asignado2) {
+                    array_push($totalAsignados, $asignado2->id);
+                }
                 if (!$asignado2) {
                     $ingresos2->situacion = 'ASIGNADO';
                     $ingresos2->save();
@@ -76,8 +94,16 @@ class Asignacion extends Command
                 ->where('bloqueado', 0)
                 ->first();
 
-            if ($ingresos3) {
+            $facturado = FacturadoModel::where('vin', $ingresos->vin)->first();
+            if ($facturado) {
+                array_push($totalFacturados, $facturado->vin);
+            }
+
+            if ($ingresos3 && !$facturado ) {
                 $asignado3 = AsignacionModel::where('ingreso_id', $ingresos3->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
+                if ($asignado3) {
+                    array_push($totalAsignados, $asignado3->id);
+                }
                 if (!$asignado3) {
                     $ingresos3->situacion = 'ASIGNADO';
                     $ingresos3->save();

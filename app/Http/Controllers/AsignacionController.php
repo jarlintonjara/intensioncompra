@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AsignacionModel;
 use App\Models\RegistroModel;
 use App\Http\Requests\StoreAsignacionRequest;
+use App\Models\FacturadoModel;
 use App\Models\IngresoModel;
 
 class AsignacionController extends Controller
@@ -341,6 +342,12 @@ class AsignacionController extends Controller
     public function update(Request $request, $id)
     {
         $asignacion = AsignacionModel::findOrFail($id);
+        $facturado = AsignacionModel::select('asignaciones.id')->join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
+            ->join('proceso_facturacion_si', 'proceso_facturacion_si.vin', 'packing_list.vin')
+            ->first();
+        if($facturado){
+            return response()->json(["message" => "Packing list ya facturado"]);
+        }
         $asignacion->codigo_reserva = $request->codigo_reserva;
         $asignacion->monto_reserva = $request->monto_reserva;
         $asignacion->fecha_reserva = date('Y-m-d');

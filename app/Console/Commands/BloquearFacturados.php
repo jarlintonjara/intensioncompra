@@ -14,10 +14,13 @@ class BloquearFacturados extends Command
     public function handle()
     {
         $facturados = IngresoModel::select(
-            'packing_list.*'
+            'packing_list.id',
+            'packing_list.vin',
+            'packing_list.bloqueado'
         )
         ->Join('proceso_facturacion_si', 'proceso_facturacion_si.vin', 'packing_list.vin')
         ->where('packing_list.bloqueado', 0)->get();
+
         foreach ($facturados as $facturado) {
 
             $ingreso = IngresoModel::where('vin', $facturado->vin)->where('situacion', 'LIBRE')->where('bloqueado', 0)->first();
@@ -33,3 +36,4 @@ class BloquearFacturados extends Command
         }
     }
 }
+
