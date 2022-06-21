@@ -29,11 +29,113 @@ Route::get('test', function(){
 
 /* Route::get('emplazado', function () {
 
-});
+}); */
 
 Route::get('asignacion', function () {
+        $totalFacturados = [];
+        $totalAsignados = [];
+        $registros = RegistroModel::select('id', 'marca', 'modelo', 'version', 'anio_modelo', 'color1', 'color2', 'color3', 'situacion', 'fecha')
+        ->where('situacion', 'SINASIGNAR')->where('estado', 1)->orderBy('fecha', 'asc')
+        ->get();
 
-}); */
+        foreach ($registros as $registro) {
+
+            $ingresos = IngresoModel::where('marca', $registro->marca)
+                ->where('modelo', $registro->modelo)
+                ->where('version', $registro->version)
+                ->where('anio_modelo', $registro->anio_modelo)
+                ->where('color', $registro->color1)
+                ->where('situacion', 'LIBRE')
+                ->where('bloqueado', 0)
+                ->first();
+            
+            
+
+            if ($ingresos) {
+                $asignado = AsignacionModel::where('ingreso_id', $ingresos->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
+                $facturado = FacturadoModel::where('vin', $ingresos->vin)->first();
+                if ($facturado) {
+                    array_push($totalFacturados, $facturado->vin);
+                }
+                if ($asignado) {
+                    array_push($totalAsignados, $asignado->id);
+                }
+                if (!$asignado && !$facturado) {
+                    $ingresos->situacion = 'ASIGNADO';
+                    $ingresos->save();
+
+                    $registro->situacion = 'ASIGNADO';
+                    $registro->save();
+
+                    AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                    continue;
+                }
+            }
+
+            $ingresos2 = IngresoModel::where('marca', $registro->marca)
+                ->where('modelo', $registro->modelo)
+                ->where('version', $registro->version)
+                ->where('anio_modelo', $registro->anio_modelo)
+                ->where('color', $registro->color2)
+                ->where('situacion', 'LIBRE')
+                ->where('bloqueado', 0)
+                ->first();
+
+            
+
+            if ($ingresos2 && !$facturado) {
+                $asignado2 = AsignacionModel::where('ingreso_id', $ingresos2->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
+                $facturado = FacturadoModel::where('vin', $ingresos2->vin)->first();
+                if ($facturado) {
+                    array_push($totalFacturados, $facturado->vin);
+                }
+                if ($asignado2) {
+                    array_push($totalAsignados, $asignado2->id);
+                }
+                if (!$asignado2 && !$facturado) {
+                    $ingresos2->situacion = 'ASIGNADO';
+                    $ingresos2->save();
+
+                    $registro->situacion = 'ASIGNADO';
+                    $registro->save();
+
+                    AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos2->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                    continue;
+                }
+            }
+
+            $ingresos3 = IngresoModel::where('marca', $registro->marca)
+                ->where('modelo', $registro->modelo)
+                ->where('version', $registro->version)
+                ->where('anio_modelo', $registro->anio_modelo)
+                ->where('color', $registro->color3)
+                ->where('situacion', 'LIBRE')
+                ->where('bloqueado', 0)
+                ->first();
+
+            if ($ingresos3 && !$facturado ) {
+                $asignado3 = AsignacionModel::where('ingreso_id', $ingresos3->id)->whereIn('situacion', ['ASIGNADO', 'RESERVADO', 'EMPLAZADO', 'FACTURADO'])->first();
+                $facturado = FacturadoModel::where('vin', $ingresos3->vin)->first();
+                if ($facturado) {
+                    array_push($totalFacturados, $facturado->vin);
+                }
+                if ($asignado3) {
+                    array_push($totalAsignados, $asignado3->id);
+                }
+                if (!$asignado3 && !$facturado) {
+                    $ingresos3->situacion = 'ASIGNADO';
+                    $ingresos3->save();
+
+                    $registro->situacion = 'ASIGNADO';
+                    $registro->save();
+
+                    AsignacionModel::create(['registro_id' => $registro->id, 'ingreso_id' => $ingresos3->id, 'situacion' => 'ASIGNADO', 'fecha_distribucion' => date('Y-m-d')]);
+                }
+            }
+        }
+    print_r($totalFacturados);
+    print_r($totalAsignados);
+});
 
 Route::get('displayImage/{asignacion}/{filename}', [FileController::class, 'displayImage']);
 

@@ -342,8 +342,10 @@ class AsignacionController extends Controller
     public function update(Request $request, $id)
     {
         $asignacion = AsignacionModel::findOrFail($id);
-        $facturado = AsignacionModel::select('asignaciones.id')->join('packing_list', 'asignaciones.ingreso_id', 'packing_list.id')
+        $facturado = AsignacionModel::select('asignaciones.id')
+            ->join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
             ->join('proceso_facturacion_si', 'proceso_facturacion_si.vin', 'packing_list.vin')
+            ->where('asignaciones.id', $id)
             ->first();
         if($facturado){
             return response()->json(["message" => "Packing list ya facturado"], 404) ;
