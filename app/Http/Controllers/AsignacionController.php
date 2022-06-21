@@ -346,7 +346,7 @@ class AsignacionController extends Controller
             ->join('proceso_facturacion_si', 'proceso_facturacion_si.vin', 'packing_list.vin')
             ->first();
         if($facturado){
-            return response()->json(["message" => "Packing list ya facturado"]);
+            return response()->json(["message" => "Packing list ya facturado"], 404) ;
         }
         $asignacion->codigo_reserva = $request->codigo_reserva;
         $asignacion->monto_reserva = $request->monto_reserva;
