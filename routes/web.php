@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('test', function(){
-    $data = ['a', 'b', 'c', 'd'];
+    $data = IngresoModel::whereNull('vin_e')->get();
     foreach ($data as $e) {
-        if($e == 'c') continue;
-        echo $e;
+        $vin = Hash::make($e["vin"]);
+        $row = substr($vin, 0, 30);
+        $e->vin_e = $row;
+        $e->save();
     }
 });
 
