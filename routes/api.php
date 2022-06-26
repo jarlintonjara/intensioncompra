@@ -39,7 +39,6 @@ Route::resource('registro', RegistroController::class);
 Route::get('asignados', [RegistroController::class, 'asignados']);
 Route::resource('ingreso', IngresoController::class);
 
-
 Route::group(['middleware' => 'validateToken'],function () {
     Route::post('ingreso/bloquear', [IngresoController::class, 'bloquear']);
     Route::post('ingreso/desbloquear', [IngresoController::class, 'desbloquear']);
@@ -65,5 +64,6 @@ Route::get('home', [HomeController::class, 'index']);
 //Files
 Route::resource('gallery', FileController::class);
 Route::get('getimages/{id}', [FileController::class, 'getImages']);
-Route::post('image/delete', [FileController::class, 'destroy']); 
+Route::post('image/delete', [FileController::class, 'destroy']);
 
+Route::post('importPacking', [IngresoController::class, 'import']);

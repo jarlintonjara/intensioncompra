@@ -93,6 +93,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -254,6 +294,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         vacios: [[]]
       };
       (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ExpExcel)(dataExcel, "PackingList.xlsx", dataSend.name, dataSend.vacios);
+    },
+    importModal: function importModal() {
+      $('#modalDetalle').modal('show');
+    },
+    importExcel: function importExcel() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var token;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                token = localStorage.getItem('access_token');
+                _context4.next = 3;
+                return _this3.axios.post('/api/importPacking', {
+                  withCredentials: true,
+                  headers: {
+                    Authorization: "Bearer ".concat(token)
+                  }
+                }).then(function (_ref2) {
+                  var data = _ref2.data;
+                  console.log(data);
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   }
 });
@@ -378,6 +452,25 @@ var render = function () {
                     ]
                   ),
                 ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.importModal.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-file-excel" }),
+                      _vm._v(" Importar"),
+                    ]
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c(
@@ -478,6 +571,66 @@ var render = function () {
           ]),
         ]),
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "modalDetalle",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-hidden": "true",
+          },
+        },
+        [
+          _c("div", { staticClass: "modal-dialog modal-lg" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title h4" }, [
+                  _vm._v("Importar Packing List"),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close",
+                    },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarModal()
+                      },
+                    },
+                  },
+                  [_vm._m(2)]
+                ),
+              ]),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.cerrarModal()
+                      },
+                    },
+                  },
+                  [_vm._v("Close")]
+                ),
+              ]),
+            ]),
+          ]),
+        ]
+      ),
     ]
   )
 }
@@ -527,6 +680,51 @@ var staticRenderFns = [
             "data-original-title": "Fullscreen",
           },
         }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", { staticClass: "fal fa-times" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "card mb-5" }, [
+        _c(
+          "form",
+          {
+            staticClass: "p-2",
+            attrs: {
+              action: "importExcel",
+              method: "post",
+              enctype: "multipart/form-data",
+            },
+          },
+          [
+            _c("div", { staticClass: "card-body p-3" }, [
+              _c("input", {
+                staticClass: "form-control col",
+                attrs: { type: "file", name: "file", accept: ".csv" },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success m-1",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Import")]
+              ),
+            ]),
+          ]
+        ),
       ]),
     ])
   },

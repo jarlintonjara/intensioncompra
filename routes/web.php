@@ -29,6 +29,7 @@ Route::get('test', function(){
     }
 });
 
+
 /* Route::get('emplazado', function () {
 
 }); */

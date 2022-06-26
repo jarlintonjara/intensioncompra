@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PackingListImport;
 use App\Models\IngresoModel;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IngresoController extends Controller
 {
@@ -171,5 +173,31 @@ class IngresoController extends Controller
     public function destroy(IngresoModel $ingresoModel)
     {
         //
+    }
+
+    function import(Request $request)
+    {
+
+        if ($request->file('file')) {
+
+            $import =  Excel::import(new PackingListImport(), request()->file('file'));
+
+            $msg_success = "Data Uploaded Succesfully! ";
+
+            $msg_danger = "Data Uploaded failed! ";
+
+            if ($import) {
+
+                return redirect('/')->with('success', strtoupper($msg_success));
+            } else {
+
+                return redirect('/')->with('danger', strtoupper($msg_danger));
+            }
+        } else {
+
+            $msge = "please choose your file! ";
+
+            return redirect('/')->with('choose_file', strtoupper($msge));
+        }
     }
 }

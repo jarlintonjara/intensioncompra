@@ -6,7 +6,7 @@
                 <i class='subheader-icon fal fa-pencil'></i> <span class='fw-300'>PACKING LIST</span>
             </h1>
         </div>
-        
+
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
@@ -14,18 +14,26 @@
                         <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
                     </h2>
                     <div class="panel-toolbar">
-                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse"
+                            data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen"
+                            data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                     </div>
                 </div>
                 <div class="panel-container show">
                     <div class="panel-content">
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i class="fa fa-file-excel"></i> Reporte</button>
+                                <button class="btn btn-success" @click.prevent="ReporteExcel"><i
+                                        class="fa fa-file-excel"></i> Reporte</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success" @click.prevent="importModal"><i
+                                        class="fa fa-file-excel"></i> Importar</button>
                             </div>
                         </div>
-                        <table id="tingresos" class="table table-bordered table-hover table-striped w-100" translate="no">
+                        <table id="tingresos" class="table table-bordered table-hover table-striped w-100"
+                            translate="no">
                             <thead>
                                 <tr>
                                     <th v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">BLOQUEAR</th>
@@ -44,8 +52,11 @@
                             </thead>
                             <tbody>
                                 <tr v-for="ingreso in ingresos" :key="ingreso.id">
-                                    <td style="text-align: center" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
-                                        <button class="btn btn-danger" v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6"  @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
+                                    <td style="text-align: center"
+                                        v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">
+                                        <button class="btn btn-danger"
+                                            v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6"
+                                            @click="bloquear(ingreso.id)"><i class="fa fa-unlock"></i></button>
                                     </td>
                                     <td>{{ingreso.vin}}</td>
                                     <td>{{ingreso.marca}}</td>
@@ -59,14 +70,43 @@
                                     <td>{{ingreso.fecha_ingreso}}</td>
                                 </tr>
                             </tbody>
-                            
+
                         </table>
                         <!-- datatable end -->
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <!-- MODAL DETALLE -->
+        <div id="modalDetalle" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title h4">Importar Packing List</h5>
+                        <button type="button" class="close" @click="cerrarModal()" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card mb-5">
+                            <form action="importExcel" class="p-2" method="post" enctype="multipart/form-data">
+                                <div class="card-body p-3">
+                                    <input type="file" name="file" accept=".csv" class="form-control col">
+                                    <button class="btn btn-success m-1" type="submit">Import</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            @click="cerrarModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 </template>
 <script>
@@ -171,6 +211,22 @@ export default {
             };
             ExpExcel(dataExcel, "PackingList.xlsx", dataSend.name, dataSend.vacios);
         },
+        importModal() { 
+            $('#modalDetalle').modal('show');
+        },
+        async importExcel() { 
+            const token = localStorage.getItem('access_token');
+            await this.axios.post('/api/importPacking', {
+                withCredentials: true,
+                headers: { Authorization: `Bearer ${token}` },
+            })
+                .then(({ data }) => {
+                    console.log(data);
+                }) 
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     }
 }
 
