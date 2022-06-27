@@ -91,12 +91,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="card mb-5">
-                            <form action="importExcel" class="p-2" method="post" enctype="multipart/form-data">
-                                <div class="card-body p-3">
-                                    <input type="file" name="file" accept=".csv" class="form-control col">
-                                    <button class="btn btn-success m-1" type="submit">Import</button>
-                                </div>
-                            </form>
+                            <div class="card-body p-3">
+                                <input type="file" name="file" accept=".xlsx" class="form-control col">
+                                <button class="btn btn-success m-1"  @click="importExcel()" type="submit">Import</button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -1,28 +1,71 @@
 <?php
 
-namespace App\Exports;
+namespace App\Imports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Illuminate\Validation\Rule;
 use App\Models\IngresoModel;
 
-class PackingListImport implements FromCollection, WithHeadings
+class PackingListImport implements ToModel, WithHeadingRow, WithValidation
 {
-    protected array $columns;
-    protected array $data;
+    use Importable;
 
-    public function __construct() {
-        /* $this->columns = $columns;
-        $this->data = $data; */
-    }
-
-    public function headings(): array
+    public function model(array $row)
     {
-        return ['modelo','version'];
+        if (!isset($row[0]) ) {
+            return null;
+        }
+        return new IngresoModel([
+            'marca' => $row['marca'],
+            'modelo' => $row['modelo'], 
+            'version' => $row['version'], 
+            'color' => $row['color'], 
+            'anio_modelo' => $row['anio_modelo'], 
+            'anio_fabricacion' => $row['anio_fabricacion'], 
+            'situacion' => $row['situacion']
+        ]);
     }
-
-    public function collection()
+    
+    public function rules(): array
     {
-        return IngresoModel::select('modelo','version')->get();
-    } 
+        return [
+            'marca' => [
+                'required',
+                'string'
+            ],
+            'modelo' => [
+                'required',
+                'string'
+            ],
+            'version' => [
+                'required',
+                'string'
+            ],
+            'color' => [
+                'required',
+                'string'
+            ],
+            'VIN' => [
+                'required',
+                'string'
+            ],
+            'anio_modelo' => [
+                'required',
+                'string'
+            ],
+            'anio_fabricacion' => [
+                'required',
+                'string'
+            ],
+            'situacion' => [
+                'required',
+                'string',
+                Rule::in(['first-zone', 'second-zone']),
+            ]
+        ];
+    }
 }

@@ -131,8 +131,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -610,7 +608,30 @@ var render = function () {
                 ),
               ]),
               _vm._v(" "),
-              _vm._m(3),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "card mb-5" }, [
+                  _c("div", { staticClass: "card-body p-3" }, [
+                    _c("input", {
+                      staticClass: "form-control col",
+                      attrs: { type: "file", name: "file", accept: ".xlsx" },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success m-1",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.importExcel()
+                          },
+                        },
+                      },
+                      [_vm._v("Import")]
+                    ),
+                  ]),
+                ]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -689,43 +710,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { attrs: { "aria-hidden": "true" } }, [
       _c("i", { staticClass: "fal fa-times" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "card mb-5" }, [
-        _c(
-          "form",
-          {
-            staticClass: "p-2",
-            attrs: {
-              action: "importExcel",
-              method: "post",
-              enctype: "multipart/form-data",
-            },
-          },
-          [
-            _c("div", { staticClass: "card-body p-3" }, [
-              _c("input", {
-                staticClass: "form-control col",
-                attrs: { type: "file", name: "file", accept: ".csv" },
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success m-1",
-                  attrs: { type: "submit" },
-                },
-                [_vm._v("Import")]
-              ),
-            ]),
-          ]
-        ),
-      ]),
     ])
   },
 ]

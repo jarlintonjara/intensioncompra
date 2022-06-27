@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\PackingListImport;
+use App\Imports\PackingListImport;
 use App\Models\IngresoModel;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class IngresoController extends Controller
 {
@@ -177,27 +178,25 @@ class IngresoController extends Controller
 
     function import(Request $request)
     {
-
         if ($request->file('file')) {
-
-            $import =  Excel::import(new PackingListImport(), request()->file('file'));
-
-            $msg_success = "Data Uploaded Succesfully! ";
-
-            $msg_danger = "Data Uploaded failed! ";
-
-            if ($import) {
-
-                return redirect('/')->with('success', strtoupper($msg_success));
-            } else {
-
-                return redirect('/')->with('danger', strtoupper($msg_danger));
+            /*$path = storage_path('/app/public/packingList.xlsx');
+            if (!FacadesFile::exists($path)) {
+                abort(404);
             }
+            $file = FacadesFile::get($path);
+            $import =  Excel::import(new PackingListImport(), $file);*/
+            $import =  Excel::import(new PackingListImport(), request()->file('file'));
+            $msg_success = "Data Uploaded Succesfully! ";
+            $msg_danger = "Data Uploaded failed! ";
+            if ($import) {
+                return response()->json(['message' => $msg_success]);
+            } else {
+                return response()->json(['message' => $msg_danger]);
+            }
+
         } else {
-
             $msge = "please choose your file! ";
-
-            return redirect('/')->with('choose_file', strtoupper($msge));
+            return response()->json(['message' => $msge]);
         }
     }
 }

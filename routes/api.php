@@ -66,4 +66,5 @@ Route::resource('gallery', FileController::class);
 Route::get('getimages/{id}', [FileController::class, 'getImages']);
 Route::post('image/delete', [FileController::class, 'destroy']);
 
+Route::get('importPackingList', [IngresoController::class, 'import']);
 Route::post('importPacking', [IngresoController::class, 'import']);
