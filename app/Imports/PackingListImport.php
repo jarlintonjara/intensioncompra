@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\CaracteristicaModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -9,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Illuminate\Validation\Rule;
 use App\Models\IngresoModel;
+use Illuminate\Support\Facades\Hash;
 
 class PackingListImport implements ToModel, WithHeadingRow, WithValidation
 {
@@ -16,9 +18,7 @@ class PackingListImport implements ToModel, WithHeadingRow, WithValidation
 
     public function model(array $row)
     {
-        if (!isset($row[0]) ) {
-            return null;
-        }
+        $vin = Hash::make($row["vin"]);
         return new IngresoModel([
             'marca' => $row['marca'],
             'modelo' => $row['modelo'], 
@@ -26,7 +26,15 @@ class PackingListImport implements ToModel, WithHeadingRow, WithValidation
             'color' => $row['color'], 
             'anio_modelo' => $row['anio_modelo'], 
             'anio_fabricacion' => $row['anio_fabricacion'], 
-            'situacion' => $row['situacion']
+            'vin' => $row['vin'], 
+            'situacion' => $row['situacion'],
+            'bloqueado' => ($row['situacion'] == "BLOQUEADO") ? 1 : 0,
+            'user_bloqueo' => ($row['situacion'] == "BLOQUEADO") ? 1751 : null,
+            'fecha_bloqueo' => ($row['situacion'] == "BLOQUEADO") ? date('Y-m-d') : null,
+            'nave' => $row['nave'],
+            'codigo_sap' => $row['material'],
+            'fecha_ingreso' => date('Y-m-d', strtotime($row['fecha_ingreso'])),
+            'vin_e' => substr($vin, 0, 30)
         ]);
     }
     
@@ -35,36 +43,50 @@ class PackingListImport implements ToModel, WithHeadingRow, WithValidation
         return [
             'marca' => [
                 'required',
-                'string'
+                'string',
+                'exists:caracteristicas,marca'
             ],
             'modelo' => [
                 'required',
-                'string'
+                'string',
+                Rule::exists('caracteristicas', 'modelo')->where(function ($query) {
+                    return $query->where('estado', 1);
+                })
             ],
             'version' => [
                 'required',
-                'string'
+                'string',
+                Rule::exists('caracteristicas', 'version')->where(function ($query) {
+                    return $query->where('estado', 1);
+                })
             ],
             'color' => [
                 'required',
-                'string'
+                'string',
+                Rule::exists('caracteristicas', 'color')->where(function ($query) {
+                    return $query->where('estado', 1);
+                })
             ],
-            'VIN' => [
+            'vin' => [
                 'required',
-                'string'
-            ],
+                'string',
+                'unique:packing_list,vin'
+            ], 
             'anio_modelo' => [
                 'required',
-                'string'
+                'integer'
             ],
             'anio_fabricacion' => [
                 'required',
-                'string'
+                'integer'
+            ],
+            'fecha_ingreso' => [
+                'required'
             ],
             'situacion' => [
                 'required',
                 'string',
-                Rule::in(['first-zone', 'second-zone']),
+                Rule::in(['LIBRE', 'BLOQUEADO']),
             ]
         ];
     }

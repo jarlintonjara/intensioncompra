@@ -131,15 +131,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      loading: true,
+      loading: false,
       ingresos: [],
       user: {
         role_id: 0
-      }
+      },
+      errors: []
     };
   },
   mounted: function mounted() {
@@ -294,38 +308,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       (0,_utils_js__WEBPACK_IMPORTED_MODULE_1__.ExpExcel)(dataExcel, "PackingList.xlsx", dataSend.name, dataSend.vacios);
     },
     importModal: function importModal() {
+      this.errors = [];
+      this.images = null;
+      this.$refs["file"].value = "";
       $('#modalDetalle').modal('show');
+    },
+    uploadFile: function uploadFile() {
+      this.images = this.$refs.file.files[0];
     },
     importExcel: function importExcel() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        var token;
+        var token, formData, headers;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                _this3.errors = [];
+                _this3.loading = true;
                 token = localStorage.getItem('access_token');
-                _context4.next = 3;
-                return _this3.axios.post('/api/importPacking', {
-                  withCredentials: true,
-                  headers: {
-                    Authorization: "Bearer ".concat(token)
-                  }
-                }).then(function (_ref2) {
+                formData = new FormData();
+                formData.append('file', _this3.images);
+                headers = {
+                  'Content-Type': 'multipart/form-data'
+                };
+                _context4.next = 8;
+                return _this3.axios.post('/api/importPacking', formData, headers).then(function (_ref2) {
                   var data = _ref2.data;
-                  console.log(data);
-                })["catch"](function (error) {
-                  console.log(error);
+                  _this3.images = null;
+                  _this3.$refs["file"].value = "";
+                  $('#tingresos').DataTable().destroy();
+
+                  _this3.init();
+
+                  _this3.$swal.fire('Packing List cargado!', '', 'success');
+
+                  _this3.loading = false;
+                })["catch"](function (_ref3) {
+                  var response = _ref3.response,
+                      message = _ref3.message;
+
+                  if (response.status == 422) {
+                    _this3.errors = [].concat(response.data.errors);
+                    _this3.images = null;
+                    _this3.$refs["file"].value = "";
+                  }
+
+                  console.log(message);
+                  _this3.loading = false;
                 });
 
-              case 3:
+              case 8:
               case "end":
                 return _context4.stop();
             }
           }
         }, _callee4);
       }))();
+    },
+    cerrarModal: function cerrarModal() {
+      $('#modalDetalle').modal('hide');
     }
   }
 });
@@ -432,7 +475,7 @@ var render = function () {
           _c("div", { staticClass: "panel-container show" }, [
             _c("div", { staticClass: "panel-content" }, [
               _c("div", { staticClass: "row mb-2" }, [
-                _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "col-md-1" }, [
                   _c(
                     "button",
                     {
@@ -455,7 +498,7 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-success",
+                      staticClass: "btn btn-primary",
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
@@ -464,7 +507,7 @@ var render = function () {
                       },
                     },
                     [
-                      _c("i", { staticClass: "fa fa-file-excel" }),
+                      _c("i", { staticClass: "fa fa-file-upload" }),
                       _vm._v(" Importar"),
                     ]
                   ),
@@ -611,23 +654,65 @@ var render = function () {
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "card mb-5" }, [
                   _c("div", { staticClass: "card-body p-3" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
                     _c("input", {
+                      ref: "file",
                       staticClass: "form-control col",
-                      attrs: { type: "file", name: "file", accept: ".xlsx" },
+                      attrs: { type: "file", accept: ".xlsx" },
+                      on: { change: _vm.uploadFile },
                     }),
                     _vm._v(" "),
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-success m-1",
-                        attrs: { type: "submit" },
+                        staticClass: "btn btn-success mt-3 float-right",
+                        attrs: { disabled: _vm.loading },
                         on: {
                           click: function ($event) {
                             return _vm.importExcel()
                           },
                         },
                       },
-                      [_vm._v("Import")]
+                      [
+                        _vm._v("\n                                Cargar "),
+                        _vm.loading
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "spinner-border",
+                                attrs: { role: "status" },
+                              },
+                              [
+                                _c("span", { staticClass: "sr-only" }, [
+                                  _vm._v("Loading..."),
+                                ]),
+                              ]
+                            )
+                          : _vm._e(),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "list-group list-group-flush p-3 mt-6" },
+                      _vm._l(_vm.errors, function (error) {
+                        return _c(
+                          "li",
+                          {
+                            key: error.error,
+                            staticClass:
+                              "list-group-item list-group-item-action list-group-item-danger",
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(error) +
+                                "\n                                "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
                     ),
                   ]),
                 ]),
@@ -711,6 +796,19 @@ var staticRenderFns = [
     return _c("span", { attrs: { "aria-hidden": "true" } }, [
       _c("i", { staticClass: "fal fa-times" }),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-warning mb-3", attrs: { type: "submit" } },
+      [
+        _c("i", { staticClass: "fa fa-download" }),
+        _vm._v("\n                                Descargar plantilla"),
+      ]
+    )
   },
 ]
 render._withStripped = true

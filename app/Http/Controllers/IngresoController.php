@@ -179,17 +179,11 @@ class IngresoController extends Controller
     function import(Request $request)
     {
         if ($request->file('file')) {
-            /*$path = storage_path('/app/public/packingList.xlsx');
-            if (!FacadesFile::exists($path)) {
-                abort(404);
-            }
-            $file = FacadesFile::get($path);
-            $import =  Excel::import(new PackingListImport(), $file);*/
-            $import =  Excel::import(new PackingListImport(), request()->file('file'));
+            $import =  Excel::import(new PackingListImport(), $request->file('file'));
             $msg_success = "Data Uploaded Succesfully! ";
             $msg_danger = "Data Uploaded failed! ";
             if ($import) {
-                return response()->json(['message' => $msg_success]);
+                return response()->json(['message' => $msg_success, 'data' => $import]);
             } else {
                 return response()->json(['message' => $msg_danger]);
             }

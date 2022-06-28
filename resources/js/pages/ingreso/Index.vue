@@ -23,13 +23,13 @@
                 <div class="panel-container show">
                     <div class="panel-content">
                         <div class="row mb-2">
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <button class="btn btn-success" @click.prevent="ReporteExcel"><i
                                         class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-success" @click.prevent="importModal"><i
-                                        class="fa fa-file-excel"></i> Importar</button>
+                                <button class="btn btn-primary" @click.prevent="importModal"><i
+                                        class="fa fa-file-upload"></i> Importar</button>
                             </div>
                         </div>
                         <table id="tingresos" class="table table-bordered table-hover table-striped w-100"
@@ -92,8 +92,21 @@
                     <div class="modal-body">
                         <div class="card mb-5">
                             <div class="card-body p-3">
-                                <input type="file" name="file" accept=".xlsx" class="form-control col">
-                                <button class="btn btn-success m-1"  @click="importExcel()" type="submit">Import</button>
+                                <button class="btn btn-warning mb-3" type="submit"><i class="fa fa-download"></i>
+                                    Descargar plantilla</button>
+                                <input type="file" @change="uploadFile" ref="file" accept=".xlsx"
+                                    class="form-control col">
+                                <button class="btn btn-success mt-3 float-right" :disabled="loading" @click="importExcel()">
+                                    Cargar <div class="spinner-border" role="status" v-if="loading">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </button>
+                                <ul class="list-group list-group-flush p-3 mt-6">
+                                    <li v-for="error in errors" :key="error.error"
+                                        class="list-group-item list-group-item-action list-group-item-danger">{{ error
+                                        }}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -111,10 +124,11 @@
 import { ExpExcel } from '../../utils.js';
 export default {
     data(){
-        return{
-            loading: true,
+        return {
+            loading: false,
             ingresos:[],
-            user: {role_id: 0}
+            user: { role_id: 0 },
+            errors: []
         }
     },
     mounted(){
@@ -210,20 +224,46 @@ export default {
             ExpExcel(dataExcel, "PackingList.xlsx", dataSend.name, dataSend.vacios);
         },
         importModal() { 
+            this.errors = [];
+            this.images = null;
+            this.$refs["file"].value = "";
             $('#modalDetalle').modal('show');
         },
+        uploadFile() {
+            this.images = this.$refs.file.files[0];
+        },
         async importExcel() { 
+            this.errors = [];
+            this.loading = true;
             const token = localStorage.getItem('access_token');
-            await this.axios.post('/api/importPacking', {
-                withCredentials: true,
-                headers: { Authorization: `Bearer ${token}` },
-            })
+            const formData = new FormData();
+            formData.append('file', this.images);
+            const headers = { 'Content-Type': 'multipart/form-data' };
+            await this.axios.post('/api/importPacking', formData, headers)
                 .then(({ data }) => {
-                    console.log(data);
+                    this.images = null;
+                    this.$refs["file"].value = "";
+                    $('#tingresos').DataTable().destroy();
+                    this.init();
+                    this.$swal.fire(
+                        'Packing List cargado!',
+                        '',
+                        'success'
+                    );
+                    this.loading = false;
                 }) 
-                .catch(error => {
-                    console.log(error);
+                .catch(({ response, message }) => {
+                    if (response.status == 422 ) { 
+                        this.errors = [].concat(response.data.errors);
+                        this.images = null;
+                        this.$refs["file"].value = "";
+                    }
+                    console.log(message);
+                    this.loading = false;
                 })
+        },
+        cerrarModal() { 
+            $('#modalDetalle').modal('hide');
         }
     }
 }
