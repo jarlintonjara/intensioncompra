@@ -144,6 +144,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -495,22 +497,24 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.importModal.apply(null, arguments)
+                  _vm.user.role_id == 6
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: " btn btn-primary",
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.importModal.apply(null, arguments)
+                            },
+                          },
                         },
-                      },
-                    },
-                    [
-                      _c("i", { staticClass: "fa fa-file-upload" }),
-                      _vm._v(" Importar"),
-                    ]
-                  ),
+                        [
+                          _c("i", { staticClass: "fa fa-file-upload" }),
+                          _vm._v(" Importar"),
+                        ]
+                      )
+                    : _vm._e(),
                 ]),
               ]),
               _vm._v(" "),
@@ -662,6 +666,8 @@ var render = function () {
                       attrs: { type: "file", accept: ".xlsx" },
                       on: { change: _vm.uploadFile },
                     }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("maximo 900 registros")]),
                     _vm._v(" "),
                     _c(
                       "button",

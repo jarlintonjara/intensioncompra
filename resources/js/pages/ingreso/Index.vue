@@ -28,7 +28,7 @@
                                         class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" @click.prevent="importModal"><i
+                                <button v-if="user.role_id == 6" class=" btn btn-primary" @click.prevent="importModal"><i
                                         class="fa fa-file-upload"></i> Importar</button>
                             </div>
                         </div>
@@ -96,7 +96,9 @@
                                     Descargar plantilla</button>
                                 <input type="file" @change="uploadFile" ref="file" accept=".xlsx"
                                     class="form-control col">
-                                <button class="btn btn-success mt-3 float-right" :disabled="loading" @click="importExcel()">
+                                    <span>maximo 900 registros</span>
+                                <button class="btn btn-success mt-3 float-right" :disabled="loading"
+                                    @click="importExcel()">
                                     Cargar <div class="spinner-border" role="status" v-if="loading">
                                         <span class="sr-only">Loading...</span>
                                     </div>
