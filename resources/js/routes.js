@@ -1,6 +1,7 @@
 
 const Layout = () => import('./layouts/default.vue');
 const Dashboard = () => import('./pages/dashboard.vue');
+const Auditoria = () => import('./pages/auditoria.vue');
 const usuarios = () => import('./pages/users.vue');
 
 const Registro = () => import('./pages/registro/formulario.vue');
@@ -49,6 +50,7 @@ export default{
             },
             children: [
                 { path: "/dashboard", component: Dashboard, name: "dashboard"},
+                { path: "/auditoria", component: Auditoria, name: "auditoria"},
                 { path: "/usuarios", component: usuarios, name: "usuarios"},
                 { path: "/registro", component: Registro,  name: "Rgistro"},
                 { path: "/ingreso", component: Ingreso, name: "ingreso"},

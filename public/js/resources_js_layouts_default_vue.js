@@ -363,6 +363,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1448,6 +1512,28 @@ var render = function () {
                       1
                     ),
                   ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.role_id == 6 ||
+              _vm.user.role_id == 2 ||
+              _vm.user.role_id == 3
+                ? _c(
+                    "router-link",
+                    { attrs: { tag: "li", to: "/auditoria" } },
+                    [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("i", { staticClass: "fal fa-info-circle" }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "nav-link-text" }, [
+                          _vm._v("Auditoría"),
+                        ]),
+                        _vm._v(" "),
+                        _c("b", { staticClass: "collapse-sign" }, [
+                          _c("em", { staticClass: "fal fa-angle-down" }),
+                        ]),
+                      ]),
+                    ]
+                  )
                 : _vm._e(),
             ],
             1

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\PackingListImport;
+use App\Models\AsignacionModel;
 use App\Models\IngresoModel;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

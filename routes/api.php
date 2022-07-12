@@ -61,6 +61,9 @@ Route::post('exportExcel', [UtilsController::class, 'exportExcel']);
 Route::get('exportExcel', [UtilsController::class, 'exportExcel']);
 Route::get('home', [HomeController::class, 'index']);
 
+//Auditoria
+Route::get('auditoria', [AsignacionController::class, 'auditoria']);
+
 //Files
 Route::resource('gallery', FileController::class);
 Route::get('getimages/{id}', [FileController::class, 'getImages']);

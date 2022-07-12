@@ -6,6 +6,7 @@ use App\Models\EmplazadoModel;
 use App\Models\FacturadoModel;
 use App\Models\IngresoModel;
 use App\Models\RegistroModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +31,30 @@ Route::get('test', function(){
 });
 
 
-/* Route::get('emplazado', function () {
-
+/* Route::get('auditoria', function () {
+    $data = AsignacionModel::select(
+        'concesionarios.nombre as concesionario',
+        'tiendas.nombre as tienda',
+        'proceso_facturacion_si.fecha_facturacion as fecha_facturacion_si',
+        'proceso_facturacion_final.fecha_factura as fecha_facturacion_so',
+         DB::raw('IF(registros.documento = proceso_facturacion_final.numero_documento, "NO", "SI") as incorrecto_documento'),
+         DB::raw('DATEDIFF(proceso_facturacion_final.fecha_factura, proceso_facturacion_si.fecha_facturacion) as diferencia'),
+        'packing_list.vin',
+        'registros.documento as registro_documento',
+        'proceso_facturacion_final.numero_documento as facturacion_documento',
+        'registros.nombre_completo as registro_nombre',
+        'proceso_facturacion_final.nombre_completo as facturacion_nombre'
+    )
+        ->join('registros', 'registros.id', 'asignaciones.registro_id')
+        ->leftjoin('concesionarios', 'concesionarios.id', 'registros.concesionario_id')
+        ->leftjoin('tiendas', 'tiendas.id', 'registros.tienda_id')
+        ->join('packing_list', 'packing_list.id', 'asignaciones.ingreso_id')
+        ->join('proceso_facturacion_si', 'proceso_facturacion_si.vin', 'packing_list.vin')
+        ->leftjoin('proceso_facturacion_final', 'proceso_facturacion_final.vin', 'proceso_facturacion_si.vin')
+        ->where('asignaciones.situacion', 'FACTURADO')
+        ->where('registros.estado', 1)
+        ->get();
+        return response()->json($data);
 }); */
 
 /* Route::get('asignaciontest', function () {
