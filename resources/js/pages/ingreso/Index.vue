@@ -10,9 +10,6 @@
         <div class="col-lg-12">
             <div id="panel-4" class="panel">
                 <div class="panel-hdr">
-                    <h2>
-                        <h2 style="text-align: center; font-size: 1.125rem;"><b></b></h2>
-                    </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse"
                             data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -28,12 +25,11 @@
                                         class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                             <div class="col-md-2">
-                                <button v-if="user.role_id == 6" class=" btn btn-primary" @click.prevent="importModal"><i
-                                        class="fa fa-file-upload"></i> Importar</button>
+                                <button v-if="user.role_id == 6" class=" btn btn-primary"
+                                    @click.prevent="importModal"><i class="fa fa-file-upload"></i> Importar</button>
                             </div>
                         </div>
-                        <table id="tingresos" class="table table-bordered table-hover table-striped w-100"
-                            translate="no">
+                        <table id="tingresos" class="table table-bordered table-hover table-striped w-100" translate="no">
                             <thead>
                                 <tr>
                                     <th v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">BLOQUEAR</th>
@@ -92,11 +88,10 @@
                     <div class="modal-body">
                         <div class="card mb-5">
                             <div class="card-body p-3">
-                                <button class="btn btn-warning mb-3" type="submit"><i class="fa fa-download"></i>
-                                    Descargar plantilla</button>
+                                <a href="/packingTemplate.xlsx" class="btn btn-warning mb-3"><i class="fa fa-download"></i>
+                                    Descargar plantilla</a>
                                 <input type="file" @change="uploadFile" ref="file" accept=".xlsx"
                                     class="form-control col">
-                                    <span>maximo 900 registros</span>
                                 <button class="btn btn-success mt-3 float-right" :disabled="loading"
                                     @click="importExcel()">
                                     Cargar <div class="spinner-border" role="status" v-if="loading">
@@ -105,8 +100,8 @@
                                 </button>
                                 <ul class="list-group list-group-flush p-3 mt-6">
                                     <li v-for="error in errors" :key="error.error"
-                                        class="list-group-item list-group-item-action list-group-item-danger">{{ error
-                                        }}
+                                        class="list-group-item list-group-item-action list-group-item-danger">
+                                        {{ error[0].replace("There was an error on row", "Linea ") }}
                                     </li>
                                 </ul>
                             </div>

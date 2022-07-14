@@ -141,11 +141,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -667,8 +662,6 @@ var render = function () {
                       on: { change: _vm.uploadFile },
                     }),
                     _vm._v(" "),
-                    _c("span", [_vm._v("maximo 900 registros")]),
-                    _vm._v(" "),
                     _c(
                       "button",
                       {
@@ -712,7 +705,13 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              _vm._s(error) +
+                              "\n                                    " +
+                                _vm._s(
+                                  error[0].replace(
+                                    "There was an error on row",
+                                    "Linea "
+                                  )
+                                ) +
                                 "\n                                "
                             ),
                           ]
@@ -764,14 +763,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel-hdr" }, [
-      _c("h2", [
-        _c(
-          "h2",
-          { staticStyle: { "text-align": "center", "font-size": "1.125rem" } },
-          [_c("b")]
-        ),
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "panel-toolbar" }, [
         _c("button", {
           staticClass: "btn btn-panel waves-effect waves-themed",
@@ -808,8 +799,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
-      { staticClass: "btn btn-warning mb-3", attrs: { type: "submit" } },
+      "a",
+      {
+        staticClass: "btn btn-warning mb-3",
+        attrs: { href: "/packingTemplate.xlsx" },
+      },
       [
         _c("i", { staticClass: "fa fa-download" }),
         _vm._v("\n                                Descargar plantilla"),
