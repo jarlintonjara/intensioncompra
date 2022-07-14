@@ -72,7 +72,7 @@
                     </a>
                 </router-link>
                 <li class="active open" @click="selectLi"
-                    v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3 || user.role_id == 9">
+                    v-if="user.role_id == 6 || user.role_id == 2 || user.role_id == 3">
                     <a href="#" title="Registros" data-filter-tags="registros">
                         <i class="fal fa-cog"></i>
                         <span class="nav-link-text" translate="no">Mantenimientos</span>
@@ -84,18 +84,17 @@
                                 <span class="nav-link-text">Usuarios</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/concesionarios" v-if="user.role_id == 6 " active-class="active">
+                        <router-link tag="li" to="/concesionarios" v-if="user.role_id == 6" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Concesionarios</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/tiendas" v-if="user.role_id == 6 " active-class="active">
+                        <router-link tag="li" to="/tiendas" v-if="user.role_id == 6" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Tiendas</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" to="/caracteristicas" v-if="user.role_id == 6 || user.role_id == 9"
-                            active-class="active">
+                        <router-link tag="li" to="/caracteristicas" v-if="user.role_id == 6" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Caracteristicas</span>
                             </a>
@@ -154,23 +153,19 @@
                     </ul>
                 </li>
                 <li class="active open"
-                    v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8 || user.role_id == 9">
+                    v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8">
                     <a href="#" title="Registros" @click="selectLi" data-filter-tags="registros">
                         <i class="fal fa-globe"></i>
                         <span class="nav-link-text" translate="no">Packing List</span>
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li"
-                            v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8 || user.role_id == 9"
-                            to=" /ingreso" active-class="active">
+                        <router-link tag="li" to="/ingreso" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Lista de packing list</span>
                             </a>
                         </router-link>
-                        <router-link tag="li"
-                            v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8"
-                            to=" /bloqueado" active-class="active">
+                        <router-link tag="li" to="/bloqueado" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Bloqueados</span>
                             </a>
@@ -194,23 +189,23 @@
 <script>
 export default {
     name: "sidebar",
-    props:[
+    props: [
         'session'
     ],
-    watch:{
-        session(val){
+    watch: {
+        session(val) {
             this.user = val
         }
     },
-    data(){
+    data() {
         return {
             user: {
-                role_id : 0
+                role_id: 0
             }
         }
     },
     methods: {
-        selectLi(e){
+        selectLi(e) {
             /* console.log($(e.target).parent(''));
             $("#js-nav-menu > li").removeClass("active"); */
             //$("#js-nav-menu > li").eq(i).addClass("active");

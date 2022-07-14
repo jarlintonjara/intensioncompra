@@ -427,11 +427,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1124,8 +1119,7 @@ var render = function () {
               _vm._v(" "),
               _vm.user.role_id == 6 ||
               _vm.user.role_id == 2 ||
-              _vm.user.role_id == 3 ||
-              _vm.user.role_id == 9
+              _vm.user.role_id == 3
                 ? _c(
                     "li",
                     { staticClass: "active open", on: { click: _vm.selectLi } },
@@ -1201,7 +1195,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.user.role_id == 6 || _vm.user.role_id == 9
+                          _vm.user.role_id == 6
                             ? _c(
                                 "router-link",
                                 {
@@ -1448,8 +1442,7 @@ var render = function () {
               _vm.user.role_id == 4 ||
               _vm.user.role_id == 5 ||
               _vm.user.role_id == 6 ||
-              _vm.user.role_id == 8 ||
-              _vm.user.role_id == 9
+              _vm.user.role_id == 8
                 ? _c("li", { staticClass: "active open" }, [
                     _c(
                       "a",
@@ -1480,52 +1473,41 @@ var render = function () {
                     _c(
                       "ul",
                       [
-                        _vm.user.role_id == 4 ||
-                        _vm.user.role_id == 5 ||
-                        _vm.user.role_id == 6 ||
-                        _vm.user.role_id == 8 ||
-                        _vm.user.role_id == 9
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: " /ingreso",
-                                  "active-class": "active",
-                                },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Lista de packing list"),
-                                  ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/ingreso",
+                              "active-class": "active",
+                            },
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c("span", { staticClass: "nav-link-text" }, [
+                                _vm._v("Lista de packing list"),
+                              ]),
+                            ]),
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm.user.role_id == 4 ||
-                        _vm.user.role_id == 5 ||
-                        _vm.user.role_id == 6 ||
-                        _vm.user.role_id == 8
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: " /bloqueado",
-                                  "active-class": "active",
-                                },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Bloqueados"),
-                                  ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/bloqueado",
+                              "active-class": "active",
+                            },
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c("span", { staticClass: "nav-link-text" }, [
+                                _vm._v("Bloqueados"),
+                              ]),
+                            ]),
+                          ]
+                        ),
                       ],
                       1
                     ),
