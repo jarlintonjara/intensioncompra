@@ -161,12 +161,16 @@
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li" v-if="user.role_id == 9" to=" /ingreso" active-class="active">
+                        <router-link tag="li"
+                            v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8 || user.role_id == 9"
+                            to=" /ingreso" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Lista de packing list</span>
                             </a>
                         </router-link>
-                        <router-link tag="li" v-if="user.role_id != 9" to=" /bloqueado" active-class="active">
+                        <router-link tag="li"
+                            v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6 || user.role_id == 8"
+                            to=" /bloqueado" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Bloqueados</span>
                             </a>
