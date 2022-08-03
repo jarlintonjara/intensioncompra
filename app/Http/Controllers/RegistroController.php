@@ -54,7 +54,11 @@ class RegistroController extends Controller
                 $noasignado = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $noasignado = $query->where('registros.tienda_id', $user->tienda_id)->get();
+                $array = [$user->tienda_id];
+                if ($user->tienda_id_2) {
+                  array_push($array, $user->tienda_id_2);
+                }
+                $noasignado = $query->whereIn('registros.tienda_id', $array)->get();
                 break;
             case 3:
                 $noasignado = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
@@ -113,7 +117,11 @@ class RegistroController extends Controller
                 $asignado = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $asignado = $query->where('registros.tienda_id', $user->tienda_id)->get();
+                $array = [$user->tienda_id];
+                if ($user->tienda_id_2) {
+                  array_push($array, $user->tienda_id_2);
+                }
+                $asignado = $query->whereIn('registros.tienda_id', $array)->get();
                 break;
             case 3:
                 $asignado = $query->where('registros.concesionario_id', $user->concesionario_id)->get();

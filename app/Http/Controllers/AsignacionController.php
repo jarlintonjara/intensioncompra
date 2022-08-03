@@ -70,7 +70,11 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
+                $array = [$user->tienda_id];
+                if ($user->tienda_id_2) {
+                  array_push($array, $user->tienda_id_2);
+                }
+                $data = $query->whereIn('registros.tienda_id', $array)->get();
                 break;
             case 3:
                 $data =  $query->where('registros.concesionario_id', $user->concesionario_id)->get();
@@ -145,7 +149,11 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
+                $array = [$user->tienda_id];
+                if ($user->tienda_id_2) {
+                  array_push($array, $user->tienda_id_2);
+                }
+                $data = $query->whereIn('registros.tienda_id', $array)->get();
                 break;
             case 3:
                 $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
@@ -224,7 +232,11 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
+                $array = [$user->tienda_id];
+                if ($user->tienda_id_2) {
+                  array_push($array, $user->tienda_id_2);
+                }
+                $data = $query->whereIn('registros.tienda_id', $array)->get();
                 break;
             case 3:
                 $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();
@@ -299,7 +311,11 @@ class AsignacionController extends Controller
                 $data = $query->where('registros.user_id', $user->id)->get();
                 break;
             case 2:
-                $data = $query->where('registros.tienda_id', $user->tienda_id)->get();
+                $array = [$user->tienda_id];
+                if ($user->tienda_id_2) {
+                  array_push($array, $user->tienda_id_2);
+                }
+                $data = $query->whereIn('registros.tienda_id', $array)->get();
                 break;
             case 3:
                 $data = $query->where('registros.concesionario_id', $user->concesionario_id)->get();

@@ -38,6 +38,7 @@ class RegistroModel extends Model
         'fecha',
         'created_at',
         'updated_at',
-        'tipo'
+        'tipo',
+        'tienda_id_2'
     ];
 }
