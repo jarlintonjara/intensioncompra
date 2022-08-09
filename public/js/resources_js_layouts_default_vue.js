@@ -430,6 +430,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
+  mounted: function mounted() {
+    this.init();
+  },
   watch: {
     session: function session(val) {
       this.user = val;
@@ -443,6 +446,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    init: function init() {
+      var token = localStorage.getItem('access_token');
+      axios.get('api/getSession/' + token).then(function (res) {
+        console.log(res.data.sistemas);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     selectLi: function selectLi(e) {
       /* console.log($(e.target).parent(''));
       $("#js-nav-menu > li").removeClass("active"); */

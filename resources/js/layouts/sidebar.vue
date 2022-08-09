@@ -192,6 +192,9 @@ export default {
     props: [
         'session'
     ],
+    mounted() { 
+        this.init();
+    },
     watch: {
         session(val) {
             this.user = val
@@ -205,6 +208,14 @@ export default {
         }
     },
     methods: {
+        init() { 
+            const token = localStorage.getItem('access_token');
+            axios.get('api/getSession/' + token).then((res) => {
+                console.log(res.data.sistemas);
+            }).catch((error) => {
+                console.log(error);
+            })
+        },
         selectLi(e) {
             /* console.log($(e.target).parent(''));
             $("#js-nav-menu > li").removeClass("active"); */

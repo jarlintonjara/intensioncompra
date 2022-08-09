@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('opcion_sistemas', function (Blueprint $table) {
+            $table->id();
+            $table->integer('sistema_id')->nullable();
+            $table->integer('nombre')->nullable();	
+            $table->integer('descripcion')->nullable();	
+            $table->integer('tag')->nullable();	
+            $table->tinyInteger('estado')->default('1');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('opcion_sistemas');
+    }
+};

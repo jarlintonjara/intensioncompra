@@ -33,6 +33,7 @@ class User extends Authenticatable
         'email',
         'status',
         'password',
+        'sistemas',
     ];
 
     /**
@@ -52,6 +53,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'sistemas' => 'array'
     ];
 
     public function concesionario()
