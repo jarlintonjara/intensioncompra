@@ -25,11 +25,12 @@
                                         class="fa fa-file-excel"></i> Reporte</button>
                             </div>
                             <div class="col-md-2">
-                                <button v-if="user.role_id == 6" class=" btn btn-primary"
+                                <button v-if="user.role_id == 6 || user.role_id == 9" class=" btn btn-primary"
                                     @click.prevent="importModal"><i class="fa fa-file-upload"></i> Importar</button>
                             </div>
                         </div>
-                        <table id="tingresos" class="table table-bordered table-hover table-striped w-100" translate="no">
+                        <table id="tingresos" class="table table-bordered table-hover table-striped w-100"
+                            translate="no">
                             <thead>
                                 <tr>
                                     <th v-if="user.role_id == 4 || user.role_id == 5 || user.role_id == 6">BLOQUEAR</th>
@@ -88,8 +89,14 @@
                     <div class="modal-body">
                         <div class="card mb-5">
                             <div class="card-body p-3">
-                                <a href="/packingTemplate.xlsx" class="btn btn-warning mb-3"><i class="fa fa-download"></i>
+                                <a href="/packingTemplate.xlsx" class="btn btn-warning mb-3"><i
+                                        class="fa fa-download"></i>
                                     Descargar plantilla</a>
+                                <ul>
+                                    <li>Descargar la plantilla y respetar los nombres de la cabecera.</li>
+                                    <li>En el campo "situacion" considerar los estados : "LIBRE" o "BLOQUEADO".</li>
+                                    <li>En el campo "fecha_ingreso" el formato fecha es: dia/mes/año.</li>
+                                </ul>
                                 <input type="file" @change="uploadFile" ref="file" accept=".xlsx"
                                     class="form-control col">
                                 <button class="btn btn-success mt-3 float-right" :disabled="loading"

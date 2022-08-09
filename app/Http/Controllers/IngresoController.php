@@ -51,6 +51,7 @@ class IngresoController extends Controller
                 break;
             case 6:
             case 8:
+            case 9:
                 $data = $query2->get();
                 break;
             default:

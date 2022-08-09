@@ -427,6 +427,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "sidebar",
   props: ['session'],
@@ -1119,7 +1120,8 @@ var render = function () {
               _vm._v(" "),
               _vm.user.role_id == 6 ||
               _vm.user.role_id == 2 ||
-              _vm.user.role_id == 3
+              _vm.user.role_id == 3 ||
+              _vm.user.role_id == 9
                 ? _c(
                     "li",
                     { staticClass: "active open", on: { click: _vm.selectLi } },
@@ -1195,7 +1197,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.user.role_id == 6
+                          _vm.user.role_id == 6 || _vm.user.role_id == 9
                             ? _c(
                                 "router-link",
                                 {
@@ -1223,226 +1225,231 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _c("li", { staticClass: "active open" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "#",
-                      title: "Registros",
-                      "data-filter-tags": "registros",
-                    },
-                    on: { click: _vm.selectLi },
-                  },
-                  [
-                    _c("i", { staticClass: "fal fa-th-list" }),
-                    _vm._v(" "),
+              _vm.user.role_id != 9
+                ? _c("li", { staticClass: "active open" }, [
                     _c(
-                      "span",
+                      "a",
                       {
-                        staticClass: "nav-link-text",
-                        attrs: { translate: "no" },
+                        attrs: {
+                          href: "#",
+                          title: "Registros",
+                          "data-filter-tags": "registros",
+                        },
+                        on: { click: _vm.selectLi },
                       },
-                      [_vm._v("Registros")]
+                      [
+                        _c("i", { staticClass: "fal fa-th-list" }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { translate: "no" },
+                          },
+                          [_vm._v("Registros")]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2),
+                      ]
                     ),
                     _vm._v(" "),
-                    _vm._m(2),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  [
-                    _vm.user.role_id == 1 || _vm.user.role_id == 6
-                      ? _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/registro",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "nav-link-text",
-                                  attrs: { translate: "no" },
+                    _c(
+                      "ul",
+                      [
+                        _vm.user.role_id == 1 || _vm.user.role_id == 6
+                          ? _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  tag: "li",
+                                  to: "/registro",
+                                  "active-class": "active",
                                 },
-                                [_vm._v("Nuevo Registro")]
-                              ),
-                            ]),
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.user.role_id == 1 ||
-                    _vm.user.role_id == 2 ||
-                    _vm.user.role_id == 3 ||
-                    _vm.user.role_id == 4 ||
-                    _vm.user.role_id == 5 ||
-                    _vm.user.role_id == 6 ||
-                    _vm.user.role_id == 8
-                      ? _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/no-asignado",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "nav-link-text",
-                                  attrs: { translate: "no" },
+                              },
+                              [
+                                _c("a", { attrs: { href: "" } }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "nav-link-text",
+                                      attrs: { translate: "no" },
+                                    },
+                                    [_vm._v("Nuevo Registro")]
+                                  ),
+                                ]),
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user.role_id == 1 ||
+                        _vm.user.role_id == 2 ||
+                        _vm.user.role_id == 3 ||
+                        _vm.user.role_id == 4 ||
+                        _vm.user.role_id == 5 ||
+                        _vm.user.role_id == 6 ||
+                        _vm.user.role_id == 8
+                          ? _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  tag: "li",
+                                  to: "/no-asignado",
+                                  "active-class": "active",
                                 },
-                                [_vm._v("Lista de registros")]
-                              ),
-                            ]),
-                          ]
-                        )
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-              ]),
+                              },
+                              [
+                                _c("a", { attrs: { href: "" } }, [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "nav-link-text",
+                                      attrs: { translate: "no" },
+                                    },
+                                    [_vm._v("Lista de registros")]
+                                  ),
+                                ]),
+                              ]
+                            )
+                          : _vm._e(),
+                      ],
+                      1
+                    ),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c("li", { staticClass: "active open" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "#",
-                      title: "Registros",
-                      "data-filter-tags": "registros",
-                    },
-                    on: { click: _vm.selectLi },
-                  },
-                  [
-                    _c("i", { staticClass: "fal fa-edit" }),
-                    _vm._v(" "),
+              _vm.user.role_id != 9
+                ? _c("li", { staticClass: "active open" }, [
                     _c(
-                      "span",
-                      {
-                        staticClass: "nav-link-text",
-                        attrs: { translate: "no" },
-                      },
-                      [_vm._v("Asignaciones")]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(3),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  [
-                    _c(
-                      "router-link",
+                      "a",
                       {
                         attrs: {
-                          tag: "li",
-                          to: "/asignacion",
-                          "active-class": "active",
+                          href: "#",
+                          title: "Registros",
+                          "data-filter-tags": "registros",
                         },
+                        on: { click: _vm.selectLi },
                       },
                       [
-                        _c("a", { attrs: { href: "" } }, [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "nav-link-text",
-                              attrs: { translate: "no" },
-                            },
-                            [_vm._v("Lista de asignaciones")]
-                          ),
-                        ]),
+                        _c("i", { staticClass: "fal fa-edit" }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "nav-link-text",
+                            attrs: { translate: "no" },
+                          },
+                          [_vm._v("Asignaciones")]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(3),
                       ]
                     ),
                     _vm._v(" "),
                     _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/reservado",
-                          "active-class": "active",
-                        },
-                      },
+                      "ul",
                       [
-                        _c("a", { attrs: { href: "" } }, [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "nav-link-text",
-                              attrs: { translate: "no" },
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/asignacion",
+                              "active-class": "active",
                             },
-                            [_vm._v("Reservados")]
-                          ),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/emplazado",
-                          "active-class": "active",
-                        },
-                      },
-                      [
-                        _c("a", { attrs: { href: "" } }, [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "nav-link-text",
-                              attrs: { translate: "no" },
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "nav-link-text",
+                                  attrs: { translate: "no" },
+                                },
+                                [_vm._v("Lista de asignaciones")]
+                              ),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/reservado",
+                              "active-class": "active",
                             },
-                            [_vm._v("Emplazados")]
-                          ),
-                        ]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "li",
-                          to: "/facturado",
-                          "active-class": "active",
-                        },
-                      },
-                      [
-                        _c("a", { attrs: { href: "" } }, [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "nav-link-text",
-                              attrs: { translate: "no" },
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "nav-link-text",
+                                  attrs: { translate: "no" },
+                                },
+                                [_vm._v("Reservados")]
+                              ),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/emplazado",
+                              "active-class": "active",
                             },
-                            [_vm._v("Facturados")]
-                          ),
-                        ]),
-                      ]
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "nav-link-text",
+                                  attrs: { translate: "no" },
+                                },
+                                [_vm._v("Emplazados")]
+                              ),
+                            ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/facturado",
+                              "active-class": "active",
+                            },
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "nav-link-text",
+                                  attrs: { translate: "no" },
+                                },
+                                [_vm._v("Facturados")]
+                              ),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
                     ),
-                  ],
-                  1
-                ),
-              ]),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _vm.user.role_id == 4 ||
               _vm.user.role_id == 5 ||
               _vm.user.role_id == 6 ||
-              _vm.user.role_id == 8
+              _vm.user.role_id == 8 ||
+              _vm.user.role_id == 9
                 ? _c("li", { staticClass: "active open" }, [
                     _c(
                       "a",
@@ -1473,41 +1480,45 @@ var render = function () {
                     _c(
                       "ul",
                       [
-                        _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/ingreso",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Lista de packing list"),
-                              ]),
-                            ]),
-                          ]
-                        ),
+                        _vm.user.role_id == 9
+                          ? _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  tag: "li",
+                                  to: "/ingreso",
+                                  "active-class": "active",
+                                },
+                              },
+                              [
+                                _c("a", { attrs: { href: "" } }, [
+                                  _c("span", { staticClass: "nav-link-text" }, [
+                                    _vm._v("Lista de packing list"),
+                                  ]),
+                                ]),
+                              ]
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              tag: "li",
-                              to: "/bloqueado",
-                              "active-class": "active",
-                            },
-                          },
-                          [
-                            _c("a", { attrs: { href: "" } }, [
-                              _c("span", { staticClass: "nav-link-text" }, [
-                                _vm._v("Bloqueados"),
-                              ]),
-                            ]),
-                          ]
-                        ),
+                        _vm.user.role_id != 9
+                          ? _c(
+                              "router-link",
+                              {
+                                attrs: {
+                                  tag: "li",
+                                  to: "/bloqueado",
+                                  "active-class": "active",
+                                },
+                              },
+                              [
+                                _c("a", { attrs: { href: "" } }, [
+                                  _c("span", { staticClass: "nav-link-text" }, [
+                                    _vm._v("Bloqueados"),
+                                  ]),
+                                ]),
+                              ]
+                            )
+                          : _vm._e(),
                       ],
                       1
                     ),

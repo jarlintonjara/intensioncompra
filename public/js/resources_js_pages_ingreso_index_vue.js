@@ -141,6 +141,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -492,7 +499,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }, [
-                  _vm.user.role_id == 6
+                  _vm.user.role_id == 6 || _vm.user.role_id == 9
                     ? _c(
                         "button",
                         {
@@ -655,6 +662,8 @@ var render = function () {
                   _c("div", { staticClass: "card-body p-3" }, [
                     _vm._m(3),
                     _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
                     _c("input", {
                       ref: "file",
                       staticClass: "form-control col",
@@ -809,6 +818,26 @@ var staticRenderFns = [
         _vm._v("\n                                Descargar plantilla"),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v("Descargar la plantilla y respetar los nombres de la cabecera."),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          'En el campo "situacion" considerar los estados : "LIBRE" o "BLOQUEADO".'
+        ),
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v('En el campo "fecha_ingreso" el formato fecha es: dia/mes/año.'),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
