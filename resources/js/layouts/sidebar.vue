@@ -161,7 +161,7 @@
                         <b class="collapse-sign"><em class="fal fa-angle-down"></em></b>
                     </a>
                     <ul>
-                        <router-link tag="li" to="/ingreso" v-if="user.role_id == 9" active-class="active">
+                        <router-link tag="li" to="/ingreso" active-class="active">
                             <a href="">
                                 <span class="nav-link-text">Lista de packing list</span>
                             </a>

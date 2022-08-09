@@ -1480,25 +1480,23 @@ var render = function () {
                     _c(
                       "ul",
                       [
-                        _vm.user.role_id == 9
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  tag: "li",
-                                  to: "/ingreso",
-                                  "active-class": "active",
-                                },
-                              },
-                              [
-                                _c("a", { attrs: { href: "" } }, [
-                                  _c("span", { staticClass: "nav-link-text" }, [
-                                    _vm._v("Lista de packing list"),
-                                  ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              tag: "li",
+                              to: "/ingreso",
+                              "active-class": "active",
+                            },
+                          },
+                          [
+                            _c("a", { attrs: { href: "" } }, [
+                              _c("span", { staticClass: "nav-link-text" }, [
+                                _vm._v("Lista de packing list"),
+                              ]),
+                            ]),
+                          ]
+                        ),
                         _vm._v(" "),
                         _vm.user.role_id != 9
                           ? _c(
