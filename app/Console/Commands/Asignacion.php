@@ -21,11 +21,13 @@ class Asignacion extends Command
 
         foreach ($registros as $registro) {
 
+            //asignacion del color 1
             $ingresos = IngresoModel::where('marca', $registro->marca)
                 ->where('modelo', $registro->modelo)
                 ->where('version', $registro->version)
                 ->where('anio_modelo', $registro->anio_modelo)
                 ->where('color', $registro->color1)
+                ->where('marca', 'Mazda')
                 ->where('situacion', 'LIBRE')
                 ->where('bloqueado', 0)
                 ->first();
@@ -45,12 +47,13 @@ class Asignacion extends Command
                     continue;
                 }
             }
-
+            //asignacion del color 2
             $ingresos2 = IngresoModel::where('marca', $registro->marca)
                 ->where('modelo', $registro->modelo)
                 ->where('version', $registro->version)
                 ->where('anio_modelo', $registro->anio_modelo)
                 ->where('color', $registro->color2)
+                ->where('marca', 'Mazda')
                 ->where('situacion', 'LIBRE')
                 ->where('bloqueado', 0)
                 ->first();
@@ -70,12 +73,13 @@ class Asignacion extends Command
                     continue;
                 }
             }
-
+            //asignacion del color 3
             $ingresos3 = IngresoModel::where('marca', $registro->marca)
                 ->where('modelo', $registro->modelo)
                 ->where('version', $registro->version)
                 ->where('anio_modelo', $registro->anio_modelo)
                 ->where('color', $registro->color3)
+                ->where('marca', 'Mazda')
                 ->where('situacion', 'LIBRE')
                 ->where('bloqueado', 0)
                 ->first();

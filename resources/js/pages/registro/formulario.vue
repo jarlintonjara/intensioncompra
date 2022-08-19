@@ -272,19 +272,34 @@ export default {
             this.form.marca = this.selectMarca;
             this.form.modelo = this.selectModelo;
             this.form.version = this.selectVersion;
-            
-                axios.post('api/registro', this.form).then(response=>{
+
+            if (this.form.marca == 'Mazda') {
+                axios.post('api/registro', this.form).then(response => {
                     this.$swal.fire(
                         'Registro creado!',
                         '',
                         'success'
                     )
                     this.noasignados.push(response.data.NO);
-                    this.submited=false;
+                    this.submited = false;
                     this.limpiar();
                 }).catch(function (error) {
                     console.log(error);
                 });
+            } else { 
+                axios.post('api/registro', this.form).then(response => {
+                    this.$swal.fire(
+                        'Realizar el proceso de compra de forma regular por la plataforma Dercolink',
+                        'success'
+                    )
+                    this.noasignados.push(response.data.NO);
+                    this.submited = false;
+                    this.limpiar();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+                
             
         },
         limpiar(){

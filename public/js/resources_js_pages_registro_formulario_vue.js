@@ -399,17 +399,32 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 _this2.form.marca = _this2.selectMarca;
                 _this2.form.modelo = _this2.selectModelo;
                 _this2.form.version = _this2.selectVersion;
-                axios.post('api/registro', _this2.form).then(function (response) {
-                  _this2.$swal.fire('Registro creado!', '', 'success');
 
-                  _this2.noasignados.push(response.data.NO);
+                if (_this2.form.marca == 'Mazda') {
+                  axios.post('api/registro', _this2.form).then(function (response) {
+                    _this2.$swal.fire('Registro creado!', '', 'success');
 
-                  _this2.submited = false;
+                    _this2.noasignados.push(response.data.NO);
 
-                  _this2.limpiar();
-                })["catch"](function (error) {
-                  console.log(error);
-                });
+                    _this2.submited = false;
+
+                    _this2.limpiar();
+                  })["catch"](function (error) {
+                    console.log(error);
+                  });
+                } else {
+                  axios.post('api/registro', _this2.form).then(function (response) {
+                    _this2.$swal.fire('Realizar el proceso de compra de forma regular por la plataforma Dercolink', 'success');
+
+                    _this2.noasignados.push(response.data.NO);
+
+                    _this2.submited = false;
+
+                    _this2.limpiar();
+                  })["catch"](function (error) {
+                    console.log(error);
+                  });
+                }
 
               case 7:
               case "end":
