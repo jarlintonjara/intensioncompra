@@ -275,11 +275,11 @@ export default {
 
             if (this.form.marca == 'Mazda') {
                 axios.post('api/registro', this.form).then(response => {
-                    this.$swal.fire(
-                        'Registro creado!',
-                        '',
-                        'success'
-                    )
+                    this.$swal.fire({
+                        icon: 'success',
+                        title: 'Registro creado!',
+                        text: ''
+                    })
                     this.noasignados.push(response.data.NO);
                     this.submited = false;
                     this.limpiar();
@@ -289,8 +289,17 @@ export default {
             } else { 
                 axios.post('api/registro', this.form).then(response => {
                     this.$swal.fire(
-                        'Realizar el proceso de compra de forma regular por la plataforma Dercolink',
-                        'success'
+                        {
+                            title: '<h2>Registro creado!</h2>',
+                            icon: 'success',
+                            html:
+                                '<h3 class="text-danger">Realizar el proceso de compra de forma regular por la plataforma Dercolink</h3>',
+                            showCloseButton: false,
+                            showCancelButton: false,
+                            focusConfirm: false
+                        }
+                        /* 'Realizar el proceso de compra de forma regular por la plataforma Dercolink',
+                        'success' */
                     )
                     this.noasignados.push(response.data.NO);
                     this.submited = false;

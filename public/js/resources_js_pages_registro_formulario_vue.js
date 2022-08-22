@@ -402,7 +402,11 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 if (_this2.form.marca == 'Mazda') {
                   axios.post('api/registro', _this2.form).then(function (response) {
-                    _this2.$swal.fire('Registro creado!', '', 'success');
+                    _this2.$swal.fire({
+                      icon: 'success',
+                      title: 'Registro creado!',
+                      text: ''
+                    });
 
                     _this2.noasignados.push(response.data.NO);
 
@@ -414,7 +418,17 @@ var start9 = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   });
                 } else {
                   axios.post('api/registro', _this2.form).then(function (response) {
-                    _this2.$swal.fire('Realizar el proceso de compra de forma regular por la plataforma Dercolink', 'success');
+                    _this2.$swal.fire({
+                      title: '<h2>Registro creado!</h2>',
+                      icon: 'success',
+                      html: '<h3 class="text-danger">Realizar el proceso de compra de forma regular por la plataforma Dercolink</h3>',
+                      showCloseButton: false,
+                      showCancelButton: false,
+                      focusConfirm: false
+                    }
+                    /* 'Realizar el proceso de compra de forma regular por la plataforma Dercolink',
+                    'success' */
+                    );
 
                     _this2.noasignados.push(response.data.NO);
 
