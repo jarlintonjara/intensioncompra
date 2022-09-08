@@ -10,7 +10,7 @@ use PhpParser\Node\Stmt\Switch_;
 
 class AgendaProController extends Controller
 {
-    public function index(Request $request)
+    /* public function index(Request $request)
     {
         $servicio = $request->input('id_servicio');
         $marca = $request->input('marca');
@@ -34,11 +34,11 @@ class AgendaProController extends Controller
                 ]
             ]
         ]);
-    }
+    } */
 
     public function servicios(Request $request)
     {
-        $ubicacion = strtoupper($request->input('ubicacion'));
+        $ubicacion = strtoupper($request->input('departamento'));
         $marca = strtoupper($request->input('marca'));
         $modelo = strtoupper($request->input('modelo'));
         $response = TallerModel::select('id', 'descripcion', 'direccion')
@@ -100,26 +100,38 @@ class AgendaProController extends Controller
 
     public function seleccionarServicio(Request $request)
     {
-        $message = "";
         $servicio = $request->input('id_servicio');
+        $question = "¿En qué distrito de nuestra Red Derco Center Lima desea programar su cita?";
+        $restriccion = "";
+        $response = [
+            ["id"=>"SURCO", "descripcion" => "Derco Center Surco."],
+            ["id"=> "SURQUILLO", "descripcion" =>  "Derco Center Surquillo."],
+            ["id"=>"CAMACHO", "descripcion" => "Derco Center Camacho."],
+            ["id"=>"CHORRILLOS","descripcion" => "Derco Center Chorrillos."],
+            ["id"=>"LA VICTORIA","descripcion" => "Derco Center La Victoria."],
+            ["id"=> "SAN MIGUEL","descripcion" => "Derco Center San Miguel."]
+        ];
+        
         switch ($servicio){
             case 4:
             case 5:
             case 6:
-                $message = "Estimado cliente, para informarle que para el servicio de MANTENIMIENTO NOCTURNO solo aplica para mantenimientos preventivos sin observaciones.  No se hacen diagnósticos ni reparaciones (Max 75000 Km de recorrido)";
+                $restriccion = "Estimado cliente, para informarle que para el servicio de MANTENIMIENTO NOCTURNO solo aplica para mantenimientos preventivos sin observaciones.  No se hacen diagnósticos ni reparaciones (Max 75000 Km de recorrido)";
                 break;
         }
         return response()->json([ 
             'payload' => [
                 'message' => "Ok",
                 'data' => [
-                    'message' => $message
+                    'question' => $question,
+                    'resultado' => $response,
+                    'restriccion' => $restriccion
                 ]
             ]
         ]);
     }
 
-    public function distritosTaller(Request $request)
+   /*  public function distritosTaller(Request $request)
     {
         $data = [
             ["id"=>"SURCO", "descripcion" => "Derco Center Surco."],
@@ -141,8 +153,8 @@ class AgendaProController extends Controller
             ]
         ]);
     }
-
-    public function localesTaller(Request $request)
+ */
+    public function seleccionarDistrito(Request $request)
     {
         $distrito = strtoupper($request->input('distrito'));
         $question = "Estimado cliente, en el distrito de ".$distrito." contamos con los siguientes locales:";
