@@ -75,7 +75,7 @@ Route::post('importPacking', [IngresoController::class, 'import']);
 
 
 //Agenda Pro
-//Route::get('talleres', [AgendaProController::class, 'index']);
+Route::get('talleres', [AgendaProController::class, 'index']);
 Route::get('servicios', [AgendaProController::class, 'servicios']);
 Route::get('seleccionarServicio', [AgendaProController::class, 'seleccionarServicio']);
 //Route::get('distritosTaller', [AgendaProController::class, 'distritosTaller']);

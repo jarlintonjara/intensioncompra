@@ -10,22 +10,18 @@ use PhpParser\Node\Stmt\Switch_;
 
 class AgendaProController extends Controller
 {
-    /* public function index(Request $request)
+    public function index(Request $request)
     {
         $servicio = $request->input('id_servicio');
         $marca = $request->input('marca');
-        $i = 1;
-        $response = ServiciosTallerModel::select('talleres.id', 'talleres.descripcion', 'talleres.horario', 'talleres.vehiculos', 'talleres.restricciones')
+        $response = ServiciosTallerModel::select('talleres.distrito', 'talleres.nombre as descripcion')
                 ->join('servicios', 'servicios.id', 'servicios_x_taller.id_servicio')
                 ->join('talleres', 'talleres.id', 'servicios_x_taller.id_taller')
                 ->where('servicios_x_taller.id_servicio', $servicio)
                 ->where('servicios_x_taller.marca', $marca)
                 ->where('servicios_x_taller.estado', 1)
                 ->get();
-        foreach($response as $row){
-            $row["descripcion"] = $i.". ".$row["descripcion"];
-            $i+= 1;
-        }
+
         return response()->json([ 
             'payload' => [
                 'message' => "Ok",
@@ -34,7 +30,7 @@ class AgendaProController extends Controller
                 ]
             ]
         ]);
-    } */
+    }
 
     public function servicios(Request $request)
     {
@@ -101,16 +97,27 @@ class AgendaProController extends Controller
     public function seleccionarServicio(Request $request)
     {
         $servicio = $request->input('id_servicio');
+        $marca = $request->input('marca');
+        $modelo = $request->input('modelo');
         $question = "¿En qué distrito de nuestra Red Derco Center Lima desea programar su cita?";
         $restriccion = "";
-        $response = [
+        /* $response = [
             ["id"=>"SURCO", "descripcion" => "Derco Center Surco."],
             ["id"=> "SURQUILLO", "descripcion" =>  "Derco Center Surquillo."],
             ["id"=>"CAMACHO", "descripcion" => "Derco Center Camacho."],
             ["id"=>"CHORRILLOS","descripcion" => "Derco Center Chorrillos."],
             ["id"=>"LA VICTORIA","descripcion" => "Derco Center La Victoria."],
             ["id"=> "SAN MIGUEL","descripcion" => "Derco Center San Miguel."]
-        ];
+        ]; */
+        $response = ServiciosTallerModel::select('talleres.distrito', 'talleres.nombre as descripcion')
+                ->join('servicios', 'servicios.id', 'servicios_x_taller.id_servicio')
+                ->join('talleres', 'talleres.id', 'servicios_x_taller.id_taller')
+                ->where('servicios_x_taller.id_servicio', $servicio)
+                ->where('servicios_x_taller.marca', $marca)
+                ->where('talleres.departamento', 'LIMA')
+                ->where('servicios_x_taller.estado', 1)
+                ->get();
+
         
         switch ($servicio){
             case 4:
@@ -157,6 +164,8 @@ class AgendaProController extends Controller
     public function seleccionarDistrito(Request $request)
     {
         $distrito = strtoupper($request->input('distrito'));
+        $marca = $request->input('marca');
+        $modelo = $request->input('modelo');
         $question = "Estimado cliente, en el distrito de ".$distrito." contamos con los siguientes locales:";
         $response = TallerModel::select('id', 'descripcion', 'direccion')
             ->where('distrito', $distrito)
