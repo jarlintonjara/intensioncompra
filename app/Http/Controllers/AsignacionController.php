@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\AsignacionModel;
 use App\Models\RegistroModel;
 use App\Http\Requests\StoreAsignacionRequest;
-use App\Models\FacturadoModel;
 use App\Models\IngresoModel;
 use Illuminate\Support\Facades\DB;
 

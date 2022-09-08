@@ -1,6 +1,7 @@
 <?php
 
 use App\Exports\ScheduleExport;
+use App\Http\Controllers\AgendaProController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistroController;
@@ -71,3 +72,9 @@ Route::post('image/delete', [FileController::class, 'destroy']);
 
 Route::get('importPackingList', [IngresoController::class, 'import']);
 Route::post('importPacking', [IngresoController::class, 'import']);
+
+
+//Agenda Pro
+Route::get('talleres', [AgendaProController::class, 'index']);
+Route::get('servicios', [AgendaProController::class, 'servicios']);
+Route::get('seleccionarServicio', [AgendaProController::class, 'seleccionarServicio']);
