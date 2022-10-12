@@ -227,6 +227,7 @@ class AgendaProController extends Controller
     
         return response()->json([ 
             'payload' => [
+                'isSuccess' => true,
                 'message' => "Ok",
                 'data' => [
                     'question' => $question,
@@ -281,6 +282,7 @@ class AgendaProController extends Controller
         
         return response()->json([ 
             'payload' => [
+                'isSuccess' => true,
                 'message' => "Ok",
                 'data' => [
                     'question' => $question,
@@ -336,6 +338,7 @@ class AgendaProController extends Controller
         
         return response()->json([ 
             'payload' => [
+                'isSuccess' => true,
                 'message' => "Ok",
                 'data' => [
                     'question' => $question,
@@ -348,75 +351,153 @@ class AgendaProController extends Controller
     }
 
     //Api 21
-    public function reprogramacionPorHora($reservar_id){ 
+    public function reprogramacionPorHora($reserva_id){ 
         $client = new \GuzzleHttp\Client();
 
-        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings/'.$reservar_id, [
-            'headers' => [
-                'accept' => 'application/json',
-                'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
-            ],
-        ]);
-
-        $registro = json_decode($response->getBody(), true);
+        $registro = self::obtenerReserva($reserva_id);
         if(!$registro){
             return [];
         }
 
         $nextApi = 22;
+        $service = self::obtenerServicio($registro["service_id"]);
+
         $fecha = Carbon::parse($registro["start"]);
         $local = $registro["location_id"];
-        $dia = $fecha->format('d/m/Y');
-        $diaAux = $fecha->format('Y-m-d');
+        $dia = $fecha->format('Y-m-d');
         $hora = $fecha->format('H:i:s');    
-        $response2 = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings', [
+        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings', [
             'headers' => [
                 'accept' => 'application/json',
                 'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
             ],
         ]);
 
-        $body = json_decode($response2->getBody(), true);
+        $body = json_decode($response->getBody(), true);
         $options = [];
         $horas = [$hora];
-        $fecha_inicial = Carbon::parse($diaAux.' 08:00:00', 'UTC');
+        $fecha_inicial = Carbon::parse($dia.' 08:00:00', 'UTC');
         $horario_incial = 8;
-        $horario_final = 17;
+        $horario_final = 18;
         for($i = 0;$i < count($body) ;$i++){
             $auxFecha = Carbon::parse($body[$i]["start"]);
-            $auxDia = $auxFecha->format('d/m/Y');
+            $auxDia = $auxFecha->format('d-m-Y');
             $auxHora = $auxFecha->format('H:i:s');
-            if($dia == $auxDia && $local == $body[$i]["location_id"] && $reservar_id != $body[$i]["id"] ){
+            if($dia == $auxDia && $local == $body[$i]["location_id"] && $reserva_id != $body[$i]["id"] ){
                 array_push($horas, $auxHora);
                 //array_push($options, $body[$i]);
             }
         }
         for($i = $horario_incial; $i < $horario_final ;$i++ ){
-            array_push($options, $fecha_inicial->addHour());
+            $startDate = Carbon::parse($fecha_inicial);
+            $endService = Carbon::parse($fecha_inicial);
+            $endDate = Carbon::parse($fecha_inicial->addHour());
+            $startHora = $startDate->format('H:i:s');
+            $endHora = $endDate->format('H:i:s');
+            foreach($horas as $hour){
+                if( !($hour >= $startHora && $hour <= $endHora) ){
+                    array_push($options, [
+                        "start" => $startDate,
+                        "end" => $endService->addMinutes($service["duration"]),
+                        "description" => $startHora
+                    ]);
+                }
+            };
         }   
+        $question = "Estimado cliente, para el día ".$dia." contamos con los siguientes turnos disponibles en el taller ".$registro["location"];
         return response()->json([ 
             'payload' => [
+                'isSuccess' => true,
                 'message' => "Ok",
                 'data' => [
-                    //'question' => $options,
-                    'options' => $options,
-                    'resultado' => $registro,
-                    'next_api' => $nextApi,
-                    'horas' => $horas
+                    'question' => $question,
+                    'options' => $options
+                    
                 ]
             ]
         ]);
     }
     
-    /* public function seleccionarReprogramacionPorHora(Request $request){ 
+    public function guardarReprogramacionPorHora(Request $request){
+
+        $request->validate([
+            'id' => ['required'],
+            'start' => ['required'],
+            'end' => ['required']
+        ]);
+
         $reserva_id = $request->id;
         $start = $request->start;
         $end = $request->end;
-
         $status_id = 1; //reservado
+
+        $registro = self::obtenerReserva($reserva_id);
+        if(!$registro){
+            return [];
+        }   
+        $local = self::obtenerTaller($registro["location_id"]);
+        try{
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('PATCH', 'https://agendapro.com/api/public/v1/bookings/'.$reserva_id, [
+                'body' => '{"start":'.$start.',"end":'.$end.',"status_id":1,"provider_id":'.$registro["service_provider_id"].'}',
+                'headers' => [
+                    'accept' => 'application/json',
+                    'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
+                    'content-type' => 'application/json',
+                ],
+            ]);
+        }catch(\Exception $e){
+            return response()->json([ 
+                'payload' => [
+                    'isSuccess' => false,
+                    'message' => $e->getMessage()
+                ]
+            ]);
+        }
         
+        $resultado = json_decode($response->getBody(), true); 
+        return response()->json([ 
+            'payload' => [
+                'message' => "Ok",
+                'data' => [
+                    'response' => $response,
+                    'resultado' => $resultado
+                    //'next_api' => $nextApi
+                ]
+            ]
+        ]);
+        
+        $nextApi = 22;
+        $fecha = Carbon::parse($registro["start"]);
+        $dia = $fecha->format('d-m-Y');
+        $hora = $fecha->format('H:i:s'); 
+
+        $message = "Excelente! Se registró la Reprogramación con Éxito! \r\n
+        Confirmamos la siguiente información:  \r\n 
+        -Datos: ". $registro["client"]["first_name"]." ".$registro["client"]["last_name"]." \r\n
+        -Servicio: ". $registro["service"]." \r\n
+        -Taller:". $local["name"]."  \r\n
+        -Dirección:". $local["address"] ? $local["address"] : $local["second_address"]."  \r\n
+        -Fecha de cita: ". $dia."  \r\n
+        -Hora de cita:". $hora." \r\n
+        -Teléfono: ". $registro["client"]["phone"]." \r\n
+        -Correo:". $registro["client"]["email"]." \r\n
+
+        Recuerde que puede comunicarse también a traves de nuestra pagina web:  www.derco.com.pe y nuestra central telefónica: 713-5000 Horario de lunes a viernes de 8.30 a 6pm y sábados de 8.30 a 1pm. Hasta pronto! ";
+
+        
+        return response()->json([ 
+            'payload' => [
+                'isSuccess' => false,
+                'message' => $message
+            ]
+        ]);
+    }
+
+    public function obtenerReserva($id){
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings/'.$reserva_id, [
+
+        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings/'.$id, [
             'headers' => [
                 'accept' => 'application/json',
                 'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
@@ -424,52 +505,40 @@ class AgendaProController extends Controller
         ]);
 
         $registro = json_decode($response->getBody(), true);
-        if(!$registro){
-            return [];
-        }
+        return $registro;
+    }
 
-        $nextApi = 22;
-        $fecha = Carbon::parse($registro["start"]);
-        $local = $registro["location_id"];
-        $dia = $fecha->format('d/m/Y');
-        $diaAux = $fecha->format('Y-m-d');
-        $hora = $fecha->format('H:i:s');    
-        $response2 = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings', [
+    public function obtenerTaller($id){
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/locations', [
+            'headers' => [
+                'accept' => 'application/json',
+                'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
+            ],
+        ]);
+        $data = json_decode($response->getBody(), true);
+        $registro  = null;
+        foreach($data["locations"] as $row){
+            if($row["id"] == $id){
+                $registro = $row;
+                break;
+            }
+        }
+        return $registro;
+    }
+
+    public function obtenerServicio($id){
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/services/'.$id, [
             'headers' => [
                 'accept' => 'application/json',
                 'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
             ],
         ]);
 
-        $body = json_decode($response2->getBody(), true);
-        $options = [];
-        $horas = [$hora];
-        $fecha_inicial = Carbon::parse($diaAux.' 08:00:00', 'UTC');
-        $horario_incial = 8;
-        $horario_final = 17;
-        for($i = 0;$i < count($body) ;$i++){
-            $auxFecha = Carbon::parse($body[$i]["start"]);
-            $auxDia = $auxFecha->format('d/m/Y');
-            $auxHora = $auxFecha->format('H:i:s');
-            if($dia == $auxDia && $local == $body[$i]["location_id"] && $reservar_id != $body[$i]["id"] ){
-                array_push($horas, $auxHora);
-                //array_push($options, $body[$i]);
-            }
-        }
-        for($i = $horario_incial; $i < $horario_final ;$i++ ){
-            array_push($options, $fecha_inicial->addHour());
-        }   
-        return response()->json([ 
-            'payload' => [
-                'message' => "Ok",
-                'data' => [
-                    //'question' => $options,
-                    'options' => $options,
-                    'resultado' => $registro,
-                    'next_api' => $nextApi,
-                    'horas' => $horas
-                ]
-            ]
-        ]);
-    } */
+        $registro = json_decode($response->getBody(), true);
+        return $registro;
+    }
 }

@@ -84,6 +84,7 @@ Route::get('seleccionarServicio', [AgendaProController::class, 'seleccionarServi
 Route::get('reprogramarCita/{placa}', [AgendaProController::class, 'reprogramarCita']);
 Route::get('seleccionarCita/{reserva_id}', [AgendaProController::class, 'seleccionarCita']);
 Route::get('reprogramacionPorHora/{reserva_id}', [AgendaProController::class, 'reprogramacionPorHora']);
+Route::post('guardarReprogramacionPorHora', [AgendaProController::class, 'guardarReprogramacionPorHora']);
 
 //Route::get('distritosTaller', [AgendaProController::class, 'distritosTaller']);
 Route::get('seleccionarDistrito', [AgendaProController::class, 'seleccionarDistrito']);
