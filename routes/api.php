@@ -76,7 +76,14 @@ Route::post('importPacking', [IngresoController::class, 'import']);
 
 //Agenda Pro
 Route::get('talleres', [AgendaProController::class, 'index']);
+Route::get('buscarCita/{placa}', [AgendaProController::class, 'buscarCita']);
 Route::get('servicios', [AgendaProController::class, 'servicios']);
 Route::get('seleccionarServicio', [AgendaProController::class, 'seleccionarServicio']);
+
+//2.1
+Route::get('reprogramarCita/{placa}', [AgendaProController::class, 'reprogramarCita']);
+Route::get('seleccionarCita/{reserva_id}', [AgendaProController::class, 'seleccionarCita']);
+Route::get('reprogramacionPorHora/{reserva_id}', [AgendaProController::class, 'reprogramacionPorHora']);
+
 //Route::get('distritosTaller', [AgendaProController::class, 'distritosTaller']);
 Route::get('seleccionarDistrito', [AgendaProController::class, 'seleccionarDistrito']);

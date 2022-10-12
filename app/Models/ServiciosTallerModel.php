@@ -11,13 +11,16 @@ class ServiciosTallerModel extends Model
 
     protected $table = 'servicios_x_taller';
 
+    protected $casts = [
+        'restricciones' => 'array'
+    ];
+
     protected $fillable = [
         'id',
-        'departamento',
-        'distrito',
+        'id_taller',
         'marca',
         'id_servicio',
-        'id_restriccion',
-        'estado'
+        'estado',
+        'restricciones'
     ];
 }
