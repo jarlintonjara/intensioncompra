@@ -264,12 +264,10 @@ class AgendaProController extends Controller
         }
         $question = "";
         $AuxOptions = [];
-        $nextApi = 0;
         if($data){
             $fecha = Carbon::parse($data["start"]);
             $dia = $fecha->format('d/m/Y');
             $hora = $fecha->format('H:i:s');
-            $nextApi = 20;
             $question.= "Estimado ".$data["client"]["first_name"].". Para informarle que  Usted ya cuenta con agendamiento de cita en taller. Se detalla: \n -Servicio: ".$data["service"]. " \n -Taller: ".$data["location"] ." \n -Dirección: ".$data["location"]." \n -Fecha de cita: ".$dia." \n -Hora de cita: ".$hora. " \n Cuál de las citas agendadas desea reprogramar?";
             foreach($options as $option){
                 $object = [
@@ -281,20 +279,17 @@ class AgendaProController extends Controller
         }
         
         return response()->json([ 
-            'payload' => [
-                'isSuccess' => true,
-                'message' => "Ok",
-                'data' => [
-                    'question' => $question,
-                    'options' => $AuxOptions,
-                    'resultado' => $data,
-                    'next_api' => $nextApi 
-                ]
+            'isSuccess' => true,
+            'message' => "Ok",
+            'data' => [
+                'question' => $question,
+                'options' => $AuxOptions,
+                'resultado' => $data,
+                'next_api' => 'seleccionarCita' 
             ]
         ]);
     }
 
-    //Api 20
     public function seleccionarCita($reservar_id){
         $client = new \GuzzleHttp\Client();
 
@@ -337,20 +332,17 @@ class AgendaProController extends Controller
         }
         
         return response()->json([ 
-            'payload' => [
-                'isSuccess' => true,
-                'message' => "Ok",
-                'data' => [
-                    'question' => $question,
-                    'options' => $options,
-                    'resultado' => $data,
-                    'next_api' => $nextApi 
-                ]
+            'isSuccess' => true,
+            'message' => "Ok",
+            'data' => [
+                'question' => $question,
+                'options' => $options,
+                'resultado' => $data,
+                'next_api' => $nextApi 
             ]
         ]);
     }
 
-    //Api 21
     public function reprogramacionPorHora($reserva_id){ 
         $client = new \GuzzleHttp\Client();
 
@@ -359,12 +351,11 @@ class AgendaProController extends Controller
             return [];
         }
 
-        $nextApi = 22;
         $service = self::obtenerServicio($registro["service_id"]);
 
         $fecha = Carbon::parse($registro["start"]);
         $local = $registro["location_id"];
-        $dia = $fecha->format('Y-m-d');
+        $dia = $fecha->format('d-m-Y');
         $hora = $fecha->format('H:i:s');    
         $response = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings', [
             'headers' => [
@@ -376,49 +367,186 @@ class AgendaProController extends Controller
         $body = json_decode($response->getBody(), true);
         $options = [];
         $horas = [$hora];
+        $horarios = [ '08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00', '15:00:00', '16:00:00', '17:00:00'];
+        
         $fecha_inicial = Carbon::parse($dia.' 08:00:00', 'UTC');
-        $horario_incial = 8;
-        $horario_final = 18;
         for($i = 0;$i < count($body) ;$i++){
             $auxFecha = Carbon::parse($body[$i]["start"]);
             $auxDia = $auxFecha->format('d-m-Y');
             $auxHora = $auxFecha->format('H:i:s');
             if($dia == $auxDia && $local == $body[$i]["location_id"] && $reserva_id != $body[$i]["id"] ){
                 array_push($horas, $auxHora);
-                //array_push($options, $body[$i]);
             }
         }
-        for($i = $horario_incial; $i < $horario_final ;$i++ ){
-            $startDate = Carbon::parse($fecha_inicial);
-            $endService = Carbon::parse($fecha_inicial);
-            $endDate = Carbon::parse($fecha_inicial->addHour());
-            $startHora = $startDate->format('H:i:s');
-            $endHora = $endDate->format('H:i:s');
-            foreach($horas as $hour){
-                if( !($hour >= $startHora && $hour <= $endHora) ){
-                    array_push($options, [
-                        "start" => $startDate,
-                        "end" => $endService->addMinutes($service["duration"]),
-                        "description" => $startHora
-                    ]);
+        
+        foreach($horas as $hour){
+            for($i = 0; $i < count($horarios); $i++){
+                $fecha_inicial = Carbon::parse($dia.' '.$horarios[$i], 'UTC');
+                $startDate = Carbon::parse($fecha_inicial);
+                $endDate = Carbon::parse($fecha_inicial->addHour());
+                $startHora = $startDate->format('H:i:s');
+                $endHora = $endDate->format('H:i:s');
+                if($hour >= $startHora && $hour <= $endHora){
+                    array_splice($horarios, $i, 1);
                 }
             };
+        }
+        if(count($horarios) == 0){
+            $question = "Estimado cliente, no contamos con horarios disponibles en la fecha programada ¿Desea reprogramar de Fecha?";
+            $options = [
+                [
+                    "start" => "NO",
+                    "end" => "",
+                    "description" => "1. No"
+                ],
+                [
+                    "start" => "SI",
+                    "end" => "",
+                    "description" => "2. Si"
+                ]
+            ];            
+
+            return response()->json([ 
+                'payload' => [
+                    'isSuccess' => false,
+                    'message' => "Ok",
+                    'data' => [
+                        'question' => $question,
+                        'options' => $options
+                        
+                    ]
+                ]
+            ]);
+        }
+        foreach($horarios as $row){
+            $start = Carbon::parse($dia.' '.$row, 'UTC');
+            $end = Carbon::parse($dia.' '.$row, 'UTC');
+            array_push($options, [
+                "start" => $start,
+                "end" => $end->addMinutes($service["duration"]),
+                "description" => $row
+            ]);
         }   
         $question = "Estimado cliente, para el día ".$dia." contamos con los siguientes turnos disponibles en el taller ".$registro["location"];
         return response()->json([ 
-            'payload' => [
-                'isSuccess' => true,
+            'isSuccess' => true,
+            'message' => "Ok",
+            'data' => [
+                'question' => $question,
+                'options' => $options,
+                'next_api' => 'guardarReprogramacion'
+                    
+            ]
+        ]);
+    }
+
+    public function reprogramacionPorFecha(Request $request){ 
+
+        $request->validate([
+            'id' => ['required'],
+            'date' => ['required']
+        ]);
+
+        $reserva_id = $request->id;
+        $date = $request->date;
+
+        $client = new \GuzzleHttp\Client();
+
+        $registro = self::obtenerReserva($reserva_id);
+        if(!$registro){
+            return [];
+        }
+        $service = self::obtenerServicio($registro["service_id"]);
+
+        $fecha = Carbon::parse($date);
+        $local = $registro["location_id"];
+        $dia = $fecha->format('d-m-Y');
+        $response = $client->request('GET', 'https://agendapro.com/api/public/v1/bookings', [
+            'headers' => [
+                'accept' => 'application/json',
+                'authorization' => 'Basic NmUwbW1rczY6OGd4YmRjbXA1ajA2ZmljY3c1am9hNXV4NHd2bGQzdDNtM2I1cmkxOWdtNmQ4MWY3MXY=',
+            ],
+        ]);
+
+        $data = json_decode($response->getBody(), true);
+        $options = [];
+        $horas = ['06:00:00'];
+        $horarios = [ '08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00', '15:00:00', '16:00:00', '17:00:00'];
+        
+        for($i = 0;$i < count($data) ;$i++){
+            $auxFecha = Carbon::parse($data[$i]["start"]);
+            $auxDia = $auxFecha->format('d-m-Y');
+            $auxHora = $auxFecha->format('H:i:s');
+            
+            if($dia == $auxDia && $local == $data[$i]["location_id"] ){
+                array_push($horas, $auxHora);
+            }
+        }
+        
+        foreach($horas as $hour){
+            for($i = 0; $i < count($horarios); $i++){
+                $fecha_inicial = Carbon::parse($dia.' '.$horarios[$i], 'UTC');
+                $startDate = Carbon::parse($fecha_inicial);
+                $endDate = Carbon::parse($fecha_inicial->addHour());
+                $startHora = $startDate->format('H:i:s');
+                $endHora = $endDate->format('H:i:s');
+                if($hour >= $startHora && $hour <= $endHora){
+                    array_splice($horarios, $i, 1);
+                }
+            };
+        }
+        if(count($horarios) == 0){
+            $question = "Estimado cliente, las fechas disponibles más cercanas en el taller indicado son las siguientes:";
+            $options = [
+                [
+                    "start" => Carbon::parse($fecha->addDays(1))->format('d/m/Y'),
+                    "end" => "",
+                    "description" => Carbon::parse($fecha)->format('d/m/Y')
+                ],
+                [
+                    "start" => Carbon::parse($fecha->addDays(1))->format('d/m/Y'),
+                    "end" => "",
+                    "description" => Carbon::parse($fecha)->format('d/m/Y')
+                ],
+                [
+                    "start" => Carbon::parse($fecha->addDays(1))->format('d/m/Y'),
+                    "end" => "",
+                    "description" => Carbon::parse($fecha)->format('d/m/Y')
+                ]
+            ];            
+
+            return response()->json([ 
+                'isSuccess' => false,
                 'message' => "Ok",
                 'data' => [
                     'question' => $question,
                     'options' => $options
                     
                 ]
+            ]);
+        }
+        foreach($horarios as $row){
+            $start = Carbon::parse($dia.' '.$row, 'UTC');
+            $end = Carbon::parse($dia.' '.$row, 'UTC');
+            array_push($options, [
+                "start" => $start,
+                "end" => $end->addMinutes($service["duration"]),
+                "description" => $row
+            ]);
+        }   
+        $question = "Estimado cliente, para el día ".$dia." contamos con los siguientes turnos disponibles en el taller ".$registro["location"];
+        return response()->json([ 
+            'isSuccess' => true,
+            'message' => "Ok",
+            'data' => [
+                'question' => $question,
+                'options' => $options
+                
             ]
         ]);
     }
     
-    public function guardarReprogramacionPorHora(Request $request){
+    public function guardarReprogramacion(Request $request){
 
         $request->validate([
             'id' => ['required'],
@@ -457,13 +585,11 @@ class AgendaProController extends Controller
         
         $resultado = json_decode($response->getBody(), true); 
         return response()->json([ 
-            'payload' => [
-                'message' => "Ok",
-                'data' => [
-                    'response' => $response,
-                    'resultado' => $resultado
-                    //'next_api' => $nextApi
-                ]
+            'message' => "Ok",
+            'data' => [
+                'response' => $response,
+                'resultado' => $resultado
+                //'next_api' => $nextApi
             ]
         ]);
         
@@ -487,10 +613,8 @@ class AgendaProController extends Controller
 
         
         return response()->json([ 
-            'payload' => [
-                'isSuccess' => false,
-                'message' => $message
-            ]
+            'isSuccess' => false,
+            'message' => $message
         ]);
     }
 
@@ -541,4 +665,5 @@ class AgendaProController extends Controller
         $registro = json_decode($response->getBody(), true);
         return $registro;
     }
+    
 }
