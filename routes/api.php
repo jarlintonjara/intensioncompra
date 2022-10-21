@@ -79,17 +79,20 @@ Route::get('talleres', [AgendaProController::class, 'index']);
 
 Route::get('servicios', [AgendaProController::class, 'servicios']);
 Route::get('seleccionarServicio', [AgendaProController::class, 'seleccionarServicio']);
+Route::get('seleccionarDistrito', [AgendaProController::class, 'seleccionarDistrito']);
 
 Route::group(['middleware' => 'apiAuthentication'],function () {
     //1.- Agendar tu cita en taller
-    Route::get('buscarCita/{placa}', [AgendaProController::class, 'buscarCita']);
+    Route::get('buscarRerserva/{placa}', [AgendaProController::class, 'buscarRerserva']);
     //2.- Reprogramación
-    Route::get('reprogramarCita/{placa}', [AgendaProController::class, 'reprogramarCita']);
-    Route::get('seleccionarCita/{id}', [AgendaProController::class, 'seleccionarCita']);
+    Route::get('reprogramarReserva/{placa}', [AgendaProController::class, 'reprogramarReserva']);
+    Route::get('seleccionarReserva/{id}', [AgendaProController::class, 'seleccionarReserva']);
     Route::get('reprogramacionPorHora/{id}', [AgendaProController::class, 'reprogramacionPorHora']);
     Route::get('reprogramacionPorFecha', [AgendaProController::class, 'reprogramacionPorFecha']);
     Route::post('guardarReprogramacion', [AgendaProController::class, 'guardarReprogramacion']);
+    Route::get('reprogramacionPorTaller', [AgendaProController::class, 'reprogramacionPorTaller']);
+    Route::get('reprogramacionPorServicio', [AgendaProController::class, 'reprogramacionPorServicio']);
+    Route::get('turnosPorTaller', [AgendaProController::class, 'turnosPorTaller']);
+    Route::get('fechasDisponibles', [AgendaProController::class, 'fechasDisponibles']);
+    Route::get('cancelarReserva/{placa}', [AgendaProController::class, 'cancelarReserva']);
 });
-
-//Route::get('distritosTaller', [AgendaProController::class, 'distritosTaller']);
-Route::get('seleccionarDistrito', [AgendaProController::class, 'seleccionarDistrito']);

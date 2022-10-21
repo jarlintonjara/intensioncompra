@@ -1,6 +1,7 @@
 
 const Layout = () => import('./layouts/default.vue');
 const Dashboard = () => import('./pages/dashboard.vue');
+const Documentacion = () => import('./pages/documentacion.vue');
 const Auditoria = () => import('./pages/auditoria.vue');
 const usuarios = () => import('./pages/users.vue');
 
@@ -34,7 +35,8 @@ export default{
             },
         },
         { path: '/register', component: Register },
-        { path: '/login', component: Login, name: 'Login'},
+        { path: '/login', component: Login, name: 'Login' },
+        { path: "/reserva/documentacion", component: Documentacion, name: "documentacion"},
         { path: '/layout', component: Layout, name: 'Layout',
             beforeEnter: (to, form, next) => {
                 const token = localStorage.getItem('access_token');

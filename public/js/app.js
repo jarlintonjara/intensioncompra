@@ -5572,6 +5572,10 @@ var Dashboard = function Dashboard() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/dashboard.vue */ "./resources/js/pages/dashboard.vue"));
 };
 
+var Documentacion = function Documentacion() {
+  return __webpack_require__.e(/*! import() */ "resources_js_pages_documentacion_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/documentacion.vue */ "./resources/js/pages/documentacion.vue"));
+};
+
 var Auditoria = function Auditoria() {
   return __webpack_require__.e(/*! import() */ "resources_js_pages_auditoria_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/auditoria.vue */ "./resources/js/pages/auditoria.vue"));
 };
@@ -5661,6 +5665,10 @@ var caracteristicas = function caracteristicas() {
     path: '/login',
     component: Login,
     name: 'Login'
+  }, {
+    path: "/reserva/documentacion",
+    component: Documentacion,
+    name: "documentacion"
   }, {
     path: '/layout',
     component: Layout,
@@ -90789,7 +90797,7 @@ function h(tag, key, args) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_auditoria_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1,"resources_js_pages_settings_configuracion_vue":1,"resources_js_pages_concesionario_vue":1,"resources_js_pages_tienda_vue":1,"resources_js_pages_caracteristica_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_layouts_default_vue":1,"resources_js_pages_dashboard_vue":1,"resources_js_pages_documentacion_vue":1,"resources_js_pages_auditoria_vue":1,"resources_js_pages_users_vue":1,"resources_js_pages_registro_formulario_vue":1,"resources_js_pages_registro_nasignado_vue":1,"resources_js_pages_ingreso_Index_vue":1,"resources_js_pages_ingreso_bloqueado_vue":1,"resources_js_pages_asignacion_index_vue":1,"resources_js_pages_asignacion_reservado_vue":1,"resources_js_pages_asignacion_facturado_vue":1,"resources_js_pages_asignacion_emplazado_vue":1,"resources_js_pages_errors_404_vue":1,"resources_js_pages_auth_login_vue":1,"resources_js_pages_auth_register_vue":1,"resources_js_pages_settings_perfil_vue":1,"resources_js_pages_settings_configuracion_vue":1,"resources_js_pages_concesionario_vue":1,"resources_js_pages_tienda_vue":1,"resources_js_pages_caracteristica_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

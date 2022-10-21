@@ -11,6 +11,10 @@ class TallerModel extends Model
 
     protected $table = 'talleres';
 
+    protected $casts = [
+        'restriccion_x_modelo' => 'array'
+    ];
+
     protected $fillable = [
         'id',
         'departamento',
@@ -20,6 +24,7 @@ class TallerModel extends Model
         'horario',
         'vehiculos',
         'restricciones',
+        'restriccion_x_modelo',
         'estado'
     ];
 }
