@@ -35,26 +35,15 @@
                             href="info_app_docs.html#database">database installation</a> page to play around with it.
                     </div>
                     <div class="markdown-body">
-                        <h1 id="restful-api">
-                            <a href="#restful-api" class="anchor"><span class="fal fa-link" /></a>
-                            <span>RESTful API</span>
-                        </h1>
-                        <blockquote>
-                            <p><strong>Representational State Transfer (REST)</strong> is a software architectural style
-                                that defines a set of constraints to be used for creating Web services. Web services that
-                                conform to the REST architectural style, called RESTful Web services (RWS), provide
-                                interoperability between computer systems on the Internet.</p>
-                        </blockquote>
-                        <p>from <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">wikipedia</a></p>
-                        <p>SmartAdmin for PHP has built-in REST API server that you can already use out of the box. Provided
-                            that you enabled <code>mod_rewrite</code> in the <a
-                                href="info_app_docs.html#url-rewriting">installation</a>, you can configure your REST API
-                            server in minutes!</p>
-                        <p>To play around with this feature, head over to the <a href="php_api_test.html">API Tester</a>
-                            page.</p>
+                        
                         <h2 id="routes">
                             <a href="#routes" class="anchor"><span class="fal fa-link" /></a>
-                            <span>Routes</span>
+                            <span>Rutas</span>
+                        </h2>
+                        
+                        <h2 id="routes">
+                            <a href="#routes" class="anchor"><span class="fal fa-link" /></a>
+                            <span>Rutas</span>
                         </h2>
                         <p>The API routes are basically the endpoints of your API. These routes are configured/defined under
                             <code>public/api</code> folder. To learn more on how to design your API better, follow this <a
@@ -64,13 +53,13 @@
                         <pre><code class=" hljs">GET https://smartadmin.lodev09.com/api/users/:username</code></pre>
                         <p>Response:</p>
                         <pre><code class="language-json hljs">HTTP/1.1 200 OK
-    {
-        "id": 1,
-        "username": "lodev09",
-        "name": "Jovanni",
-        "email": "lodev09@gmail.com",
-        "created_at": "2019-07-02T19:34:22Z"
-    }</code></pre>
+                            {
+                                "id": 1,
+                                "username": "lodev09",
+                                "name": "Jovanni",
+                                "email": "lodev09@gmail.com",
+                                "created_at": "2019-07-02T19:34:22Z"
+                            }</code></pre>
                         <h2 id="middlewares">
                             <a href="#middlewares" class="anchor"><span class="fal fa-link" /></a>
                             <span>Middlewares</span>
