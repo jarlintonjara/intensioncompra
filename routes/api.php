@@ -13,6 +13,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TercerosController;
 use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\UtilsController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,8 @@ Route::get('talleres', [AgendaProController::class, 'index']);
 Route::get('seleccionarDistrito', [AgendaProController::class, 'seleccionarDistrito']);
 
 Route::group(['middleware' => 'apiAuthentication'],function () {
+    //terceros
+    Route::get('busquedaDocumento/{dni}', [TercerosController::class, 'index']);
     //1.- Agendar tu cita en taller
     Route::get('buscarReserva/{placa}', [AgendaProController::class, 'buscarRerserva']);
     Route::get('servicios', [AgendaProController::class, 'servicios']);
